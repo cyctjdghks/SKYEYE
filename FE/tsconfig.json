@@ -15,19 +15,22 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
-      "@/assets/*": ["./assets/*"],
-      "@/constant/*": ["./constant/*"],
-      "@/action/*": ["./action/*"],
-      "@/present/*": ["./present/*"],
-      "@/common/*": ["./present/common/*"],
-      "@/component/*": ["./present/component/*"],
-      "@/layout/*": ["./present/layout/*"],
-      "@/pages/*": ["./present/pages/*"],
-      "@/store/*": ["./store/*"],
-      "@/public/*": ["./public/*"],
-      "@/types/*": ["./types/*"]
+      "@src/*": [
+        "src/*"
+      ],
+      "@assets/*": ["src/assets/*"],
+      "@constant/*": ["src/constant/*"],
+      "@action/*": ["src/action/*"],
+      "@present/*": ["src/present/*"],
+      "@common/*": ["src/present/common/*"],
+      "@component/*": ["src/present/component/*"],
+      "@layout/*": ["src/present/layout/*"],
+      "@pages/*": ["src/present/pages/*"],
+      "@store/*": ["src/store/*"],
+      "@public/*": ["src/public/*"],
+      "@types/*": ["src/types/*"]
     }
   },
   "include": ["src"],
