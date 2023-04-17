@@ -1,0 +1,1 @@
+export const API = "https://lab.ssafy.com/s08-final/S08P31D202"
