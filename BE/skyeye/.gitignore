@@ -4,8 +4,7 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
-.yml
-images/
+
 ### STS ###
 .apt_generated
 .classpath
@@ -19,6 +18,8 @@ bin/
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
+*.yml
+images/
 .idea
 *.iws
 *.iml
