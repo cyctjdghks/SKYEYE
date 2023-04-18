@@ -27,8 +27,23 @@ dependencies {
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui
+	implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.14'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+task copyPrivate(type: Copy) {
+	copy {
+		from '../../d202-config'
+		include "*.yml"
+		into 'src/main/resources'
+	}
+	copy {
+		from '../../d202-config'
+		include "*.yml"
+		into 'src/test/resources'
+	}
 }
