@@ -1,0 +1,3 @@
+[submodule "d202-config"]
+	path = d202-config
+	url = https://lab.ssafy.com/jhp1276/d202-config.git
