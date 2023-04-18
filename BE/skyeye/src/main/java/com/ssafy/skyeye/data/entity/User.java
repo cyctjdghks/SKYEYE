@@ -1,0 +1,31 @@
+package com.ssafy.skyeye.data.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "user")
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class User extends BaseEntity{
+    @Id
+    @Column(name = "user_id", length = 30)
+    private String userId;
+    @Column(name = "user_pw", length = 70)
+    private String userPw;
+    @Column(name = "user_name", length = 20)
+    private String userName;
+    @Column(name = "user_position", length = 20)
+    private String userPosition;
+    @Column(name = "user_phone_number", length = 20)
+    private String userPhoneNumber;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "image")
+    private Image imageId;
+}
