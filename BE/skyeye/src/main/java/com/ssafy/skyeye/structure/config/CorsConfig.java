@@ -23,11 +23,13 @@ public class CorsConfig implements WebMvcConfigurer {
 
     }
 
-//    Swagger UI 실행시 404처리
-//    Swagger2 일경우
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/**").addResourceLocations("file:///usr/app/");
+        // 배포환경 Docker Container에서 사진 저장 경로
+//        registry.addResourceHandler("/**").addResourceLocations("file:///usr/app/");
+        // 로컬 환경(재현기준)에서 사진 저장 경로
+        registry.addResourceHandler("/**").addResourceLocations("file:///C:/ssafy/workspace/S08P31D202/BE/skyeye");
     }
 
 }
