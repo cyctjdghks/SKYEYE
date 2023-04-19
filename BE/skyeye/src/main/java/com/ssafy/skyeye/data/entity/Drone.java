@@ -15,7 +15,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Drone extends BaseEntity{
     @Id
-
     @Column(name = "drone_id", length = 30, nullable = false)
     private String droneId;
     @Column(name = "drone_pw", length = 70, nullable = false)

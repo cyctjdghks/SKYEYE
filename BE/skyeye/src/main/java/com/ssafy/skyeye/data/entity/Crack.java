@@ -15,7 +15,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Crack extends BaseEntity{
     @Id
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "crack_id", nullable = false)
     private Long crackId;
     @Column(name = "crack_type", length = 50, nullable = false)
