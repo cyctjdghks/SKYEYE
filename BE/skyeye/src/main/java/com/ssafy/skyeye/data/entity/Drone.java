@@ -23,6 +23,6 @@ public class Drone extends BaseEntity{
     @Column(name = "drone_serial_number", length = 20, nullable = false)
     private String droneSerialNumber;
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user", nullable = false)
+    @JoinColumn(name = "userId", nullable = false)
     private User userId;
 }

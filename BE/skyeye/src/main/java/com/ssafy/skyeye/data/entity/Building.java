@@ -22,7 +22,7 @@ public class Building extends BaseEntity{
     @Column(name = "building_establishment", nullable = false)
     private LocalDateTime buildingEstablishment;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user", nullable = false)
+    @JoinColumn(name = "userId", nullable = false)
     private User userId;
     @Column(name = "building_name", length = 50, nullable = false)
     private String buildingName;
