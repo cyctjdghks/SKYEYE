@@ -16,9 +16,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Building extends BaseEntity{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "building_id", nullable = false)
     private Long buildingId;
-
     @Column(name = "building_establishment", nullable = false)
     private LocalDateTime buildingEstablishment;
     @ManyToOne(fetch = FetchType.LAZY)
