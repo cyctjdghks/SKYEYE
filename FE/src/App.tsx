@@ -11,10 +11,6 @@ function App() {
           <img src={accountCircle} alt="" />
         </div>
       </sidebar.SidBar>
-      <div>
-        <button.BulidingButton>소담빌</button.BulidingButton>
-        <button.CrackButton>콘크리트 균열</button.CrackButton>
-      </div>
     </div>
   );
 }
