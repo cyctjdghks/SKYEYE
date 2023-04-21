@@ -1,11 +1,7 @@
 import styled from "@emotion/styled";
 import { theme } from "@constant/theme";
 
-type heightProps = {
-  height: string;
-};
-
-export const SideBar = styled("div")<heightProps>(
+export const SideBar = styled("div")(
   {
     background: `${theme.colors.greyscale.dark1}`,
     color: `${theme.colors.greyscale.light2}`,
