@@ -1,8 +1,12 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
-import { apiURL, kakaoLoginUrl } from "@/store/constants";
-import { ApiResult } from "@/types/api/apiType";
+import { urls }  from "@constant/values";
 
-const API = axios.create({ baseURL: apiURL });
+export interface ApiResult {
+  isSuccess: boolean;
+  result: any;
+}
+
+const API = axios.create({ baseURL: urls.API });
 
 //오류가 발생할 경우
 API.interceptors.response.use(
@@ -134,4 +138,3 @@ export async function deleteAsync<D>(
     return { isSuccess: false, result: err };
   }
 }
-
