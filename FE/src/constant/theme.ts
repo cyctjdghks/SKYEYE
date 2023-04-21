@@ -11,7 +11,7 @@ const colors = {
   },
 };
 
-const trans = "all 0.4s ease-out";
+const trans = "all 0.2s ease";
 
 const shadows = {
   shadow1: "0px 1px 2px rgba(52, 87, 140, 0.14);",

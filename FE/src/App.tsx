@@ -1,15 +1,10 @@
 import "./App.css";
-import React, { useState } from "react";
-import accountCircle from "@assets/accountCircle.png"
-import * as button from "@common/Button";
-import * as sidebar from "@common/SideBar";
-
-
+import SideBar from "@common/SideBar/SideBar";
 
 function App() {
   return (
     <div className="App">
-      <sidebar.SideBar></sidebar.SideBar>
+      <SideBar></SideBar>
     </div>
   );
 }
