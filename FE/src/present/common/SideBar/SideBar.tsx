@@ -6,7 +6,9 @@ const SideBar = () =>{
   const changeOpen = () =>{
     setIsOpen(!isOpen)
   }
+  const [selected, setSelected] = useState<boolean>(false)
   
+
   return(
     <style.Wrapper isOpen={isOpen}>
       <style.OpenButton onClick={changeOpen} isOpen={isOpen}></style.OpenButton>
@@ -15,8 +17,16 @@ const SideBar = () =>{
         <style.ProfileText1 isOpen={isOpen}>박재현</style.ProfileText1>
         <style.ProfileText2 isOpen={isOpen}>구조기술자</style.ProfileText2>
       </style.ProfileBox>
-      <style.Drone>드론 영상 보기</style.Drone>
-      <style.FlightInfo>비행 금지구역 보기</style.FlightInfo>
+      <style.Body>
+        <style.BodyContent selected={selected} isOpen={isOpen}>
+          <style.StyledImageIcon></style.StyledImageIcon>
+          <style.SideBarText isOpen={isOpen}>저장된 사진 보기</style.SideBarText>
+        </style.BodyContent>
+        <style.BodyContent selected={selected} isOpen={isOpen}>
+          <style.StyledMapIcon></style.StyledMapIcon>
+          <style.SideBarText isOpen={isOpen}>비행 가능 구역 보기</style.SideBarText>
+        </style.BodyContent>
+      </style.Body>
     </style.Wrapper>
   )
 }

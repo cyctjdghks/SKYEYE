@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import * as style from "./App.style";
-import InputLabel from "./present/common/InputLabel/InputLabel";
+import InputLabel from "@common/InputLabel/InputLabel";
+import SideBar from "@common/SideBar/SideBar";
 import { DataInput } from "./action/hooks/Effectiveness";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
 
   return (
     <style.AppWrap>
+      <SideBar></SideBar>
       <p>App Test</p>
       <InputLabel
         placeholder="직원번호"
