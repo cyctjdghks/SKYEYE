@@ -9,6 +9,7 @@ import com.ssafy.skyeye.data.dto.response.UserDto;
 import com.ssafy.skyeye.data.entity.Building;
 import com.ssafy.skyeye.data.entity.Image;
 import com.ssafy.skyeye.data.entity.User;
+import com.ssafy.skyeye.data.exception.ForbiddenException;
 import com.ssafy.skyeye.repository.BuildingRepository;
 import com.ssafy.skyeye.repository.DroneRepository;
 import com.ssafy.skyeye.repository.ImageRepository;
@@ -35,8 +36,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void registUser(UserRegistDto userRegistDto) {
-        Image image = imageRepository.findById(userRegistDto.getUserImageId())
-                .orElseThrow(() -> new IllegalArgumentException("이미지가 없습니다."));
+        Image image = getImageById(userRegistDto.getUserImageId());
 
         User user = User.builder()
                 .userId(userRegistDto.getUserId())
@@ -52,8 +52,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto loginUser(UserLoginDto userLoginDto) {
-        User user = userRepository.findById(userLoginDto.getUserId())
-                .orElseThrow(() -> new IllegalArgumentException("아이디가 없습니다."));
+        User user = getUserById(userLoginDto.getUserId());
 
         return UserDto.entityToDto(user);
     }
@@ -61,8 +60,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void updateUser(UserUpdateDto userUpdateDto) {
-        User user = userRepository.findById(userUpdateDto.getUserId())
-                .orElseThrow(() -> new IllegalArgumentException("아이디가 없습니다."));
+        User user = getUserById(userUpdateDto.getUserId());
 
         user.setUserPw(userUpdateDto.getUserPw());
         user.setUserName(userUpdateDto.getUserName());
@@ -73,16 +71,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(String userId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new IllegalArgumentException("아이디가 없습니다."));
+        User user = getUserById(userId);
 
         userRepository.delete(user);
     }
 
     @Override
     public UserDto getUser(String userId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new IllegalArgumentException("아이디가 없습니다."));
+        User user = getUserById(userId);
 
         return UserDto.entityToDto(user);
     }
@@ -103,5 +99,20 @@ public class UserServiceImpl implements UserService {
                 .filter(drone -> drone.getUserId().getUserId().equals(userId))
                 .map(DroneDto::entityToDto)
                 .collect(Collectors.toList());
+    }
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    // repository 접근하는 것들 모아두기
+    public Image getImageById(Long imageId){
+        if(imageId == null) return null;
+        return imageRepository.findById(imageId)
+                .orElse(null);
+    }
+
+    public User getUserById(String userId){
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new ForbiddenException("아이디가 없습니다."));
+
     }
 }
