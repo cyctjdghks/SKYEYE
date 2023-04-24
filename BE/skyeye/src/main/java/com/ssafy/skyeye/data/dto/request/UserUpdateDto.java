@@ -13,4 +13,5 @@ public class UserUpdateDto {
     private String userName;
     private String userPosition;
     private String userPhoneNumber;
+    private Long userImageId;
 }

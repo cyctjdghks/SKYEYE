@@ -1,11 +1,13 @@
 package com.ssafy.skyeye.controller;
 
+import com.ssafy.skyeye.data.exception.ForbiddenException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,20 +17,21 @@ public class RestExceptionControllerAdvice {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> handleAllUncaughtException(Exception e){
-        Map<String, Object> data = new HashMap<>();
 
-        data.put("msg", "fail");
-
-        return new ResponseEntity<>(data, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<?> handleIllegalArgumentException(Exception e){
-        Map<String, Object> data = new HashMap<>();
 
-        data.put("msg", "fail");
-
-        return new ResponseEntity<>(data, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<?> handleForbbidenException(Exception e){
+
+        return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+    }
+
 }
