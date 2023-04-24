@@ -25,7 +25,8 @@ public class UserDto {
                 .userName(user.getUserName())
                 .userPosition(user.getUserPosition())
                 .userPhoneNumber(user.getUserPhoneNumber())
-                .imageSrc(user.getImageId().getStoredFileName())
+                // 이미지는 null이 들어올 수 있음
+                .imageSrc(user.getImageId() == null ? null : user.getImageId().getStoredFileName())
                 .build();
     }
 }
