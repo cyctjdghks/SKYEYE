@@ -1,5 +1,9 @@
 const Drone = () => {
-  return <div></div>;
+  return (
+  <div>
+    <h1>sdfsdfsd</h1>
+  </div>
+  )
 };
 
 export default Drone;
