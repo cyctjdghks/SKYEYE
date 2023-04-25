@@ -84,11 +84,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<BuildingDto> getBuildingByUserId(String userId) {
 
-        return buildingRepository.findAll().stream()
-                .filter(building -> building.getUserId().getUserId().equals(userId))
+        return buildingRepository.findAll().stream()   // 1번 Stream 형태로 만든다.
+                .filter(building -> building.getUserId().getUserId().equals(userId)) // 2번 userId와 비교한다.
 //                .map(building -> BuildingDto.entityToDto(building))
-                .map(BuildingDto::entityToDto)
-                .collect(Collectors.toList());
+                .map(BuildingDto::entityToDto)  // 3번 Entity를 Dto로 변환한다.
+//                .findAny().or; // findAny()나 findFirst하면 map을 통과한 녀석이 오면 orElse를 처리할 수 있다.
+                .collect(Collectors.toList());  // 4번 list에 담는다.
+
+//        List<Building> buildings = {데이터들};
+//        List<BuildingDto> buildingDtos = new ArrayList<>();
+//        for(Building building : buildings){   // 1번 Stream 형태로 만든다.
+//            if(!building.getUserId().getUserId().equals(userId)) continue; // 2번 userId와 비교한다.
+//            BuildingDto dto = BuildingDto.entityToDto(building); // 3번 Entity를 Dto로 변환한다.
+//            buildingDtos.add(dto); // 4번 list에 담는다.
+//        }
     }
 
     @Override

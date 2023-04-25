@@ -30,6 +30,8 @@ public class CrackController {
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+    // 균열 등록
     @PostMapping("/regist")
     public ResponseEntity<?> registCrack(@RequestPart(name = "profile", required = false) MultipartFile profile,
                                         @RequestPart(name = "drone") CrackRegistDto input){
@@ -47,7 +49,7 @@ public class CrackController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
-    // 유저 상세조회
+    // 균열 상세조회
     @GetMapping("/get/{crackId}")
     public ResponseEntity<?> getCrack(@PathVariable String crackId){
         // TODO: JWT로 유저 확인 하는 것
@@ -59,10 +61,12 @@ public class CrackController {
 
         data.put("data", crack);
 
+        log.info("출력 데이터 : {}", data);
+
         return new ResponseEntity<>(data, HttpStatus.OK);
     }
 
-    // 유저 업데이트
+    // 균열정보 업데이트
     @PutMapping("/update")
     public ResponseEntity<?> updateCrack(@RequestBody CrackUpdateDto input){
         // TODO: JWT로 유저 확인 하는 것
@@ -74,7 +78,7 @@ public class CrackController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
-    // 유저 삭제
+    // 균열 삭제
     @DeleteMapping("/delete/{crackId}")
     public ResponseEntity<?> deleteCrack(@PathVariable String crackId){
         // TODO: JWT로 유저 확인 하는 것
