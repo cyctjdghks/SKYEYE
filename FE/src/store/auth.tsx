@@ -1,4 +1,5 @@
 import { atom } from "recoil";
+import localStorageEffect from "@src/constant/localStorage";
 
 interface User {
   id: string;
@@ -11,10 +12,13 @@ interface Auth {
   user: User | null;
 }
 
-const authState = atom<Auth>({
+export const authState = atom<Auth>({
   key: "authState",
   default: {
     isAuthenticated: false,
     user: null,
   },
+  effects: [
+    localStorageEffect('auth')
+  ]
 });
