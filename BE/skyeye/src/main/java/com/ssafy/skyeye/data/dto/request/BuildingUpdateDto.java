@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BuildingUpdateDto {
+    private Long buildingId;
     private String buildingEstablishment;
     private String userId;
     private String buildingName;
