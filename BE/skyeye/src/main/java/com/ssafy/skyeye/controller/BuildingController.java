@@ -65,7 +65,7 @@ public class BuildingController {
     }
 
     // 빌딩 삭제
-    @DeleteMapping("/delete/{buildingId")
+    @DeleteMapping("/delete/{buildingId}")
     public ResponseEntity<?> deleteBuilding(@PathVariable Long buildingId){
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {} ", buildingId);
@@ -78,7 +78,7 @@ public class BuildingController {
 
 
     // 빌딩 ID로 균열 조회
-    @GetMapping("/crack/{building}")
+    @GetMapping("/crack/{buildingId}")
     public ResponseEntity<?> getBuildingByCrackId(@PathVariable Long buildingId){
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {} ", buildingId);

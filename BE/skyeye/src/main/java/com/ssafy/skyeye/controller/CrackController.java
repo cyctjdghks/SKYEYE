@@ -34,7 +34,7 @@ public class CrackController {
     // 균열 등록
     @PostMapping("/regist")
     public ResponseEntity<?> registCrack(@RequestPart(name = "profile", required = false) MultipartFile profile,
-                                        @RequestPart(name = "drone") CrackRegistDto input){
+                                        @RequestPart(name = "crack") CrackRegistDto input){
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", input);
 
