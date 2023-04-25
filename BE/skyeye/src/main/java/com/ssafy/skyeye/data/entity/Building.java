@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "building")
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

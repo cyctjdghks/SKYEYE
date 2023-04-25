@@ -4,42 +4,90 @@ import com.ssafy.skyeye.data.dto.request.BuildingRegistDto;
 import com.ssafy.skyeye.data.dto.request.BuildingUpdateDto;
 import com.ssafy.skyeye.data.dto.response.BuildingDto;
 import com.ssafy.skyeye.data.dto.response.CrackDto;
+import com.ssafy.skyeye.data.entity.Building;
+import com.ssafy.skyeye.data.entity.User;
+import com.ssafy.skyeye.data.exception.ForbiddenException;
 import com.ssafy.skyeye.repository.BuildingRepository;
+import com.ssafy.skyeye.repository.CrackRepository;
+import com.ssafy.skyeye.repository.UserRepository;
 import com.ssafy.skyeye.service.BuildingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class BuildingServiceImpl implements BuildingService {
     private final BuildingRepository buildingRepository;
 
+    private final UserRepository userRepository;
+
+    private final CrackRepository crackRepository;
+
+    // 날짜 포매터
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Override
     public void registBuilding(BuildingRegistDto buildingRegistDto) {
 
+        Building building = Building.builder()
+                .buildingAddress(buildingRegistDto.getBuildingAddress())
+                .buildingEstablishment(LocalDateTime.parse(buildingRegistDto.getBuildingEstablishment(), formatter))
+                .buildingName(buildingRegistDto.getBuildingName())
+                .userId(getUserById(buildingRegistDto.getUserId()))
+                .build();
+
+        buildingRepository.save(building);
+
     }
 
     @Override
     public void updateBuilding(BuildingUpdateDto buildingUpdateDto) {
+        Building building = getByBuildingId(buildingUpdateDto.getBuildingId());
+
+
+        building.setBuildingAddress(buildingUpdateDto.getBuildingAddress());
+        building.setBuildingName(buildingUpdateDto.getBuildingName());
+        building.setBuildingEstablishment(LocalDateTime.parse(buildingUpdateDto.getBuildingEstablishment(), formatter));
+    }
+
+    @Override
+    public void deleteBuilding(Long buildingId) {
+        buildingRepository.delete(getByBuildingId(buildingId));
+    }
+
+    @Override
+    public List<CrackDto> getBuildingByCrackId(Long buildingId) {
+
+        return crackRepository.findAll().stream()
+                .filter(crack -> crack.getBuildingId().getBuildingId().equals(buildingId))
+                .map(CrackDto :: entityToDto)
+                .collect(Collectors.toList());
 
     }
 
     @Override
-    public void deleteBuilding(String buildingId) {
+    public BuildingDto getBuilding(Long buildingId) {
+
+        return BuildingDto.entityToDto(getByBuildingId(buildingId));
 
     }
 
-    @Override
-    public List<CrackDto> getBuildingByCrackId(String buildingId) {
-        return null;
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public Building getByBuildingId(Long buildingId){
+        return buildingRepository.findById(buildingId)
+                .orElseThrow(() -> new ForbiddenException("없는 아이디입니다."));
     }
 
-    @Override
-    public BuildingDto getBuilding(String buildingId) {
-        return null;
+    public User getUserById(String userId){
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new ForbiddenException("없는 아이디입니다."));
     }
 }

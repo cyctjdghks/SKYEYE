@@ -10,7 +10,7 @@ import java.util.List;
 public interface BuildingService {
     void registBuilding(BuildingRegistDto buildingRegistDto);
     void updateBuilding(BuildingUpdateDto buildingUpdateDto);
-    void deleteBuilding(String buildingId);
-    List<CrackDto> getBuildingByCrackId(String buildingId);
-    BuildingDto getBuilding(String buildingId);
+    void deleteBuilding(Long buildingId);
+    List<CrackDto> getBuildingByCrackId(Long buildingId);
+    BuildingDto getBuilding(Long buildingId);
 }

@@ -78,6 +78,8 @@ public class UserController {
 
         data.put("data", user);
 
+        log.info("출력 데이터 : {}", data);
+
         return new ResponseEntity<>(data, HttpStatus.OK);
     }
 
@@ -124,6 +126,8 @@ public class UserController {
 
         data.put("data", list);
 
+        log.info("출력 데이터 : {}", data);
+
         return new ResponseEntity<>(data,HttpStatus.OK);
     }
 
@@ -139,6 +143,8 @@ public class UserController {
         List<DroneDto> list = userService.getDroneByUserId(userId);
 
         data.put("data", list);
+
+        log.info("출력 데이터 : {}", data);
 
         return new ResponseEntity<>(data,HttpStatus.OK);
     }
