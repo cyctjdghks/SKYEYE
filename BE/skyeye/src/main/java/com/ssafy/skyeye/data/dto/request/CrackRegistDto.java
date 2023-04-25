@@ -11,4 +11,5 @@ public class CrackRegistDto {
     private String crackType;
     private String crackPosition;
     private Long buildingId;
+    private Long imageId;
 }

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CrackUpdateDto {
+    private Long crackId;
     private String crackType;
     private String crackPosition;
 }

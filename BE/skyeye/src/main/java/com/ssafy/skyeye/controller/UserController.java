@@ -3,6 +3,8 @@ package com.ssafy.skyeye.controller;
 import com.ssafy.skyeye.data.dto.request.UserLoginDto;
 import com.ssafy.skyeye.data.dto.request.UserRegistDto;
 import com.ssafy.skyeye.data.dto.request.UserUpdateDto;
+import com.ssafy.skyeye.data.dto.response.BuildingDto;
+import com.ssafy.skyeye.data.dto.response.DroneDto;
 import com.ssafy.skyeye.data.dto.response.UserDto;
 import com.ssafy.skyeye.data.entity.Image;
 import com.ssafy.skyeye.service.ImageService;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -108,5 +111,36 @@ public class UserController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
+    // 유저 ID로 빌딩 목록 조회
+    @GetMapping("/building/{userId}")
+    public ResponseEntity<?> getBuildingByUserId(@PathVariable String userId){
+        // TODO: JWT로 유저 확인 하는 것
+        log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
+        log.info("입력 데이터 : {}", userId);
+
+        Map<String, Object> data = new HashMap<>();
+
+        List<BuildingDto> list = userService.getBuildingByUserId(userId);
+
+        data.put("data", list);
+
+        return new ResponseEntity<>(data,HttpStatus.OK);
+    }
+
+    // 유저 ID로 드론 조회
+    @GetMapping("/drone/{userId}")
+    public ResponseEntity<?> getDroneByUserId(@PathVariable String userId){
+        // TODO: JWT로 유저 확인 하는 것
+        log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
+        log.info("입력 데이터 : {}", userId);
+
+        Map<String, Object> data = new HashMap<>();
+
+        List<DroneDto> list = userService.getDroneByUserId(userId);
+
+        data.put("data", list);
+
+        return new ResponseEntity<>(data,HttpStatus.OK);
+    }
 
 }
