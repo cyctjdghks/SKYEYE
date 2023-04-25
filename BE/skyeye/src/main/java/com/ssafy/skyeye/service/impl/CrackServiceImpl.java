@@ -14,6 +14,8 @@ import com.ssafy.skyeye.service.CrackService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 @RequiredArgsConstructor
 public class CrackServiceImpl implements CrackService {
@@ -48,6 +50,7 @@ public class CrackServiceImpl implements CrackService {
     }
 
     @Override
+    @Transactional
     public void updateCrack(CrackUpdateDto crackUpdateDto) {
         Crack crack = getCrackById(crackUpdateDto.getCrackId());
 

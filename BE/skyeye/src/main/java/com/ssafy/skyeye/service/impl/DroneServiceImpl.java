@@ -9,6 +9,8 @@ import com.ssafy.skyeye.service.DroneService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 @RequiredArgsConstructor
 public class DroneServiceImpl implements DroneService {
@@ -27,6 +29,7 @@ public class DroneServiceImpl implements DroneService {
     }
 
     @Override
+    @Transactional
     public void updateDrone(DroneUpdateDto droneUpdateDto) {
 
     }

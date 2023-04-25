@@ -14,6 +14,7 @@ import com.ssafy.skyeye.service.BuildingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -48,6 +49,7 @@ public class BuildingServiceImpl implements BuildingService {
     }
 
     @Override
+    @Transactional
     public void updateBuilding(BuildingUpdateDto buildingUpdateDto) {
         Building building = getByBuildingId(buildingUpdateDto.getBuildingId());
 
