@@ -6,8 +6,8 @@ import com.ssafy.skyeye.data.dto.response.CrackDto;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface CrackService {
-    void registCrack(MultipartFile multipartFile, CrackRegistDto crackRegistDto);
-    CrackDto getCrack(String crackId);
+    void registCrack(CrackRegistDto crackRegistDto);
+    CrackDto getCrack(Long crackId);
     void updateCrack(CrackUpdateDto crackUpdateDto);
-    void deleteCrack(String crackId);
+    void deleteCrack(Long crackId);
 }

@@ -71,16 +71,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(String userId) {
-        User user = getUserById(userId);
 
-        userRepository.delete(user);
+        userRepository.delete(getUserById(userId));
     }
 
     @Override
     public UserDto getUser(String userId) {
-        User user = getUserById(userId);
 
-        return UserDto.entityToDto(user);
+        return UserDto.entityToDto(getUserById(userId));
     }
 
     @Override
