@@ -30,6 +30,7 @@ public class CrackServiceImpl implements CrackService {
 
     @Override
     public void registCrack(CrackRegistDto crackRegistDto) {
+        // TODO: JWT 본인인증 만약 아닐 시 405 Not Allowed
         Image image = getImageById(crackRegistDto.getImageId());
         Building building = getBuildingById(crackRegistDto.getBuildingId());
 
@@ -45,13 +46,14 @@ public class CrackServiceImpl implements CrackService {
 
     @Override
     public CrackDto getCrack(Long crackId) {
-
+        // TODO: JWT 본인인증 만약 아닐 시 405 Not Allowed
         return CrackDto.entityToDto(getCrackById(crackId));
     }
 
     @Override
     @Transactional
     public void updateCrack(CrackUpdateDto crackUpdateDto) {
+        // TODO: JWT 본인인증 만약 아닐 시 405 Not Allowed
         Crack crack = getCrackById(crackUpdateDto.getCrackId());
 
         crack.setCrackPosition(crackUpdateDto.getCrackPosition());
@@ -60,7 +62,7 @@ public class CrackServiceImpl implements CrackService {
 
     @Override
     public void deleteCrack(Long crackId) {
-
+        // TODO: JWT 본인인증 만약 아닐 시 405 Not Allowed
         crackRepository.delete(getCrackById(crackId));
     }
 

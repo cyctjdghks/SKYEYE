@@ -12,6 +12,7 @@ import com.ssafy.skyeye.repository.CrackRepository;
 import com.ssafy.skyeye.repository.UserRepository;
 import com.ssafy.skyeye.service.BuildingService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -32,11 +33,12 @@ public class BuildingServiceImpl implements BuildingService {
     // 날짜 포매터
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
 
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Override
     public void registBuilding(BuildingRegistDto buildingRegistDto) {
-
+        // TODO: JWT 본인인증 만약 아닐 시 405 Not Allowed
         Building building = Building.builder()
                 .buildingAddress(buildingRegistDto.getBuildingAddress())
                 .buildingEstablishment(LocalDateTime.parse(buildingRegistDto.getBuildingEstablishment(), formatter))
@@ -52,7 +54,7 @@ public class BuildingServiceImpl implements BuildingService {
     @Transactional
     public void updateBuilding(BuildingUpdateDto buildingUpdateDto) {
         Building building = getByBuildingId(buildingUpdateDto.getBuildingId());
-
+        // TODO: JWT 본인인증 만약 아닐 시 405 Not Allowed
 
         building.setBuildingAddress(buildingUpdateDto.getBuildingAddress());
         building.setBuildingName(buildingUpdateDto.getBuildingName());
@@ -61,12 +63,13 @@ public class BuildingServiceImpl implements BuildingService {
 
     @Override
     public void deleteBuilding(Long buildingId) {
+        // TODO: JWT 본인인증 만약 아닐 시 405 Not Allowed
         buildingRepository.delete(getByBuildingId(buildingId));
     }
 
     @Override
     public List<CrackDto> getBuildingByCrackId(Long buildingId) {
-
+        // TODO: JWT 본인인증 만약 아닐 시 405 Not Allowed
         return crackRepository.findAll().stream()
                 .filter(crack -> crack.getBuildingId().getBuildingId().equals(buildingId))
                 .map(CrackDto :: entityToDto)
@@ -76,7 +79,7 @@ public class BuildingServiceImpl implements BuildingService {
 
     @Override
     public BuildingDto getBuilding(Long buildingId) {
-
+        // TODO: JWT 본인인증 만약 아닐 시 405 Not Allowed
         return BuildingDto.entityToDto(getByBuildingId(buildingId));
 
     }

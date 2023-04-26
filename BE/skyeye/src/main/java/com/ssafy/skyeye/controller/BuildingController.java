@@ -46,9 +46,9 @@ public class BuildingController {
 
         BuildingDto buildingDto = buildingService.getBuilding(buildingId);
 
-        data.put("building", buildingDto);
+        data.put("data", buildingDto);
 
-        log.info("출력 데이터 : {}", buildingDto);
+        log.info("출력 데이터 : {}", data);
 
         return new ResponseEntity<>(data, HttpStatus.OK);
     }
@@ -89,7 +89,7 @@ public class BuildingController {
 
         data.put("data", building);
 
-        log.info("출력 데이터 : {}", building);
+        log.info("출력 데이터 : {}", data);
 
         return new ResponseEntity<>(data,HttpStatus.OK);
     }
