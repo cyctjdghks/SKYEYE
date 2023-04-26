@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className={classes.appWrap}>
-      <SideBar></SideBar>
+      {/* <SideBar></SideBar> */}
       <Routes>
         <Route path={urls.path.main} element={<Main/>}></Route>
         <Route path={urls.path.admin} element={<Admin/>}></Route>
