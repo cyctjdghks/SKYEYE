@@ -17,6 +17,7 @@ import com.ssafy.skyeye.repository.ImageRepository;
 import com.ssafy.skyeye.repository.UserRepository;
 import com.ssafy.skyeye.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,6 +33,7 @@ public class UserServiceImpl implements UserService {
     private final ImageRepository imageRepository;
     private final BuildingRepository buildingRepository;
     private final DroneRepository droneRepository;
+    private final PasswordEncoder passwordEncoder;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -41,7 +43,7 @@ public class UserServiceImpl implements UserService {
 
         User user = User.builder()
                 .userId(userRegistDto.getUserId())
-                .userPw(userRegistDto.getUserPw())
+                .userPw(passwordEncoder.encode(userRegistDto.getUserPw()))
                 .userName(userRegistDto.getUserName())
                 .userPosition(userRegistDto.getUserPosition())
                 .userPhoneNumber(userRegistDto.getUserPhoneNumber())
@@ -55,6 +57,10 @@ public class UserServiceImpl implements UserService {
     public UserDto loginUser(UserLoginDto userLoginDto) {
         User user = getUserById(userLoginDto.getUserId());
 
+        if(!passwordEncoder.matches(userLoginDto.getUserPw(),user.getUserPw()))
+            throw new UnAuthorizationException("비밀번호가 다릅니다.");
+
+
         return UserDto.entityToDto(user);
     }
 
@@ -63,7 +69,8 @@ public class UserServiceImpl implements UserService {
     public void updateUser(UserUpdateDto userUpdateDto) {
         User user = getUserById(userUpdateDto.getUserId());
 
-        user.setUserPw(userUpdateDto.getUserPw());
+        // 비밀번호 변경은 따로 처리
+//        user.setUserPw(userUpdateDto.getUserPw());
         user.setUserName(userUpdateDto.getUserName());
         user.setUserPosition(userUpdateDto.getUserPosition());
         user.setUserPhoneNumber(userUpdateDto.getUserPhoneNumber());
@@ -72,19 +79,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(String userId) {
-
+        // TODO: JWT 본인인증 만약 아닐 시 405 Not Allowed
         userRepository.delete(getUserById(userId));
     }
 
     @Override
     public UserDto getUser(String userId) {
-
+        // TODO: JWT 본인인증 만약 아닐 시 405 Not Allowed
         return UserDto.entityToDto(getUserById(userId));
     }
 
     @Override
     public List<BuildingDto> getBuildingByUserId(String userId) {
-
+        // TODO: JWT 본인인증 만약 아닐 시 405 Not Allowed
 //        if(auth == null) throw new UnAuthorizationException();
 
         return buildingRepository.findAll().stream()   // 1번 Stream 형태로 만든다.
@@ -105,6 +112,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<DroneDto> getDroneByUserId(String userId) {
+        // TODO: JWT 본인인증 만약 아닐 시 405 Not Allowed
         return droneRepository.findAll().stream()
                 .filter(drone -> drone.getUserId().getUserId().equals(userId))
                 .map(DroneDto::entityToDto)

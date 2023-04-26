@@ -2,9 +2,9 @@
 spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306/d202
+    url: jdbc:mariadb://k8d202.p.ssafy.io:3306/d202
     username: root
-    password: root
+    password: skyeye12
   servlet:
     multipart:
       maxFileSize: 10MB
@@ -41,3 +41,8 @@ server:
       disabled: true
     default-consumes-media-type: application/json;charset=UTF-8
     default-produces-media-type: application/json;charset=UTF-8
+
+admin:
+  id: skyadmin
+  pw: $2a$10$dB51zLjmly2vU/rMjLET1.23XO2k7KwffsLuCCDHUowbQT9RhMwBq
+  # skyeye12!@

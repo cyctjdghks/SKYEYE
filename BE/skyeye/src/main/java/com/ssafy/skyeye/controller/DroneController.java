@@ -42,8 +42,8 @@ public class DroneController {
         Map<String, Object> data = new HashMap<>();
         DroneDto droneDto = droneService.getDrone(droneId);
 
-        data.put("drone", droneDto);
-        log.info("출력 데이터 : {} ", droneDto);
+        data.put("data", droneDto);
+        log.info("출력 데이터 : {} ", data);
 
         return new ResponseEntity<>(data, HttpStatus.OK);
     }
