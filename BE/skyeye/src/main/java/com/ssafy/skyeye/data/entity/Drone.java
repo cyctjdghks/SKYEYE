@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "drone")
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
