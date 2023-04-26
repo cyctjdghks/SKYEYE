@@ -11,5 +11,4 @@ public class DroneUpdateDto {
     private String droneId;
     private String dronePw;
     private String droneSerialNumber;
-    private String userId;
 }

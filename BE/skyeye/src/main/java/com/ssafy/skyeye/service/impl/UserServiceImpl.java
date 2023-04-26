@@ -10,6 +10,7 @@ import com.ssafy.skyeye.data.entity.Building;
 import com.ssafy.skyeye.data.entity.Image;
 import com.ssafy.skyeye.data.entity.User;
 import com.ssafy.skyeye.data.exception.ForbiddenException;
+import com.ssafy.skyeye.data.exception.UnAuthorizationException;
 import com.ssafy.skyeye.repository.BuildingRepository;
 import com.ssafy.skyeye.repository.DroneRepository;
 import com.ssafy.skyeye.repository.ImageRepository;
@@ -83,6 +84,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<BuildingDto> getBuildingByUserId(String userId) {
+
+//        if(auth == null) throw new UnAuthorizationException();
 
         return buildingRepository.findAll().stream()   // 1번 Stream 형태로 만든다.
                 .filter(building -> building.getUserId().getUserId().equals(userId)) // 2번 userId와 비교한다.
