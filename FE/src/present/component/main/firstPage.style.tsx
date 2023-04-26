@@ -10,7 +10,6 @@ export const firstPage = styled("div")({
   justifyContent: "center",
   position: "relative",
   overflow: "hidden",
-  scrollSnapAlign: "start"
 });
 
 export const backVideo = styled("video")({

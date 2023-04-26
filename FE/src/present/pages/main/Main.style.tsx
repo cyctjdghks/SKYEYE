@@ -4,8 +4,7 @@ import { theme } from "@constant/theme";
 export const mainWrapper = styled("div")({
   width: "100%",
   overflowX: "hidden",
-  scrollSnapType: "y mandatory",
-  // overflowY: "scroll"
+  userSelect: "none",
 });
 
 export const topBox = styled("div")({
@@ -49,9 +48,3 @@ export const logoText = styled("h1")({
 export const logoRight = styled("img")({
   width: "15px",
 });
-
-
-export const secondPage = styled("div")({
-  scrollSnapAlign: "start",
-  height: "100vh",
-})
