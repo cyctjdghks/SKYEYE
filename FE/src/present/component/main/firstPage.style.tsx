@@ -3,18 +3,39 @@ import { theme } from "@constant/theme";
 
 export const firstPage = styled("div")({
   width: "100vw",
-  height: "calc(100vh - 134px)",
+  height: "calc(100vh - 100px)",
   textAlign: "left",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  position: "relative",
+  overflow: "hidden",
+  scrollSnapAlign: "start"
+});
+
+export const backVideo = styled("video")({
+  position: "absolute",
+  width: "100vw",
+  objectFit: "cover",
+  height: "auto",
+  zIndex: "-1",
+  overflow: "hidden",
+  "@media screen and (max-aspect-ratio: 1219/685)": {
+    width: "100vw",
+    height: "100vh",
+  },
 });
 
 export const mainTextFirst = styled("h1")({
   fontStyle: "normal",
   fontWeight: "500",
   fontSize: "6vw",
-  lineHeight: "80%",
+  lineHeight: "100%",
   margin: "0",
-  color: `${theme.colors.greyscale.dark2}`,
-  paddingLeft: "7.5vw"
+  color: `${theme.colors.greyscale.light3}`,
+  marginTop: "40vh",
+  marginLeft: "7.5vw",
+  textShadow: `2px 2px 2px gray;`,
 });
 
 export const mainTextSecond = styled("h1")({
@@ -25,34 +46,17 @@ export const mainTextSecond = styled("h1")({
   margin: "0",
   color: `${theme.colors.greyscale.point}`,
   display: "inline-block",
-  paddingLeft: "7.5vw",
-
+  marginLeft: "7.5vw",
+  textShadow: `2px 2px 2px gray;`,
 });
 
-export const mainTextThird = styled("h1")({
+export const mainTextThird = styled("span")({
   fontStyle: "normal",
   fontWeight: "500",
   fontSize: "6vw",
   lineHeight: "80%",
   margin: "0",
-  color: `${theme.colors.greyscale.dark2}`,
+  color: `${theme.colors.greyscale.light3}`,
   display: "inline-block",
+  textShadow: `2px 2px 2px gray;`,
 });
-
-export const skyImg = styled("img")({
-  position: "relative",
-  top: "30px",
-  left: "40vw",
-  width: "50vw",
-  height: "30vw",
-  borderRadius: "8px",
-  maxWidth: "780px",
-  "@media (max-width: 1024px)" : {
-    position: "static",
-    marginLeft: "7.5vw",
-    marginBottom: "5vh",
-    width: "85vw",
-    height: "51vw",
-    borderRadius: "8px",
-  }
-})

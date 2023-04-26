@@ -2,17 +2,21 @@ import styled from "@emotion/styled";
 import { theme } from "@constant/theme";
 
 export const mainWrapper = styled("div")({
-  width: "100vw",
+  width: "100%",
+  overflowX: "hidden",
+  scrollSnapType: "y mandatory",
+  // overflowY: "scroll"
 });
 
 export const topBox = styled("div")({
   width: "calc(100vw - 76px)",
-  height: "134px",
+  height: "100px",
   display: "flex",
   alignItems: "center",
   marginLeft: "38px",
   marginRight: "38px",
   justifyContent: "space-between",
+  overflow: "hidden"
 });
 
 export const logo = styled("img")({
@@ -21,7 +25,7 @@ export const logo = styled("img")({
 
 export const loginButton = styled("button")({
   width: "164px",
-  height: "58px",
+  height: "55px",
   background: `${theme.colors.greyscale.point}`,
   border: `1px solid ${theme.colors.greyscale.point}`,
   borderRadius: "8px",
@@ -48,6 +52,6 @@ export const logoRight = styled("img")({
 
 
 export const secondPage = styled("div")({
-  width: "100vw",
+  scrollSnapAlign: "start",
   height: "100vh",
 })
