@@ -8,13 +8,12 @@ interface DataProps {
 export const dataBox = styled("div")<DataProps>(
   {
     width: "97%",
-    margin: "auto",
     display: "flex",
     cursor: "pointer",
     paddingTop: "1%",
+    marginLeft: "1.5%",
     paddingBottom: "1%",
-    marginTop: "1.5%",
-    marginBottom: "1%",
+    marginBottom: "1.5%",
     fontSize: "1vw",
     borderRadius: "12px",
     userSelect: "none",
