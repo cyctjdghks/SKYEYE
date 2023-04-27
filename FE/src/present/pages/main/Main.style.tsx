@@ -15,7 +15,7 @@ export const topBox = styled("div")({
   marginLeft: "38px",
   marginRight: "38px",
   justifyContent: "space-between",
-  overflow: "hidden"
+  overflow: "hidden",
 });
 
 export const logo = styled("img")({
