@@ -2,21 +2,24 @@ package com.ssafy.skyeye.controller;
 
 import com.ssafy.skyeye.data.dto.request.CrackRegistDto;
 import com.ssafy.skyeye.data.dto.request.CrackUpdateDto;
-import com.ssafy.skyeye.data.dto.request.UserUpdateDto;
 import com.ssafy.skyeye.data.dto.response.CrackDto;
-import com.ssafy.skyeye.data.dto.response.UserDto;
 import com.ssafy.skyeye.data.entity.Image;
 import com.ssafy.skyeye.service.CrackService;
 import com.ssafy.skyeye.service.ImageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 @Slf4j
 @RestController
@@ -33,16 +36,16 @@ public class CrackController {
 
     // 균열 등록
     @PostMapping("/regist")
-    public ResponseEntity<?> registCrack(@RequestPart(name = "profile", required = false) MultipartFile profile,
+    public ResponseEntity<?> registCrack(@RequestPart(name = "profile") MultipartFile profile,
                                         @RequestPart(name = "crack") CrackRegistDto input){
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", input);
 
-        if(profile != null){
-            long id = 0l;
-            id = imageService.addImage(Image.builder().build(), profile);
-            input.setImageId(id);
-        }
+
+        long id = 0l;
+        id = imageService.addImage(Image.builder().build(), profile);
+        input.setImageId(id);
+
 
         crackService.registCrack(input);
 
@@ -88,6 +91,22 @@ public class CrackController {
         crackService.deleteCrack(Long.parseLong(crackId));
 
         return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
+    @GetMapping("/download")
+    public ResponseEntity<?> imageDownload(@RequestParam String imageSrc) throws IOException {
+
+        File file = new File(imageSrc);
+
+        UrlResource resource = new UrlResource("file:" +imageSrc);
+
+        String fileName = imageSrc.split("/")[2];
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .cacheControl(CacheControl.noCache())
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + fileName)
+                .body(resource);
     }
     
 }
