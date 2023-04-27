@@ -7,7 +7,7 @@ export const Overlay = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.42);
   z-index: 9999;
 `;
 
@@ -20,6 +20,7 @@ export const ModalWrap = styled.div<{ width: string, height:string }>`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  overflow: hidden
 `;
 
 export const Contents = styled.div`
@@ -35,7 +36,7 @@ export const Contents = styled.div`
   }
 `;
 
-export const Button = styled.button`
+/* export const Button = styled.button`
   font-size: 14px;
   padding: 10px 20px;
   border: none;
@@ -48,4 +49,4 @@ export const Button = styled.button`
   &:hover {
     background-color: #898989;
   }
-`;
+`; */
