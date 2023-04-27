@@ -32,9 +32,6 @@ const Modal = ({ onClose, width, height, title }: modalProps) => {
     <style.Overlay>
       <style.ModalWrap ref={modalRef} width={width} height={height} title={title}>
         <style.Contents>
-          {width}
-          {height}
-          {title}
           <style.Button onClick={handleClose}>close</style.Button>
         </style.Contents>
       </style.ModalWrap>
