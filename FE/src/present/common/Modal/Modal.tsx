@@ -1,5 +1,5 @@
 import * as style from "./Modal.style";
-import {useEffect, useRef} from "react";
+import { useEffect, useRef} from "react";
 import useOutSideClick from "@src/action/hooks/UseOutSideClick";
 
 type modalProps = {
@@ -7,15 +7,16 @@ type modalProps = {
   width: string;
   height: string;
   title: string;
-};
+  content: JSX.Element;
+}
 
-const Modal = ({ onClose, width, height, title }: modalProps) => {
+const Modal = ({ onClose, width, height, title, content }: modalProps) => {
   const modalRef = useRef(null)
 
   const handleClose = () => {
     onClose?.();
   };
-
+  
   // 스크롤 막아주기 
   useEffect(()=>{
     const $body = document.querySelector("body");
@@ -32,6 +33,7 @@ const Modal = ({ onClose, width, height, title }: modalProps) => {
     <style.Overlay>
       <style.ModalWrap ref={modalRef} width={width} height={height} title={title}>
         <style.Contents>
+          {content}
           <style.Button onClick={handleClose}>close</style.Button>
         </style.Contents>
       </style.ModalWrap>

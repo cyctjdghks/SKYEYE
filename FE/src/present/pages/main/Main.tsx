@@ -3,6 +3,7 @@ import * as style from "@pages/main/Main.style";
 import Modal from "@common/Modal/Modal";
 import FirstPage from "@component/main/firstPage";
 import SecondPage from "@component/main/secondPage";
+import ModalContent from "@component/main/modalcontent";
 import logo from "@assets/main/logo.png";
 import right from "@assets/main/right.png";
 
@@ -11,6 +12,7 @@ const Main = () => {
   const onClickButton = () => {
     setIsOpen(true);
   };
+
 
   return (
     <style.mainWrapper>
@@ -25,9 +27,10 @@ const Main = () => {
               onClose={() => {
                 setIsOpen(false);
               }}
-              width="600px"
-              height="400px"
+              width="50vw"
+              height="60vh"
               title="로그인"
+              content={<ModalContent/>}
             />
           )}
       </style.topBox>
