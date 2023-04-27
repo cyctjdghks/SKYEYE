@@ -19,11 +19,11 @@ const SideBar = () =>{
       </style.ProfileBox>
       <style.Body>
         <style.BodyContent selected={selected} isOpen={isOpen}>
-          <style.StyledImageIcon></style.StyledImageIcon>
+          <style.StyledImageIcon selected={selected} isOpen={isOpen}></style.StyledImageIcon>
           <style.SideBarText isOpen={isOpen}>저장된 사진 보기</style.SideBarText>
         </style.BodyContent>
         <style.BodyContent selected={selected} isOpen={isOpen}>
-          <style.StyledMapIcon></style.StyledMapIcon>
+          <style.StyledMapIcon selected={selected} isOpen={isOpen}></style.StyledMapIcon>
           <style.SideBarText isOpen={isOpen}>비행 가능 구역 보기</style.SideBarText>
         </style.BodyContent>
       </style.Body>
