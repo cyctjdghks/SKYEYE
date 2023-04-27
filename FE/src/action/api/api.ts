@@ -58,9 +58,12 @@ export async function postAsync<D>(
     const response = await API.post(url, data, {
       responseType: "json",
       ...config,
-    });
+    }).then((res) =>{
+      console.log(res);
+      
+    }) ;
 
-    return { isSuccess: true, result: response.data };
+    // return { isSuccess: true, result: response.data };
   } catch (err) {
     return { isSuccess: false, result: err };
   }
