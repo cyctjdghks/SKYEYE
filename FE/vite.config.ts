@@ -61,5 +61,4 @@ export default defineConfig({
     tsconfigPaths(),
     svgrPlugin(),
   ],
-  base: "/S08P31D202/FE/"
 });
