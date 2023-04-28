@@ -3,11 +3,14 @@ package com.ssafy.skyeye.service.impl;
 import com.ssafy.skyeye.data.dto.request.DroneLoginDto;
 import com.ssafy.skyeye.data.dto.request.DroneRegistDto;
 import com.ssafy.skyeye.data.dto.request.DroneUpdateDto;
+import com.ssafy.skyeye.data.dto.response.BuildingDto;
 import com.ssafy.skyeye.data.dto.response.DroneDto;
+import com.ssafy.skyeye.data.entity.Building;
 import com.ssafy.skyeye.data.entity.Drone;
 import com.ssafy.skyeye.data.entity.User;
 import com.ssafy.skyeye.data.exception.ForbiddenException;
 import com.ssafy.skyeye.data.exception.UnAuthorizationException;
+import com.ssafy.skyeye.repository.BuildingRepository;
 import com.ssafy.skyeye.repository.DroneRepository;
 import com.ssafy.skyeye.repository.UserRepository;
 import com.ssafy.skyeye.service.DroneService;
@@ -17,6 +20,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -26,6 +31,8 @@ public class DroneServiceImpl implements DroneService {
     private final UserRepository userRepository;
 
     private final PasswordEncoder passwordEncoder;
+
+    private final BuildingRepository buildingRepository;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -76,6 +83,18 @@ public class DroneServiceImpl implements DroneService {
         droneRepository.delete(getByDroneId(droneId));
     }
 
+    @Override
+    public List<BuildingDto> getBuildingByDroneId(String droneId) {
+
+        Drone drone = getByDroneId(droneId);
+
+
+        return buildingRepository.findAll().stream()
+                .filter(building -> building.getUserId().getUserId().equals(drone.getUserId().getUserId()))
+                .map(BuildingDto::entityToDto)
+                .collect(Collectors.toList());
+    }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public User getUserById(String userId) {
@@ -85,4 +104,5 @@ public class DroneServiceImpl implements DroneService {
     public Drone getByDroneId(String droneId) {
         return droneRepository.findById(droneId).orElseThrow(() -> new ForbiddenException("없는 아이디입니다."));
     }
+
 }
