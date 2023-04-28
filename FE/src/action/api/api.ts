@@ -14,7 +14,6 @@ API.interceptors.response.use(
   async (err: AxiosError) => {
     if (err.response.status === 401) {
       localStorage.clear();
-    //   window.location.href = kakaoLoginUrl;
       return Promise.reject(err);
     }
   },
