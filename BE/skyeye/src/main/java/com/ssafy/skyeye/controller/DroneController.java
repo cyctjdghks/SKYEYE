@@ -41,13 +41,11 @@ public class DroneController {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {} ", droneId);
 
-        Map<String, Object> data = new HashMap<>();
         DroneDto droneDto = droneService.getDrone(droneId);
 
-        data.put("data", droneDto);
-        log.info("출력 데이터 : {} ", data);
+        log.info("출력 데이터 : {} ", droneDto);
 
-        return new ResponseEntity<>(data, HttpStatus.OK);
+        return new ResponseEntity<>(droneDto, HttpStatus.OK);
     }
 
     // 드론 정보 수정
@@ -78,15 +76,13 @@ public class DroneController {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {} ", input);
 
-        Map<String, Object> data = new HashMap<>();
 
         DroneDto droneDto = droneService.loginDrone(input);
 
-        data.put("data", droneDto);
 
-        log.info("출력 데이터 : {}", data);
+        log.info("출력 데이터 : {}", droneDto);
 
-        return new ResponseEntity<>(data, HttpStatus.OK);
+        return new ResponseEntity<>(droneDto, HttpStatus.OK);
     }
 
     // 드론 ID로 UserID를 가지고 Building 목록을 들고 오기
@@ -95,14 +91,12 @@ public class DroneController {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {} ", droneId);
 
-        Map<String, Object> data = new HashMap<>();
 
         List<BuildingDto> buildingDtos = droneService.getBuildingByDroneId(droneId);
 
-        data.put("data", buildingDtos);
 
-        log.info("출력 데이터 : {} ", data);
+        log.info("출력 데이터 : {} ", buildingDtos);
 
-        return new ResponseEntity<>(data, HttpStatus.OK);
+        return new ResponseEntity<>(buildingDtos, HttpStatus.OK);
     }
 }

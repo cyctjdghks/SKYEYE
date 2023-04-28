@@ -59,14 +59,12 @@ public class CrackController {
         log.info("{} 메소드 호출",Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", crackId);
 
-        Map<String, Object> data = new HashMap<>();
         CrackDto crack = crackService.getCrack(Long.parseLong(crackId));
 
-        data.put("data", crack);
 
-        log.info("출력 데이터 : {}", data);
+        log.info("출력 데이터 : {}", crack);
 
-        return new ResponseEntity<>(data, HttpStatus.OK);
+        return new ResponseEntity<>(crack, HttpStatus.OK);
     }
 
     // 균열정보 업데이트
