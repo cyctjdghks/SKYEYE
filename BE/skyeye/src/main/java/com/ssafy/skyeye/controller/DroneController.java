@@ -49,7 +49,7 @@ public class DroneController {
     }
 
     // 드론 정보 수정
-    @PostMapping("/update")
+    @PutMapping("/update")
     public ResponseEntity<?> updateDrone(@RequestBody DroneUpdateDto input) {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {} ", input);
@@ -76,8 +76,14 @@ public class DroneController {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {} ", input);
 
-        droneService.loginDrone(input);
+        Map<String, Object> data = new HashMap<>();
 
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        DroneDto droneDto = droneService.loginDrone(input);
+
+        data.put("data", droneDto);
+
+        log.info("출력 데이터 : {}", data);
+
+        return new ResponseEntity<>(data, HttpStatus.OK);
     }
 }
