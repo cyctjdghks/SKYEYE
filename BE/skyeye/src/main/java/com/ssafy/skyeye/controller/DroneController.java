@@ -3,6 +3,7 @@ package com.ssafy.skyeye.controller;
 import com.ssafy.skyeye.data.dto.request.DroneLoginDto;
 import com.ssafy.skyeye.data.dto.request.DroneRegistDto;
 import com.ssafy.skyeye.data.dto.request.DroneUpdateDto;
+import com.ssafy.skyeye.data.dto.response.BuildingDto;
 import com.ssafy.skyeye.data.dto.response.DroneDto;
 import com.ssafy.skyeye.service.DroneService;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -83,6 +85,23 @@ public class DroneController {
         data.put("data", droneDto);
 
         log.info("출력 데이터 : {}", data);
+
+        return new ResponseEntity<>(data, HttpStatus.OK);
+    }
+
+    // 드론 ID로 UserID를 가지고 Building 목록을 들고 오기
+    @GetMapping("/building/{droneId}")
+    public ResponseEntity<?> getBuildingByDroneId(@PathVariable String droneId){
+        log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
+        log.info("입력 데이터 : {} ", droneId);
+
+        Map<String, Object> data = new HashMap<>();
+
+        List<BuildingDto> buildingDtos = droneService.getBuildingByDroneId(droneId);
+
+        data.put("data", buildingDtos);
+
+        log.info("출력 데이터 : {} ", data);
 
         return new ResponseEntity<>(data, HttpStatus.OK);
     }
