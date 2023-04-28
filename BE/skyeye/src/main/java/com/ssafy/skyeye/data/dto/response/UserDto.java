@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserDto {
     private String userId;
-    private String userPw;
     private String userName;
     private String userPosition;
     private String userPhoneNumber;
@@ -21,7 +20,6 @@ public class UserDto {
     public static UserDto entityToDto(User user) {
         return UserDto.builder()
                 .userId(user.getUserId())
-                .userPw(user.getUserPw())
                 .userName(user.getUserName())
                 .userPosition(user.getUserPosition())
                 .userPhoneNumber(user.getUserPhoneNumber())
