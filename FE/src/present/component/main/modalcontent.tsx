@@ -16,7 +16,9 @@ const ModalContent = () => {
         width="55%"
         height="15%"
         value={id}
+        fontSize="1vw"
         onChange={setId}
+        errorFontSize="1vw"
         errorMessage={
           idError ? "" : "영어와 숫자로만 입력해주세요( 5~20 글자 )"
         }
@@ -26,7 +28,9 @@ const ModalContent = () => {
         width="55%"
         height="15%"
         value={pwd}
+        fontSize="1vw"
         onChange={setPwd}
+        errorFontSize="13px"
         errorMessage={
           pwdError
             ? ""
