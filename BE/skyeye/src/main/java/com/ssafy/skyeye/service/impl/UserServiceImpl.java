@@ -68,12 +68,14 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void updateUser(UserUpdateDto userUpdateDto) {
         User user = getUserById(userUpdateDto.getUserId());
+        Image image = getImageById(userUpdateDto.getUserImageId());
 
         // 비밀번호 변경은 따로 처리
 //        user.setUserPw(userUpdateDto.getUserPw());
         user.setUserName(userUpdateDto.getUserName());
         user.setUserPosition(userUpdateDto.getUserPosition());
         user.setUserPhoneNumber(userUpdateDto.getUserPhoneNumber());
+        user.setImageId(image);
 
     }
 
