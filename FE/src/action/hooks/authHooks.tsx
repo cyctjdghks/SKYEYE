@@ -23,3 +23,5 @@ export const AdminLogin = async (id: string, pwd: string) => {
   });
   return response;
 };
+
+// hooks 사용!
