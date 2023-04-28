@@ -6,6 +6,8 @@ type inputProps = {
   height: string;
   errorMessage: string;
   value: string;
+  fontSize: string;
+  errorFontSize: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -15,23 +17,25 @@ const InputLabel = ({
   height,
   errorMessage,
   value,
+  fontSize,
+  errorFontSize,
   onChange,
 }: inputProps) => {
   return (
-    <style.inputBox
-      width={width}>
+    <style.inputBox width={width}>
       <style.label>
         <style.input
           placeholder={placeholder}
           width={width}
           height={height}
           value={value}
+          fontSize={fontSize}
           onChange={onChange}
         />
         {errorMessage ? (
-          <style.p>{errorMessage}</style.p>
+          <style.p errorFontSize={errorFontSize}>{errorMessage}</style.p>
         ) : (
-          <style.pp>"qqq"</style.pp>
+          <style.pp errorFontSize={errorFontSize}>"qqq"</style.pp>
         )}
       </style.label>
     </style.inputBox>

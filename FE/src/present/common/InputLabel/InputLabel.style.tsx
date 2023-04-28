@@ -9,7 +9,7 @@ const fontStyles = `
 }`;
 
 export const inputBox = styled.div<{ width: string }>`
-  width: ${(props) => (props.width ? `${props.width}px` : "300px")};
+  width: ${(props) => props.width};
   margin: auto;
 `;
 
@@ -17,12 +17,18 @@ export const label = styled.label`
   width: 300px;
 `;
 
-export const input = styled.input<{ width: string; height: string }>`
+export const input = styled.input<{
+  height: string;
+  fontSize: string;
+}>`
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   ${fontStyles}
   font-family:"SCDream4";
-  font-size: 23px;
-  width: ${(props) => (props.width ? `${props.width}px` : "300px")};
-  height: ${(props) => (props.height ? `${props.height}px` : "60px")};
+  font-size: ${(props) => props.fontSize};
+  width: 80%;
+  height: ${(props) => props.height};
   border-radius: 8px;
   padding-left: 15px;
   border: ${theme.colors.greyscale.dark3} 2px solid;
@@ -35,20 +41,20 @@ export const input = styled.input<{ width: string; height: string }>`
   }
 `;
 
-export const p = styled.p`
+export const p = styled.p<{ errorFontSize: string }>`
   ${fontStyles}
   font-family:"SCDream4";
   color: #ff0000;
-  font-size: 13px;
+  font-size: ${(props) => props.errorFontSize};
   margin-top: 7px;
   text-align: left;
   margin-left: 8px;
 `;
-export const pp = styled.p`
+export const pp = styled.p<{ errorFontSize: string }>`
   ${fontStyles}
   font-family:"SCDream4";
   color: #ffff;
-  font-size: 13px;
+  font-size: ${(props) => props.errorFontSize};
   margin-top: 7px;
   margin-left: 8px;
 `;
