@@ -21,23 +21,21 @@ const AdimModalContent = () => {
           <style.profileTitle>프로필 사진</style.profileTitle>
         </style.profileBox>
         <style.dataBox>
-          <style.inputBox1>
-            <InputLabel
-              placeholder="직원번호"
-              width="100%"
-              height="15%"
-              value={employeeNumber}
-              fontSize="1vw"
-              onChange={(e) => setEmployeeNumber(e.target.value)}
-              errorMessage=""
-              errorFontSize="0.01vw"
-            />
-          </style.inputBox1>
-          <style.inputBox2>
+          <InputLabel
+            placeholder="직원번호"
+            width="100%"
+            height="100%"
+            value={employeeNumber}
+            fontSize="1vw"
+            onChange={(e) => setEmployeeNumber(e.target.value)}
+            errorMessage=""
+            errorFontSize="0.01vw"
+          />
+          <style.inputBox>
             <InputLabel
               placeholder="이름"
-              width="45%"
-              height="15%"
+              width="50%"
+              height="100%"
               value={name}
               fontSize="1vw"
               onChange={(e) => setName(e.target.value)}
@@ -46,39 +44,35 @@ const AdimModalContent = () => {
             />
             <InputLabel
               placeholder="직책"
-              width="45%"
-              height="15%"
+              width="50%"
+              height="90%"
               value={job}
               fontSize="1vw"
               onChange={(e) => setJob(e.target.value)}
               errorMessage=""
               errorFontSize="0.01vw"
             />
-          </style.inputBox2>
-          <style.inputBox1>
-            <InputLabel
-              placeholder="전화번호"
-              width="100%"
-              height="15%"
-              value={phone}
-              fontSize="1vw"
-              onChange={(e) => setPhone(e.target.value)}
-              errorMessage=""
-              errorFontSize="0.01vw"
-            />
-          </style.inputBox1>
-          <style.inputBox1>
-            <InputLabel
-              placeholder="비밀번호"
-              width="100%"
-              height="15%"
-              value={password}
-              fontSize="1vw"
-              onChange={(e) => setPassword(e.target.value)}
-              errorMessage=""
-              errorFontSize="0.01vw"
-            />
-          </style.inputBox1>
+          </style.inputBox>
+          <InputLabel
+            placeholder="전화번호"
+            width="100%"
+            height="90%"
+            value={phone}
+            fontSize="1vw"
+            onChange={(e) => setPhone(e.target.value)}
+            errorMessage=""
+            errorFontSize="0.01vw"
+          />
+          <InputLabel
+            placeholder="비밀번호"
+            width="100%"
+            height="90%"
+            value={password}
+            fontSize="1vw"
+            onChange={(e) => setPassword(e.target.value)}
+            errorMessage=""
+            errorFontSize="0.01vw"
+          />
         </style.dataBox>
       </style.contentBox>
       <style.buttonBox>

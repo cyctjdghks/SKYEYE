@@ -8,8 +8,9 @@ const fontStyles = `
   src:url(${SCDream4});
 }`;
 
-export const inputBox = styled.div<{ width: string }>`
+export const inputBox = styled.div<{ width: string; height: string }>`
   width: ${(props) => props.width};
+  height: ${(props) => props.height};
   margin: auto;
 `;
 
