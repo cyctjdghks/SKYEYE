@@ -12,6 +12,7 @@ export const inputBox = styled.div<{ width: string; height: string }>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   margin: auto;
+  user-select: "none";
 `;
 
 export const label = styled.label`
