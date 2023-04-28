@@ -1,9 +1,18 @@
+import React, { memo, useState } from "react";
+import SideBar from "@src/present/common/SideBar/SideBar";
+import SideContent from "@layout/SideContent/SideContent";
+
 const FlightInfo = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   return (
-    <div>
-      <h1>flightasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</h1>
-    </div>
+    <>
+      <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />
+      <SideContent isOpen={isOpen}>
+        <div>HI</div>
+      </SideContent>
+    </>
   );
 };
 
-export default FlightInfo;
+export default memo(FlightInfo);
