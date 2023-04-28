@@ -45,13 +45,22 @@ export const OpenButton = styled("div")<OpenProps>(
   (props) => ({})
 );
 
-export const ProfileBox = styled("div")({
-  width: "100%",
-  height: "150px",
-  display: "flex",
-  marginLeft: "50px",
-  alignItems: "center",
-});
+export const ProfileBox = styled.div`
+  width: 100%;
+  height: 150px;
+  display: flex;
+  margin-left: 50px;
+  align-items: center;
+
+  & svg {
+    width: 50px;
+    min-width: 50px;
+    height: 50px;
+    margin-right: 30px;
+    fill: ${theme.colors.greyscale.light3};
+    transition: ${theme.trans};
+  }
+`;
 
 export const ProfileText1 = styled("h1")<OpenProps>(
   {
