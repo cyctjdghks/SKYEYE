@@ -1,9 +1,12 @@
+import React, {memo} from "react";
+import SideBar from "@src/present/common/SideBar/SideBar";
+
 const Drone = () => {
   return (
   <div>
-    <h1>sdfsdfsd</h1>
+    <SideBar />
   </div>
   )
 };
 
-export default Drone;
+export default memo(Drone);

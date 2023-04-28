@@ -1,9 +1,12 @@
+import React, {memo} from "react";
+import SideBar from "@src/present/common/SideBar/SideBar";
+
 const FlightInfo = () => {
   return (
     <div>
-      <h1>flightasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</h1>
+      <SideBar />
     </div>
   );
 };
 
-export default FlightInfo;
+export default memo(FlightInfo);

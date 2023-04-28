@@ -1,9 +1,5 @@
 import styled from "@emotion/styled";
 import { theme } from "@constant/theme";
-import { ReactComponent as profileIcon } from "@assets/sidebar/profile.svg";
-import { ReactComponent as videoIcon } from "@assets/sidebar/video.svg";
-import { ReactComponent as imageIcon } from "@assets/sidebar/image.svg";
-import { ReactComponent as mapIcon } from "@assets/sidebar/map.svg";
 
 type OpenProps = {
   isOpen: boolean;
@@ -57,15 +53,6 @@ export const ProfileBox = styled("div")({
   alignItems: "center",
 });
 
-export const StyledProfileIcon = styled(profileIcon)({
-  width: "50px",
-  minWidth: "50px",
-  height: "50px",
-  marginRight: "30px",
-  fill: `${theme.colors.greyscale.light3}`,
-  transition: `${theme.trans}`,
-});
-
 export const ProfileText1 = styled("h1")<OpenProps>(
   {
     fontStyle: "normal",
@@ -102,75 +89,14 @@ export const Body = styled("div")({
   height: "50%",
 });
 
-export const BodyContent = styled("div")<SelectProps>(
-  {
-    width: "87.5%",
-    height: "70px",
-    display: "flex",
-    marginLeft: "33px",
-    alignItems: "center",
-    cursor: "pointer",
-  },
-  (props) => ({
-    color: `${
-      props.selected
-        ? theme.colors.greyscale.light3
-        : theme.colors.greyscale.dark2
-    }`,
-    backgroundColor: `${
-      props.selected ? theme.colors.greyscale.dark2 : "none"
-    }`,
-  })
-);
-
-export const StyledImageIcon = styled(imageIcon)<SelectProps>(
-  {
-    width: "33px",
-    height: "33px",
-    minWidth: "33px",
-    marginRight: "33px",
-    transition: `${theme.trans}`,
-  },
-  (props) => ({
-    fill: `${
-      props.selected
-        ? theme.colors.greyscale.light3
-        : theme.colors.greyscale.dark2
-    }`,
-  })
-);
-export const StyledVideoIcon = styled(videoIcon)<SelectProps>(
-  {
-    width: "33px",
-    height: "33px",
-    minWidth: "33px",
-    marginRight: "33px",
-    transition: `${theme.trans}`,
-  },
-  (props) => ({
-    fill: `${
-      props.selected
-        ? theme.colors.greyscale.light3
-        : theme.colors.greyscale.dark2
-    }`,
-  })
-);
-export const StyledMapIcon = styled(mapIcon)<SelectProps>(
-  {
-    width: "33px",
-    height: "33px",
-    minWidth: "33px",
-    marginRight: "33px",
-    transition: `${theme.trans}`,
-  },
-  (props) => ({
-    fill: `${
-      props.selected
-        ? theme.colors.greyscale.light3
-        : theme.colors.greyscale.dark2
-    }`,
-  })
-);
+export const BodyContent = styled("div")({
+  width: "87.5%",
+  height: "70px",
+  display: "flex",
+  marginLeft: "33px",
+  alignItems: "center",
+  cursor: "pointer",
+});
 
 export const SideBarText = styled("h1")<OpenProps>(
   {
@@ -201,3 +127,33 @@ export const FlightInfo = styled("div")({
   width: "87.5%",
   height: "70px",
 });
+
+export const MenuItem = styled.div<SelectProps>`
+  width: 87.5%;
+  height: 70px;
+  display: flex;
+  margin-left: 33px;
+  align-items: center;
+  cursor: pointer;
+  color: ${(props) =>
+    props.selected
+      ? theme.colors.greyscale.light3
+      : theme.colors.greyscale.dark2};
+  background: ${(props) =>
+    props.selected ? theme.colors.greyscale.dark2 : "none"};
+
+  & svg {
+    width: 33px;
+    height: 33px;
+    min-width: 33px;
+    margin-right: 33px;
+    transition: ${theme.trans};
+  }
+
+  & path {
+    fill: ${(props) =>
+      props.selected
+        ? theme.colors.greyscale.light3
+        : theme.colors.greyscale.dark2};
+  }
+`;
