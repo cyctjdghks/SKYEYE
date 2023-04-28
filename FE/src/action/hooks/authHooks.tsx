@@ -51,7 +51,7 @@ export const GetDroneByUserId = async (userId: string) => {
 };
 
 // regist Crack
-export const ReginstCrack = async (formData: any | null) => {
+export const RegistCrack = async (formData: any | null) => {
   const response = await postAsync("/crack/regist", formData, {
     headers: {
       "Content-Type": "multipart/form-data",
@@ -149,7 +149,7 @@ export const GetBuilding = async (buildingId: string) => {
 };
 // regist Drone
 // export const RegistDrone =async (params:type) => {
-  
+
 // }
 
 // export const
@@ -175,9 +175,28 @@ export const UpdateDrone = async (droneId: string, dronePw: string) => {
 
 // login Admin
 // find all User
+export const FindUserAll = async () => {
+  const response = await getAsync("/admin/user");
+  return response;
+};
+
 // find all Building
+export const FindUserBuilding = async () => {
+  const response = await getAsync("/admin/building");
+  return response;
+};
+
 // find all Crack
+export const FindCrackAll = async () => {
+  const response = await getAsync("/admin/crack");
+  return response;
+};
+
 // find all drone
+export const FindDroneAll = async () => {
+  const response = await getAsync("/admin/drone");
+  return response;
+};
 
 // admin login
 export const LoginAdmin = async (id: string, pwd: string) => {

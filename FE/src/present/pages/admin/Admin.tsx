@@ -1,35 +1,42 @@
 import { useState, useEffect } from "react";
-import { useRecoilValue } from "recoil";
-import { authState } from "@store/auth";
 
-import EmployeeData from "@src/present/component/employeedata/EmployeeData";
+import { adminState, selectedIdxState } from "@store/admin";
+
 import Modal from "@src/present/common/Modal/Modal";
 import AdimModalContent from "../../component/adminpage/AdminModalContent";
+import UserTable from "@src/present/component/adminpage/UserTable";
 
 import * as style from "@pages/admin/Admin.style";
 import right from "@assets/main/right.png";
+import { useRecoilValue } from "recoil";
+
+type UserInfo = {
+  userId: string;
+  userName: string;
+  userPosition: string;
+  userPhoneNumber: string;
+  imageSrc: string;
+};
 
 const Admin = () => {
-  const employees = useRecoilValue(authState).employees;
-  const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
-
+  const selectedIdx = useRecoilValue(selectedIdxState).idx;
+  const users = useRecoilValue(adminState).users;
+  const [chooseUser, setChooseUser] = useState<UserInfo>({
+    userId: "",
+    userName: "",
+    userPosition: "",
+    userPhoneNumber: "",
+    imageSrc: "",
+  });
   //모달
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  useEffect(() => {
+    setChooseUser(users[selectedIdx]);
+  }, [selectedIdx, users]);
+
   const onClickButton = () => {
     setIsOpen(true);
-  };
-
-  useEffect(() => {
-    setSelectedIdx(null);
-  }, [employees]);
-
-  const handleSelect = (idx: number) => {
-    if (selectedIdx === idx) {
-      setSelectedIdx(null);
-    } else {
-      setSelectedIdx(idx);
-    }
   };
 
   return (
@@ -55,7 +62,14 @@ const Admin = () => {
             width="50vw"
             height="60vh"
             title="회원 정보 수정"
-            content={<AdimModalContent />}
+            content={
+              <AdimModalContent
+                data={chooseUser}
+                onClose={() => {
+                  setIsOpen(false);
+                }}
+              />
+            }
           />
         )}
       </style.topBox>
@@ -67,20 +81,7 @@ const Admin = () => {
         <style.phone>연락처</style.phone>
       </style.dataTitle>
       <style.hrLine></style.hrLine>
-      <style.dataBox>
-        {employees.map((employee, idx) => (
-          <EmployeeData
-            key={employee.number}
-            no={idx + 1}
-            number={employee.number}
-            name={employee.name}
-            job={employee.job}
-            phone={employee.phone}
-            onSelect={() => handleSelect(idx)}
-            selected={selectedIdx === idx}
-          />
-        ))}
-      </style.dataBox>
+      <UserTable />
     </style.pageBox>
   );
 };
