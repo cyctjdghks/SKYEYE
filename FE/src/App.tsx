@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div className={classes.appWrap}>
-      {auth.isAuthenticated ? <SideBar></SideBar> : <></>}
+      {/* {auth.isAuthenticated ? <SideBar></SideBar> : <></>} */}
       <Routes>
         <Route path={urls.path.main} element={<Main />}></Route>
         <Route path={urls.path.admin} element={<Admin />}></Route>
