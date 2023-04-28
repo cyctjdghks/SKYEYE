@@ -23,34 +23,34 @@ export const profileBox = styled("div")({
 
 export const dataBox = styled("div")({
   width: "50%",
+  height: "100%",
   display: "flex",
   flexDirection: "column",
-  alignItems: "right"
+  alignItems: "flex-start",
+  justifyContent: "flex-end"
 });
 
 export const profileTitle = styled("h3")({
   color: `${theme.colors.greyscale.dark2}`,
 });
 
-export const inputBox1 = styled("div")({
-  width: "100%",
-  display: "flex",
-  justifyContent: "flex-start"
-});
 
-export const inputBox2 = styled("div")({
-  width: "100%",
+export const inputBox = styled("div")({
   display: "flex",
-});
+  width: "90%",
+  justifyContent: "space-around",
+  marginLeft: "5%"
+})
 
 export const buttonBox = styled("div")({
   display: "flex",
-  float: "right"
+  float: "right",
+  width: "50%"
 });
 
 export const deleteButton = styled("button")({
-  width: "60%",
-  height: "55px",
+  width: "50%",
+  height: "50px",
   background: `${theme.colors.greyscale.dark3}`,
   border: `1px solid ${theme.colors.greyscale.dark3}`,
   borderRadius: "8px",
@@ -62,12 +62,13 @@ export const deleteButton = styled("button")({
     background: `${theme.colors.greyscale.pointLight}`,
     border: `1px solid ${theme.colors.greyscale.pointLight}`,
   },
+  marginTop: "20%"
 });
 
 
 export const eidtButton = styled("button")({
-  width: "60%",
-  height: "55px",
+  width: "50%",
+  height: "50px",
   background: `${theme.colors.greyscale.point}`,
   border: `1px solid ${theme.colors.greyscale.point}`,
   borderRadius: "8px",
@@ -79,11 +80,13 @@ export const eidtButton = styled("button")({
     background: `${theme.colors.greyscale.pointLight}`,
     border: `1px solid ${theme.colors.greyscale.pointLight}`,
   },
+  marginLeft: "5%",
+  marginTop: "20%"
 });
 
 export const logoText = styled("h2")({
   color: `${theme.colors.greyscale.light3}`,
   fontStyle: "normal",
   fontWeight: "500",
-  fontSize: "20px",
+  fontSize: "1.1vw",
 });
