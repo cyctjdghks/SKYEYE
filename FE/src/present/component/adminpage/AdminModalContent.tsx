@@ -1,23 +1,44 @@
 import { useState } from "react";
 import InputLabel from "@src/present/common/InputLabel/InputLabel";
+import { urls } from "@constant/values";
 
 import * as style from "@present/component/adminpage/AdimModalContent.style";
+import { DeleteUser } from "@src/action/hooks/authHooks";
 
-import right from "@assets/main/right.png";
 
-const AdimModalContent = () => {
-  const [employeeNumber, setEmployeeNumber] = useState<string>("");
-  const [name, setName] = useState<string>("");
-  const [job, setJob] = useState<string>("");
-  const [phone, setPhone] = useState<string>("");
+type UserInfo = {
+  data: {
+    userId: string;
+    userName: string;
+    userPosition: string;
+    userPhoneNumber: string;
+    imageSrc: string;
+  };
+  onClose: () => void;
+}
+
+const AdimModalContent = ({data, onClose} : UserInfo) => {
+  const [userId, setUserId] =  useState<string>(data?.userId || '');
+  const [name, setName] = useState<string>(data.userName || '');
+  const [job, setJob] = useState<string>(data.userPosition || '');
+  const [phone, setPhone] = useState<string>(data.userPhoneNumber || '');
   const [password, setPassword] = useState<string>("");
+  const [imgSrc, setImgSrc] = useState<string>(`${urls.API}/${data.imageSrc}` || "")
+
+
+  const clickDelete = () => {
+    DeleteUser(userId)
+    onClose()
+    location.reload();
+  }
+
 
   return (
     <style.modalBox>
       <style.modalTitle>회원 정보 수정</style.modalTitle>
       <style.contentBox>
         <style.profileBox>
-          <img src="" alt="이미지" />
+          <img src={imgSrc} alt="이미지" />
           <style.profileTitle>프로필 사진</style.profileTitle>
         </style.profileBox>
         <style.dataBox>
@@ -25,9 +46,9 @@ const AdimModalContent = () => {
             placeholder="직원번호"
             width="100%"
             height="100%"
-            value={employeeNumber}
+            value={userId}
             fontSize="1vw"
-            onChange={(e) => setEmployeeNumber(e.target.value)}
+            onChange={(e) => setUserId(e.target.value)}
             errorMessage=""
             errorFontSize="0.01vw"
           />
@@ -77,7 +98,7 @@ const AdimModalContent = () => {
       </style.contentBox>
       <style.buttonBox>
         <style.deleteButton>
-          <style.logoText>회원삭제</style.logoText>
+          <style.logoText onClick={clickDelete}>회원삭제</style.logoText>
         </style.deleteButton>
         <style.eidtButton>
           <style.logoText>수정하기</style.logoText>

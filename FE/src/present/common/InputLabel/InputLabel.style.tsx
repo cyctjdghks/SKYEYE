@@ -59,4 +59,5 @@ export const pp = styled.p<{ errorFontSize: string }>`
   font-size: ${(props) => props.errorFontSize};
   margin-top: 7px;
   margin-left: 8px;
+  visibility: hidden;
 `;
