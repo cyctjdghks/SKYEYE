@@ -11,6 +11,7 @@ const fontStyles = `
 export const inputBox = styled.div<{ width: string }>`
   width: ${(props) => props.width};
   margin: auto;
+  user-select: "none";
 `;
 
 export const label = styled.label`
