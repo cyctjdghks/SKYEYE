@@ -2,7 +2,7 @@ import { ReactJSXElement } from "@emotion/react/types/jsx-namespace";
 import Title from "@src/present/common/Title/Title";
 import React, { memo } from "react";
 import { useLocation } from "react-router-dom";
-import * as Style from "./SideContent.Style";
+import * as Style from "./SideContent.style";
 
 type SideContentProps = {
   isOpen: boolean;
