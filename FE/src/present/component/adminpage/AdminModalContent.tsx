@@ -24,47 +24,61 @@ const AdimModalContent = () => {
           <style.inputBox1>
             <InputLabel
               placeholder="직원번호"
-              width="1vh"
-              height="30"
+              width="100%"
+              height="15%"
               value={employeeNumber}
+              fontSize="1vw"
               onChange={(e) => setEmployeeNumber(e.target.value)}
               errorMessage=""
+              errorFontSize="0.01vw"
             />
           </style.inputBox1>
           <style.inputBox2>
             <InputLabel
               placeholder="이름"
-              width="1vh"
-              height="30"
+              width="45%"
+              height="15%"
               value={name}
+              fontSize="1vw"
               onChange={(e) => setName(e.target.value)}
               errorMessage=""
+              errorFontSize="0.01vw"
             />
             <InputLabel
               placeholder="직책"
-              width="1vw"
-              height="30"
+              width="45%"
+              height="15%"
               value={job}
+              fontSize="1vw"
               onChange={(e) => setJob(e.target.value)}
               errorMessage=""
+              errorFontSize="0.01vw"
             />
           </style.inputBox2>
-          <InputLabel
-            placeholder="전화번호"
-            width="200"
-            height="30"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            errorMessage=""
-          />
-          <InputLabel
-            placeholder="비밀번호"
-            width="200"
-            height="30"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            errorMessage=""
-          />
+          <style.inputBox1>
+            <InputLabel
+              placeholder="전화번호"
+              width="100%"
+              height="15%"
+              value={phone}
+              fontSize="1vw"
+              onChange={(e) => setPhone(e.target.value)}
+              errorMessage=""
+              errorFontSize="0.01vw"
+            />
+          </style.inputBox1>
+          <style.inputBox1>
+            <InputLabel
+              placeholder="비밀번호"
+              width="100%"
+              height="15%"
+              value={password}
+              fontSize="1vw"
+              onChange={(e) => setPassword(e.target.value)}
+              errorMessage=""
+              errorFontSize="0.01vw"
+            />
+          </style.inputBox1>
         </style.dataBox>
       </style.contentBox>
       <style.buttonBox>
