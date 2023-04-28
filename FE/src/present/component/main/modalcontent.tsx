@@ -33,7 +33,7 @@ const ModalContent = () => {
             : "영어,숫자 특수문자를 하나이상 입력해주세요( 9~16 글자 )"
         }
       ></InputLabel>
-      <style.loginButton>로그인하기</style.loginButton>
+      <style.loginButton>로그인하기!</style.loginButton>
     </style.loginModalWrap>
   );
 };
