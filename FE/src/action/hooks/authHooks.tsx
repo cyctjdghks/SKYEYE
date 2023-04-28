@@ -148,11 +148,20 @@ export const GetBuilding = async (buildingId: string) => {
   return response;
 };
 // regist Drone
-// export const RegistDrone =async (params:type) => {
-
-// }
-
-// export const
+export const RegistDrone = async (
+  droneId: string,
+  dronePw: string,
+  droneSerialNumber: string,
+  userId: string
+) => {
+  const response = await postAsync("/drone/regist", {
+    droneId,
+    dronePw,
+    droneSerialNumber,
+    userId,
+  });
+  return response;
+};
 
 // login Drone
 export const LoginDrone = async (droneId: string, dronePw: string) => {
@@ -162,18 +171,46 @@ export const LoginDrone = async (droneId: string, dronePw: string) => {
   });
   return response;
 };
+
 // update Drone
-export const UpdateDrone = async (droneId: string, dronePw: string) => {
+export const UpdateDrone = async (
+  droneId: string,
+  droneSerialNumber: string
+) => {
   const response = await putAsync("/drone/update", {
     droneId,
-    dronePw,
+    droneSerialNumber,
   });
   return response;
 };
+
 // get Drone
+export const GetDrone = async (droneId: string) => {
+  const response = await getAsync(`/drone/get/${droneId}`);
+  return response;
+};
+
 // delete Drone
+export const DeleteDrone = async (droneId: string) => {
+  const response = await deleteAsync(`/drone/delete/${droneId}`);
+  return response;
+};
+
+// get bulildng by DroneId
+export const GetBuildingByDroneId = async (droneId: string) => {
+  const response = await getAsync(`/drone/building/${droneId}`);
+  return response;
+};
 
 // login Admin
+export const LoginAdmin = async (adminId: string, adminPw: string) => {
+  const response = await postAsync("/admin/login", {
+    adminId,
+    adminPw,
+  });
+  return response;
+};
+
 // find all User
 export const FindUserAll = async () => {
   const response = await getAsync("/admin/user");
@@ -195,15 +232,6 @@ export const FindCrackAll = async () => {
 // find all drone
 export const FindDroneAll = async () => {
   const response = await getAsync("/admin/drone");
-  return response;
-};
-
-// admin login
-export const LoginAdmin = async (id: string, pwd: string) => {
-  const response = await postAsync("/admin/login", {
-    adminId: id,
-    adminPw: pwd,
-  });
   return response;
 };
 
