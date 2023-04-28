@@ -22,7 +22,7 @@ const InputLabel = ({
   onChange,
 }: inputProps) => {
   return (
-    <style.inputBox width={width}>
+    <style.inputBox width={width} height={height}>
       <style.label>
         <style.input
           placeholder={placeholder}
