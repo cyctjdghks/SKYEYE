@@ -40,60 +40,52 @@ public class AdminController {
     public ResponseEntity<?> findUserAll(){
         log.info("{} 메서드 실행", Thread.currentThread().getStackTrace()[1].getClassName());
 
-        Map<String, Object> data = new HashMap<>();
 
         List<UserDto> list = adminService.findUserAll();
 
-        data.put("data", list);
 
-        log.info("출력 데이터 : {}", data);
+        log.info("출력 데이터 : {}", list);
 
-        return new ResponseEntity<>(data, HttpStatus.OK);
+        return new ResponseEntity<>(list, HttpStatus.OK);
 
     }
     @GetMapping("/building")
     public ResponseEntity<?> findBuildingAll(){
         log.info("{} 메서드 실행", Thread.currentThread().getStackTrace()[1].getClassName());
 
-        Map<String, Object> data = new HashMap<>();
 
         List<BuildingDto> list = adminService.findBuildingAll();
 
-        data.put("data", list);
 
-        log.info("출력 데이터 : {}", data);
+        log.info("출력 데이터 : {}", list);
 
-        return new ResponseEntity<>(data, HttpStatus.OK);
+        return new ResponseEntity<>(list, HttpStatus.OK);
 
     }
     @GetMapping("/crack")
     public ResponseEntity<?> findCrackAll(){
         log.info("{} 메서드 실행", Thread.currentThread().getStackTrace()[1].getClassName());
 
-        Map<String, Object> data = new HashMap<>();
 
         List<CrackDto> list = adminService.findCrackAll();
 
-        data.put("data", list);
 
-        log.info("출력 데이터 : {}", data);
+        log.info("출력 데이터 : {}", list);
 
-        return new ResponseEntity<>(data, HttpStatus.OK);
+        return new ResponseEntity<>(list, HttpStatus.OK);
 
     }
     @GetMapping("/drone")
     public ResponseEntity<?> findDroneAll(){
         log.info("{} 메서드 실행", Thread.currentThread().getStackTrace()[1].getClassName());
 
-        Map<String, Object> data = new HashMap<>();
 
         List<DroneDto> list = adminService.findDroneAll();
 
-        data.put("data", list);
 
-        log.info("출력 데이터 : {}", data);
+        log.info("출력 데이터 : {}", list);
 
-        return new ResponseEntity<>(data, HttpStatus.OK);
+        return new ResponseEntity<>(list, HttpStatus.OK);
 
     }
 

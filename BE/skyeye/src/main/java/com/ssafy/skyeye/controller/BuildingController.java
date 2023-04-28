@@ -42,15 +42,13 @@ public class BuildingController {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {} ", buildingId);
 
-        Map<String, Object> data = new HashMap<>();
 
         BuildingDto buildingDto = buildingService.getBuilding(buildingId);
 
-        data.put("data", buildingDto);
 
-        log.info("출력 데이터 : {}", data);
+        log.info("출력 데이터 : {}", buildingDto);
 
-        return new ResponseEntity<>(data, HttpStatus.OK);
+        return new ResponseEntity<>(buildingDto, HttpStatus.OK);
     }
 
     // 빌딩 정보 수정
@@ -83,15 +81,13 @@ public class BuildingController {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {} ", buildingId);
 
-        Map<String, Object> data = new HashMap<>();
 
         List<CrackDto> building = buildingService.getBuildingByCrackId(buildingId);
 
-        data.put("data", building);
 
-        log.info("출력 데이터 : {}", data);
+        log.info("출력 데이터 : {}", building);
 
-        return new ResponseEntity<>(data,HttpStatus.OK);
+        return new ResponseEntity<>(building,HttpStatus.OK);
     }
 
 
