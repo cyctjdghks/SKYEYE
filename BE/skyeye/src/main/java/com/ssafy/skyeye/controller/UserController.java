@@ -56,14 +56,12 @@ public class UserController {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", input);
 
-        Map<String, Object> data = new HashMap<>();
         UserDto user = userService.loginUser(input);
 
-        data.put("data", user);
 
-        log.info("출력 데이터 : {}", data);
+        log.info("출력 데이터 : {}", user);
 
-        return new ResponseEntity<>(data, HttpStatus.OK);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     // 유저 상세조회
@@ -73,14 +71,12 @@ public class UserController {
         log.info("{} 메소드 호출",Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", userId);
 
-        Map<String, Object> data = new HashMap<>();
         UserDto user = userService.getUser(userId);
 
-        data.put("data", user);
 
-        log.info("출력 데이터 : {}", data);
+        log.info("출력 데이터 : {}", user);
 
-        return new ResponseEntity<>(data, HttpStatus.OK);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     // 유저 업데이트
@@ -120,15 +116,13 @@ public class UserController {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", userId);
 
-        Map<String, Object> data = new HashMap<>();
 
         List<BuildingDto> list = userService.getBuildingByUserId(userId);
 
-        data.put("data", list);
 
-        log.info("출력 데이터 : {}", data);
+        log.info("출력 데이터 : {}", list);
 
-        return new ResponseEntity<>(data,HttpStatus.OK);
+        return new ResponseEntity<>(list,HttpStatus.OK);
     }
 
     // 유저 ID로 드론 조회
@@ -138,15 +132,13 @@ public class UserController {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", userId);
 
-        Map<String, Object> data = new HashMap<>();
 
         List<DroneDto> list = userService.getDroneByUserId(userId);
 
-        data.put("data", list);
 
-        log.info("출력 데이터 : {}", data);
+        log.info("출력 데이터 : {}", list);
 
-        return new ResponseEntity<>(data,HttpStatus.OK);
+        return new ResponseEntity<>(list,HttpStatus.OK);
     }
 
 }
