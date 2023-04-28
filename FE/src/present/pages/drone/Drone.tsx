@@ -1,11 +1,16 @@
-import React, {memo} from "react";
-import SideBar from "@src/present/common/SideBar/SideBar";
+import React, {memo, useState} from "react";
+import SideBar from "@common/SideBar/SideBar";
+import SideContent from "@layout/SideContent/SideContent"
 
 const Drone = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
-  <div>
-    <SideBar />
-  </div>
+  <>
+    <SideBar isOpen={isOpen} setIsOpen={setIsOpen}/>
+    <SideContent isOpen={isOpen}>
+      <div>HI</div>
+    </SideContent>
+  </>
   )
 };
 

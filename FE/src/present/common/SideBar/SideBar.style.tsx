@@ -10,25 +10,24 @@ type SelectProps = {
   isOpen: boolean;
 };
 
-export const Wrapper = styled("div")<OpenProps>(
-  {
-    background: `${theme.colors.greyscale.dark1}`,
-    color: `${theme.colors.greyscale.light2}`,
-    height: "100vh",
-    position: "absolute",
-    left: "0px",
-    top: "0px",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "flex-start",
-    transition: `${theme.trans}`,
-  },
-  (props) => ({
-    width: `${props.isOpen ? "400px" : "100px"}`,
-    borderRadius: `${props.isOpen ? "0px 50px 50px 0px" : "0px"}`,
-  })
-);
+export const Wrapper = styled.div<OpenProps>`
+    --notOpenWidth : 100px;
+    --openWidth : 400px;
+
+    background: ${theme.colors.greyscale.dark1};
+    color: ${theme.colors.greyscale.light2};
+    height: 100vh;
+    width: ${props => props.isOpen ? "var(--openWidth)" : "var(--notOpenWidth)"};
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    transition: ${theme.trans};
+    border-radius: ${props => props.isOpen ? "0px 50px 50px 0px" : "0px"};
+`;
 
 export const OpenButton = styled("div")<OpenProps>(
   {

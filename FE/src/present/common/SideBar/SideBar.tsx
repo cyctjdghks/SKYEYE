@@ -7,9 +7,12 @@ import { ReactComponent as VideoIcon } from "@assets/sidebar/video.svg";
 import { ReactComponent as ImageIcon } from "@assets/sidebar/image.svg";
 import { ReactComponent as MapIcon } from "@assets/sidebar/map.svg";
 
-const SideBar = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+type SidebarProps = {
+  isOpen: boolean;
+  setIsOpen: Function;
+};
 
+const SideBar = ({ isOpen, setIsOpen }: SidebarProps) => {
   const [selected, setSelected] = useState<number>(0);
   const location = useLocation();
 
