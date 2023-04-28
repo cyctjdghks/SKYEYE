@@ -1,4 +1,4 @@
-const API = "https://k8d202.p.ssafy.io/be"
+const API = "http://k8d202.p.ssafy.io:8082/be"
 
 const WeatherAPI = "https://api.openweathermap.org/data/2.5/weather"
 

@@ -17,7 +17,7 @@ type ImgProps = {
 
 export const secondPage = styled("div")({
   width: "100vw",
-  height: "auto",
+  height: "100vh",
   textAlign: "left",
   display: "flex",
   flexDirection: "column",
