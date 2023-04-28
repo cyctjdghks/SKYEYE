@@ -9,6 +9,7 @@ type dataProps = {
   phone: string;
   onSelect: () => void;
   selected: boolean;
+  imgSrc: string
 };
 
 const EmployeeData = ({

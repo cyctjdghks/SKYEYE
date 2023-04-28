@@ -1,19 +1,49 @@
 import { atom } from "recoil";
- 
+
 interface UserInfo {
-  id: string;
-  name: string;
-  position: string;
-  phoneNumber: string;
+  userId: string;
+  userName: string;
+  userPosition: string;
+  userPhoneNumber: string;
+  imageSrc: string;
 }
 
 interface Admin {
   users: UserInfo[] | null;
 }
 
-const adminState = atom<Admin>({
+interface SelectedIdx {
+  idx: number | null;
+}
+
+const dummyData: UserInfo[] = [
+  {
+    userId: "string",
+    userName: "string",
+    userPosition: "string",
+    userPhoneNumber: "string",
+    imageSrc: "strin",
+  },
+  {
+    userId: "strin2g",
+    userName: "strin2g",
+    userPosition: "strin2g",
+    userPhoneNumber: "stri2ng",
+    imageSrc: "strin2",
+  },
+
+];
+
+export const adminState = atom<Admin>({
   key: "adminState",
   default: {
-    users: null,
+    users: dummyData,
+  },
+});
+
+export const selectedIdxState = atom<SelectedIdx>({
+  key: "selectedIdxState",
+  default: {
+    idx: null,
   },
 });
