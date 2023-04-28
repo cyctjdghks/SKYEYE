@@ -27,7 +27,7 @@ public class AdminController {
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     @PostMapping("/login")
-    public ResponseEntity<?> loginAdming(@RequestBody AdminLoginDto input){
+    public ResponseEntity<?> loginAdmin(@RequestBody AdminLoginDto input){
         log.info("{} 메서드 실행", Thread.currentThread().getStackTrace()[1].getClassName());
         log.info("입력 데이터 : {}", input);
 
