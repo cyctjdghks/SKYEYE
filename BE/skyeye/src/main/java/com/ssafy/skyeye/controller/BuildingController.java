@@ -79,7 +79,7 @@ public class BuildingController {
 
     // 빌딩 ID로 균열 조회
     @GetMapping("/crack/{buildingId}")
-    public ResponseEntity<?> getBuildingByCrackId(@PathVariable Long buildingId){
+    public ResponseEntity<?> getCrackByBuildingId(@PathVariable Long buildingId){
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {} ", buildingId);
 
