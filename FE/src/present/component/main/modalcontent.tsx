@@ -1,7 +1,6 @@
 import InputLabel from "@common/InputLabel/InputLabel";
 import { DataInput } from "@src/action/hooks/Effectiveness";
 import * as style from "@component/main/modalContent.style";
-import { UserLogin, DroneLogin } from "@action/hooks/authHooks";
 
 const ModalContent = () => {
   const [id, setId, idError] = DataInput(/^[a-zA-z0-9]{5,20}$/);
