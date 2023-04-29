@@ -8,6 +8,7 @@ const colors = {
     light3: "#FFFFFF",
     point: "#0758B1",
     pointLight: "#75ACE8",
+    pointLight2: "#96c2f2",
   },
 };
 
