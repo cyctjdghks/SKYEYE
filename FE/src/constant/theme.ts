@@ -12,6 +12,20 @@ const colors = {
   },
 };
 
+const scroll = `  &::-webkit-scrollbar {
+  background-color: ${colors.greyscale.light1};
+  width: 9px;
+  border-radius: 1rem;
+  position: relative;
+  left: 1rem;
+}
+
+&::-webkit-scrollbar-thumb {
+  background-color: ${colors.greyscale.point};
+  width: 6px;
+  border-radius: 1rem;
+}`
+
 const trans = "all 0.2s ease";
 
 const shadows = {
@@ -22,7 +36,6 @@ const shadows = {
   shadow5: "0px 24px 36px rgba(52, 87, 140, 0.12);",
   shadow6: "0px 36px 48px rgba(52, 87, 140, 0.2);",
 }
-
 
 const devices = {
   mobile: `@media only screen and (max-width: 426px)`,
@@ -35,4 +48,5 @@ export const theme = {
   shadows,
   devices,
   trans,
+  scroll
 };

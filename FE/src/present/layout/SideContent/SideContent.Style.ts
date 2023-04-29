@@ -30,7 +30,7 @@ export const ContentBody = styled.div<ContentBodyProps>`
     gap: 1rem;
     height: calc(100vh - 4rem);
 
-    & *:nth-child(3) {
+    & > *:nth-child(4) {
       margin-top: 1.5rem;
       width: 23rem;
       display: flex;

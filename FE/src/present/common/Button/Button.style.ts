@@ -4,7 +4,7 @@ import { theme } from "@src/constant/theme";
 export const PrimaryBtn = styled.button`
   background-color: ${theme.colors.greyscale.point};
   color: ${theme.colors.greyscale.light3};
-  padding: 0.8rem;
+  padding: 0.8rem 1rem;
   border: none;
   font-family: "SCDream5";
   font-size: 1.22rem;
@@ -40,7 +40,7 @@ export const AddBtn = styled.button`
   min-width: 23rem;
   background-color: ${theme.colors.greyscale.pointLight};
   color: ${theme.colors.greyscale.light3};
-  padding: 0.8rem;
+  padding: 0.8rem 1.2rem;
   border: none;
   border-radius: 0.5rem;
   box-shadow: ${theme.shadows.shadow2};
