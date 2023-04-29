@@ -17,8 +17,5 @@ export const ContentBody = styled.div<ContentBodyProps>`
   position: relative;
   left: var(${(props) => (props.isOpen ? "--openWidth" : "--notOpenWidth")});
   padding: 1.5rem;
-  transition : ${theme.trans};
-
-  display: flex;
-  flex-direction: column;
+  transition: ${theme.trans};
 `;
