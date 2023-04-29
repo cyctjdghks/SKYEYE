@@ -9,9 +9,9 @@ import Arrow from "@assets/button/arrow.png";
   @param content 버튼 안에 들어갈 내용
   @param isArrow 화살표 png 유무
 */
-const PrimaryButton = ({ content, isArrow }: ButtonProps) => {
+const PrimaryButton = ({ content, isArrow, handler }: ButtonProps) => {
   return (
-    <PrimaryBtn className={isArrow && "arrowExist"}>
+    <PrimaryBtn className={isArrow && "arrowExist"} onClick={handler}>
       <>{content}</>
       {isArrow && <img src={Arrow} alt={content as string} />}
     </PrimaryBtn>

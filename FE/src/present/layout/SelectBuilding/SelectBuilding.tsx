@@ -4,6 +4,7 @@ import * as Style from "./SelectBuilding.style";
 import PrimaryButton from "@src/present/common/Button/PrimaryButton";
 import AddButton from "@src/present/common/Button/AddButton";
 import Dropdown from "@src/present/common/Dropdown/Dropdown";
+import { useNavigate } from "react-router-dom";
 
 const testBuildings = [
   "A 건물",
@@ -11,21 +12,27 @@ const testBuildings = [
   "C 건물",
   "D 건물",
   "E 건물",
-  "A 건물",
-  "B 건물",
-  "C 건물",
-  "D 건물",
-  "E 건물",
+  "F 건물",
+  "G 건물",
+  "H 건물",
+  "I 건물",
+  "J 건물",
 ];
 
 const SelectBuilding = () => {
+  const navigate = useNavigate();
+
+  const routeHandler = () => {
+    navigate('/drone/camera')
+  }
+
   return (
     <Style.Container>
       <PrimeTitle content="건물을 선택해주세요" />
       <Dropdown content={"건물 이름"} options={testBuildings} />
-      <AddButton content={"건물 추가하기"} />
+      <AddButton content={"건물 추가하기"} handler={() => {}} />
       <div>
-        <PrimaryButton content={"촬영하기"} isArrow={true} />
+        <PrimaryButton content={"촬영하기"} isArrow={true} handler={routeHandler} />
       </div>
     </Style.Container>
   );

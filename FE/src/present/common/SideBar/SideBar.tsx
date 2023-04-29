@@ -26,16 +26,15 @@ const SideBar = ({ isOpen, setIsOpen }: SidebarProps) => {
   };
 
   // menuitem 설정
-  const menuItemByPathname =
-    location.pathname === "/drone"
-      ? {
-          image: <VideoIcon />,
-          barText: "드론 영상 보기",
-        }
-      : {
-          image: <ImageIcon />,
-          barText: "저장된 사진 보기",
-        };
+  const menuItemByPathname = location.pathname.includes("drone")
+    ? {
+        image: <VideoIcon />,
+        barText: "드론 영상 보기",
+      }
+    : {
+        image: <ImageIcon />,
+        barText: "저장된 사진 보기",
+      };
 
   const menu = [
     menuItemByPathname,
