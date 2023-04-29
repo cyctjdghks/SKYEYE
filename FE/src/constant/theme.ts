@@ -8,8 +8,23 @@ const colors = {
     light3: "#FFFFFF",
     point: "#0758B1",
     pointLight: "#75ACE8",
+    pointLight2: "#96c2f2",
   },
 };
+
+const scroll = `  &::-webkit-scrollbar {
+  background-color: ${colors.greyscale.light1};
+  width: 9px;
+  border-radius: 1rem;
+  position: relative;
+  left: 1rem;
+}
+
+&::-webkit-scrollbar-thumb {
+  background-color: ${colors.greyscale.point};
+  width: 6px;
+  border-radius: 1rem;
+}`
 
 const trans = "all 0.2s ease";
 
@@ -22,7 +37,6 @@ const shadows = {
   shadow6: "0px 36px 48px rgba(52, 87, 140, 0.2);",
 }
 
-
 const devices = {
   mobile: `@media only screen and (max-width: 426px)`,
   tablet: `@media only screen and (max-width: 1000px)`,
@@ -34,4 +48,5 @@ export const theme = {
   shadows,
   devices,
   trans,
+  scroll
 };

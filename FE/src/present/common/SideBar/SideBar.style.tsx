@@ -27,6 +27,7 @@ export const Wrapper = styled.div<OpenProps>`
     justify-content: flex-start;
     transition: ${theme.trans};
     border-radius: ${props => props.isOpen ? "0px 50px 50px 0px" : "0px"};
+    z-index: 9999;
 `;
 
 export const OpenButton = styled("div")<OpenProps>(
