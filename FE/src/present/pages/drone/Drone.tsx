@@ -11,10 +11,12 @@ const Drone = () => {
     <>
       <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />
       <SideContent isOpen={isOpen}>
-        <div className="center">
+        <div className="center Drone">
           <SelectBuilding />
           <AddButton content={"건물 추가하기"} />
-          <PrimaryButton content={"촬영하기"} isArrow={true} />
+          <div>
+            <PrimaryButton content={"촬영하기"} isArrow={true} />
+          </div>
         </div>
       </SideContent>
     </>

@@ -25,4 +25,16 @@ export const ContentBody = styled.div<ContentBodyProps>`
     justify-content: center;
     align-items: center;
   }
+
+  & > .Drone {
+    gap: 1rem;
+    height: calc(100vh - 4rem);
+
+    & *:nth-child(3) {
+      margin-top: 1.5rem;
+      width: 23rem;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
 `;
