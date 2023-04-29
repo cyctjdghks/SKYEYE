@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { theme } from "@src/constant/theme";
 
 export const GuidanceDiv = styled.div`
-  width: 100%;
+  width: 95%;
   text-align: right;
   font-size: 1.25rem;
   font-family: "SCDream5";
@@ -10,7 +10,7 @@ export const GuidanceDiv = styled.div`
 `;
 
 export const CameraDiv = styled.div`
-  width: 100%;
+  width: 95%;
   height: 90%;
   margin-top: 2rem;
   background-color: ${theme.colors.greyscale.dark3};
@@ -27,6 +27,7 @@ export const CameraDiv = styled.div`
 export const Container = styled.div`
   width: 100%;
   height: calc(100% * 0.9);
+
   display: flex;
   flex-direction: column;
   justify-content: center;
