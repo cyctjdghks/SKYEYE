@@ -1,5 +1,5 @@
 import PrimeTitle from "@src/present/common/PrimeTitle/PrimeTitle";
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import * as Style from "./SelectBuilding.style";
 import PrimaryButton from "@src/present/common/Button/PrimaryButton";
 import AddButton from "@src/present/common/Button/AddButton";
@@ -20,19 +20,28 @@ const testBuildings = [
 ];
 
 const SelectBuilding = () => {
+  const [selectContent, setSelectContent] = useState<string>("건물 이름");
   const navigate = useNavigate();
 
   const routeHandler = () => {
-    navigate('/drone/camera')
-  }
+    if (selectContent !== "건물 이름")
+        navigate("/drone/camera");
+    else {
+        alert("건물을 선택해주세요");
+    }
+  };
 
   return (
     <Style.Container>
       <PrimeTitle content="건물을 선택해주세요" />
-      <Dropdown content={"건물 이름"} options={testBuildings} />
+      <Dropdown options={testBuildings} select={{selectContent,setSelectContent}}/>
       <AddButton content={"건물 추가하기"} handler={() => {}} />
       <div>
-        <PrimaryButton content={"촬영하기"} isArrow={true} handler={routeHandler} />
+        <PrimaryButton
+          content={"촬영하기"}
+          isArrow={true}
+          handler={routeHandler}
+        />
       </div>
     </Style.Container>
   );

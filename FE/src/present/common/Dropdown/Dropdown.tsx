@@ -3,17 +3,24 @@ import * as Style from "./Dropdown.style";
 import Arrow from "@assets/dropdown/arrow.png";
 import HoverArrow from "@assets/button/arrow.png";
 
-const Dropdown = ({ content, options }) => {
+type DropdownProps = {
+  options: Array<any>;
+  select: {
+    selectContent: string;
+    setSelectContent: Function;
+  };
+};
+
+const Dropdown = ({ options, select }:DropdownProps) => {
   const [clicked, setClicked] = useState(false);
-  const [selectContent, setSelectContent] = useState(content);
 
   //   Handler
   const clickHandler = () => {
     setClicked(!clicked);
   };
 
-  const selectHandler = (selected : string) => {
-    setSelectContent(selected);
+  const selectHandler = (selected: string) => {
+    select.setSelectContent(selected);
   };
 
   //   Options
@@ -29,8 +36,8 @@ const Dropdown = ({ content, options }) => {
   return (
     <Style.DropdownDiv onClick={clickHandler} clicked={clicked}>
       <Style.DefaultOption>
-        <>{selectContent}</>
-        <img src={Arrow} alt={content} />
+        <>{select.selectContent}</>
+        <img src={Arrow} alt={select.selectContent} />
       </Style.DefaultOption>
       <Style.OptionContainer>{optionsDiv}</Style.OptionContainer>
     </Style.DropdownDiv>
