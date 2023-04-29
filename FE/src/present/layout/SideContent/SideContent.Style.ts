@@ -18,23 +18,4 @@ export const ContentBody = styled.div<ContentBodyProps>`
   left: var(${(props) => (props.isOpen ? "--openWidth" : "--notOpenWidth")});
   padding: 1.5rem;
   transition: ${theme.trans};
-
-  & > .center {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  & > .Drone {
-    gap: 1rem;
-    height: calc(100vh - 4rem);
-
-    & > *:nth-child(4) {
-      margin-top: 1.5rem;
-      width: 23rem;
-      display: flex;
-      justify-content: flex-end;
-    }
-  }
 `;
