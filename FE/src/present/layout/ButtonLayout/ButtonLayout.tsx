@@ -25,7 +25,6 @@ const ButtonLayout = ({ list, selected, handler }) => {
 
   return (
     <Style.Container>
-      <h2>건물명</h2>
       {buttons}
     </Style.Container>
   );

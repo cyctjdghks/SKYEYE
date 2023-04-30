@@ -3,6 +3,7 @@ import SideBar from "@src/present/common/SideBar/SideBar";
 import SideContent from "@layout/SideContent/SideContent";
 import { Building } from "@src/types/Building";
 import ButtonLayout from "@src/present/layout/ButtonLayout/ButtonLayout";
+import SubTitle from "@src/present/common/SubTitle/SubTitle";
 
 const test: Array<Building> = [
   {
@@ -83,6 +84,7 @@ const FlightInfo = () => {
       <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />
       <SideContent isOpen={isOpen} titleProps={{ isButton: false }}>
         <>
+          <SubTitle content="건물명" />
           <ButtonLayout
             list={test}
             selected={building}
