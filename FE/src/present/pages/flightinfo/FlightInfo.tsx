@@ -78,35 +78,59 @@ const test2: Array<Crack> = [
     crackType: "박리",
     crackPosition: "",
     buildingId: 0,
-    imageSrc: "./././"
+    imageSrc: "./././",
   },
   {
     crackId: 0,
     crackType: "박리",
     crackPosition: "",
     buildingId: 0,
-    imageSrc: "./././"
+    imageSrc: "./././",
   },
   {
     crackId: 0,
     crackType: "박리",
     crackPosition: "",
     buildingId: 0,
-    imageSrc: "./././"
+    imageSrc: "./././",
   },
-]
+];
 
 const FlightInfo = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [building, setBuilding] = useState<number | null>(null);
   const [crack, setCrack] = useState<number | null>(null);
 
+  // Handler
   const bulidingHandler = (idx: number) => {
     setBuilding(idx);
   };
-  
+
   const crackHandler = (idx: number) => {
     setCrack(idx);
+  };
+
+  // Sentence
+  const guidence = () => {
+    if (building === null) {
+      return (
+        <>
+          건물을
+          <br />
+          선택해주세요
+        </>
+      );
+    } else if (crack === null) {
+      return (
+        <>
+          손상 유형을
+          <br />
+          선택해주세요
+        </>
+      );
+    } else {
+      return null;
+    }
   };
 
   return (
@@ -123,15 +147,19 @@ const FlightInfo = () => {
               handler={bulidingHandler}
             />
           </div>
-          <div>
-            <SubTitle content="균열 유형" />
-            <ButtonLayout
-              list={test}
-              type={"crack"}
-              selected={crack}
-              handler={crackHandler}
-            />
-          </div>
+          {building !== null && (
+            <div>
+              <SubTitle content="균열 유형" />
+              <ButtonLayout
+                list={test}
+                type={"crack"}
+                selected={crack}
+                handler={crackHandler}
+              />
+            </div>
+          )}
+
+          <Style.Guidence>{guidence()}</Style.Guidence>
         </Style.Layout>
       </SideContent>
     </>
