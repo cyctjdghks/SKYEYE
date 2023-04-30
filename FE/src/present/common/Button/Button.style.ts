@@ -134,3 +134,61 @@ export const BuildingBtn = styled.button`
     }
   }
 `;
+
+export const CrackBtn = styled.button`
+  padding: 0.8rem 1.2rem;
+  font-family: "SCDream5";
+  font-size: 1.25rem;
+  width: 16rem;
+  background-color: ${theme.colors.greyscale.light3};
+  color: ${theme.colors.greyscale.dark2};
+  border: solid 1.5px ${theme.colors.greyscale.dark3};
+  border-radius: 0.5rem;
+  box-shadow: ${theme.shadows.shadow2};
+  text-align: left;
+  padding: 0.8rem 1.2rem;
+
+  & div {
+    font-family: "SCDream5";
+  }
+
+  &:hover {
+    background-color: ${theme.colors.greyscale.light1};
+    border: solid 1.5px ${theme.colors.greyscale.light1};
+  }
+
+  &.Sub {
+    background-color: ${theme.colors.greyscale.pointLight};
+    color: ${theme.colors.greyscale.light3};
+    border: solid 1.5px ${theme.colors.greyscale.pointLight};
+    padding: 1.2rem;
+
+    & > div:nth-child(1) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      img {
+        height: 1.5rem;
+      }
+    }
+
+    & > div:nth-child(2) {
+      margin-top: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: inherit;
+      font-size: 1rem;
+      width: 100%;
+
+      & > span:nth-child(1) {
+        color: ${theme.colors.greyscale.point};
+      }
+
+      & > span:nth-child(2) {
+        color: ${theme.colors.greyscale.light3};
+      }
+    }
+  }
+`;

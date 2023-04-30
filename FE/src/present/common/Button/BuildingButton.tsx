@@ -1,18 +1,16 @@
 import React, { memo } from "react";
 import { BuildingBtn } from "./Button.style";
 import Arrow from "@assets/button/arrow.png";
-import { Building } from "@src/types/Building";
+import { Building } from "@src/types/FlightInfo";
 
 type BuildingButtonProps = {
   content: Building;
-  isPrimary: boolean;
   handler: any;
   isSelected: boolean;
 };
 
 const BuildingButton = ({
   content,
-  isPrimary,
   handler,
   isSelected,
 }: BuildingButtonProps) => {
@@ -31,7 +29,7 @@ const BuildingButton = ({
 
   return (
     <BuildingBtn
-      className={isPrimary && isSelected ? "Main" : "Sub"}
+      className={isSelected && "Main"}
       onClick={handler}
     >
       <div>

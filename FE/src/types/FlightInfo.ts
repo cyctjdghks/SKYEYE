@@ -5,3 +5,11 @@ export type Building = {
   buildingName: string;
   buildingAddress: string;
 };
+
+export type Crack = {
+  crackId: number;
+  crackType: String;
+  crackPosition: String;
+  buildingId: number;
+  imageSrc: String;
+};
