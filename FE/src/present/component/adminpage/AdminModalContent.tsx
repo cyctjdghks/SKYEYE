@@ -46,6 +46,7 @@ const AdimModalContent = ({ data, onClose }: UserInfo) => {
             width="100%"
             height="100%"
             value={userId}
+            type="text"
             fontSize="1vw"
             onChange={(e) => setUserId(e.target.value)}
             errorMessage=""
@@ -56,6 +57,7 @@ const AdimModalContent = ({ data, onClose }: UserInfo) => {
               placeholder="이름"
               width="50%"
               height="100%"
+              type="text"
               value={name}
               fontSize="1vw"
               onChange={(e) => setName(e.target.value)}
@@ -66,6 +68,7 @@ const AdimModalContent = ({ data, onClose }: UserInfo) => {
               placeholder="직책"
               width="50%"
               height="90%"
+              type="text"
               value={job}
               fontSize="1vw"
               onChange={(e) => setJob(e.target.value)}
@@ -78,6 +81,7 @@ const AdimModalContent = ({ data, onClose }: UserInfo) => {
             width="100%"
             height="90%"
             value={phone}
+            type="text"
             fontSize="1vw"
             onChange={(e) => setPhone(e.target.value)}
             errorMessage=""
@@ -88,6 +92,7 @@ const AdimModalContent = ({ data, onClose }: UserInfo) => {
             width="100%"
             height="90%"
             value={password}
+            type="password"
             fontSize="1vw"
             onChange={(e) => setPassword(e.target.value)}
             errorMessage=""
