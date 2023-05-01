@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { adminState, selectedIdxState } from "@store/admin";
 
 import Modal from "@src/present/common/Modal/Modal";
-import AdimModalContent from "../../component/adminpage/AdminModalContent";
+import AdminModalContent from "../../component/adminpage/AdminModalContent";
+import RegistModalContent from "@component/adminpage/RegistModalContent";
 import UserTable from "@src/present/component/adminpage/UserTable";
 
 import * as style from "@pages/admin/Admin.style";
@@ -30,6 +31,7 @@ const Admin = () => {
   });
   //모달
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen2, setIsOpen2] = useState<boolean>(false);
 
   useEffect(() => {
     setChooseUser(users[selectedIdx]);
@@ -37,6 +39,9 @@ const Admin = () => {
 
   const onClickButton = () => {
     setIsOpen(true);
+  };
+  const onClickButton2 = () => {
+    setIsOpen2(true);
   };
 
   return (
@@ -63,10 +68,31 @@ const Admin = () => {
             height="60vh"
             title="회원 정보 수정"
             content={
-              <AdimModalContent
+              <AdminModalContent
                 data={chooseUser}
                 onClose={() => {
                   setIsOpen(false);
+                }}
+              />
+            }
+          />
+        )}
+        <style.editButton onClick={onClickButton2}>
+          <style.editText>회원 등록 하기</style.editText>
+          <style.editRight src={right}></style.editRight>
+        </style.editButton>
+        {isOpen2 && (
+          <Modal
+            onClose={() => {
+              setIsOpen2(false);
+            }}
+            width="50vw"
+            height="60vh"
+            title="회원 등록 하기"
+            content={
+              <RegistModalContent
+                onClose={() => {
+                  setIsOpen2(false);
                 }}
               />
             }
