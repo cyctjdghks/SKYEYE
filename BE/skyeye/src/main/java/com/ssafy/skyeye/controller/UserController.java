@@ -38,7 +38,7 @@ public class UserController {
         log.info("입력 데이터 : {}", input);
         System.out.println(profile);
 
-        if(profile != null && profile.isEmpty() ){
+        if(profile != null && !profile.isEmpty() ){
             long id = 0l;
             id = imageService.addImage(Image.builder().build(), profile);
             input.setUserImageId(id);
@@ -89,7 +89,7 @@ public class UserController {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", input);
 
-        if(profile != null && profile.isEmpty() ){
+        if(profile != null && !profile.isEmpty() ){
             long id = 0l;
             id = imageService.addImage(Image.builder().build(), profile);
             input.setUserImageId(id);
