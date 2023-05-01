@@ -20,4 +20,6 @@ public interface UserService {
     List<BuildingDto> getBuildingByUserId(String userId);
     List<DroneDto> getDroneByUserId(String userId);
     void changePw(PwChangeUserDto input);
+
+    boolean validId(String userId);
 }
