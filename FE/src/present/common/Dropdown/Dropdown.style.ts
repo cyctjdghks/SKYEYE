@@ -14,7 +14,7 @@ export const OptionContainer = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   max-height: 10rem;
-  overflow-y: scroll;
+  overflow-y: auto;;
 
   ${theme.scroll};
 
