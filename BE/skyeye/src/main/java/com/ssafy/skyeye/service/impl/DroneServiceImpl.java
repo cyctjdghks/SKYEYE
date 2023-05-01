@@ -105,6 +105,11 @@ public class DroneServiceImpl implements DroneService {
         drone.setDronePw(passwordEncoder.encode(input.getNewDronePw()));
     }
 
+    @Override
+    public boolean validId(String droneId) {
+        return droneRepository.existsById(droneId);
+    }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public User getUserById(String userId) {
