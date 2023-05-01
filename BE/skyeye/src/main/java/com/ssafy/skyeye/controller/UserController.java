@@ -1,5 +1,6 @@
 package com.ssafy.skyeye.controller;
 
+import com.ssafy.skyeye.data.dto.request.PwChangeUserDto;
 import com.ssafy.skyeye.data.dto.request.UserLoginDto;
 import com.ssafy.skyeye.data.dto.request.UserRegistDto;
 import com.ssafy.skyeye.data.dto.request.UserUpdateDto;
@@ -35,8 +36,10 @@ public class UserController {
                                         @RequestPart(name = "user")UserRegistDto input){
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", input);
+        System.out.println(profile);
 
-        if(profile != null){
+        if(profile.isEmpty()) profile = null;
+        if(profile != null ){
             long id = 0l;
             id = imageService.addImage(Image.builder().build(), profile);
             input.setUserImageId(id);
@@ -86,7 +89,8 @@ public class UserController {
         // TODO: JWT로 유저 확인 하는 것
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", input);
-        if(profile != null){
+        if(profile.isEmpty()) profile = null;
+        if(profile != null ){
             long id = 0l;
             id = imageService.addImage(Image.builder().build(), profile);
             input.setUserImageId(id);
@@ -139,6 +143,17 @@ public class UserController {
         log.info("출력 데이터 : {}", list);
 
         return new ResponseEntity<>(list,HttpStatus.OK);
+    }
+
+    // 유저 비밀번호 변경
+    @PutMapping("/change")
+    public ResponseEntity<?> changePw(@RequestBody PwChangeUserDto input){
+        log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
+        log.info("입력 데이터 : {}", input);
+
+        userService.changePw(input);
+
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
 }
