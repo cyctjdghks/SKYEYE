@@ -3,11 +3,13 @@ import * as Style from "./AddBuildingModal.style";
 import Input from "@src/present/Input/Input";
 import PrimeTitle from "@src/present/common/PrimeTitle/PrimeTitle";
 import PrimaryButton from "@src/present/common/Button/PrimaryButton";
+import { addBuilding } from "@src/action/api/Building";
 
 const AddBuildingModal = () => {
   const [aboutBuilding, setAboutBuilding] = useState({
     buildingName: "건물 이름",
-    buildingEstablishment: "건축 일자",
+    buildingAddress: "건물 주소",
+    buildingEstablishment: "건축 일자(YYYY-MM-DD)",
     userId: "담당자",
   });
 
@@ -34,7 +36,12 @@ const AddBuildingModal = () => {
     <Style.ModalContainer>
       <PrimeTitle content="건물 추가" />
       {inputs}
-      <PrimaryButton content={"추가하기"} handler={() => {}} />
+      <PrimaryButton
+        content={"추가하기"}
+        handler={() => {
+          addBuilding(aboutBuilding);
+        }}
+      />
     </Style.ModalContainer>
   );
 };

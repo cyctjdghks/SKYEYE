@@ -48,8 +48,8 @@ const SelectBuilding = () => {
             setIsOpen(false);
           }}
           width="40vw"
-          height="70vh"
-          title="로그인"
+          height="80vh"
+          title="건물 추가"
           content={<AddBuildingModal />}
         />
       )}
