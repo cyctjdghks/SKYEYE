@@ -31,7 +31,7 @@ public class BuildingServiceImpl implements BuildingService {
     private final CrackRepository crackRepository;
 
     // 날짜 포매터
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
