@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.awt.*;
+import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +22,6 @@ public class RestExceptionControllerAdvice {
 
         return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<?> handleIllegalArgumentException(Exception e){
@@ -40,4 +40,8 @@ public class RestExceptionControllerAdvice {
         return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
     }
 
+    @ExceptionHandler(DateTimeParseException.class)
+    public  ResponseEntity<?> handleDateTimeParseException(Exception e) {
+        return  new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    }
 }
