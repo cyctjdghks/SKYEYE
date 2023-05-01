@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -41,7 +42,7 @@ public class BuildingServiceImpl implements BuildingService {
         // TODO: JWT 본인인증 만약 아닐 시 405 Not Allowed
         Building building = Building.builder()
                 .buildingAddress(buildingRegistDto.getBuildingAddress())
-                .buildingEstablishment(LocalDateTime.parse(buildingRegistDto.getBuildingEstablishment(), formatter))
+                .buildingEstablishment(LocalDate.parse(buildingRegistDto.getBuildingEstablishment(), formatter).atStartOfDay())
                 .buildingName(buildingRegistDto.getBuildingName())
                 .userId(getUserById(buildingRegistDto.getUserId()))
                 .build();
