@@ -1,8 +1,6 @@
 package com.ssafy.skyeye.controller;
 
-import com.ssafy.skyeye.data.dto.request.DroneLoginDto;
-import com.ssafy.skyeye.data.dto.request.DroneRegistDto;
-import com.ssafy.skyeye.data.dto.request.DroneUpdateDto;
+import com.ssafy.skyeye.data.dto.request.*;
 import com.ssafy.skyeye.data.dto.response.BuildingDto;
 import com.ssafy.skyeye.data.dto.response.DroneDto;
 import com.ssafy.skyeye.service.DroneService;
@@ -99,4 +97,15 @@ public class DroneController {
 
         return new ResponseEntity<>(buildingDtos, HttpStatus.OK);
     }
+
+    @PutMapping("/change")
+    public ResponseEntity<?> changePw(@RequestBody PwChangeDroneDto input){
+        log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
+        log.info("입력 데이터 : {}", input);
+
+        droneService.changePw(input);
+
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
 }

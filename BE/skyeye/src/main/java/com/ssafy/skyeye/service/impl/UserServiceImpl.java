@@ -1,5 +1,6 @@
 package com.ssafy.skyeye.service.impl;
 
+import com.ssafy.skyeye.data.dto.request.PwChangeUserDto;
 import com.ssafy.skyeye.data.dto.request.UserLoginDto;
 import com.ssafy.skyeye.data.dto.request.UserRegistDto;
 import com.ssafy.skyeye.data.dto.request.UserUpdateDto;
@@ -68,14 +69,17 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void updateUser(UserUpdateDto userUpdateDto) {
         User user = getUserById(userUpdateDto.getUserId());
-        Image image = getImageById(userUpdateDto.getUserImageId());
+        System.out.println(userUpdateDto.getUserImageId());
+        if(userUpdateDto.getUserImageId() != null) {
+            Image image = getImageById(userUpdateDto.getUserImageId());
+            user.setImageId(image);
+        }
 
         // 비밀번호 변경은 따로 처리
 //        user.setUserPw(userUpdateDto.getUserPw());
         user.setUserName(userUpdateDto.getUserName());
         user.setUserPosition(userUpdateDto.getUserPosition());
         user.setUserPhoneNumber(userUpdateDto.getUserPhoneNumber());
-        user.setImageId(image);
 
     }
 
@@ -119,6 +123,18 @@ public class UserServiceImpl implements UserService {
                 .filter(drone -> drone.getUserId().getUserId().equals(userId))
                 .map(DroneDto::entityToDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional
+    public void changePw(PwChangeUserDto input) {
+        User user = getUserById(input.getUserId());
+
+        if(!passwordEncoder.matches(input.getOldUserPw(), user.getUserPw())){
+            throw new ForbiddenException("비밀번호가 틀렸습니다.");
+        }
+
+        user.setUserPw(passwordEncoder.encode(input.getNewUserPw()));
     }
 
 
