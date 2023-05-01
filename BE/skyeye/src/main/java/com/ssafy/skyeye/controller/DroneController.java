@@ -98,6 +98,7 @@ public class DroneController {
         return new ResponseEntity<>(buildingDtos, HttpStatus.OK);
     }
 
+    // 비밀번호 변경
     @PutMapping("/change")
     public ResponseEntity<?> changePw(@RequestBody PwChangeDroneDto input){
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
@@ -106,6 +107,20 @@ public class DroneController {
         droneService.changePw(input);
 
         return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
+    // 드론 id 중복검사
+    @GetMapping("/valid/{droneId}")
+    public ResponseEntity<?> validId(@PathVariable String droneId){
+        log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
+        log.info("입력 데이터 : {}", droneId);
+
+        boolean exist = droneService.validId(droneId);
+
+        // true 면 아이디가 있는거 false 면 없는거
+        log.info("출력 데이터 : {}", exist);
+
+        return new ResponseEntity<>(exist, HttpStatus.OK);
     }
 
 }

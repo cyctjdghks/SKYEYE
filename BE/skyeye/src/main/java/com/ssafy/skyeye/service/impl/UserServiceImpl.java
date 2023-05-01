@@ -137,6 +137,11 @@ public class UserServiceImpl implements UserService {
         user.setUserPw(passwordEncoder.encode(input.getNewUserPw()));
     }
 
+    @Override
+    public boolean validId(String userId) {
+        return userRepository.existsById(userId);
+    }
+
 
     //////////////////////////////////////////////////////////////////////////////////////////////
     // repository 접근하는 것들 모아두기

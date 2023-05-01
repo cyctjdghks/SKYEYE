@@ -19,4 +19,6 @@ public interface DroneService {
     List<BuildingDto> getBuildingByDroneId(String droneId);
 
     void changePw(PwChangeDroneDto input);
+
+    boolean validId(String droneId);
 }
