@@ -1,10 +1,9 @@
 import { useState } from "react";
-import InputLabel from "@src/present/common/InputLabel/InputLabel";
+import InputLabel from "@common/InputLabel/InputLabel";
 import { urls } from "@constant/values";
 
-import * as style from "@present/component/adminpage/AdimModalContent.style";
+import * as style from "@component/adminpage/AdminModalContent.style";
 import { DeleteUser } from "@src/action/hooks/authHooks";
-
 
 type UserInfo = {
   data: {
@@ -15,23 +14,23 @@ type UserInfo = {
     imageSrc: string;
   };
   onClose: () => void;
-}
+};
 
-const AdimModalContent = ({data, onClose} : UserInfo) => {
-  const [userId, setUserId] =  useState<string>(data?.userId || '');
-  const [name, setName] = useState<string>(data.userName || '');
-  const [job, setJob] = useState<string>(data.userPosition || '');
-  const [phone, setPhone] = useState<string>(data.userPhoneNumber || '');
+const AdimModalContent = ({ data, onClose }: UserInfo) => {
+  const [userId, setUserId] = useState<string>(data?.userId || "");
+  const [name, setName] = useState<string>(data.userName || "");
+  const [job, setJob] = useState<string>(data.userPosition || "");
+  const [phone, setPhone] = useState<string>(data.userPhoneNumber || "");
   const [password, setPassword] = useState<string>("");
-  const [imgSrc, setImgSrc] = useState<string>(`${urls.API}/${data.imageSrc}` || "")
-
+  const [imgSrc, setImgSrc] = useState<string>(
+    `${urls.API}/${data.imageSrc}` || ""
+  );
 
   const clickDelete = () => {
-    DeleteUser(userId)
-    onClose()
+    DeleteUser(userId);
+    onClose();
     location.reload();
-  }
-
+  };
 
   return (
     <style.modalBox>
@@ -100,9 +99,9 @@ const AdimModalContent = ({data, onClose} : UserInfo) => {
         <style.deleteButton>
           <style.logoText onClick={clickDelete}>회원삭제</style.logoText>
         </style.deleteButton>
-        <style.eidtButton>
+        <style.editButton>
           <style.logoText>수정하기</style.logoText>
-        </style.eidtButton>
+        </style.editButton>
       </style.buttonBox>
     </style.modalBox>
   );

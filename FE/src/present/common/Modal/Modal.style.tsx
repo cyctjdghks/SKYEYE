@@ -23,18 +23,6 @@ export const ModalWrap = styled.div<{ width: string, height:string }>`
   overflow: hidden
 `;
 
-export const Contents = styled.div`
-  margin: 50px 30px;
-  h1 {
-    font-size: 30px;
-    font-weight: 600;
-    margin-bottom: 60px;
-  }
-  img {
-    margin-top: 60px;
-    width: 300px;
-  }
-`;
 
 /* export const Button = styled.button`
   font-size: 14px;
