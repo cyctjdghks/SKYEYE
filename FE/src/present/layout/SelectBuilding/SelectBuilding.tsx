@@ -9,14 +9,6 @@ import { useNavigate } from "react-router-dom";
 const testBuildings = [
   "A 건물",
   "B 건물",
-  "C 건물",
-  "D 건물",
-  "E 건물",
-  "F 건물",
-  "G 건물",
-  "H 건물",
-  "I 건물",
-  "J 건물",
 ];
 
 const SelectBuilding = () => {
