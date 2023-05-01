@@ -14,6 +14,7 @@ const ModalContent = () => {
         placeholder="직원번호"
         width="55%"
         height="15%"
+        type="text"
         value={id}
         fontSize="1vw"
         onChange={setId}
@@ -26,6 +27,7 @@ const ModalContent = () => {
         placeholder="비밀번호"
         width="55%"
         height="15%"
+        type="password"
         value={pwd}
         fontSize="1vw"
         onChange={setPwd}

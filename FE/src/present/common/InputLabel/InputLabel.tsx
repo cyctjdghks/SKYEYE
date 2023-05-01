@@ -8,6 +8,7 @@ type inputProps = {
   value: string;
   fontSize: string;
   errorFontSize: string;
+  type: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -18,6 +19,7 @@ const InputLabel = ({
   errorMessage,
   value,
   fontSize,
+  type,
   errorFontSize,
   onChange,
 }: inputProps) => {
@@ -31,6 +33,7 @@ const InputLabel = ({
           value={value}
           fontSize={fontSize}
           onChange={onChange}
+          type={type}
         />
         {errorMessage ? (
           <style.p errorFontSize={errorFontSize}>{errorMessage}</style.p>
