@@ -3,6 +3,7 @@ package com.ssafy.skyeye.service;
 import com.ssafy.skyeye.data.dto.request.DroneLoginDto;
 import com.ssafy.skyeye.data.dto.request.DroneRegistDto;
 import com.ssafy.skyeye.data.dto.request.DroneUpdateDto;
+import com.ssafy.skyeye.data.dto.request.PwChangeDroneDto;
 import com.ssafy.skyeye.data.dto.response.BuildingDto;
 import com.ssafy.skyeye.data.dto.response.DroneDto;
 
@@ -16,4 +17,6 @@ public interface DroneService {
     void deleteDrone(String droneId);
 
     List<BuildingDto> getBuildingByDroneId(String droneId);
+
+    void changePw(PwChangeDroneDto input);
 }

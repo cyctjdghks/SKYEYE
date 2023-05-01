@@ -1,5 +1,6 @@
 package com.ssafy.skyeye.service;
 
+import com.ssafy.skyeye.data.dto.request.PwChangeUserDto;
 import com.ssafy.skyeye.data.dto.request.UserLoginDto;
 import com.ssafy.skyeye.data.dto.request.UserRegistDto;
 import com.ssafy.skyeye.data.dto.request.UserUpdateDto;
@@ -18,4 +19,5 @@ public interface UserService {
     UserDto getUser(String userId);
     List<BuildingDto> getBuildingByUserId(String userId);
     List<DroneDto> getDroneByUserId(String userId);
+    void changePw(PwChangeUserDto input);
 }
