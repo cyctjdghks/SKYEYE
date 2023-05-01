@@ -47,8 +47,8 @@ const SelectBuilding = () => {
           onClose={() => {
             setIsOpen(false);
           }}
-          width="50vw"
-          height="60vh"
+          width="40vw"
+          height="70vh"
           title="로그인"
           content={<AddBuildingModal />}
         />

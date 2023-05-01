@@ -1,14 +1,14 @@
 import { memo, useState } from "react";
-import InputLabel from "@common/InputLabel/InputLabel";
-import { DataInput } from "@src/action/hooks/Effectiveness";
 import * as Style from "./AddBuildingModal.style";
 import Input from "@src/present/Input/Input";
+import PrimeTitle from "@src/present/common/PrimeTitle/PrimeTitle";
+import PrimaryButton from "@src/present/common/Button/PrimaryButton";
 
 const AddBuildingModal = () => {
   const [aboutBuilding, setAboutBuilding] = useState({
     buildingName: "건물 이름",
-    buildingEstablishment: "",
-    userId: "",
+    buildingEstablishment: "건축 일자",
+    userId: "담당자",
   });
 
   const changeBuilding = (
@@ -20,43 +20,22 @@ const AddBuildingModal = () => {
     });
   };
 
+  const inputs = Object.keys(aboutBuilding).map((elem, idx) => {
+    return (
+      <Input
+        key={idx}
+        placeholder={aboutBuilding[elem]}
+        handler={(e) => changeBuilding(e, elem)}
+      />
+    );
+  });
+
   return (
     <Style.ModalContainer>
-      <Input
-        placeholder={aboutBuilding.buildingName}
-        handler={(e) => changeBuilding(e, "buildingName")}
-      />
+      <PrimeTitle content="건물 추가" />
+      {inputs}
+      <PrimaryButton content={"추가하기"} handler={() => {}} />
     </Style.ModalContainer>
-
-    // <style.loginModalWrap>
-    //   <InputLabel
-    //     placeholder="직원번호"
-    //     width="55%"
-    //     height="15%"
-    //     value={id}
-    //     fontSize="1vw"
-    //     onChange={setId}
-    //     errorFontSize="1vw"
-    //     errorMessage={
-    //       idError ? "" : "영어와 숫자로만 입력해주세요( 5~20 글자 )"
-    //     }
-    //   ></InputLabel>
-    //   <InputLabel
-    //     placeholder="비밀번호"
-    //     width="55%"
-    //     height="15%"
-    //     value={pwd}
-    //     fontSize="1vw"
-    //     onChange={setPwd}
-    //     errorFontSize="13px"
-    //     errorMessage={
-    //       pwdError
-    //         ? ""
-    //         : "영어,숫자 특수문자를 하나이상 입력해주세요( 9~16 글자 )"
-    //     }
-    //   ></InputLabel>
-    //   <style.loginButton>로그인하기!</style.loginButton>
-    // </style.loginModalWrap>
   );
 };
 
