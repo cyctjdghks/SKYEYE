@@ -4,9 +4,10 @@ import Input from "@src/present/Input/Input";
 import PrimeTitle from "@src/present/common/PrimeTitle/PrimeTitle";
 import PrimaryButton from "@src/present/common/Button/PrimaryButton";
 import { addBuilding } from "@src/action/api/Building";
+import { AboutBuilding } from "@src/types/FlightInfo";
 
 const AddBuildingModal = () => {
-  const [aboutBuilding, setAboutBuilding] = useState({
+  const [aboutBuilding, setAboutBuilding] = useState<AboutBuilding>({
     buildingName: "건물 이름",
     buildingAddress: "건물 주소",
     buildingEstablishment: "건축 일자(YYYY-MM-DD)",

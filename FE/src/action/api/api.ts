@@ -16,6 +16,9 @@ API.interceptors.response.use(
       case 400:
         alert("입력값이 잘못되었습니다");
         break;
+      case 401:
+        alert("없는 사용자입니다");
+        break;
       case 403:
         alert("권한이 없는 사용자입니다.");
         break;
