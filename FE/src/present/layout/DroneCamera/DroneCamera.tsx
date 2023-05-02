@@ -1,8 +1,16 @@
 import React, { memo, useEffect, useState } from "react";
 import PrimaryButton from "@src/present/common/Button/PrimaryButton";
 import * as Style from "./DroneCamera.style";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const DroneCamera = () => {
+  const { state } = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (state === null) navigate('/drone')
+  }, [state]);
+
   // Prevent Go back
   const preventGoBack = () => {
     history.pushState(null, "", location.href);

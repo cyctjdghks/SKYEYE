@@ -16,7 +16,8 @@ const SelectBuilding = () => {
   const navigate = useNavigate();
 
   const routeHandler = () => {
-    if (selectContent !== "건물 이름") navigate("/drone/camera");
+    if (selectContent !== "건물 이름")
+      navigate("/drone/camera", { state: selectContent });
     else {
       alert("건물을 선택해주세요");
     }
