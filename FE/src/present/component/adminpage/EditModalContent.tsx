@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import InputLabel from "@common/InputLabel/InputLabel";
 import { urls } from "@constant/values";
 
-import * as style from "@component/Adminpage/RegistModalContent.style";
+import * as style from "./RegistModalContent.style";
 import PrimaryButton from "@common/Button/PrimaryButton";
 import { UpdateUser, DeleteUser } from "@src/action/hooks/authHooks";
 

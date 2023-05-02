@@ -1,22 +1,34 @@
 import PrimeTitle from "@src/present/common/PrimeTitle/PrimeTitle";
-import React, { memo, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import * as Style from "./SelectBuilding.style";
 import PrimaryButton from "@src/present/common/Button/PrimaryButton";
 import AddButton from "@src/present/common/Button/AddButton";
-import Dropdown from "@src/present/common/Dropdown/Dropdown";
+import BuildingDropdown from "@src/present/component/BuildingDropdown/BuildingDropdown";
 import { useNavigate } from "react-router-dom";
 import Modal from "@src/present/common/Modal/Modal";
 import AddBuildingModal from "../AddBuildingModal/AddBuildingModal";
-
-const testBuildings = ["A 건물", "B 건물"];
+import { getBuildingList } from "@src/action/api/Building";
+import { Building, InputBuilding } from "@src/types/FlightInfo";
 
 const SelectBuilding = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selectContent, setSelectContent] = useState<string>("건물 이름");
+  const [selectContent, setSelectContent] = useState<InputBuilding>({
+    buildingId: null,
+    buildingName: "건물 이름",
+  });
   const navigate = useNavigate();
+  const [buildingList, setBuildingList] = useState<Array<Building>>([]);
+
+  useEffect(() => {
+    getBuildingList("jhpdrone").then((res) => {
+      if (res.isSuccess) {
+        setBuildingList([...res.result]);
+      }
+    });
+  }, []);
 
   const routeHandler = () => {
-    if (selectContent !== "건물 이름")
+    if (selectContent.buildingName !== "건물 이름")
       navigate("/drone/camera", { state: selectContent });
     else {
       alert("건물을 선택해주세요");
@@ -30,8 +42,8 @@ const SelectBuilding = () => {
   return (
     <Style.Container>
       <PrimeTitle content="건물을 선택해주세요" />
-      <Dropdown
-        options={testBuildings}
+      <BuildingDropdown
+        options={buildingList}
         select={{ selectContent, setSelectContent }}
       />
       <AddButton content={"건물 추가하기"} handler={onClickButton} />
