@@ -5,6 +5,7 @@ import com.ssafy.skyeye.data.dto.response.BuildingDto;
 import com.ssafy.skyeye.data.dto.response.CrackDto;
 import com.ssafy.skyeye.data.dto.response.DroneDto;
 import com.ssafy.skyeye.data.dto.response.UserDto;
+import com.ssafy.skyeye.data.exception.ForbiddenException;
 import com.ssafy.skyeye.data.exception.UnAuthorizationException;
 import com.ssafy.skyeye.repository.BuildingRepository;
 import com.ssafy.skyeye.repository.CrackRepository;
@@ -17,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,9 +43,9 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void loginAdmin(AdminLoginDto adminLoginDto) {
-
+        adminPw = passwordEncoder.encode(adminPw);
         if(!adminLoginDto.getAdminId().equals(adminId) || !passwordEncoder.matches(adminLoginDto.getAdminPw(),adminPw))
-            throw new UnAuthorizationException("관리자가 아닙니다.");
+            throw new ForbiddenException("관리자가 아닙니다.");
 
     }
 
