@@ -35,7 +35,6 @@ const UserTable = () => {
       {users.users.map((user, idx) => (
         <EmployeeData
           key={user.userId}
-          no={idx + 1}
           number={user.userId}
           name={user.userName}
           job={user.userPosition}

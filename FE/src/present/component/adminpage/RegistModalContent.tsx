@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import InputLabel from "@common/InputLabel/InputLabel";
 import { DataInput } from "@action/hooks/Effectiveness";
-
+import { useRecoilState } from "recoil";
+import { adminState } from "@src/store/admin";
 import * as style from "@src/present/component/Adminpage/RegistModalContent.style";
 import PrimaryButton from "@common/Button/PrimaryButton";
-import { RegistUser } from "@src/action/hooks/authHooks";
+import { RegistUser, FindUserAll } from "@src/action/hooks/authHooks";
 
 type UserInfo = {
   onClose: () => void;
@@ -24,6 +25,8 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
   const [profile, setProfile] = useState<any | null>("");
   const [fileName, setFileName] = useState("");
 
+  const [users, setUsers] = useRecoilState(adminState);
+
   const saveProfile = (event: React.ChangeEvent<HTMLInputElement>) => {
     setProfile(event.target.files[0]);
     setFileName(URL.createObjectURL(event.target.files[0]));
@@ -37,7 +40,6 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
       userPosition,
       userPhoneNumber,
     };
-    console.log(profile);
     const formData = new FormData();
     if (profile !== "") {
       formData.append("profile", profile);
@@ -49,13 +51,18 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
     });
 
     formData.append("user", userBlob, "user.json");
-    for (const [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`);
-    }
+  
     RegistUser(formData).then((res) => {
-      console.log(res);
+      FindUserAll().then((res) => {
+        setUsers({ users: res.result });
+      });
     });
+    onClose();
   };
+
+  const nullError = !!userId && !!userName && !!userPhoneNumber && !!userPosition && !!userPw;
+  const effectiveError = idError && pwdError && phoneError && positionError &&pwdError;
+  const submitError = nullError && effectiveError;
 
   return (
     <style.ModalBox>
@@ -140,7 +147,7 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
           content={"등록 하기"}
           isArrow={true}
           handler={submitRegist}
-          disabled={false}
+          disabled={!submitError}
         />
       </style.SubmitButton>
     </style.ModalBox>

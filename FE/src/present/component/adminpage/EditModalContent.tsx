@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
 import InputLabel from "@common/InputLabel/InputLabel";
 import { urls } from "@constant/values";
+import { useRecoilState } from "recoil";
+import { adminState } from "@src/store/admin";
 
 import * as style from "./RegistModalContent.style";
 import PrimaryButton from "@common/Button/PrimaryButton";
-import { UpdateUser, DeleteUser } from "@src/action/hooks/authHooks";
+import {
+  UpdateUser,
+  DeleteUser,
+  FindUserAll,
+} from "@src/action/hooks/authHooks";
+import DeleteButton from "@src/present/common/Button/DeleteButton";
 
 type UserInfo = {
   data: {
@@ -26,8 +33,9 @@ const EditModalContent = ({ data, onClose }: UserInfo) => {
   );
   const [fileName, setFileName] = useState<any | null>(
     `${urls.API}/${data.imageSrc}`
-  );
-  const [profile, setProfile] = useState<any | null>("");
+    );
+    const [profile, setProfile] = useState<any | null>("");
+    const [users, setUsers] = useRecoilState(adminState);
 
   const saveProfile = (event: React.ChangeEvent<HTMLInputElement>) => {
     setProfile(event.target.files[0]);
@@ -41,7 +49,7 @@ const EditModalContent = ({ data, onClose }: UserInfo) => {
       userPosition,
       userPhoneNumber,
     };
-    
+
     const formData = new FormData();
     if (profile !== "") {
       formData.append("profile", profile);
@@ -53,21 +61,27 @@ const EditModalContent = ({ data, onClose }: UserInfo) => {
     });
 
     formData.append("user", userBlob, "user.json");
-    // for (const [key, value] of formData.entries()) {
-    //   console.log(value);
-    // }
+
     UpdateUser(formData).then((res) => {
-      console.log(res);
-      onClose();
-      location.reload();
+      FindUserAll().then((res) => {
+        setUsers({ users: res.result });
+      });
     });
+    onClose();
   };
 
   const clickDelete = () => {
-    DeleteUser(userId);
+    DeleteUser(userId).then(() => {
+      FindUserAll().then((res) => {
+        setUsers({ users: res.result });
+      });
+    });
     onClose();
-    location.reload();
   };
+  
+  const nullError = !!userId && !!userName && !!userPhoneNumber && !!userPosition
+ 
+  const submitError = nullError
 
   return (
     <style.ModalBox>
@@ -100,6 +114,7 @@ const EditModalContent = ({ data, onClose }: UserInfo) => {
             type="text"
             errorMessage=""
             errorFontSize="0.5vw"
+            readonly={true}
           />
           <InputLabel
             placeholder="이름"
@@ -143,11 +158,12 @@ const EditModalContent = ({ data, onClose }: UserInfo) => {
         </style.DataBox>
       </style.ContentBox>
       <style.UnderButton>
+        <DeleteButton content={"삭제 하기"} handler={clickDelete} />
         <PrimaryButton
           content={"수정 하기"}
           isArrow={true}
           handler={submitRegist}
-          disabled={false}
+          disabled={!submitError}
         />
       </style.UnderButton>
     </style.ModalBox>
