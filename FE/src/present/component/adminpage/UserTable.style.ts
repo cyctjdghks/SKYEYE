@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { theme } from "@constant/theme";
 
-export const dataBox = styled("div")({
+export const DataBox = styled("div")({
   background: `${theme.colors.greyscale.light1}`,
   width: "100%",
   height: "70vh",

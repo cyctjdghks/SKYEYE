@@ -5,7 +5,7 @@ interface DataProps {
   selected: boolean;
 }
 
-export const dataBox = styled("div")<DataProps>(
+export const DataBox = styled("div")<DataProps>(
   {
     width: "97%",
     display: "flex",
@@ -32,22 +32,22 @@ export const dataBox = styled("div")<DataProps>(
   })
 );
 
-export const no = styled("div")({
+export const No = styled("div")({
   width: "8%",
 });
 
-export const number = styled("div")({
+export const Number = styled("div")({
   width: "26%",
 });
 
-export const name = styled("div")({
+export const Name = styled("div")({
   width: "22%",
 });
 
-export const job = styled("div")({
+export const Job = styled("div")({
   width: "22%",
 });
 
-export const phone = styled("div")({
+export const Phone = styled("div")({
   width: "22%",
 });

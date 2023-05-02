@@ -22,19 +22,3 @@ export const ModalWrap = styled.div<{ width: string, height:string }>`
   transform: translate(-50%, -50%);
   overflow: hidden
 `;
-
-
-/* export const Button = styled.button`
-  font-size: 14px;
-  padding: 10px 20px;
-  border: none;
-  background-color: #ababab;
-  border-radius: 10px;
-  color: white;
-  font-style: italic;
-  font-weight: 200;
-  cursor: pointer;
-  &:hover {
-    background-color: #898989;
-  }
-`; */

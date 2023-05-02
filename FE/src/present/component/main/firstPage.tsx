@@ -1,17 +1,17 @@
-import * as first from "@component/main/firstPage.style";
-import backVideo  from "@assets/main/coverVideo.mp4";
+import * as style from "@src/present/component/Main/FirstPage.style";
+import backVideo from "@assets/main/coverVideo.mp4";
 
 const FirstPage = () => {
   return (
-    <first.firstPage>
-      <first.backVideo muted autoPlay loop src={backVideo}></first.backVideo>
-      <first.mainTextFirst>건물안전,</first.mainTextFirst>
+    <style.FirstPage>
+      <style.BackVideo muted autoPlay loop src={backVideo}></style.BackVideo>
+      <style.MainTextFirst>건물안전,</style.MainTextFirst>
       <br />
-      <first.mainTextSecond>
+      <style.MainTextSecond>
         SKYEYE
-        <first.mainTextThird>로 완성합니다.</first.mainTextThird>
-      </first.mainTextSecond>
-    </first.firstPage>
+        <style.MainTextThird>로 완성합니다.</style.MainTextThird>
+      </style.MainTextSecond>
+    </style.FirstPage>
   );
 };
 

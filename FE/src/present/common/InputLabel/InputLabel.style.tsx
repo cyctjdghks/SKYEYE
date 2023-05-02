@@ -16,7 +16,7 @@ export const inputBox = styled.div<{ width: string; height: string }>`
 `;
 
 export const label = styled.label`
-  width: 300px;
+  /* width: 300px; */
 `;
 
 export const input = styled.input<{
@@ -50,7 +50,7 @@ export const p = styled.p<{ errorFontSize: string }>`
   font-size: ${(props) => props.errorFontSize};
   margin-top: 7px;
   text-align: left;
-  margin-left: 8px;
+  margin-left: 10%;
 `;
 export const pp = styled.p<{ errorFontSize: string }>`
   ${fontStyles}
