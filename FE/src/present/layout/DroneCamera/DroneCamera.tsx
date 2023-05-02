@@ -2,13 +2,27 @@ import React, { memo, useEffect, useState } from "react";
 import PrimaryButton from "@src/present/common/Button/PrimaryButton";
 import * as Style from "./DroneCamera.style";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Capture } from "@src/types/FlightInfo";
+import TestImg from "@assets/test.jpg"
 
 const DroneCamera = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
+  const [crackInfo, setCrackInfo] = useState<Capture>({
+    profile: "any",
+    crack: { crackType: "", crackPosition: "", buildingId: null },
+  });
 
   useEffect(() => {
-    if (state === null) navigate('/drone')
+    if (state === null) navigate("/drone");
+    else {
+      setCrackInfo((prev) => {
+        return {
+          profile: prev.profile,
+          crack: { ...prev.crack, buildingId: state.buildingId },
+        };
+      });
+    }
   }, [state]);
 
   // Prevent Go back
@@ -19,13 +33,6 @@ const DroneCamera = () => {
 
   // Prevent Reload
   const preventClose = (e: BeforeUnloadEvent) => {
-    /*
-    Blocked attempt to show a 'beforeunload' confirmation panel for a frame that never had a user gesture since its load
-
-    -> 사용자가 페이지와 아무런 상호작용을 하지 않았을 때 발생하는 오류
-    한 번 영상 심어보고 그래도 뜨면 처리할게요
-    */
-
     e.preventDefault();
     e.returnValue = "";
   };
