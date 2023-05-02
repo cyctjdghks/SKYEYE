@@ -1,0 +1,41 @@
+@font-face {
+  font-family: "SCDream1";
+  src: url("./assets/fonts/SCDream1.otf");
+}
+@font-face {
+  font-family: "SCDream2";
+  src: url("./assets/fonts/SCDream2.otf");
+}
+@font-face {
+  font-family: "SCDream3";
+  src: url("./assets/fonts/SCDream3.otf");
+}
+@font-face {
+  font-family: "SCDream4";
+  src: url("./assets/fonts/SCDream4.otf");
+}
+@font-face {
+  font-family: "SCDream5";
+  src: url("./assets/fonts/SCDream5.otf");
+}
+
+h1{
+  font-family: "SCDream4";
+}
+
+div{
+  font-family: "SCDream3";
+}
+
+p{
+  font-family: "SCDream3";
+}
+
+button{
+  font-family: "SCDream2";
+}
+
+.appWrap{
+  font-family: "SCDream4";
+  text-align: center;
+}
