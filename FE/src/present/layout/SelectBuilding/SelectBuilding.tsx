@@ -1,10 +1,11 @@
-import PrimeTitle from "@src/present/common/PrimeTitle/PrimeTitle";
 import React, { memo, useEffect, useState } from "react";
 import * as Style from "./SelectBuilding.style";
+import { useNavigate } from "react-router-dom";
+
+import PrimeTitle from "@src/present/common/PrimeTitle/PrimeTitle";
 import PrimaryButton from "@src/present/common/Button/PrimaryButton";
 import AddButton from "@src/present/common/Button/AddButton";
 import BuildingDropdown from "@src/present/component/BuildingDropdown/BuildingDropdown";
-import { useNavigate } from "react-router-dom";
 import Modal from "@src/present/common/Modal/Modal";
 import AddBuildingModal from "../AddBuildingModal/AddBuildingModal";
 import { getBuildingList } from "@src/action/api/Building";

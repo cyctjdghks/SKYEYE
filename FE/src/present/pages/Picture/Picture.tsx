@@ -1,10 +1,13 @@
-import React, { memo, useState } from "react";
+import React, { memo, useState, useEffect } from "react";
+import * as Style from "./Picture.style";
+
 import SideBar from "@src/present/common/SideBar/SideBar";
 import SideContent from "@layout/SideContent/SideContent";
 import { Building, Crack } from "@src/types/FlightInfo";
 import ButtonLayout from "@src/present/layout/ButtonLayout/ButtonLayout";
 import SubTitle from "@src/present/common/SubTitle/SubTitle";
-import * as Style from "./Picture.style";
+import { getBuildingList } from "@src/action/api/Building";
+import { getCrackList } from "@src/action/api/Crack";
 
 const test: Array<Building> = [
   {
@@ -72,34 +75,33 @@ const test: Array<Building> = [
   },
 ];
 
-const test2: Array<Crack> = [
-  {
-    crackId: 0,
-    crackType: "박리",
-    crackPosition: "",
-    buildingId: 0,
-    imageSrc: "./././",
-  },
-  {
-    crackId: 0,
-    crackType: "박리",
-    crackPosition: "",
-    buildingId: 0,
-    imageSrc: "./././",
-  },
-  {
-    crackId: 0,
-    crackType: "박리",
-    crackPosition: "",
-    buildingId: 0,
-    imageSrc: "./././",
-  },
-];
-
 const Picture = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [building, setBuilding] = useState<number | null>(null);
   const [crack, setCrack] = useState<number | null>(null);
+  
+  // List
+  const [buildingList, setBuildingList] = useState([]);
+  const [crackList, setCrackList] = useState([]);
+
+  useEffect(() => {
+    getBuildingList("jhpdrone").then((res) => {
+      if (res.isSuccess) {
+        setBuildingList([...res.result]);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    if (building !== null) {
+      getCrackList(building).then((res) => {
+        if (res.isSuccess) {
+          console.log(res)
+          setCrackList([...res.result])
+        }
+      });
+    }
+  }, [building]);
 
   // Handler
   const bulidingHandler = (idx: number) => {
@@ -141,7 +143,7 @@ const Picture = () => {
           <div>
             <SubTitle content="건물명" />
             <ButtonLayout
-              list={test}
+              list={buildingList}
               type={"building"}
               selected={building}
               handler={bulidingHandler}
@@ -151,7 +153,7 @@ const Picture = () => {
             <div>
               <SubTitle content="균열 유형" />
               <ButtonLayout
-                list={test}
+                list={crackList}
                 type={"crack"}
                 selected={crack}
                 handler={crackHandler}
