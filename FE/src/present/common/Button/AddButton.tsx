@@ -9,9 +9,9 @@ import Add from "@assets/button/add.png";
   @param content 버튼 안에 들어갈 내용
   @param isArrow 화살표 png 유무
 */
-const AddButton = ({ content }: ButtonProps) => {
+const AddButton = ({ content, handler }: ButtonProps) => {
   return (
-    <AddBtn>
+    <AddBtn onClick={handler}>
       <>{content}</>
       <img src={Add} alt={content as string} />
     </AddBtn>

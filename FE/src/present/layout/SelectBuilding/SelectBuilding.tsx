@@ -5,29 +5,36 @@ import PrimaryButton from "@src/present/common/Button/PrimaryButton";
 import AddButton from "@src/present/common/Button/AddButton";
 import Dropdown from "@src/present/common/Dropdown/Dropdown";
 import { useNavigate } from "react-router-dom";
+import Modal from "@src/present/common/Modal/Modal";
+import AddBuildingModal from "../AddBuildingModal/AddBuildingModal";
 
-const testBuildings = [
-  "A 건물",
-  "B 건물",
-];
+const testBuildings = ["A 건물", "B 건물"];
 
 const SelectBuilding = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selectContent, setSelectContent] = useState<string>("건물 이름");
   const navigate = useNavigate();
 
   const routeHandler = () => {
     if (selectContent !== "건물 이름")
-        navigate("/drone/camera");
+      navigate("/drone/camera", { state: selectContent });
     else {
-        alert("건물을 선택해주세요");
+      alert("건물을 선택해주세요");
     }
+  };
+
+  const onClickButton = () => {
+    setIsOpen(true);
   };
 
   return (
     <Style.Container>
       <PrimeTitle content="건물을 선택해주세요" />
-      <Dropdown options={testBuildings} select={{selectContent,setSelectContent}}/>
-      <AddButton content={"건물 추가하기"} handler={() => {}} />
+      <Dropdown
+        options={testBuildings}
+        select={{ selectContent, setSelectContent }}
+      />
+      <AddButton content={"건물 추가하기"} handler={onClickButton} />
       <div>
         <PrimaryButton
           content={"촬영하기"}
@@ -35,6 +42,18 @@ const SelectBuilding = () => {
           handler={routeHandler}
         />
       </div>
+
+      {isOpen && (
+        <Modal
+          onClose={() => {
+            setIsOpen(false);
+          }}
+          width="40vw"
+          height="80vh"
+          title="건물 추가"
+          content={<AddBuildingModal />}
+        />
+      )}
     </Style.Container>
   );
 };
