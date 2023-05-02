@@ -7,9 +7,11 @@ interface User {
   type: number;
 }
 
+
 interface Auth {
   isAuthenticated: boolean;
   user: User | null;
+  userType: number;
 }
 
 export const authState = atom<Auth>({
@@ -17,6 +19,7 @@ export const authState = atom<Auth>({
   default: {
     isAuthenticated: false,
     user: null,
+    userType: 0,
   },
   effects: [localStorageEffect("auth")],
 });

@@ -7,7 +7,31 @@ export const LoginModalWrap = styled("div")({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  justifyContent: "center",
 });
+
+export const ModalTitle = styled("h1")({
+  textAlign: "center",
+  color: `${theme.colors.greyscale.point}`,
+  fontSize: "50px",
+  marginBottom: "5%"
+});
+
+export const LoginForm = styled.form`
+  width: 55%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+
+export const ButtonBox = styled.div`
+  width: 85%;
+  display: flex;
+  /* margin-right: 5% */
+  justify-content: flex-end;
+`
 
 export const LoginButton = styled("button")({
   padding: "10px 20px",
