@@ -1,38 +1,37 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 import { adminState, selectedIdxState } from "@src/store/admin";
 import { useState, useEffect } from "react";
-import * as style from "@component/adminpage/UserTable.style";
-import EmployeeData from "@src/present/component/employeedata/EmployeeData";
+import * as style from "@src/present/component/Adminpage/UserTable.style";
+import EmployeeData from "@src/present/component/Employeedata/EmployeeData";
 import { FindUserAll } from "@src/action/hooks/authHooks";
 
 const UserTable = () => {
   const [users, setUsers] = useRecoilState(adminState);
-  const [selectedIdx, setSelectedIdx] = useRecoilState(selectedIdxState)
-  
+  const [selectedIdx, setSelectedIdx] = useRecoilState(selectedIdxState);
+
   useEffect(() => {
-    setSelectedIdx({idx: null});
+    setSelectedIdx({ idx: null });
   }, [users]);
 
-  useEffect(() =>{
-    FindUserAll().then((res)=>{
-      setUsers({users: res.result})
-    })
-  }, [])
+  useEffect(() => {
+    FindUserAll().then((res) => {
+      setUsers({ users: res.result });
+    });
+  }, []);
 
   const handleSelect = (idx: number) => {
     if (selectedIdx.idx === idx) {
-      setSelectedIdx({idx: null});
+      setSelectedIdx({ idx: null });
     } else {
       const newSelectedIdxState = {
         idx,
-      }
+      };
       setSelectedIdx(newSelectedIdxState);
     }
   };
-  
-  
+
   return (
-    <style.dataBox>
+    <style.DataBox>
       {users.users.map((user, idx) => (
         <EmployeeData
           key={user.userId}
@@ -46,7 +45,7 @@ const UserTable = () => {
           selected={selectedIdx.idx === idx}
         />
       ))}
-    </style.dataBox>
+    </style.DataBox>
   );
 };
 

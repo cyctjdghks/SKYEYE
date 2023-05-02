@@ -1,43 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputLabel from "@common/InputLabel/InputLabel";
-import { DataInput } from "@action/hooks/Effectiveness";
+import { urls } from "@constant/values";
 
-import * as style from "@src/present/component/Adminpage/RegistModalContent.style";
+import * as style from "@component/Adminpage/RegistModalContent.style";
 import PrimaryButton from "@common/Button/PrimaryButton";
-import { RegistUser } from "@src/action/hooks/authHooks";
+import { UpdateUser, DeleteUser } from "@src/action/hooks/authHooks";
 
 type UserInfo = {
+  data: {
+    userId: string;
+    userName: string;
+    userPosition: string;
+    userPhoneNumber: string;
+    imageSrc: string;
+  };
   onClose: () => void;
 };
 
-const AdimModalContent = ({ onClose }: UserInfo) => {
-  const [userId, setId, idError] = DataInput(/^[a-zA-z0-9]{5,20}$/);
-  const [userName, setName, nameError] = DataInput(/^[ㄱ-ㅎ|가-힣]+$/);
-  const [userPosition, setPosition, positionError] =
-    DataInput(/^[ㄱ-ㅎ|가-힣]+$/);
-  const [userPhoneNumber, setPhone, phoneError] = DataInput(
-    /^([0-9]+)-([0-9]+)-([0-9]+)/
+const EditModalContent = ({ data, onClose }: UserInfo) => {
+  const [userId, setUserId] = useState<string>(data?.userId || "");
+  const [userName, setName] = useState<string>(data.userName || "");
+  const [userPosition, setPosition] = useState<string>(data.userPosition || "");
+  const [userPhoneNumber, setPhone] = useState<string>(
+    data.userPhoneNumber || ""
   );
-  const [userPw, setPassword, pwdError] = DataInput(
-    /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{9,16}$/
+  const [fileName, setFileName] = useState<any | null>(
+    `${urls.API}/${data.imageSrc}`
   );
   const [profile, setProfile] = useState<any | null>("");
-  const [fileName, setFileName] = useState("");
 
   const saveProfile = (event: React.ChangeEvent<HTMLInputElement>) => {
     setProfile(event.target.files[0]);
     setFileName(URL.createObjectURL(event.target.files[0]));
   };
-  
+
   const submitRegist = () => {
     const user = {
       userId,
-      userPw,
       userName,
       userPosition,
       userPhoneNumber,
     };
-    console.log(profile);
+    
     const formData = new FormData();
     if (profile !== "") {
       formData.append("profile", profile);
@@ -49,17 +53,25 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
     });
 
     formData.append("user", userBlob, "user.json");
-    for (const [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`);
-    }
-    RegistUser(formData).then((res) => {
+    // for (const [key, value] of formData.entries()) {
+    //   console.log(value);
+    // }
+    UpdateUser(formData).then((res) => {
       console.log(res);
+      onClose();
+      location.reload();
     });
+  };
+
+  const clickDelete = () => {
+    DeleteUser(userId);
+    onClose();
+    location.reload();
   };
 
   return (
     <style.ModalBox>
-      <style.ModalTitle>회원 등록 하기</style.ModalTitle>
+      <style.ModalTitle>정보 수정 하기</style.ModalTitle>
       <style.ContentBox>
         <style.ProfileBox>
           <style.ProfileImage src={fileName}></style.ProfileImage>
@@ -82,9 +94,11 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
             height="30px"
             value={userId}
             fontSize="1vw"
-            onChange={setId}
+            onChange={(e) => {
+              setUserId(e.target.value);
+            }}
             type="text"
-            errorMessage={idError ? "" : "영어 숫자로만 입력해주세요 (5~20)"}
+            errorMessage=""
             errorFontSize="0.5vw"
           />
           <InputLabel
@@ -94,8 +108,10 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
             value={userName}
             fontSize="1vw"
             type="text"
-            onChange={setName}
-            errorMessage={nameError ? "" : "한글로만 입력해주세요"}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+            errorMessage=""
             errorFontSize="0.5vw"
           />
           <InputLabel
@@ -105,8 +121,10 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
             type="text"
             value={userPosition}
             fontSize="1vw"
-            onChange={setPosition}
-            errorMessage={positionError ? "" : "한글로만 입력해주세요"}
+            onChange={(e) => {
+              setPosition(e.target.value);
+            }}
+            errorMessage=""
             errorFontSize="0.5vw"
           />
           <InputLabel
@@ -116,35 +134,24 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
             type="text"
             value={userPhoneNumber}
             fontSize="1vw"
-            onChange={setPhone}
-            errorMessage={phoneError ? "" : "전화번호 양식을 맞춰주세요"}
-            errorFontSize="0.5vw"
-          />
-          <InputLabel
-            placeholder="비밀번호"
-            width="100%"
-            height="30px"
-            type="password"
-            value={userPw}
-            fontSize="1vw"
-            onChange={setPassword}
-            errorMessage={
-              pwdError ? "" : "숫자, 영어, 특수문자를 하나 이상 포함(9~16)"
-            }
+            onChange={(e) => {
+              setPhone(e.target.value);
+            }}
+            errorMessage=""
             errorFontSize="0.5vw"
           />
         </style.DataBox>
       </style.ContentBox>
-      <style.SubmitButton>
+      <style.UnderButton>
         <PrimaryButton
-          content={"등록 하기"}
+          content={"수정 하기"}
           isArrow={true}
           handler={submitRegist}
           disabled={false}
         />
-      </style.SubmitButton>
+      </style.UnderButton>
     </style.ModalBox>
   );
 };
 
-export default AdimModalContent;
+export default EditModalContent;

@@ -3,4 +3,5 @@ export type ButtonProps = {
     isArrow?: boolean;
     handler: React.MouseEventHandler<HTMLButtonElement>;
     isPrimary?: boolean;
+    disabled? : boolean;
 }

@@ -1,6 +1,6 @@
 import InputLabel from "@common/InputLabel/InputLabel";
 import { DataInput } from "@src/action/hooks/Effectiveness";
-import * as style from "@component/main/modalContent.style";
+import * as style from "@component/Main/ModalContent.style";
 
 const ModalContent = () => {
   const [id, setId, idError] = DataInput(/^[a-zA-z0-9]{5,20}$/);
@@ -9,7 +9,7 @@ const ModalContent = () => {
   );
 
   return (
-    <style.loginModalWrap>
+    <style.LoginModalWrap>
       <InputLabel
         placeholder="직원번호"
         width="55%"
@@ -38,8 +38,8 @@ const ModalContent = () => {
             : "영어,숫자 특수문자를 하나이상 입력해주세요( 9~16 글자 )"
         }
       ></InputLabel>
-      <style.loginButton>로그인하기!</style.loginButton>
-    </style.loginModalWrap>
+      <style.LoginButton>로그인하기!</style.LoginButton>
+    </style.LoginModalWrap>
   );
 };
 

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { theme } from "@constant/theme";
 
-export const firstPage = styled("div")({
+export const FirstPage = styled("div")({
   width: "100vw",
   height: "calc(100vh - 100px)",
   textAlign: "left",
@@ -12,7 +12,7 @@ export const firstPage = styled("div")({
   overflow: "hidden",
 });
 
-export const backVideo = styled("video")({
+export const BackVideo = styled("video")({
   position: "absolute",
   width: "100vw",
   objectFit: "cover",
@@ -25,7 +25,7 @@ export const backVideo = styled("video")({
   },
 });
 
-export const mainTextFirst = styled("h1")({
+export const MainTextFirst = styled("h1")({
   fontStyle: "normal",
   fontWeight: "500",
   fontSize: "6vw",
@@ -37,7 +37,7 @@ export const mainTextFirst = styled("h1")({
   textShadow: `2px 2px 2px gray;`,
 });
 
-export const mainTextSecond = styled("h1")({
+export const MainTextSecond = styled("h1")({
   fontStyle: "normal",
   fontWeight: "900",
   fontSize: "9vw",
@@ -49,7 +49,7 @@ export const mainTextSecond = styled("h1")({
   textShadow: `2px 2px 2px gray;`,
 });
 
-export const mainTextThird = styled("span")({
+export const MainTextThird = styled("span")({
   fontStyle: "normal",
   fontWeight: "500",
   fontSize: "6vw",

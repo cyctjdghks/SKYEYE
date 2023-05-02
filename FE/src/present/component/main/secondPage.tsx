@@ -1,72 +1,77 @@
-import * as second from "@component/main/secondPage.style";
+import * as style from "@src/present/component/Main/SecondPage.style";
 import { theme } from "@constant/theme";
-import main01 from "@assets/main/main01.jpg"
-import main02 from "@assets/main/main02.png"
-import main03 from "@assets/main/main03.jpg"
-
+import main01 from "@assets/main/main01.jpg";
+import main02 from "@assets/main/main02.png";
+import main03 from "@assets/main/main03.jpg";
 
 const SecondPage = () => {
   return (
-    <second.secondPage>
-      <second.about>about</second.about>
-      <second.hrLine></second.hrLine>
-      <second.pageText>WHAT CAN WE DO</second.pageText>
-      <second.pageText>with SKYEYE?</second.pageText>
-      <second.imgBox>
-        <second.innerBox>
-          <second.smallBox hidden={true}>
-            <second.colorBox color={theme.colors.greyscale.point}></second.colorBox>
-            <second.textBox>
-              <second.boxText1>AIoT</second.boxText1>
-              <second.boxText2>01</second.boxText2>
-            </second.textBox>
-          </second.smallBox>
-          <second.largeBox>
-            <second.largeBoxImg image={main01}></second.largeBoxImg>
-            <second.textBox>
-              <second.boxText1>실시간 드론 영상 시청</second.boxText1>
-              <second.boxText2>02</second.boxText2>
-            </second.textBox>
-          </second.largeBox>
-          <second.smallBox hidden={false}></second.smallBox>
-        </second.innerBox>
-        <second.innerBox>
-          <second.smallBox hidden={false}></second.smallBox>
-          <second.smallBox hidden={true}>
-            <second.boxImg image={main02}></second.boxImg>
-            <second.textBox>
-              <second.boxText1>AI가 균열의 종류를 인식</second.boxText1>
-              <second.boxText2>03</second.boxText2>
-            </second.textBox>
-          </second.smallBox>
-          <second.smallBox hidden={false}></second.smallBox>
-          <second.smallBox hidden={true}>
-            <second.colorBox color={theme.colors.greyscale.dark3}></second.colorBox>
-            <second.textBox>
-              <second.boxText1>보고 있는 영상을 캡처</second.boxText1>
-              <second.boxText2>04</second.boxText2>
-            </second.textBox>
-          </second.smallBox>
-        </second.innerBox>
-        <second.innerBox>
-          <second.smallBox hidden={true}>
-            <second.colorBox color={theme.colors.greyscale.pointLight}></second.colorBox>
-            <second.textBox>
-              <second.boxText1>정보와 함께 내용을 저장</second.boxText1>
-              <second.boxText2>05</second.boxText2>
-            </second.textBox>
-          </second.smallBox>
-          <second.smallBox hidden={false}></second.smallBox>
-          <second.largeBox>
-            <second.largeBoxImg image={main03}></second.largeBoxImg>
-            <second.textBox>
-              <second.boxText1>저장된 사진을 모아두고 확인</second.boxText1>
-              <second.boxText2>06</second.boxText2>
-            </second.textBox>
-          </second.largeBox>
-        </second.innerBox>
-      </second.imgBox>
-    </second.secondPage>
+    <style.SecondPage>
+      <style.About>about</style.About>
+      <style.HrLine></style.HrLine>
+      <style.PageText>WHAT CAN WE DO</style.PageText>
+      <style.PageText>with SKYEYE?</style.PageText>
+      <style.ImgBox>
+        <style.InnerBox>
+          <style.SmallBox hidden={true}>
+            <style.ColorBox
+              color={theme.colors.greyscale.point}
+            ></style.ColorBox>
+            <style.TextBox>
+              <style.BoxText1>AIoT</style.BoxText1>
+              <style.BoxText2>01</style.BoxText2>
+            </style.TextBox>
+          </style.SmallBox>
+          <style.LargeBox>
+            <style.LargeBoxImg image={main01}></style.LargeBoxImg>
+            <style.TextBox>
+              <style.BoxText1>실시간 드론 영상 시청</style.BoxText1>
+              <style.BoxText2>02</style.BoxText2>
+            </style.TextBox>
+          </style.LargeBox>
+          <style.SmallBox hidden={false}></style.SmallBox>
+        </style.InnerBox>
+        <style.InnerBox>
+          <style.SmallBox hidden={false}></style.SmallBox>
+          <style.SmallBox hidden={true}>
+            <style.BoxImg image={main02}></style.BoxImg>
+            <style.TextBox>
+              <style.BoxText1>AI가 균열의 종류를 인식</style.BoxText1>
+              <style.BoxText2>03</style.BoxText2>
+            </style.TextBox>
+          </style.SmallBox>
+          <style.SmallBox hidden={false}></style.SmallBox>
+          <style.SmallBox hidden={true}>
+            <style.ColorBox
+              color={theme.colors.greyscale.dark3}
+            ></style.ColorBox>
+            <style.TextBox>
+              <style.BoxText1>보고 있는 영상을 캡처</style.BoxText1>
+              <style.BoxText2>04</style.BoxText2>
+            </style.TextBox>
+          </style.SmallBox>
+        </style.InnerBox>
+        <style.InnerBox>
+          <style.SmallBox hidden={true}>
+            <style.ColorBox
+              color={theme.colors.greyscale.pointLight}
+            ></style.ColorBox>
+            <style.TextBox>
+              <style.BoxText1>정보와 함께 내용을 저장</style.BoxText1>
+              <style.BoxText2>05</style.BoxText2>
+            </style.TextBox>
+          </style.SmallBox>
+          <style.SmallBox hidden={false}></style.SmallBox>
+          <style.LargeBox>
+            <style.LargeBoxImg image={main03}></style.LargeBoxImg>
+            <style.TextBox>
+              <style.BoxText1>저장된 사진을 모아두고 확인</style.BoxText1>
+              <style.BoxText2>06</style.BoxText2>
+            </style.TextBox>
+          </style.LargeBox>
+        </style.InnerBox>
+      </style.ImgBox>
+    </style.SecondPage>
   );
 };
 
