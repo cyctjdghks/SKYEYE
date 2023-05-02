@@ -1,9 +1,9 @@
 import { useState } from "react";
 import * as style from "@src/present/pages/Main/Main.style";
 import Modal from "@common/Modal/Modal";
-import FirstPage from "@src/present/component/Main/FirstPage";
-import SecondPage from "@src/present/component/Main/SecondPage";
-import ModalContent from "@src/present/component/Main/Modalcontent";
+import FirstPage from "@component/Main/FirstPage";
+import SecondPage from "@component/Main/SecondPage";
+import ModalContent from "@component/Main/Modalcontent";
 import logo from "@assets/main/logo.png";
 import right from "@assets/main/right.png";
 

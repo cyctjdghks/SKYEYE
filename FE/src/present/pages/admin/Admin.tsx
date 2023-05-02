@@ -106,7 +106,6 @@ const Admin = () => {
         </style.TopButtonBox>
       </style.TopBox>
       <style.DataTitle>
-        <style.No>No</style.No>
         <style.Number>직원 번호</style.Number>
         <style.Name>이름</style.Name>
         <style.Job>직책</style.Job>

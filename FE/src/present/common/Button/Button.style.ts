@@ -199,3 +199,22 @@ export const CrackBtn = styled.button`
     }
   }
 `;
+
+
+export const DeleteBtn = styled.button`
+  background-color: ${theme.colors.greyscale.dark2};
+  color: ${theme.colors.greyscale.light3};
+  padding: 0.8rem 1rem;
+  border: none;
+  font-family: "SCDream5";
+  font-size: 1.22rem;
+  width: fit-content;
+  min-width: 10rem;
+  border-radius: 0.5rem;
+  box-shadow: ${theme.shadows.shadow2};
+
+  &:hover {
+    background-color: ${theme.colors.greyscale.dark3};
+    cursor: pointer;
+  }
+`;

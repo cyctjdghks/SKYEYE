@@ -1,4 +1,4 @@
-import * as style from "@src/present/component/Main/SecondPage.style";
+import * as style from "@component/Main/SecondPage.style";
 import { theme } from "@constant/theme";
 import main01 from "@assets/main/main01.jpg";
 import main02 from "@assets/main/main02.png";
