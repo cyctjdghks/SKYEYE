@@ -9,7 +9,7 @@ export const Container = styled.div`
   align-items: center;
   gap: 1rem;
 
-  & > *:nth-child(4) {
+  & > *:nth-of-type(4) {
     margin-top: 1.5rem;
     width: 23rem;
     display: flex;

@@ -75,11 +75,11 @@ export const DropdownDiv = styled.div<{ clicked: boolean }>`
     transition: ${theme.trans};
   }
 
-  & > div:nth-child(1) {
+  & > div:nth-of-type(1) {
     padding-bottom: ${(props) => (props.clicked ? "1rem" : "0")};
   }
 
-  & > *:nth-child(2) {
+  & > *:nth-of-type(2) {
     visibility: ${(props) => (props.clicked ? "visible" : "hidden")};
     height: ${(props) => (props.clicked ? "fit-content" : "0")};
     padding: ${(props) => (props.clicked ? "0.8rem 0" : "0")};
