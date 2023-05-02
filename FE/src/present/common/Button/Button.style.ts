@@ -101,7 +101,7 @@ export const BuildingBtn = styled.button`
     border: solid 1.5px ${theme.colors.greyscale.point};
     padding: 1.2rem;
 
-    & > div:nth-child(1) {
+    & > div:nth-of-type(1) {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -111,7 +111,7 @@ export const BuildingBtn = styled.button`
       }
     }
 
-    & > div:nth-child(2) {
+    & > div:nth-of-type(2) {
       padding-top: 0.3rem;
       font-size: 1rem;
       width: 100%;
@@ -123,11 +123,11 @@ export const BuildingBtn = styled.button`
         align-items: center;
         width: inherit;
 
-        & > span:nth-child(1) {
+        & > span:nth-of-type(1) {
           color: ${theme.colors.greyscale.pointLight2};
         }
 
-        & > span:nth-child(2) {
+        & > span:nth-of-type(2) {
           color: ${theme.colors.greyscale.light1};
         }
       }
@@ -163,7 +163,7 @@ export const CrackBtn = styled.button`
     border: solid 1.5px ${theme.colors.greyscale.pointLight};
     padding: 1.2rem;
 
-    & > div:nth-child(1) {
+    & > div:nth-of-type(1) {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -173,7 +173,7 @@ export const CrackBtn = styled.button`
       }
     }
 
-    & > div:nth-child(2) {
+    & > div:nth-of-type(2) {
       margin-top: 0.5rem;
       display: flex;
       justify-content: space-between;
@@ -182,11 +182,11 @@ export const CrackBtn = styled.button`
       font-size: 1rem;
       width: 100%;
 
-      & > span:nth-child(1) {
+      & > span:nth-of-type(1) {
         color: ${theme.colors.greyscale.point};
       }
 
-      & > span:nth-child(2) {
+      & > span:nth-of-type(2) {
         color: ${theme.colors.greyscale.light3};
       }
     }
