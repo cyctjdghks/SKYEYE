@@ -37,6 +37,11 @@ public class DroneServiceImpl implements DroneService {
 
     @Override
     public void registDrone(DroneRegistDto droneRegistDto) {
+
+        if(droneRepository.existsById(droneRegistDto.getDroneId())){
+            throw new IllegalArgumentException("이미 가입된 아이디입니다.");
+        }
+
         Drone drone = Drone.builder()
                 .droneId(droneRegistDto.getDroneId())
                 .dronePw(passwordEncoder.encode(droneRegistDto.getDronePw()))
