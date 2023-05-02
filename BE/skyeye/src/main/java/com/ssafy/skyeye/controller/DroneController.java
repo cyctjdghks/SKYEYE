@@ -4,12 +4,15 @@ import com.ssafy.skyeye.data.dto.request.*;
 import com.ssafy.skyeye.data.dto.response.BuildingDto;
 import com.ssafy.skyeye.data.dto.response.DroneDto;
 import com.ssafy.skyeye.service.DroneService;
+import com.ssafy.skyeye.structure.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +24,7 @@ import java.util.Map;
 public class DroneController {
 
     private final DroneService droneService;
+    private final JwtTokenProvider jwtTokenProvider;
 
     // 드론 등록
     @PostMapping("/regist")
@@ -70,13 +74,16 @@ public class DroneController {
 
     // 드론 로그인
     @PostMapping("/login")
-    public ResponseEntity<?> loginDrone(@RequestBody DroneLoginDto input) {
+    public ResponseEntity<?> loginDrone(@RequestBody DroneLoginDto input, HttpServletResponse response) {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {} ", input);
 
 
         DroneDto droneDto = droneService.loginDrone(input);
 
+        String auth = jwtTokenProvider.createToken(droneDto);
+        Cookie cookie = jwtTokenProvider.createCookie(auth);
+        response.addCookie(cookie);
 
         log.info("출력 데이터 : {}", droneDto);
 
@@ -84,6 +91,7 @@ public class DroneController {
     }
 
     // 드론 ID로 UserID를 가지고 Building 목록을 들고 오기
+    // TODO: QueryDSL이나 Native query 써서 한 번만 DB 조회할 수 있도록 바꿔보기
     @GetMapping("/building/{droneId}")
     public ResponseEntity<?> getBuildingByDroneId(@PathVariable String droneId){
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());

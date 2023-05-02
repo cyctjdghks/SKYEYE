@@ -7,7 +7,6 @@ import com.ssafy.skyeye.data.dto.request.UserUpdateDto;
 import com.ssafy.skyeye.data.dto.response.BuildingDto;
 import com.ssafy.skyeye.data.dto.response.DroneDto;
 import com.ssafy.skyeye.data.dto.response.UserDto;
-import com.ssafy.skyeye.data.entity.Building;
 import com.ssafy.skyeye.data.entity.Image;
 import com.ssafy.skyeye.data.entity.User;
 import com.ssafy.skyeye.data.exception.ForbiddenException;
@@ -20,10 +19,8 @@ import com.ssafy.skyeye.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,6 +38,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void registUser(UserRegistDto userRegistDto) {
         Image image = getImageById(userRegistDto.getUserImageId());
+
+        if(userRepository.existsById(userRegistDto.getUserId())) {
+            throw new IllegalArgumentException("이미 가입된 회원입니다.");
+        }
 
         User user = User.builder()
                 .userId(userRegistDto.getUserId())
@@ -67,7 +68,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void updateUser(UserUpdateDto userUpdateDto) {
+    public UserDto updateUser(UserUpdateDto userUpdateDto) {
         User user = getUserById(userUpdateDto.getUserId());
         System.out.println(userUpdateDto.getUserImageId());
         if(userUpdateDto.getUserImageId() != null) {
@@ -81,6 +82,7 @@ public class UserServiceImpl implements UserService {
         user.setUserPosition(userUpdateDto.getUserPosition());
         user.setUserPhoneNumber(userUpdateDto.getUserPhoneNumber());
 
+        return UserDto.entityToDto(user);
     }
 
     @Override

@@ -10,6 +10,7 @@ import com.ssafy.skyeye.data.dto.response.UserDto;
 import com.ssafy.skyeye.data.entity.Image;
 import com.ssafy.skyeye.service.ImageService;
 import com.ssafy.skyeye.service.UserService;
+import com.ssafy.skyeye.structure.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +32,7 @@ public class UserController {
 
     private final UserService userService;
     private final ImageService imageService;
+    private final JwtTokenProvider jwtTokenProvider;
 
     // 유저 등록
     @PostMapping("/regist")
@@ -52,13 +56,17 @@ public class UserController {
 
     // 유저 로그인
     @PostMapping("/login")
-    public ResponseEntity<?> loginUser(@RequestBody UserLoginDto input){
+    public ResponseEntity<?> loginUser(@RequestBody UserLoginDto input, HttpServletResponse response){
         // TODO: JWT 적용해야함
         // TODO: JWT로 유저 확인 하는 것
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", input);
 
         UserDto user = userService.loginUser(input);
+
+        String auth = jwtTokenProvider.createToken(user);
+        Cookie cookie = jwtTokenProvider.createCookie(auth);
+        response.addCookie(cookie);
 
 
         log.info("출력 데이터 : {}", user);
@@ -94,7 +102,7 @@ public class UserController {
             id = imageService.addImage(Image.builder().build(), profile);
             input.setUserImageId(id);
         }
-
+        // TODO: 반환 안해도 됨?
         userService.updateUser(input);
 
         return new ResponseEntity<>(null, HttpStatus.OK);
