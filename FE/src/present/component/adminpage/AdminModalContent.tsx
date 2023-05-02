@@ -2,7 +2,7 @@ import { useState } from "react";
 import InputLabel from "@common/InputLabel/InputLabel";
 import { urls } from "@constant/values";
 
-import * as style from "@component/adminpage/AdminModalContent.style";
+import * as style from "@src/present/component/Adminpage/AdminModalContent.style";
 import { DeleteUser } from "@src/action/hooks/authHooks";
 
 type UserInfo = {

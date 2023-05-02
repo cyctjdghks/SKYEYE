@@ -1,4 +1,4 @@
-import * as style from "@src/present/component/employeedata/EmployeeData.style";
+import * as style from "@src/present/component/Employeedata/EmployeeData.style";
 import { useState } from "react";
 
 type dataProps = {
@@ -9,7 +9,7 @@ type dataProps = {
   phone: string;
   onSelect: () => void;
   selected: boolean;
-  imgSrc: string
+  imgSrc: string;
 };
 
 const EmployeeData = ({
@@ -21,24 +21,18 @@ const EmployeeData = ({
   onSelect,
   selected,
 }: dataProps) => {
-  // const [selected, setSelected] = useState<boolean>(false);
-
-  // const selectClick = () => {
-  //   setSelected(!selected);
-  // };
-
   const handleClick = () => {
     onSelect();
   };
 
   return (
-    <style.dataBox selected={selected} onClick={handleClick}>
-      <style.no>{no}</style.no>
-      <style.number>{number}</style.number>
-      <style.name>{name}</style.name>
-      <style.job>{job}</style.job>
-      <style.phone>{phone}</style.phone>
-    </style.dataBox>
+    <style.DataBox selected={selected} onClick={handleClick}>
+      <style.No>{no}</style.No>
+      <style.Number>{number}</style.Number>
+      <style.Name>{name}</style.Name>
+      <style.Job>{job}</style.Job>
+      <style.Phone>{phone}</style.Phone>
+    </style.DataBox>
   );
 };
 

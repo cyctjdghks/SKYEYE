@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { theme } from "@constant/theme";
 
-export const loginModalWrap = styled("div")({
+export const LoginModalWrap = styled("div")({
   width: "100%",
   height: "100%",
   display: "flex",
@@ -9,7 +9,7 @@ export const loginModalWrap = styled("div")({
   alignItems: "center",
 });
 
-export const loginButton = styled("button")({
+export const LoginButton = styled("button")({
   padding: "10px 20px",
   border: "none",
   backgroundColor: `${theme.colors.greyscale.point}`,

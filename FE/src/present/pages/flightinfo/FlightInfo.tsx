@@ -4,7 +4,7 @@ import SideContent from "@layout/SideContent/SideContent";
 import { Building, Crack } from "@src/types/FlightInfo";
 import ButtonLayout from "@src/present/layout/ButtonLayout/ButtonLayout";
 import SubTitle from "@src/present/common/SubTitle/SubTitle";
-import * as Style from "./FlightInfo.style";
+import * as Style from "@pages/Flightinfo/FlightInfo.style";
 
 const test: Array<Building> = [
   {

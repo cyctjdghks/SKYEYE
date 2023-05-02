@@ -24,8 +24,15 @@ export const PrimaryBtn = styled.button`
     cursor: pointer;
   }
 
+
   & img {
     height: 1.5rem;
+  }
+
+  &:disabled{
+    background-color: ${theme.colors.greyscale.light1};
+    cursor: not-allowed;;
+    color: ${theme.colors.greyscale.dark2};
   }
 `;
 

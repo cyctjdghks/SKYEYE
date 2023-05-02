@@ -15,7 +15,7 @@ type ImgProps = {
   image: string;
 }
 
-export const secondPage = styled("div")({
+export const SecondPage = styled("div")({
   width: "100vw",
   height: "100vh",
   textAlign: "left",
@@ -25,7 +25,7 @@ export const secondPage = styled("div")({
   position: "relative",
 });
 
-export const about = styled("div")({
+export const About = styled("div")({
   fontStyle: "normal",
   fontWeight: "300",
   fontSize: "1vw",
@@ -34,12 +34,12 @@ export const about = styled("div")({
   marginTop: "3vh",
 });
 
-export const hrLine = styled("hr")({
+export const HrLine = styled("hr")({
   width: "85vw",
   color: `${theme.colors.greyscale.dark1}`,
 });
 
-export const pageText = styled("h1")({
+export const PageText = styled("h1")({
   fontSize: "5vw",
   fontStyle: "normal",
   fontWeight: "300",
@@ -49,7 +49,7 @@ export const pageText = styled("h1")({
   paddingLeft: "7.5vw",
 });
 
-export const imgBox = styled("div")({
+export const ImgBox = styled("div")({
   width: "85vw",
   height: "70vw",
   maxHeight: "1000px",
@@ -62,7 +62,7 @@ export const imgBox = styled("div")({
   marginBottom: "5vh",
 });
 
-export const innerBox = styled("div")({
+export const InnerBox = styled("div")({
   marginTop: "0.8%",
   marginLeft: "2.5%",
   width: "95%",
@@ -71,7 +71,7 @@ export const innerBox = styled("div")({
   justifyContent: "space-around",
 });
 
-export const smallBox = styled("div")<HiddenProps>(
+export const SmallBox = styled("div")<HiddenProps>(
   {
     width: "24%",
     height: "100%",
@@ -87,7 +87,7 @@ export const smallBox = styled("div")<HiddenProps>(
   })
 );
 
-export const boxImg = styled("img")<ImgProps>({
+export const BoxImg = styled("img")<ImgProps>({
   width: "90%",
   height: "82%",
   borderRadius: "8px",
@@ -99,7 +99,7 @@ export const boxImg = styled("img")<ImgProps>({
   backgroundImage: `url(${props.image})`,
 })
 );
-export const largeBoxImg = styled("img")<ImgProps>({
+export const LargeBoxImg = styled("img")<ImgProps>({
   width: "90%",
   height: "82%",
   borderRadius: "8px",
@@ -113,7 +113,7 @@ export const largeBoxImg = styled("img")<ImgProps>({
 })
 );
 
-export const colorBox = styled("div")<ColorProps>({
+export const ColorBox = styled("div")<ColorProps>({
   width: "90%",
   height: "82%",
   borderRadius: "8px",
@@ -124,14 +124,14 @@ export const colorBox = styled("div")<ColorProps>({
 })
 );
 
-export const textBox = styled("div")({
+export const TextBox = styled("div")({
   width: "90%",
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
 });
 
-export const boxText1 = styled("p")({
+export const BoxText1 = styled("p")({
   fontStyle: "normal",
   fontWeight: "300",
   fontSize: "1vw",
@@ -139,7 +139,7 @@ export const boxText1 = styled("p")({
   color: `${theme.colors.greyscale.dark1}`,
 });
 
-export const boxText2 = styled("p")({
+export const BoxText2 = styled("p")({
   fontStyle: "normal",
   fontWeight: "500",
   fontSize: "1vw",
@@ -147,7 +147,7 @@ export const boxText2 = styled("p")({
   color: `${theme.colors.greyscale.point}`,
 });
 
-export const largeBox = styled("div")({
+export const LargeBox = styled("div")({
   width: "49%",
   height: "100%",
   backgroundColor: `${theme.colors.greyscale.light3}`,

@@ -4,11 +4,11 @@ import SideBar from "@common/SideBar/SideBar";
 import { useRecoilState } from "recoil";
 import { authState } from "@store/auth";
 import { Route, Routes } from "react-router-dom";
-import Main from "@pages/main/Main";
-import Admin from "@pages/admin/Admin";
-import Drone from "@pages/drone/Drone";
-import Picture from "@pages/picture/Picture";
-import FlightInfo from "@pages/flightinfo/FlightInfo";
+import Main from "@src/present/pages/Main/Main";
+import Admin from "@src/present/pages/Admin/Admin";
+import Drone from "@src/present/pages/Drone/Drone";
+import Picture from "@src/present/pages/Picture/Picture";
+import FlightInfo from "@src/present/pages/Flightinfo/FlightInfo";
 import { urls } from "@constant/values";
 
 function App() {

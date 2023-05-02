@@ -1,13 +1,13 @@
 import styled from "@emotion/styled";
 import { theme } from "@constant/theme";
 
-export const mainWrapper = styled("div")({
+export const MainWrapper = styled("div")({
   width: "100%",
   overflowX: "hidden",
   userSelect: "none",
 });
 
-export const topBox = styled("div")({
+export const TopBox = styled("div")({
   width: "calc(100vw - 76px)",
   height: "100px",
   display: "flex",
@@ -18,11 +18,11 @@ export const topBox = styled("div")({
   overflow: "hidden",
 });
 
-export const logo = styled("img")({
+export const Logo = styled("img")({
   width: "180px",
 });
 
-export const loginButton = styled("button")({
+export const LoginButton = styled("button")({
   width: "164px",
   height: "55px",
   background: `${theme.colors.greyscale.point}`,
@@ -38,13 +38,13 @@ export const loginButton = styled("button")({
   },
 });
 
-export const logoText = styled("h1")({
+export const LogoText = styled("h1")({
   color: `${theme.colors.greyscale.light3}`,
   fontStyle: "normal",
   fontWeight: "500",
   fontSize: "20px",
 });
 
-export const logoRight = styled("img")({
+export const LogoRight = styled("img")({
   width: "15px",
 });
