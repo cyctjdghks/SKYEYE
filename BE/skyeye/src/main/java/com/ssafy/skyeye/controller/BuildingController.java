@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
@@ -76,14 +77,20 @@ public class BuildingController {
 
 
     // 빌딩 ID로 균열 조회
-    @GetMapping("/crack/{buildingId}")
-    public ResponseEntity<?> getCrackByBuildingId(@PathVariable Long buildingId){
+    // building/crack/sodam =>    building/crack?buildingId=&crackType=
+    // 0 전체, 1, 아스팔트 균열(asphalt), 2 : 콘크리트 균열(concrete)
+    @GetMapping("/crack")
+    public ResponseEntity<?> getCrackByBuildingId(@RequestParam Long buildingId, @RequestParam(required = false, defaultValue = "0") int crackType){
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {} ", buildingId);
 
 
         List<CrackDto> building = buildingService.getBuildingByCrackId(buildingId);
-
+        if(crackType == 1) {
+            building = building.stream().filter(crackDto -> crackDto.getCrackType().equals("asphalt")).collect(Collectors.toList());
+        }else if(crackType == 2){
+            building = building.stream().filter(crackDto -> crackDto.getCrackType().equals("concrete")).collect(Collectors.toList());
+        }
 
         log.info("출력 데이터 : {}", building);
 
