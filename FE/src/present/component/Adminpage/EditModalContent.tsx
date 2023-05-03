@@ -33,9 +33,9 @@ const EditModalContent = ({ data, onClose }: UserInfo) => {
   );
   const [fileName, setFileName] = useState<any | null>(
     `${urls.API}/${data.imageSrc}`
-    );
-    const [profile, setProfile] = useState<any | null>("");
-    const [users, setUsers] = useRecoilState(adminState);
+  );
+  const [profile, setProfile] = useState<any | null>("");
+  const [users, setUsers] = useRecoilState(adminState);
 
   const saveProfile = (event: React.ChangeEvent<HTMLInputElement>) => {
     setProfile(event.target.files[0]);
@@ -62,26 +62,43 @@ const EditModalContent = ({ data, onClose }: UserInfo) => {
 
     formData.append("user", userBlob, "user.json");
 
-    UpdateUser(formData).then((res) => {
-      FindUserAll().then((res) => {
-        setUsers({ users: res.result });
+    UpdateUser(formData)
+      .then((res) => {
+        FindUserAll()
+          .then((res) => {
+            setUsers({ users: res.result });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        onClose();
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    });
-    onClose();
   };
 
   const clickDelete = () => {
-    DeleteUser(userId).then(() => {
-      FindUserAll().then((res) => {
-        setUsers({ users: res.result });
+    DeleteUser(userId)
+      .then(() => {
+        FindUserAll()
+          .then((res) => {
+            setUsers({ users: res.result });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        onClose();
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    });
-    onClose();
   };
-  
-  const nullError = !!userId && !!userName && !!userPhoneNumber && !!userPosition
- 
-  const submitError = nullError
+
+  const nullError =
+    !!userId && !!userName && !!userPhoneNumber && !!userPosition;
+
+  const submitError = nullError;
 
   return (
     <style.ModalBox>
