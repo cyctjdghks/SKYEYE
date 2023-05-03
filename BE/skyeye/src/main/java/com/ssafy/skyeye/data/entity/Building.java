@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "building")
@@ -26,6 +27,6 @@ public class Building extends BaseEntity{
     private String buildingName;
     @Column(name = "building_address", length = 100, nullable = false)
     private String buildingAddress;
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "buildingId", cascade = CascadeType.ALL)
-    private Crack crack;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "buildingId", cascade = CascadeType.ALL)
+    private List<Crack> cracks;
 }
