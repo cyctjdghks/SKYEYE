@@ -19,11 +19,13 @@ public class Building extends BaseEntity{
     private Long buildingId;
     @Column(name = "building_establishment", nullable = false)
     private LocalDateTime buildingEstablishment;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     @JoinColumn(name = "userId", nullable = false)
     private User userId;
     @Column(name = "building_name", length = 50, nullable = false)
     private String buildingName;
     @Column(name = "building_address", length = 100, nullable = false)
     private String buildingAddress;
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "buildingId", cascade = CascadeType.ALL)
+    private Crack crack;
 }
