@@ -22,7 +22,7 @@ public class BuildingDto {
     public static BuildingDto entityToDto(Building building) {
         return BuildingDto.builder()
                 .buildingId(building.getBuildingId())
-                .buildingEstablishment(building.getBuildingEstablishment().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")))
+                .buildingEstablishment(building.getBuildingEstablishment().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
                 .userId(building.getUserId().getUserId())
                 .buildingName(building.getBuildingName())
                 .buildingAddress(building.getBuildingAddress())
