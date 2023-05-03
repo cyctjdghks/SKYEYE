@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public UserDto updateUser(UserUpdateDto userUpdateDto) {
         User user = getUserById(userUpdateDto.getUserId());
-        System.out.println(userUpdateDto.getUserImageId());
+
         if(userUpdateDto.getUserImageId() != null) {
             Image image = getImageById(userUpdateDto.getUserImageId());
             user.setImageId(image);

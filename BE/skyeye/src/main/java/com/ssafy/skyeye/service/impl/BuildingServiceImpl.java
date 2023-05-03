@@ -40,6 +40,11 @@ public class BuildingServiceImpl implements BuildingService {
     @Override
     public void registBuilding(BuildingRegistDto buildingRegistDto) {
         // TODO: JWT 본인인증 만약 아닐 시 405 Not Allowed
+
+        if(buildingRepository.existsByBuildingAddress(buildingRegistDto.getBuildingAddress())){
+            throw new ForbiddenException("이미 있는 건물입니다.");
+        }
+
         Building building = Building.builder()
                 .buildingAddress(buildingRegistDto.getBuildingAddress())
                 .buildingEstablishment(LocalDate.parse(buildingRegistDto.getBuildingEstablishment(), formatter).atStartOfDay())
