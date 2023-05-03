@@ -13,6 +13,7 @@ import { urls } from "@constant/values";
 
 function App() {
   const userType = useRecoilValue(authState).userType
+
   return (
     <div className={classes.appWrap}>
       {/* {userType ? <SideBar></SideBar> : <></>} */}

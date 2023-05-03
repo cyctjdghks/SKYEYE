@@ -10,20 +10,24 @@ import Modal from "@src/present/common/Modal/Modal";
 import AddBuildingModal from "../AddBuildingModal/AddBuildingModal";
 import { getBuildingList } from "@src/action/api/Building";
 import { Building, InputBuilding } from "@src/types/FlightInfo";
+import { Error } from "@src/action/api/api";
 
 const SelectBuilding = () => {
+  const navigate = useNavigate();
+  
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selectContent, setSelectContent] = useState<InputBuilding>({
     buildingId: null,
     buildingName: "건물 이름",
   });
-  const navigate = useNavigate();
   const [buildingList, setBuildingList] = useState<Array<Building>>([]);
 
   useEffect(() => {
     getBuildingList("jhpdrone").then((res) => {
       if (res.isSuccess) {
         setBuildingList([...res.result]);
+      } else {
+        console.log(Error);
       }
     });
   }, []);
