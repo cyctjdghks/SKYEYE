@@ -8,6 +8,7 @@ import com.ssafy.skyeye.data.dto.response.BuildingDto;
 import com.ssafy.skyeye.data.dto.response.DroneDto;
 import com.ssafy.skyeye.data.dto.response.UserDto;
 import com.ssafy.skyeye.data.entity.Image;
+import com.ssafy.skyeye.data.exception.ForbiddenException;
 import com.ssafy.skyeye.service.ImageService;
 import com.ssafy.skyeye.service.UserService;
 import com.ssafy.skyeye.structure.jwt.JwtTokenProvider;
@@ -15,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -40,7 +42,6 @@ public class UserController {
                                         @RequestPart(name = "user")UserRegistDto input){
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", input);
-        System.out.println(profile);
 
         if(profile != null && !profile.isEmpty() ){
             long id = 0l;
@@ -57,8 +58,6 @@ public class UserController {
     // 유저 로그인
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody UserLoginDto input, HttpServletResponse response){
-        // TODO: JWT 적용해야함
-        // TODO: JWT로 유저 확인 하는 것
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", input);
 
@@ -77,12 +76,13 @@ public class UserController {
     // 유저 상세조회
     @GetMapping("/get/{userId}")
     public ResponseEntity<?> getUser(@PathVariable String userId){
-        // TODO: JWT로 유저 확인 하는 것
         log.info("{} 메소드 호출",Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", userId);
 
-        UserDto user = userService.getUser(userId);
+        String jwtId = String.valueOf(SecurityContextHolder.getContext().getAuthentication().getName());
+        if(!jwtId.equals(userId) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
 
+        UserDto user = userService.getUser(userId);
 
         log.info("출력 데이터 : {}", user);
 
@@ -93,9 +93,12 @@ public class UserController {
     @PutMapping("/update")
     public ResponseEntity<?> updateUser(@RequestPart(name = "profile", required = false)MultipartFile profile,
                                         @RequestPart(name = "user")UserUpdateDto input){
-        // TODO: JWT로 유저 확인 하는 것
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", input);
+
+        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+        if(!jwtId.equals(input.getUserId()) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
+
 
         if(profile != null && !profile.isEmpty() ){
             long id = 0l;
@@ -111,9 +114,11 @@ public class UserController {
     // 유저 삭제
     @DeleteMapping("/delete/{userId}")
     public ResponseEntity<?> deleteUser(@PathVariable String userId){
-        // TODO: JWT로 유저 확인 하는 것
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", userId);
+
+        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+        if(!jwtId.equals(userId) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
 
         userService.deleteUser(userId);
 
@@ -123,9 +128,11 @@ public class UserController {
     // 유저 ID로 빌딩 목록 조회
     @GetMapping("/building/{userId}")
     public ResponseEntity<?> getBuildingByUserId(@PathVariable String userId){
-        // TODO: JWT로 유저 확인 하는 것
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", userId);
+
+        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+        if(!jwtId.equals(userId) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
 
 
         List<BuildingDto> list = userService.getBuildingByUserId(userId);
@@ -139,9 +146,11 @@ public class UserController {
     // 유저 ID로 드론 조회
     @GetMapping("/drone/{userId}")
     public ResponseEntity<?> getDroneByUserId(@PathVariable String userId){
-        // TODO: JWT로 유저 확인 하는 것
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", userId);
+
+        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+        if(!jwtId.equals(userId) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
 
 
         List<DroneDto> list = userService.getDroneByUserId(userId);
@@ -157,6 +166,9 @@ public class UserController {
     public ResponseEntity<?> changePw(@RequestBody PwChangeUserDto input){
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", input);
+
+        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+        if(!jwtId.equals(input.getUserId()) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
 
         userService.changePw(input);
 
