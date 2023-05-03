@@ -22,7 +22,7 @@ public class Drone extends BaseEntity{
     private String dronePw;
     @Column(name = "drone_serial_number", length = 20, nullable = false)
     private String droneSerialNumber;
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     @JoinColumn(name = "userId", nullable = false)
     private User userId;
 }
