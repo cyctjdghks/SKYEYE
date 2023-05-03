@@ -12,6 +12,7 @@ import com.ssafy.skyeye.repository.CrackRepository;
 import com.ssafy.skyeye.repository.ImageRepository;
 import com.ssafy.skyeye.service.CrackService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -31,8 +32,15 @@ public class CrackServiceImpl implements CrackService {
     @Override
     public void registCrack(CrackRegistDto crackRegistDto) {
         // TODO: JWT 본인인증 만약 아닐 시 405 Not Allowed
+
+        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+
         Image image = getImageById(crackRegistDto.getImageId());
         Building building = getBuildingById(crackRegistDto.getBuildingId());
+
+        if(!jwtId.equals(building.getUserId().getUserId()) && !jwtId.equals("admin")) {
+            throw new ForbiddenException("본인 아이디가 아닙니다.");
+        }
 
         Crack crack = Crack.builder()
                 .crackType(crackRegistDto.getCrackType())
@@ -46,15 +54,25 @@ public class CrackServiceImpl implements CrackService {
 
     @Override
     public CrackDto getCrack(Long crackId) {
-        // TODO: JWT 본인인증 만약 아닐 시 405 Not Allowed
-        return CrackDto.entityToDto(getCrackById(crackId));
+        Crack crack = getCrackById(crackId);
+
+        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+        if(!jwtId.equals(crack.getBuildingId().getUserId().getUserId())&& !jwtId.equals("admin")) {
+            throw new ForbiddenException("본인 아이디가 아닙니다.");
+        }
+
+        return CrackDto.entityToDto(crack);
     }
 
     @Override
     @Transactional
     public void updateCrack(CrackUpdateDto crackUpdateDto) {
-        // TODO: JWT 본인인증 만약 아닐 시 405 Not Allowed
         Crack crack = getCrackById(crackUpdateDto.getCrackId());
+
+        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+        if(!jwtId.equals(crack.getBuildingId().getUserId().getUserId())&& !jwtId.equals("admin")) {
+            throw new ForbiddenException("본인 아이디가 아닙니다.");
+        }
 
         crack.setCrackPosition(crackUpdateDto.getCrackPosition());
         crack.setCrackType(crackUpdateDto.getCrackType());
@@ -62,7 +80,10 @@ public class CrackServiceImpl implements CrackService {
 
     @Override
     public void deleteCrack(Long crackId) {
-        // TODO: JWT 본인인증 만약 아닐 시 405 Not Allowed
+        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+        if(!jwtId.equals(getCrackById(crackId).getBuildingId().getUserId().getUserId())&& !jwtId.equals("admin")) {
+            throw new ForbiddenException("본인 아이디가 아닙니다.");
+        }
         crackRepository.delete(getCrackById(crackId));
     }
 

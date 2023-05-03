@@ -3,12 +3,14 @@ package com.ssafy.skyeye.controller;
 import com.ssafy.skyeye.data.dto.request.*;
 import com.ssafy.skyeye.data.dto.response.BuildingDto;
 import com.ssafy.skyeye.data.dto.response.DroneDto;
+import com.ssafy.skyeye.data.exception.ForbiddenException;
 import com.ssafy.skyeye.service.DroneService;
 import com.ssafy.skyeye.structure.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
@@ -43,6 +45,9 @@ public class DroneController {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {} ", droneId);
 
+        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+        if(!jwtId.equals(droneId) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
+
         DroneDto droneDto = droneService.getDrone(droneId);
 
         log.info("출력 데이터 : {} ", droneDto);
@@ -56,6 +61,9 @@ public class DroneController {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {} ", input);
 
+        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+        if(!jwtId.equals(input.getDroneId()) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
+
         droneService.updateDrone(input);
 
         return new ResponseEntity<>(null, HttpStatus.OK);
@@ -66,6 +74,9 @@ public class DroneController {
     public ResponseEntity<?> deleteDrone(@PathVariable String droneId) {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {} ", droneId);
+
+        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+        if(!jwtId.equals(droneId) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
 
         droneService.deleteDrone(droneId);
 
@@ -97,9 +108,10 @@ public class DroneController {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {} ", droneId);
 
+        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+        if(!jwtId.equals(droneId) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
 
         List<BuildingDto> buildingDtos = droneService.getBuildingByDroneId(droneId);
-
 
         log.info("출력 데이터 : {} ", buildingDtos);
 
@@ -111,6 +123,9 @@ public class DroneController {
     public ResponseEntity<?> changePw(@RequestBody PwChangeDroneDto input){
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", input);
+
+        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+        if(!jwtId.equals(input.getDroneId()) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
 
         droneService.changePw(input);
 

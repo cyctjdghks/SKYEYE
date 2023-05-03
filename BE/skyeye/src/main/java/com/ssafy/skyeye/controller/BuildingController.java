@@ -4,11 +4,13 @@ import com.ssafy.skyeye.data.dto.request.BuildingRegistDto;
 import com.ssafy.skyeye.data.dto.request.BuildingUpdateDto;
 import com.ssafy.skyeye.data.dto.response.BuildingDto;
 import com.ssafy.skyeye.data.dto.response.CrackDto;
+import com.ssafy.skyeye.data.exception.ForbiddenException;
 import com.ssafy.skyeye.service.BuildingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -43,9 +45,7 @@ public class BuildingController {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {} ", buildingId);
 
-
         BuildingDto buildingDto = buildingService.getBuilding(buildingId);
-
 
         log.info("출력 데이터 : {}", buildingDto);
 
@@ -84,8 +84,8 @@ public class BuildingController {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {} ", buildingId);
 
-
         List<CrackDto> building = buildingService.getBuildingByCrackId(buildingId);
+
         if(crackType == 1) {
             building = building.stream().filter(crackDto -> crackDto.getCrackType().equals("asphalt")).collect(Collectors.toList());
         }else if(crackType == 2){
