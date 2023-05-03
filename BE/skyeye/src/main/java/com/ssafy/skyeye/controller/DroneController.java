@@ -45,8 +45,8 @@ public class DroneController {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {} ", droneId);
 
-        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
-        if(!jwtId.equals(droneId) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
+//        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+//        if(!jwtId.equals(droneId) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
 
         DroneDto droneDto = droneService.getDrone(droneId);
 
@@ -61,8 +61,8 @@ public class DroneController {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {} ", input);
 
-        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
-        if(!jwtId.equals(input.getDroneId()) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
+//        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+//        if(!jwtId.equals(input.getDroneId()) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
 
         droneService.updateDrone(input);
 
@@ -75,8 +75,8 @@ public class DroneController {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {} ", droneId);
 
-        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
-        if(!jwtId.equals(droneId) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
+//        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+//        if(!jwtId.equals(droneId) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
 
         droneService.deleteDrone(droneId);
 
@@ -108,8 +108,8 @@ public class DroneController {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {} ", droneId);
 
-        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
-        if(!jwtId.equals(droneId) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
+//        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+//        if(!jwtId.equals(droneId) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
 
         List<BuildingDto> buildingDtos = droneService.getBuildingByDroneId(droneId);
 
@@ -124,8 +124,8 @@ public class DroneController {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", input);
 
-        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
-        if(!jwtId.equals(input.getDroneId()) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
+//        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+//        if(!jwtId.equals(input.getDroneId()) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
 
         droneService.changePw(input);
 
