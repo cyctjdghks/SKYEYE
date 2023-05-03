@@ -37,18 +37,18 @@ public class webSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .formLogin().disable() // sessionManagement()에선 필요없음
 //                .headers().frameOptions().disable(); // sessionManagement()에선 필요없음
                 .and()
-                .authorizeRequests()
-                .antMatchers("/user/login", "/user/regist", "/drone/login", "/drone/regist", "/admin/login").permitAll()
-//                .antMatchers(HttpMethod.POST, "/user/login").permitAll()
-                .antMatchers("/drone/**").hasAnyRole("DRONE", "USER", "ADMIN")
-                .antMatchers("/crack/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/building/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("**exception**").permitAll() // exception이 들어간 모든 경로를 허용
-                .antMatchers("**Exception**").permitAll() // Exception이 들어간 모든 경로를 허용
-                .anyRequest().authenticated()
-                .and()
+//                .authorizeRequests()
+//                .antMatchers("/user/login", "/user/regist", "/drone/login", "/drone/regist", "/admin/login", "/user/valid/**", "/drone/valid/**").permitAll()
+////                .antMatchers(HttpMethod.POST, "/user/login").permitAll()
+//                .antMatchers("/drone/**").hasAnyRole("DRONE", "USER", "ADMIN")
+//                .antMatchers("/crack/**").hasAnyRole("USER", "ADMIN")
+//                .antMatchers("/building/**").hasAnyRole("USER", "ADMIN")
+//                .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
+//                .antMatchers("/admin/**").hasRole("ADMIN")
+//                .antMatchers("**exception**").permitAll() // exception이 들어간 모든 경로를 허용
+//                .antMatchers("**Exception**").permitAll() // Exception이 들어간 모든 경로를 허용
+//                .anyRequest().authenticated()
+//                .and()
                 .exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandler())
                 .and()
                 .exceptionHandling().authenticationEntryPoint(new CustomAuthenticationEntryPoing()) // 인증 과정에서 예외가 발생한 경우 예외 전달
