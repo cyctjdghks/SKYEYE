@@ -31,7 +31,7 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
     setProfile(event.target.files[0]);
     setFileName(URL.createObjectURL(event.target.files[0]));
   };
-  
+
   const submitRegist = () => {
     const user = {
       userId,
@@ -51,17 +51,27 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
     });
 
     formData.append("user", userBlob, "user.json");
-  
-    RegistUser(formData).then((res) => {
-      FindUserAll().then((res) => {
-        setUsers({ users: res.result });
+
+    RegistUser(formData)
+      .then((res) => {
+        FindUserAll()
+          .then((res) => {
+            setUsers({ users: res.result });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        onClose();
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    });
-    onClose();
   };
 
-  const nullError = !!userId && !!userName && !!userPhoneNumber && !!userPosition && !!userPw;
-  const effectiveError = idError && pwdError && phoneError && positionError &&pwdError;
+  const nullError =
+    !!userId && !!userName && !!userPhoneNumber && !!userPosition && !!userPw;
+  const effectiveError =
+    idError && pwdError && phoneError && positionError && pwdError;
   const submitError = nullError && effectiveError;
 
   return (
