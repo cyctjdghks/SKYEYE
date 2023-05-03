@@ -42,8 +42,8 @@ public class BuildingServiceImpl implements BuildingService {
     public void registBuilding(BuildingRegistDto buildingRegistDto) {
         // TODO: JWT 본인인증 만약 아닐 시 405 Not Allowed
 
-        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
-        if(!jwtId.equals(buildingRegistDto.getUserId()) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
+//        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+//        if(!jwtId.equals(buildingRegistDto.getUserId()) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
 
         if(buildingRepository.existsByBuildingAddress(buildingRegistDto.getBuildingAddress())){
             throw new ForbiddenException("이미 있는 건물입니다.");
@@ -63,8 +63,8 @@ public class BuildingServiceImpl implements BuildingService {
     @Override
     @Transactional
     public void updateBuilding(BuildingUpdateDto buildingUpdateDto) {
-        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
-        if(!jwtId.equals(buildingUpdateDto.getUserId()) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
+//        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+//        if(!jwtId.equals(buildingUpdateDto.getUserId()) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
 
         Building building = getByBuildingId(buildingUpdateDto.getBuildingId());
         // TODO: JWT 본인인증 만약 아닐 시 405 Not Allowed
@@ -78,8 +78,8 @@ public class BuildingServiceImpl implements BuildingService {
     public void deleteBuilding(Long buildingId) {
         // TODO: JWT 본인인증 만약 아닐 시 405 Not Allowed
 
-        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
-        if(!jwtId.equals(getByBuildingId(buildingId).getUserId().getUserId()) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
+//        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+//        if(!jwtId.equals(getByBuildingId(buildingId).getUserId().getUserId()) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
 
         buildingRepository.delete(getByBuildingId(buildingId));
     }
@@ -87,8 +87,8 @@ public class BuildingServiceImpl implements BuildingService {
     @Override
     public List<CrackDto> getBuildingByCrackId(Long buildingId) {
         // TODO: JWT 본인인증 만약 아닐 시 405 Not Allowed
-        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
-        if(!jwtId.equals(getByBuildingId(buildingId).getUserId().getUserId()) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
+//        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+//        if(!jwtId.equals(getByBuildingId(buildingId).getUserId().getUserId()) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
 
         return crackRepository.findAll().stream()
                 .filter(crack -> crack.getBuildingId().getBuildingId().equals(buildingId))
@@ -100,8 +100,8 @@ public class BuildingServiceImpl implements BuildingService {
     @Override
     public BuildingDto getBuilding(Long buildingId) {
         // TODO: JWT 본인인증 만약 아닐 시 405 Not Allowed
-        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
-        if(!jwtId.equals(getByBuildingId(buildingId).getUserId().getUserId()) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
+//        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+//        if(!jwtId.equals(getByBuildingId(buildingId).getUserId().getUserId()) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
 
         return BuildingDto.entityToDto(getByBuildingId(buildingId));
 
