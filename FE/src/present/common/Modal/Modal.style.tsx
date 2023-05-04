@@ -8,7 +8,7 @@ export const Overlay = styled.div`
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.42);
-  z-index: 9999;
+  z-index: 9998;
 `;
 
 export const ModalWrap = styled.div<{ width: string, height:string }>`

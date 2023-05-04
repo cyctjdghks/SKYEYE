@@ -9,6 +9,7 @@ const colors = {
     point: "#0758B1",
     pointLight: "#75ACE8",
     pointLight2: "#96c2f2",
+    pointWarning: "#DF3F3F"
   },
 };
 

@@ -2,40 +2,64 @@
   font-family: "SCDream1";
   src: url("./assets/fonts/SCDream1.otf");
 }
+
 @font-face {
   font-family: "SCDream2";
   src: url("./assets/fonts/SCDream2.otf");
 }
+
 @font-face {
   font-family: "SCDream3";
   src: url("./assets/fonts/SCDream3.otf");
 }
+
 @font-face {
   font-family: "SCDream4";
   src: url("./assets/fonts/SCDream4.otf");
 }
+
 @font-face {
   font-family: "SCDream5";
   src: url("./assets/fonts/SCDream5.otf");
 }
 
-h1{
+@font-face {
+  font-family: "SCDream6";
+  src: url("./assets/fonts/SCDream6.otf");
+}
+
+@font-face {
+  font-family: "SCDream7";
+  src: url("./assets/fonts/SCDream7.otf");
+}
+
+@font-face {
+  font-family: "SCDream8";
+  src: url("./assets/fonts/SCDream8.otf");
+}
+
+@font-face {
+  font-family: "SCDream9";
+  src: url("./assets/fonts/SCDream9.otf");
+}
+
+h1 {
   font-family: "SCDream4";
 }
 
-div{
+div {
   font-family: "SCDream3";
 }
 
-p{
+p {
   font-family: "SCDream3";
 }
 
-button{
+button {
   font-family: "SCDream2";
 }
 
-.appWrap{
+.appWrap {
   font-family: "SCDream4";
   text-align: center;
 }
