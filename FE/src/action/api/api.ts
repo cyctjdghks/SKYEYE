@@ -8,21 +8,13 @@ export interface ApiResult {
 
 const API = axios.create({ baseURL: urls.API });
 
+export let Error:AxiosError ;
+
 //오류가 발생할 경우
 API.interceptors.response.use(
   (res: AxiosResponse) => res,
   async (err: AxiosError) => {
-    switch (err.response.status) {
-      case 400:
-        alert("입력값이 잘못되었습니다");
-        break;
-      case 401:
-        alert("없는 사용자입니다");
-        break;
-      case 403:
-        alert("권한이 없는 사용자입니다.");
-        break;
-    }
+    Error = err;
   }
 );
 

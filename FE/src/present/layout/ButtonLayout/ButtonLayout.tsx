@@ -3,6 +3,7 @@ import * as Style from "./ButtonLayout.style";
 import BuildingButton from "@src/present/common/Button/BuildingButton";
 import { Building, Crack } from "@src/types/FlightInfo";
 import CrackButton from "@src/present/common/Button/CrackButton";
+import NullData from "@src/present/component/NullData/NullData";
 
 type ButtonLayout = {
   list: Array<Building | Crack>;
@@ -38,7 +39,11 @@ const ButtonLayout = ({ list, selected, handler, type }) => {
     }
   });
 
-  return <Style.Container>{buttons}</Style.Container>;
+  return (
+    <Style.Container>
+      {list.length === 0 ? <NullData /> : buttons}
+    </Style.Container>
+  );
 };
 
 export default memo(ButtonLayout);

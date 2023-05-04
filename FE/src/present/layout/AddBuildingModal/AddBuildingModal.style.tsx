@@ -9,7 +9,7 @@ export const ModalContainer = styled.div`
   align-items: center;
   gap: 1rem;
 
-  & div:first-child {
+  & div:first-of-type {
     margin-bottom: 1.5rem;
   }
 

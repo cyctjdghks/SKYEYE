@@ -10,11 +10,13 @@ import Drone from "@src/present/pages/Drone/Drone";
 import Picture from "@src/present/pages/Picture/Picture";
 import FlightInfo from "@src/present/pages/Flightinfo/FlightInfo";
 import { urls } from "@constant/values";
+import ToastContainer from "./present/layout/ToastContainer/ToastContainer";
 import AdminRoute from "./router/AdminRouter";
 import NotFound from "./present/pages/NotFound/NotFound";
 
 function App() {
   const userType = useRecoilValue(authState).userType;
+  
   return (
     <div className={classes.appWrap}>
       <Routes>
@@ -27,6 +29,7 @@ function App() {
         </Route>
         <Route path="/*" element={<NotFound />}></Route>
       </Routes>
+      <ToastContainer />
     </div>
   );
 }
