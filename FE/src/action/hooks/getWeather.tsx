@@ -2,10 +2,10 @@ import { weatherGetAsync } from "../api/weatherApi";
 
 const getWeather = async (lat: number, lng: number) => {
   const response = await weatherGetAsync(
-    `?lat=${lat}&lon=${lng}&appid=c919542b81021ffba5f90695b75da25c`
+    `?lat=${lat}&lon=${lng}&appid=d32f160f0bf1b0fcb75582e3190eaffc`
   );
-  
-  return response.result;
+
+  return response;
 };
 
 export default getWeather;

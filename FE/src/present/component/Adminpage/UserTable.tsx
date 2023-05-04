@@ -14,9 +14,13 @@ const UserTable = () => {
   }, [users]);
 
   useEffect(() => {
-    FindUserAll().then((res) => {
-      setUsers({ users: res.result });
-    });
+    FindUserAll()
+      .then((res) => {
+        setUsers({ users: res.result });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   const handleSelect = (idx: number) => {

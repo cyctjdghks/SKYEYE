@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { theme } from "@constant/theme";
+import { disconnect } from "process";
 
 export const LoginModalWrap = styled("div")({
   width: "100%",
@@ -14,7 +15,8 @@ export const ModalTitle = styled("h1")({
   textAlign: "center",
   color: `${theme.colors.greyscale.point}`,
   fontSize: "50px",
-  marginBottom: "5%"
+  marginBottom: "5%",
+  display: "flex"
 });
 
 export const LoginForm = styled.form`
