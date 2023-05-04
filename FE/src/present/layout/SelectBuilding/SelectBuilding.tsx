@@ -1,6 +1,8 @@
 import React, { memo, useEffect, useState } from "react";
 import * as Style from "./SelectBuilding.style";
 import { useNavigate } from "react-router-dom";
+import { toastListState } from "@src/store/toast";
+import { useRecoilState } from "recoil";
 
 import PrimeTitle from "@src/present/common/PrimeTitle/PrimeTitle";
 import PrimaryButton from "@src/present/common/Button/PrimaryButton";
@@ -14,7 +16,8 @@ import { Error } from "@src/action/api/api";
 
 const SelectBuilding = () => {
   const navigate = useNavigate();
-  
+  const [toastList, setToastList] = useRecoilState(toastListState);
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selectContent, setSelectContent] = useState<InputBuilding>({
     buildingId: null,
@@ -28,6 +31,8 @@ const SelectBuilding = () => {
         setBuildingList([...res.result]);
       } else {
         console.log(Error);
+        const errToast = { type: "Error", sentence: "권한이 없는 사용자입니다." };
+        setToastList({ list: [...toastList.list, errToast] });
       }
     });
   }, []);
