@@ -8,6 +8,6 @@ RUN /usr/local/bin/python -m pip install --upgrade pip
 
 RUN pip install -r requirements.txt
 
-EXPOSE 8083
+EXPOSE 5000
 
 CMD [ "python", "file_save.py" ]
