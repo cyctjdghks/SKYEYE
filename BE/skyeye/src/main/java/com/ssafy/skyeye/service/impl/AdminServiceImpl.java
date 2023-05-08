@@ -43,8 +43,8 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void loginAdmin(AdminLoginDto adminLoginDto) {
-        adminPw = passwordEncoder.encode(adminPw);
-        if(!adminLoginDto.getAdminId().equals(adminId) || !passwordEncoder.matches(adminLoginDto.getAdminPw(),adminPw))
+        String adminEncodedPw = passwordEncoder.encode(adminPw);
+        if(!adminLoginDto.getAdminId().equals(adminId) || !passwordEncoder.matches(adminLoginDto.getAdminPw(),adminEncodedPw))
             throw new ForbiddenException("관리자가 아닙니다.");
 
     }
