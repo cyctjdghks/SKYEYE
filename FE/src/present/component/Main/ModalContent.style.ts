@@ -15,8 +15,14 @@ export const ModalTitle = styled("h1")({
   textAlign: "center",
   color: `${theme.colors.point.point}`,
   fontSize: "50px",
-  marginBottom: "5%",
-  display: "flex"
+  marginBottom: "7%",
+  display: "flex",
+  "@media only screen and (max-width: 1024px)": {
+    fontSize: "40px",
+  },
+  "@media only screen and (max-width: 768px)": {
+    fontSize: "30px",
+  },
 });
 
 export const LoginForm = styled.form`
@@ -26,14 +32,15 @@ export const LoginForm = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`
+`;
 
 export const ButtonBox = styled.div`
   width: 85%;
   display: flex;
   /* margin-right: 5% */
   justify-content: flex-end;
-`
+  
+`;
 
 export const LoginButton = styled("button")({
   padding: "10px 20px",
@@ -46,4 +53,5 @@ export const LoginButton = styled("button")({
   "&:hover": {
     backgroundColor: `${theme.colors.point.pointLight}`,
   },
+  
 });

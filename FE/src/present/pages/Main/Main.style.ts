@@ -23,7 +23,8 @@ export const Logo = styled("img")({
 });
 
 export const LoginButton = styled("button")({
-  width: "164px",
+  maxWidth: "164px",
+  width: "20vw",
   height: "55px",
   background: `${theme.colors.point.point}`,
   border: `1px solid ${theme.colors.point.point}`,
@@ -43,6 +44,12 @@ export const LogoText = styled("h1")({
   fontStyle: "normal",
   fontWeight: "500",
   fontSize: "20px",
+  "@media only screen and (max-width: 1024px)": {
+    fontSize: "17px",
+  },
+  "@media only screen and (max-width: 768px)": {
+    fontSize: "13px",
+  },
 });
 
 export const LogoRight = styled("img")({
