@@ -120,10 +120,6 @@ tensorflow-text==2.10.0
 termcolor==2.3.0
 tf-models-official==2.10.1
 thop==0.1.1.post2209072238
-torch==1.8.1+cu101
-torchaudio==0.8.1
-torchvision==0.9.1+cu101
-tornado==6.3
 tqdm==4.65.0
 traitlets==5.9.0
 typeguard==3.0.0
