@@ -15,7 +15,7 @@ const SecondPage = () => {
         <style.InnerBox>
           <style.SmallBox hidden={true}>
             <style.ColorBox
-              color={theme.colors.greyscale.point}
+              color={theme.colors.point.point}
             ></style.ColorBox>
             <style.TextBox>
               <style.BoxText1>AIoT</style.BoxText1>
@@ -54,7 +54,7 @@ const SecondPage = () => {
         <style.InnerBox>
           <style.SmallBox hidden={true}>
             <style.ColorBox
-              color={theme.colors.greyscale.pointLight}
+              color={theme.colors.point.pointLight}
             ></style.ColorBox>
             <style.TextBox>
               <style.BoxText1>정보와 함께 내용을 저장</style.BoxText1>

@@ -43,7 +43,7 @@ export const MainTextSecond = styled("h1")({
   fontSize: "9vw",
   lineHeight: "120%",
   margin: "0",
-  color: `${theme.colors.greyscale.point}`,
+  color: `${theme.colors.point.point}`,
   display: "inline-block",
   marginLeft: "7.5vw",
   textShadow: `2px 2px 2px gray;`,

@@ -144,7 +144,7 @@ export const BoxText2 = styled("p")({
   fontWeight: "500",
   fontSize: "1vw",
   lineHeight: "120%",
-  color: `${theme.colors.greyscale.point}`,
+  color: `${theme.colors.point.point}`,
 });
 
 export const LargeBox = styled("div")({

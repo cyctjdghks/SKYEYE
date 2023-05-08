@@ -13,7 +13,7 @@ export const ModalBox = styled("div")({
 
 export const ModalTitle = styled("h1")({
   textAlign: "center",
-  color: `${theme.colors.greyscale.point}`,
+  color: `${theme.colors.point.point}`,
   fontSize: "3vw",
 });
 
@@ -80,8 +80,8 @@ export const DeleteButton = styled("button")({
   alignItems: "center",
   justifyContent: "space-around",
   "&:hover": {
-    background: `${theme.colors.greyscale.pointLight}`,
-    border: `1px solid ${theme.colors.greyscale.pointLight}`,
+    background: `${theme.colors.point.pointLight}`,
+    border: `1px solid ${theme.colors.point.pointLight}`,
   },
   marginTop: "20%",
 });

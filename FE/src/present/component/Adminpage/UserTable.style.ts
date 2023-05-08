@@ -19,6 +19,6 @@ export const DataBox = styled("div")({
   },
   "&::-webkit-scrollbar-thumb": {
     borderRadius: "6px",
-    backgroundColor: `${theme.colors.greyscale.point}`,
+    backgroundColor: `${theme.colors.point.point}`,
   },
 });

@@ -13,7 +13,7 @@ export const LoginModalWrap = styled("div")({
 
 export const ModalTitle = styled("h1")({
   textAlign: "center",
-  color: `${theme.colors.greyscale.point}`,
+  color: `${theme.colors.point.point}`,
   fontSize: "50px",
   marginBottom: "5%",
   display: "flex"
@@ -38,12 +38,12 @@ export const ButtonBox = styled.div`
 export const LoginButton = styled("button")({
   padding: "10px 20px",
   border: "none",
-  backgroundColor: `${theme.colors.greyscale.point}`,
+  backgroundColor: `${theme.colors.point.point}`,
   borderRadius: "10px",
   color: `${theme.colors.greyscale.light3}`,
   fontWeight: "200",
   cursor: "pointer",
   "&:hover": {
-    backgroundColor: `${theme.colors.greyscale.pointLight}`,
+    backgroundColor: `${theme.colors.point.pointLight}`,
   },
 });
