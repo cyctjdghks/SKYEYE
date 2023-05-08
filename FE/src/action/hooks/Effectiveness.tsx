@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+import axios from "axios";
 
 // 입력 값 저장 및 유효성 검사 진행
 type DataInputReturn = [
@@ -28,7 +29,4 @@ export const DataInput = (regExp: RegExp): DataInputReturn => {
 
   return [inputData, handler, dataError];
 };
-
-
-
 

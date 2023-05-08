@@ -17,7 +17,7 @@ type ImgProps = {
 
 export const SecondPage = styled("div")({
   width: "100vw",
-  height: "100vh",
+  // height: "100vh",
   textAlign: "left",
   display: "flex",
   flexDirection: "column",
@@ -28,7 +28,7 @@ export const SecondPage = styled("div")({
 export const About = styled("div")({
   fontStyle: "normal",
   fontWeight: "300",
-  fontSize: "1vw",
+  fontSize: "1.5vw",
   lineHeight: "120%",
   paddingLeft: "7.5vw",
   marginTop: "3vh",
@@ -40,7 +40,7 @@ export const HrLine = styled("hr")({
 });
 
 export const PageText = styled("h1")({
-  fontSize: "5vw",
+  fontSize: "4.7vw",
   fontStyle: "normal",
   fontWeight: "300",
   lineHeight: "130%",
@@ -60,7 +60,10 @@ export const ImgBox = styled("div")({
   borderRadius: "8px",
   marginLeft: "7.5vw",
   marginBottom: "5vh",
+  marginTop: "2vh"
 });
+
+
 
 export const InnerBox = styled("div")({
   marginTop: "0.8%",

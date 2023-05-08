@@ -1,8 +1,9 @@
 import InputLabel from "@common/InputLabel/InputLabel";
-import { DataInput } from "@src/action/hooks/Effectiveness";
+import { DataInput} from "@src/action/hooks/Effectiveness";
 import * as style from "@src/present/component/Main/ModalContent.style";
 import PrimaryButton from "@src/present/common/Button/PrimaryButton";
 import { LoginUser, LoginAdmin } from "@src/action/hooks/authHooks";
+import { toastListState } from "@src/store/toast";
 import { useRecoilState } from "recoil";
 import { authState } from "@store/auth";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +16,7 @@ const ModalContent = () => {
   );
 
   const [auth, setAuth] = useRecoilState(authState);
+  const [toastList, setToastList] = useRecoilState(toastListState);
 
   const clickLogin = (event) => {
     event.preventDefault();
@@ -27,8 +29,19 @@ const ModalContent = () => {
               user: res.result,
               userType: 0,
             });
+            naviate("/admin");
+            const successAdminToast = {
+              type: "Success",
+              sentence: "로그인에 성공했습니다",
+            };
+            setToastList({ list: [...toastList.list, successAdminToast] });
+          } else {
+            const errorAdminToast = {
+              type: "Error",
+              sentence: "비밀번호를 확인해주세요",
+            };
+            setToastList({ list: [...toastList.list, errorAdminToast] });
           }
-          naviate("/admin");
         })
         .catch((err) => {
           console.log(err);
@@ -42,11 +55,23 @@ const ModalContent = () => {
               user: res.result,
               userType: 1,
             });
+            naviate("/flightinfo");
+            const successUserToast = {
+              type: "Success",
+              sentence: "로그인에 성공했습니다"
+            };
+            setToastList({ list: [...toastList.list, successUserToast] });
+          }else{
+            const errorUserToast = {
+              type: "Error",
+              sentence: "아이디와 비밀번호를 확인해주세요"
+            }
+            setToastList({ list: [...toastList.list, errorUserToast] });
           }
-          naviate("/flightinfo");
+
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
         });
     }
   };
