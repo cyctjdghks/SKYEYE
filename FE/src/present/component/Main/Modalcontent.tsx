@@ -2,7 +2,7 @@ import InputLabel from "@common/InputLabel/InputLabel";
 import { DataInput } from "@src/action/hooks/Effectiveness";
 import * as style from "@src/present/component/Main/ModalContent.style";
 import PrimaryButton from "@src/present/common/Button/PrimaryButton";
-import { LoginUser, LoginDrone, LoginAdmin } from "@src/action/hooks/authHooks";
+import { LoginUser, LoginAdmin } from "@src/action/hooks/authHooks";
 import { useRecoilState } from "recoil";
 import { authState } from "@store/auth";
 import { useNavigate } from "react-router-dom";
@@ -18,48 +18,36 @@ const ModalContent = () => {
 
   const clickLogin = (event) => {
     event.preventDefault();
-    if (id.slice(0,1) === "u") {
-      LoginUser(id, pwd).then((res) => {
-        if (res.isSuccess === true) {
-          setAuth({
-            isAuthenticated: true,
-            user: res.result,
-            userType: 1,
-          });
-        }
-        naviate("/flightinfo");
-      }).catch((err)=>{
-        console.log(err);
-        
-      });
-    } else if (id.slice(0,1)  === "d") {
-      LoginDrone(id, pwd).then((res) => {
-        if (res.isSuccess === true) {
-          setAuth({
-            isAuthenticated: true,
-            user: res.result,
-            userType: 2,
-          });
-        }
-        naviate("/drone");
-      }).catch((err)=>{
-        console.log(err);
-        
-      });
-    } else if (id === "skyadmin") {
-      LoginAdmin(id, pwd).then((res) => {
-        if (res.isSuccess === true) {
-          setAuth({
-            isAuthenticated: true,
-            user: res.result,
-            userType: 0,
-          });
-        }
-        naviate("/admin");
-      }).catch((err)=>{
-        console.log(err);
-        
-      });
+    if (id === "skyadmin") {
+      LoginAdmin(id, pwd)
+        .then((res) => {
+          if (res.isSuccess === true) {
+            setAuth({
+              isAuthenticated: true,
+              user: res.result,
+              userType: 0,
+            });
+          }
+          naviate("/admin");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      LoginUser(id, pwd)
+        .then((res) => {
+          if (res.isSuccess === true) {
+            setAuth({
+              isAuthenticated: true,
+              user: res.result,
+              userType: 1,
+            });
+          }
+          naviate("/flightinfo");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 
@@ -81,7 +69,7 @@ const ModalContent = () => {
           onChange={setId}
           errorFontSize="13px"
           errorMessage={
-            idError ? "" : "영어와 숫자로만 입력해주세요( 5~20 글자 )"
+            idError ? "" : "영어와 숫자로만 입력해주세요(5 ~ 20 글자)"
           }
         ></InputLabel>
         <InputLabel
@@ -96,7 +84,7 @@ const ModalContent = () => {
           errorMessage={
             pwdError
               ? ""
-              : "영어,숫자 특수문자를 하나이상 입력해주세요( 9~16 글자 )"
+              : "영어, 숫자 특수문자를 하나이상 입력해주세요(9 ~ 16 글자)"
           }
         ></InputLabel>
         <style.ButtonBox>
