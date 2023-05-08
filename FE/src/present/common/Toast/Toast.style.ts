@@ -32,22 +32,22 @@ export const fadeout = keyframes`
 export const typeObj = {
   Error: {
     icon: Error,
-    color: theme.colors.greyscale.pointWarning,
+    color: theme.colors.point.warning,
     main: "확인해주세요!",
   },
   Success: {
     icon: Success,
-    color: theme.colors.greyscale.point,
+    color: theme.colors.point.point,
     main: "성공했습니다!",
   },
   Info: {
     icon: Info,
-    color: theme.colors.greyscale.pointLight,
+    color: theme.colors.point.pointLight,
     main: "알려드립니다!",
   },
   Select: {
     icon: Select,
-    color: theme.colors.greyscale.pointLight,
+    color: theme.colors.point.pointLight,
     main: "알려드립니다!",
   },
 };

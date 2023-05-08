@@ -16,7 +16,7 @@ export const Container = styled.input`
 
   &:focus {
     outline: none !important;
-    border: solid 3px ${theme.colors.greyscale.point} !important;
+    border: solid 3px ${theme.colors.point.point} !important;
     color: ${theme.colors.greyscale.dark1};
   }
 `;

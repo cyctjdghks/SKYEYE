@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { theme } from "@src/constant/theme";
 
 export const PrimaryBtn = styled.button`
-  background-color: ${theme.colors.greyscale.point};
+  background-color: ${theme.colors.point.point};
   color: ${theme.colors.greyscale.light3};
   padding: 0.8rem 1rem;
   border: none;
@@ -20,7 +20,7 @@ export const PrimaryBtn = styled.button`
   }
 
   &:hover {
-    background-color: ${theme.colors.greyscale.pointLight};
+    background-color: ${theme.colors.point.pointLight};
     cursor: pointer;
   }
 
@@ -45,7 +45,7 @@ export const AddBtn = styled.button`
   font-size: 1.22rem;
   width: fit-content;
   min-width: 23rem;
-  background-color: ${theme.colors.greyscale.pointLight};
+  background-color: ${theme.colors.point.pointLight};
   color: ${theme.colors.greyscale.light3};
   padding: 0.8rem 1.2rem;
   border: none;
@@ -53,7 +53,7 @@ export const AddBtn = styled.button`
   box-shadow: ${theme.shadows.shadow2};
 
   &:hover {
-    background-color: ${theme.colors.greyscale.pointLight2};
+    background-color: ${theme.colors.point.pointLight2};
     cursor: pointer;
   }
 
@@ -103,9 +103,9 @@ export const BuildingBtn = styled.button`
   }
 
   &.Main {
-    background-color: ${theme.colors.greyscale.point};
+    background-color: ${theme.colors.point.point};
     color: ${theme.colors.greyscale.light3};
-    border: solid 1.5px ${theme.colors.greyscale.point};
+    border: solid 1.5px ${theme.colors.point.point};
     padding: 1.2rem;
 
     & > div:nth-of-type(1) {
@@ -131,7 +131,7 @@ export const BuildingBtn = styled.button`
         width: inherit;
 
         & > span:nth-of-type(1) {
-          color: ${theme.colors.greyscale.pointLight2};
+          color: ${theme.colors.point.pointLight2};
         }
 
         & > span:nth-of-type(2) {
@@ -165,9 +165,9 @@ export const CrackBtn = styled.button`
   }
 
   &.Sub {
-    background-color: ${theme.colors.greyscale.pointLight};
+    background-color: ${theme.colors.point.pointLight};
     color: ${theme.colors.greyscale.light3};
-    border: solid 1.5px ${theme.colors.greyscale.pointLight};
+    border: solid 1.5px ${theme.colors.point.pointLight};
     padding: 1.2rem;
 
     & > div:nth-of-type(1) {
@@ -190,7 +190,7 @@ export const CrackBtn = styled.button`
       width: 100%;
 
       & > span:nth-of-type(1) {
-        color: ${theme.colors.greyscale.point};
+        color: ${theme.colors.point.point};
       }
 
       & > span:nth-of-type(2) {

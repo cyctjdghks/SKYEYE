@@ -49,11 +49,11 @@ export const ToHomeBtn = styled.button`
   font-size: 20px;
   font-weight: 600;
   border-radius: 8px;
-  border: 1px ${theme.colors.greyscale.point} solid;
-  background-color: ${theme.colors.greyscale.point};
+  border: 1px ${theme.colors.point.point} solid;
+  background-color: ${theme.colors.point.point};
   color: ${theme.colors.greyscale.light3};
   &:hover{
-    background-color: ${theme.colors.greyscale.pointLight};
-    border: 1px ${theme.colors.greyscale.pointLight} solid;
+    background-color: ${theme.colors.point.pointLight};
+    border: 1px ${theme.colors.point.pointLight} solid;
   }
 `

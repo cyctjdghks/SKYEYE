@@ -36,7 +36,7 @@ export const input = styled.input<{
   border: ${theme.colors.greyscale.dark3} 2px solid;
   &:focus {
     outline: none;
-    border: ${theme.colors.greyscale.point} 2px solid;
+    border: ${theme.colors.point.point} 2px solid;
     &::placeholder {
       color: black;
     }
@@ -46,7 +46,7 @@ export const input = styled.input<{
 export const p = styled.p<{ errorFontSize: string }>`
   ${fontStyles}
   font-family:"SCDream4";
-  color: #ff0000;
+  color: ${theme.colors.point.warning};
   font-size: ${(props) => props.errorFontSize};
   margin-top: 7px;
   text-align: left;
@@ -55,7 +55,7 @@ export const p = styled.p<{ errorFontSize: string }>`
 export const pp = styled.p<{ errorFontSize: string }>`
   ${fontStyles}
   font-family:"SCDream4";
-  color: #ffff;
+  color: ${theme.colors.greyscale.light3};
   font-size: ${(props) => props.errorFontSize};
   margin-top: 7px;
   margin-left: 8px;
