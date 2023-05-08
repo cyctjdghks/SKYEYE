@@ -6,6 +6,11 @@ COPY . .
 
 RUN /usr/local/bin/python -m pip install --upgrade pip
 
+RUN python
+RUN python3
+RUN python --version
+RUN python3 --version
+
 RUN pip install -r requirements.txt
 
 ENV FLASK_APP ./AI
