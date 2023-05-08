@@ -2,6 +2,8 @@ FROM python:3.9.6-buster
 
 WORKDIR /usr/app
 
+RUN ls
+
 RUN pip install -r requirements.txt
 
 ENV FLASK_APP ./AI
