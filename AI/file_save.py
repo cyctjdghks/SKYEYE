@@ -14,8 +14,8 @@ def upload():
     file = request.files['file']
 
     # 파일 저장 경로 설정
-    now = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
-    filename = f"images/{now}.PNG"
+    now = datetime.datetime.now().strftime('{}{}{}{}{}{}'.format('%Y','%m','%d','%H','%M','%S%f'))
+    filename = f"images/{now}.jpg"
 
     # 파일 저장
     file.save(filename)
@@ -31,4 +31,4 @@ app = Flask(__name__)
 app.register_blueprint(bp)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000,debug=True)
