@@ -3,6 +3,7 @@ import * as style from "@src/present/pages/Main/Main.style";
 import Modal from "@common/Modal/Modal";
 import FirstPage from "@component/Main/FirstPage";
 import SecondPage from "@component/Main/SecondPage";
+import ThirdPage from "@src/present/component/Main/ThirdPage";
 import ModalContent from "@component/Main/Modalcontent";
 import logo from "@assets/main/logo.png";
 import right from "@assets/main/right.png";
@@ -44,8 +45,8 @@ const Main = () => {
             onClose={() => {
               setIsOpen(false);
             }}
-            width="50vw"
-            height="60vh"
+            width="35vw"
+            height="55vh"
             title="로그인"
             content={<ModalContent />}
           />
@@ -53,6 +54,7 @@ const Main = () => {
       </style.TopBox>
       <FirstPage />
       <SecondPage />
+      <ThirdPage/>
     </style.MainWrapper>
   );
 };
