@@ -25,16 +25,16 @@ export const Logo = styled("img")({
 export const LoginButton = styled("button")({
   width: "164px",
   height: "55px",
-  background: `${theme.colors.greyscale.point}`,
-  border: `1px solid ${theme.colors.greyscale.point}`,
+  background: `${theme.colors.point.point}`,
+  border: `1px solid ${theme.colors.point.point}`,
   borderRadius: "8px",
   cursor: "pointer",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-around",
   "&:hover": {
-    background: `${theme.colors.greyscale.pointLight}`,
-    border: `1px solid ${theme.colors.greyscale.pointLight}`,
+    background: `${theme.colors.point.pointLight}`,
+    border: `1px solid ${theme.colors.point.pointLight}`,
   },
 });
 

@@ -21,7 +21,7 @@ export const DataBox = styled("div")<DataProps>(
   (props) => ({
     background: `${
       props.selected
-        ? theme.colors.greyscale.pointLight
+        ? theme.colors.point.pointLight
         : theme.colors.greyscale.light3
     }`,
     color: `${

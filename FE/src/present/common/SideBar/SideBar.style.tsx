@@ -32,7 +32,7 @@ export const Wrapper = styled.div<OpenProps>`
 
 export const OpenButton = styled("div")<OpenProps>(
   {
-    background: `${theme.colors.greyscale.point}`,
+    background: `${theme.colors.point.point}`,
     width: "32px",
     height: "32px",
     borderRadius: "50%",

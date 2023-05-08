@@ -29,7 +29,7 @@ export const OptionContainer = styled.div`
 
     &:hover {
       width: calc(100% - 2rem);
-      background-color: ${theme.colors.greyscale.pointLight};
+      background-color: ${theme.colors.point.pointLight};
       color: ${theme.colors.greyscale.light3};
       border-radius: 0.5rem;
       padding: 0.8rem 0 0.8rem 1rem;
@@ -54,7 +54,7 @@ export const DropdownDiv = styled.div<{ clicked: boolean }>`
   border: solid
     ${(props) =>
       props.clicked
-        ? `3px ${theme.colors.greyscale.point}`
+        ? `3px ${theme.colors.point.point}`
         : `2px ${theme.colors.greyscale.dark3}`};
   padding: 0.8rem 1.2rem;
   border-radius: 0.5rem;
