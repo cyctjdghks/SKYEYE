@@ -4,9 +4,11 @@ import com.ssafy.skyeye.data.dto.request.CrackRegistDto;
 import com.ssafy.skyeye.data.dto.request.CrackUpdateDto;
 import com.ssafy.skyeye.data.dto.response.CrackDto;
 import com.ssafy.skyeye.data.entity.Crack;
+import com.ssafy.skyeye.data.entity.Folder;
 import com.ssafy.skyeye.data.entity.Image;
 import com.ssafy.skyeye.data.exception.ForbiddenException;
 import com.ssafy.skyeye.repository.CrackRepository;
+import com.ssafy.skyeye.repository.FolderRepository;
 import com.ssafy.skyeye.repository.ImageRepository;
 import com.ssafy.skyeye.service.CrackService;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,8 @@ import javax.transaction.Transactional;
 public class CrackServiceImpl implements CrackService {
     private final CrackRepository crackRepository;
 
+    private final FolderRepository folderRepository;
+
     private final ImageRepository imageRepository;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -29,6 +33,7 @@ public class CrackServiceImpl implements CrackService {
 
 
         Image image = getImageById(crackRegistDto.getImageId());
+        Folder folder = getFolderById(crackRegistDto.getFolderId());
 //        Building building = getBuildingById(crackRegistDto.getBuildingId());
 
 //        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -40,7 +45,7 @@ public class CrackServiceImpl implements CrackService {
                 .crackType(crackRegistDto.getCrackType())
                 .crackPosition(crackRegistDto.getCrackPosition())
                 .imageId(image)
-//                .buildingId(building)
+                .folderId(folder)
                 .build();
 
         crackRepository.save(crack);
@@ -92,6 +97,11 @@ public class CrackServiceImpl implements CrackService {
         return crackRepository.findById(crackId)
                 .orElseThrow(() -> new ForbiddenException("아이디가 없습니다."));
 
+    }
+
+    public Folder getFolderById(Long folderId){
+        return folderRepository.findById(folderId)
+                .orElseThrow(() -> new ForbiddenException("아이디가 없습니다."));
     }
 
 }

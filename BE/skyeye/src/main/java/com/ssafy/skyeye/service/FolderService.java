@@ -16,7 +16,7 @@ public interface FolderService {
     List<ImageDto> getImageByFolder(String userId, long folderId);
     List<FolderDto> getFolderByDate(String userId, String dateTime);
     CountCrackDto getCountCrackByFolder(long folderId);
-    List<ImageDto> getImageByFoderCrack(String userId, long folderId, int crackType);
+    List<ImageDto> getImageByFoderCrack(String userId, long folderId, String crackType);
     FolderDto getFolder(long folderId);
     ImageDto getImage(long imageId);
 }
