@@ -76,7 +76,7 @@ public class FolderServiceImpl implements FolderService {
     }
 
     @Override
-    public List<FolderDto> getAllFolder(String userId) {
+    public List<FolderDto> getFolderByUserId(String userId) {
 
         return folderRepository.findAll().stream()
                 .filter(folder -> folder.getUserId().getUserId().equals(userId))
@@ -105,7 +105,7 @@ public class FolderServiceImpl implements FolderService {
     }
 
     @Override
-    public CountCrackDto getCountCrackByFolder(long folderId) {
+    public CountCrackDto getCountCrackByFolderId(long folderId) {
         CountCrackDto countCrackDto = new CountCrackDto();
 
         int type1 = (int) crackRepository.findAll().stream()
@@ -127,7 +127,7 @@ public class FolderServiceImpl implements FolderService {
     }
 
     @Override
-    public List<ImageDto> getImageByFoderCrack(String userId, long folderId, String crackType) {
+    public List<ImageDto> getImageByFoderCrackType(String userId, long folderId, String crackType) {
         return crackRepository.findAll().stream()
                 .filter(crack -> crack.getFolderId().getUserId().getUserId().equals(userId))
                 .filter(crack -> crack.getFolderId().getFolderId().equals(folderId))
