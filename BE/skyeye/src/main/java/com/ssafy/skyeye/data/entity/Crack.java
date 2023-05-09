@@ -23,5 +23,7 @@ public class Crack extends BaseEntity{
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "imageId", nullable = false)
     private Image imageId;
-
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "folderId", nullable = false)
+    private Folder folderId;
 }
