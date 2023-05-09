@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -23,6 +24,8 @@ public class Folder extends BaseEntity {
     private String folderName;
     @Column(name = "folder_memo", length = 100)
     private String folderMemo;
+    @Column(name = "folder_built")
+    private LocalDateTime folderBuilt;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     @JoinColumn(name = "userId", nullable = false)
     private User userId;
