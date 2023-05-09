@@ -7,7 +7,7 @@ import { useRecoilState } from "recoil";
 import PrimeTitle from "@src/present/common/PrimeTitle/PrimeTitle";
 import PrimaryButton from "@src/present/common/Button/PrimaryButton";
 import AddButton from "@src/present/common/Button/AddButton";
-import BuildingDropdown from "@src/present/component/BuildingDropdown/BuildingDropdown";
+import BuildingDropdown from "@src/present/component/FolderDropdown/FolderDropdown";
 import Modal from "@src/present/common/Modal/Modal";
 import AddBuildingModal from "../AddBuildingModal/AddBuildingModal";
 import { getBuildingList } from "@src/action/api/Building";

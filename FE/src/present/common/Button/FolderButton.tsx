@@ -1,21 +1,23 @@
 import React, { memo, useEffect, useState } from "react";
-import { BuildingBtn } from "./Button.style";
+import { FolderBtn } from "./Button.style";
 import Arrow from "@assets/button/arrow.png";
-import { Building } from "@src/types/FlightInfo";
+import { Folder } from "@src/types/FlightInfo";
 import { getUserInfo } from "@src/action/api/User";
 
-type BuildingButtonProps = {
-  content: Building;
+type FolderButtonProps = {
+  content: Folder;
   handler: any;
   isSelected: boolean;
 };
 
-const BuildingButton = ({
+const FolderButton = ({
   content,
   handler,
   isSelected,
-}: BuildingButtonProps) => {
+}: FolderButtonProps) => {
   const [userName, setUserName] = useState("");
+
+  console.log(content)
 
   useEffect(() => {
     getUserInfo(content.userId).then((res) => {
@@ -23,34 +25,32 @@ const BuildingButton = ({
     });
   }, [content]);
 
-  // 건축 일자 가공
-  const setEstablishment = content.buildingEstablishment
-    .slice(0, 10)
-    .split("-")
-    .join(".");
-
   const subContent = (
     <div>
       <div>
-        <span>건축일자</span>
-        <span>{setEstablishment}</span>
+        <span>사진 수</span>
+        <span>장</span>
       </div>
       <div>
-        <span>건축구조사</span>
-        <span>{userName}</span>
+        <span>마지막 업로드</span>
+        <span>{content.updateTime}</span>
+      </div>
+      <div>
+        <span>설명</span>
+        <span>{content.folderMemo}</span>
       </div>
     </div>
   );
 
   return (
-    <BuildingBtn className={isSelected && "Main"} onClick={handler}>
+    <FolderBtn className={isSelected && "Main"} onClick={handler}>
       <div>
-        {content.buildingName}
+        {content.folderName}
         {isSelected && <img src={Arrow} alt={"select Crack type"} />}
       </div>
       {isSelected && subContent}
-    </BuildingBtn>
+    </FolderBtn>
   );
 };
 
-export default memo(BuildingButton);
+export default memo(FolderButton);

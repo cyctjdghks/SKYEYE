@@ -80,7 +80,7 @@ export const DefaultBtn = styled.button`
   }
 `;
 
-export const BuildingBtn = styled.button`
+export const FolderBtn = styled.button`
   padding: 0.8rem 1.2rem;
   font-family: "SCDream5";
   font-size: 1.25rem;

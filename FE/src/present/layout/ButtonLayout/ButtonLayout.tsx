@@ -1,12 +1,12 @@
 import React, { memo } from "react";
 import * as Style from "./ButtonLayout.style";
-import BuildingButton from "@src/present/common/Button/BuildingButton";
-import { Building, Crack } from "@src/types/FlightInfo";
+import FolderButton from "@src/present/common/Button/FolderButton";
+import { Crack, Folder } from "@src/types/FlightInfo";
 import CrackButton from "@src/present/common/Button/CrackButton";
 import NullData from "@src/present/component/NullData/NullData";
 
 type ButtonLayout = {
-  list: Array<Building | Crack>;
+  list: Array<Folder | Crack>;
   selected: number | null;
   handler: Function;
   type: string;
@@ -17,9 +17,9 @@ const ButtonLayout = ({ list, selected, handler, type }) => {
     const isSelected = selected === idx ? true : false;
 
     switch (type) {
-      case "building":
+      case "folder":
         return (
-          <BuildingButton
+          <FolderButton
             content={elem}
             isSelected={isSelected}
             handler={() => handler(idx)}

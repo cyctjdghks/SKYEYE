@@ -1,45 +1,62 @@
-import React, {useState, useEffect, memo} from "react";
-import * as Style from "./AllPictures.style";
-import { Building, Crack } from "@src/types/FlightInfo";
+import React, { useState, useEffect, memo } from "react";
+import * as Style from "./Pictures.style";
 import ButtonLayout from "@src/present/layout/ButtonLayout/ButtonLayout";
 import SubTitle from "@src/present/common/SubTitle/SubTitle";
-import { getBuildingList } from "@src/action/api/Building";
 import { getCrackList } from "@src/action/api/Crack";
 import { useLocation } from "react-router-dom";
-
+import { getFolders } from "@src/action/api/Pictures";
 
 const AllPictures = () => {
   const location = useLocation().state;
-  console.log(location)
-  const [building, setBuilding] = useState<number | null>(null);
+  const [folder, setFolder] = useState<number | null>(null);
   const [crack, setCrack] = useState<number | null>(null);
 
   // List
-  const [buildingList, setBuildingList] = useState([]);
+  const [folderList, setFolderList] = useState([]);
   const [crackList, setCrackList] = useState([]);
 
   useEffect(() => {
-    getBuildingList("jhpdrone").then((res) => {
-      if (res.isSuccess) {
-        setBuildingList([...res.result]);
-      }
-    });
+    if (location !== null) {
+      const dayOfWeek = {
+        Jan: "01",
+        Feb: "02",
+        Mar: "03",
+        Apr: "04",
+        May: "05",
+        Jun: "06",
+        Jul: "07",
+        Aug: "08",
+        Sep: "09",
+        Oct: "10",
+        Nov: "11",
+        Dec: "12",
+      };
+      getFolders(
+        "jhp1276",
+        [location[3], dayOfWeek[location[1]], location[2]].join("-")
+      ).then((res) => {
+        if (res.isSuccess) {
+          console.log(res.result)
+          setFolderList([...res.result]);
+        }
+      });
+    }
   }, []);
 
   useEffect(() => {
-    if (building !== null) {
-      getCrackList(building).then((res) => {
+    if (folder !== null) {
+      getCrackList(folder).then((res) => {
         if (res.isSuccess) {
           console.log(res);
           setCrackList([...res.result]);
         }
       });
     }
-  }, [building]);
+  }, [folder]);
 
   // Handler
-  const bulidingHandler = (idx: number) => {
-    setBuilding(idx);
+  const folderHandler = (idx: number) => {
+    setFolder(idx);
   };
 
   const crackHandler = (idx: number) => {
@@ -48,7 +65,7 @@ const AllPictures = () => {
 
   // Sentence
   const guidence = () => {
-    if (building === null) {
+    if (folder === null) {
       return (
         <>
           폴더를
@@ -73,13 +90,13 @@ const AllPictures = () => {
       <div>
         <SubTitle content="폴더명" />
         <ButtonLayout
-          list={buildingList}
-          type={"building"}
-          selected={building}
-          handler={bulidingHandler}
+          list={folderList}
+          type={"folder"}
+          selected={folder}
+          handler={folderHandler}
         />
       </div>
-      {building !== null && (
+      {folder !== null && (
         <div>
           <SubTitle content="균열 유형" />
           <ButtonLayout

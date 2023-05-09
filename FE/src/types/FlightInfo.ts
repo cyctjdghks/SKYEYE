@@ -6,6 +6,16 @@ export type Building = {
   buildingAddress: string;
 };
 
+export type Folder = {
+  folderId: number;
+  folderName: string;
+  folderMemo: string;
+  folderBuilt: string;
+  userId: string;
+  createTime: string;
+  updateTime: string;
+};
+
 export type Crack = {
   crackId: number;
   crackType: String;
@@ -23,7 +33,11 @@ export type AboutBuilding = {
 
 export type InputBuilding = { buildingId: number | null; buildingName: string };
 
-type CrackCapture = { crackType: String; crackPosition: String; buildingId: number };
+type CrackCapture = {
+  crackType: String;
+  crackPosition: String;
+  buildingId: number;
+};
 
 export type Capture = {
   profile: any;

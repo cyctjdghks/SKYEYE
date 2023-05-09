@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import * as Style from "./BuildingDropdown.style";
+import * as Style from "./FolderDropdown.style";
 import Arrow from "@assets/dropdown/arrow.png";
 import HoverArrow from "@assets/button/arrow.png";
 import { Building, InputBuilding } from "@src/types/FlightInfo";
