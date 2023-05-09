@@ -59,7 +59,7 @@ export const ImgBox = styled("div")({
   justifyContent: "center",
   borderRadius: "8px",
   marginLeft: "7.5vw",
-  marginBottom: "5vh",
+  marginBottom: "3vh",
   marginTop: "2vh"
 });
 
@@ -107,7 +107,6 @@ export const LargeBoxImg = styled("img")<ImgProps>({
   height: "82%",
   borderRadius: "8px",
   marginTop: "4%",
-  backgroundImage: `url(${main03})`,
   backgroundPosition: "center",
   backgroundSize: "cover",
 },

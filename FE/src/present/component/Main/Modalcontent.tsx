@@ -35,7 +35,7 @@ const ModalContent = () => {
               sentence: "로그인에 성공했습니다",
             };
             setToastList({ list: [...toastList.list, successAdminToast] });
-          } else {
+          } else { 
             const errorAdminToast = {
               type: "Error",
               sentence: "비밀번호를 확인해주세요",
@@ -43,9 +43,6 @@ const ModalContent = () => {
             setToastList({ list: [...toastList.list, errorAdminToast] });
           }
         })
-        .catch((err) => {
-          console.log(err);
-        });
     } else {
       LoginUser(id, pwd)
         .then((res) => {
