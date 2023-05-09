@@ -26,7 +26,7 @@ public class CrackDto {
                 // 이미지는 null이 들어올 수 있음
                 .imageSrc(crack.getImageId()==null ? null : crack.getImageId().getStoredFileName())
                 // 빌딩이름은 null이 안됨
-                .buildingName(crack.getBuildingId().getBuildingName())
+//                .buildingName(crack.getBuildingId().getBuildingName())
                 .build();
     }
 }

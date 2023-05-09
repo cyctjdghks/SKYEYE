@@ -3,16 +3,13 @@ package com.ssafy.skyeye.service.impl;
 import com.ssafy.skyeye.data.dto.request.CrackRegistDto;
 import com.ssafy.skyeye.data.dto.request.CrackUpdateDto;
 import com.ssafy.skyeye.data.dto.response.CrackDto;
-import com.ssafy.skyeye.data.entity.Building;
 import com.ssafy.skyeye.data.entity.Crack;
 import com.ssafy.skyeye.data.entity.Image;
 import com.ssafy.skyeye.data.exception.ForbiddenException;
-import com.ssafy.skyeye.repository.BuildingRepository;
 import com.ssafy.skyeye.repository.CrackRepository;
 import com.ssafy.skyeye.repository.ImageRepository;
 import com.ssafy.skyeye.service.CrackService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -24,9 +21,6 @@ public class CrackServiceImpl implements CrackService {
 
     private final ImageRepository imageRepository;
 
-    private final BuildingRepository buildingRepository;
-
-
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Override
@@ -35,7 +29,7 @@ public class CrackServiceImpl implements CrackService {
 
 
         Image image = getImageById(crackRegistDto.getImageId());
-        Building building = getBuildingById(crackRegistDto.getBuildingId());
+//        Building building = getBuildingById(crackRegistDto.getBuildingId());
 
 //        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
 //        if(!jwtId.equals(building.getUserId().getUserId()) && !jwtId.equals("admin")) {
@@ -46,7 +40,7 @@ public class CrackServiceImpl implements CrackService {
                 .crackType(crackRegistDto.getCrackType())
                 .crackPosition(crackRegistDto.getCrackPosition())
                 .imageId(image)
-                .buildingId(building)
+//                .buildingId(building)
                 .build();
 
         crackRepository.save(crack);
@@ -100,8 +94,4 @@ public class CrackServiceImpl implements CrackService {
 
     }
 
-    public Building getBuildingById(Long buildingId){
-        return buildingRepository.findById(buildingId)
-                .orElseThrow(() -> new ForbiddenException("건물이 없습니다."));
-    }
 }

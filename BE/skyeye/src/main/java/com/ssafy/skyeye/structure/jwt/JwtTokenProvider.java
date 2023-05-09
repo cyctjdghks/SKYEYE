@@ -1,7 +1,6 @@
 package com.ssafy.skyeye.structure.jwt;
 
 import com.ssafy.skyeye.data.dto.request.UserCustomDetails;
-import com.ssafy.skyeye.data.dto.response.DroneDto;
 import com.ssafy.skyeye.data.dto.response.UserDto;
 import com.ssafy.skyeye.data.exception.UnAuthorizationException;
 import io.jsonwebtoken.Claims;
@@ -44,16 +43,6 @@ public class JwtTokenProvider {
     }
 
     // 토큰 생성
-    public String createToken(DroneDto dto){
-        log.info("{} 메서드 실행", Thread.currentThread().getStackTrace()[1].getMethodName());
-
-        Claims claims = Jwts.claims().setSubject(dto.getDroneId());
-        claims.put("id", dto.getDroneId());
-        claims.put("role", "DRONE");
-
-        return creater(claims);
-    }
-
     public String createToken(UserDto dto){
         log.info("{} 메서드 실행", Thread.currentThread().getStackTrace()[1].getMethodName());
 
