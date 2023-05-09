@@ -110,7 +110,7 @@ public class FolderController {
     @GetMapping("/get/folder/crack/{userId}/{folderId}/{crackType}")
     public ResponseEntity<?> getImageByFoderCrack(@PathVariable String userId,
                                                   @PathVariable long folderId,
-                                                  @PathVariable int crackType) {
+                                                  @PathVariable String crackType) {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", userId);
         log.info("입력 데이터 : {}", folderId);
