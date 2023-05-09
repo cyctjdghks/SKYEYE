@@ -5,7 +5,8 @@ import { useRecoilState } from "recoil";
 import { adminState } from "@src/store/admin";
 import * as style from "@src/present/component/Adminpage/RegistModalContent.style";
 import PrimaryButton from "@common/Button/PrimaryButton";
-import { RegistUser, FindUserAll } from "@src/action/hooks/authHooks";
+import { RegistUser } from "@src/action/hooks/User";
+import { FindUserAll } from "@src/action/hooks/Admin";
 import { toastListState } from "@src/store/toast";
 
 type UserInfo = {

@@ -10,8 +10,8 @@ import PrimaryButton from "@common/Button/PrimaryButton";
 import {
   UpdateUser,
   DeleteUser,
-  FindUserAll,
-} from "@src/action/hooks/authHooks";
+} from "@src/action/hooks/User";
+import { FindUserAll } from "@src/action/hooks/Admin";
 import DeleteButton from "@src/present/common/Button/DeleteButton";
 
 type UserInfo = {
