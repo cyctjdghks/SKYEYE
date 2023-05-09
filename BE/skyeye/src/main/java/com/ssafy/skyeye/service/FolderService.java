@@ -12,11 +12,11 @@ public interface FolderService {
     void registFolder(FolderRegistDto folderRegistDto);
     void updateFolder(FolderUpdateDto folderUpdateDto);
     void deleteFolder(long folderId);
-    List<FolderDto> getAllFolder(String userId);
+    List<FolderDto> getFolderByUserId(String userId);
     List<ImageDto> getImageByFolder(String userId, long folderId);
     List<FolderDto> getFolderByDate(String userId, String dateTime);
-    CountCrackDto getCountCrackByFolder(long folderId);
-    List<ImageDto> getImageByFoderCrack(String userId, long folderId, String crackType);
+    CountCrackDto getCountCrackByFolderId(long folderId);
+    List<ImageDto> getImageByFoderCrackType(String userId, long folderId, String crackType);
     FolderDto getFolder(long folderId);
     ImageDto getImage(long imageId);
 }
