@@ -1,9 +1,6 @@
 package com.ssafy.skyeye.data.dto.request;
 
 
-import com.ssafy.skyeye.data.dto.response.DroneDto;
-import com.ssafy.skyeye.data.dto.response.UserDto;
-import com.ssafy.skyeye.data.exception.UnAuthorizationException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
