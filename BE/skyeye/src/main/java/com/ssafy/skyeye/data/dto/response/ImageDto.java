@@ -24,8 +24,8 @@ public class ImageDto {
                 .originalFileName(image.getOriginalFileName())
                 .storedFileName(image.getStoredFileName())
                 .fileSize(image.getFileSize())
-                .createTime(image.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyyMMdd")))
-                .updateTime(image.getUpdatedAt().format(DateTimeFormatter.ofPattern("yyyyMMdd")))
+                .createTime(image.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+                .updateTime(image.getUpdatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
                 .build();
     }
 }
