@@ -11,5 +11,6 @@ public class FolderUpdateDto {
     private Long folderId;
     private String folderName;
     private String folderMemo;
+    private String folderBuilt;
     private String userId;
 }
