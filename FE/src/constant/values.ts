@@ -5,7 +5,7 @@ const WeatherAPI = "https://api.openweathermap.org/data/2.5/weather"
 const path = {
   main: "/",
   drone: "/drone/*",
-  picture: "/picture",
+  picture: "/picture/*",
   flightinfo: "/flightinfo",
   admin: "/admin"
 }
