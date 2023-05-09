@@ -2,9 +2,8 @@ import React, { memo, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import SideBar from "@common/SideBar/SideBar";
 import SideContent from "@layout/SideContent/SideContent";
-import SelectBuilding from "@src/present/layout/SelectBuilding/SelectBuilding";
-import { urls } from "@src/constant/values";
-import DroneCamera from "@src/present/layout/DroneCamera/DroneCamera";
+import SelectFolder from "@src/present/layout/SelectFolder/SelectFolder";
+import AddPicture from "@src/present/layout/AddPicture/AddPicture";
 
 const Drone = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -12,7 +11,7 @@ const Drone = () => {
   const navigate = useNavigate();
 
   const titleProps =
-    location.pathname === "/drone/camera"
+    location.pathname === "/drone/addpicture"
       ? {
           isButton: true,
           btnInfo: {
@@ -30,8 +29,8 @@ const Drone = () => {
       <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />
       <SideContent isOpen={isOpen} titleProps={titleProps}>
         <Routes>
-          <Route path={"/"} element={<SelectBuilding />} />
-          <Route path={"/camera"} element={<DroneCamera />} />
+          <Route path={"/"} element={<SelectFolder />} />
+          <Route path={"/addpicture"} element={<AddPicture />} />
         </Routes>
       </SideContent>
     </>

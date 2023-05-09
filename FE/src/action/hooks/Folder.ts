@@ -1,40 +1,14 @@
 import { getAsync, postAsync, putAsync, deleteAsync } from "@action/api/api";
-
+import { AboutFolder } from "@src/types/FlightInfo";
 // regist Folder
-export const RegistFolder = async (
-  folderName: string,
-  userId: string,
-  folderMemo: string,
-  folderBuilt: string
-) => {
-  const response = await postAsync(
-    "/folder/regist",
-    { folderName, userId, folderMemo, folderBuilt },
-    {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    }
-  );
+export const RegistFolder = async (folderInfo: AboutFolder) => {
+  const response = await postAsync("/folder/regist", folderInfo);
   return response;
 };
 
 // update Folder
-export const UpdateFolder = async (
-  folderName: string,
-  userId: string,
-  folderMemo: string,
-  folderBuilt: string
-) => {
-  const response = await putAsync(
-    "/folder/update",
-    { folderName, userId, folderMemo, folderBuilt },
-    {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    }
-  );
+export const UpdateFolder = async (folderInfo: AboutFolder) => {
+  const response = await putAsync("/folder/update", folderInfo);
   return response;
 };
 
