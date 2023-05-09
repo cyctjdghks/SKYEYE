@@ -5,9 +5,12 @@ import ButtonLayout from "@src/present/layout/ButtonLayout/ButtonLayout";
 import SubTitle from "@src/present/common/SubTitle/SubTitle";
 import { getBuildingList } from "@src/action/api/Building";
 import { getCrackList } from "@src/action/api/Crack";
+import { useLocation } from "react-router-dom";
 
 
 const AllPictures = () => {
+  const location = useLocation().state;
+  console.log(location)
   const [building, setBuilding] = useState<number | null>(null);
   const [crack, setCrack] = useState<number | null>(null);
 

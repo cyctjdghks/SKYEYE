@@ -16,8 +16,11 @@ import {
 } from "date-fns";
 
 import Next from "@assets/button/next.png";
+import PrimaryButton from "@src/present/common/Button/PrimaryButton";
+import { useNavigate } from "react-router-dom";
 
 const Calendar = () => {
+  const navigate = useNavigate();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -36,8 +39,11 @@ const Calendar = () => {
   };
 
   const onDateClick = (day) => {
-    console.log(day)
     setSelectedDate(day);
+  };
+
+  const moveTo = () => {
+    navigate("/picture/all", { state: selectedDate });
   };
 
   /* Component */
@@ -56,6 +62,9 @@ const Calendar = () => {
   let day = startDate;
   let dayRow = new Array(7);
   let formattedDate = "";
+  const selectedForComparison = JSON.stringify(
+    selectedDate.toString().split(" ").slice(0, 4)
+  );
 
   //   그 달 처음부터 끝까지
   while (day <= endDate) {
@@ -64,18 +73,22 @@ const Calendar = () => {
       formattedDate = format(day, "d");
 
       const cloneday = day;
-      const classList = [];      
+      const classList = [];
+
+      const dayForComparison = JSON.stringify(
+        day.toString().split(" ").slice(0, 4)
+      );
 
       if (!isSameMonth(day, monthStart)) {
-        classList.push('disabled');
-      } else if (day.toString() == selectedDate.toString()) {
-        classList.push('selected')
+        classList.push("disabled");
+      } else if (dayForComparison == selectedForComparison) {
+        classList.push("selected");
       }
 
       dayRow[i] = (
         <Style.Day
           key={formattedDate}
-          className={`days ${classList.join(' ')}`}
+          className={`days ${classList.join(" ")}`}
           onClick={() => onDateClick(cloneday)}
         >
           <span>{formattedDate}</span>
@@ -115,6 +128,13 @@ const Calendar = () => {
         </Style.Body>
 
         {/* Footer */}
+        <Style.Footer>
+          <PrimaryButton
+            content={"사진 보기"}
+            isArrow={true}
+            handler={moveTo}
+          />
+        </Style.Footer>
       </Style.Wrapper>
     </Style.Container>
   );

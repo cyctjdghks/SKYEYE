@@ -1,6 +1,19 @@
 import styled from "@emotion/styled";
 import { theme } from "@src/constant/theme";
 
+export const Footer = styled.div`
+  width: 100%;
+
+  display: flex;
+  justify-content: flex-end;
+
+  margin: 1rem;
+
+  * {
+    font-size: 1rem;
+  }
+`
+
 export const Day = styled.div`
   color: ${theme.colors.greyscale.dark3};
   font-family: "SCDream5";
