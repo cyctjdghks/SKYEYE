@@ -18,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -31,7 +32,7 @@ public class FolderServiceImpl implements FolderService {
     private final UserRepository userRepository;
     private final CrackRepository crackRepository;
 
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -43,7 +44,7 @@ public class FolderServiceImpl implements FolderService {
         Folder folder = Folder.builder()
                 .folderName(folderRegistDto.getFolderName())
                 .folderMemo(folderRegistDto.getFolderMemo())
-                .folderBuilt(LocalDateTime.parse(folderRegistDto.getFolderBuilt(), formatter))
+                .folderBuilt(LocalDate.parse(folderRegistDto.getFolderBuilt(), formatter).atStartOfDay())
                 .userId(user)
                 .build();
 
@@ -61,7 +62,7 @@ public class FolderServiceImpl implements FolderService {
 
         folder.setFolderName(folderUpdateDto.getFolderName());
         folder.setFolderMemo(folderUpdateDto.getFolderMemo());
-        folder.setFolderBuilt(LocalDateTime.parse(folderUpdateDto.getFolderBuilt(), formatter));
+        folder.setFolderBuilt(LocalDate.parse(folderUpdateDto.getFolderBuilt(), formatter).atStartOfDay());
         folder.setUserId(user);
 
     }
@@ -78,7 +79,7 @@ public class FolderServiceImpl implements FolderService {
     public List<FolderDto> getAllFolder(String userId) {
 
         return folderRepository.findAll().stream()
-                .filter(folder -> folder.getUserId().equals(userId))
+                .filter(folder -> folder.getUserId().getUserId().equals(userId))
                 .map(FolderDto::entityToDto)
                 .collect(Collectors.toList());
     }
@@ -97,7 +98,7 @@ public class FolderServiceImpl implements FolderService {
     public List<FolderDto> getFolderByDate(String userId, String dateTime) {
 
         return folderRepository.findAll().stream()
-                .filter(folder -> folder.getUserId().equals(userId))
+                .filter(folder -> folder.getUserId().getUserId().equals(userId))
                 .filter(folder -> folder.getFolderBuilt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).equals(dateTime))
                 .map(FolderDto::entityToDto)
                 .collect(Collectors.toList());
