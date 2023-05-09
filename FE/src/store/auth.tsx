@@ -2,9 +2,11 @@ import { atom } from "recoil";
 import localStorageEffect from "@src/constant/localStorage";
 
 interface User {
-  id: string;
-  name: string;
-  type: number;
+  imageSrc: string;
+  userId: string;
+  userName: string;
+  userPhoneNumber: string;
+  userPosition: string;
 }
 
 

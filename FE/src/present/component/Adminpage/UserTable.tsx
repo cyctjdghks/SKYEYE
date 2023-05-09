@@ -3,7 +3,7 @@ import { adminState, selectedIdxState } from "@src/store/admin";
 import { useState, useEffect } from "react";
 import * as style from "@src/present/component/Adminpage/UserTable.style";
 import EmployeeData from "@src/present/component/Employeedata/EmployeeData";
-import { FindUserAll } from "@src/action/hooks/authHooks";
+import { FindUserAll } from "@src/action/hooks/Admin";
 
 const UserTable = () => {
   const [users, setUsers] = useRecoilState(adminState);

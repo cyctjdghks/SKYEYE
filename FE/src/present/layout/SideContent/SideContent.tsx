@@ -17,7 +17,7 @@ type SideContentProps = {
 const SideContent = ({ isOpen, titleProps, children }: SideContentProps) => {
   const pathname = useLocation().pathname;
   const title = pathname.includes("drone")
-    ? "드론 영상 보기"
+    ? "사진 추가 하기"
     : "저장된 사진 보기";
 
   return (

@@ -7,7 +7,7 @@ import ThirdPage from "@src/present/component/Main/ThirdPage";
 import ModalContent from "@component/Main/Modalcontent";
 import logo from "@assets/main/logo.png";
 import right from "@assets/main/right.png";
-import getWeather from "@src/action/hooks/getWeather";
+import { GetWeather } from "@action/hooks/GetWeather";
 
 const Main = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -27,7 +27,7 @@ const Main = () => {
 
   const logWeather = () =>{
     getPosition();
-    getWeather(lat, lng).then((res) => {
+    GetWeather(lat, lng).then((res) => {
       console.log(res.result);
       
     });

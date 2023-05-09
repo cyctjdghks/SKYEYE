@@ -1,8 +1,9 @@
 import InputLabel from "@common/InputLabel/InputLabel";
-import { DataInput} from "@src/action/hooks/Effectiveness";
+import { DataInput } from "@src/action/hooks/Effectiveness";
 import * as style from "@src/present/component/Main/ModalContent.style";
 import PrimaryButton from "@src/present/common/Button/PrimaryButton";
-import { LoginUser, LoginAdmin } from "@src/action/hooks/authHooks";
+import { LoginUser } from "@src/action/hooks/User";
+import { LoginAdmin } from "@src/action/hooks/Admin";
 import { toastListState } from "@src/store/toast";
 import { useRecoilState } from "recoil";
 import { authState } from "@store/auth";
@@ -21,28 +22,27 @@ const ModalContent = () => {
   const clickLogin = (event) => {
     event.preventDefault();
     if (id === "skyadmin") {
-      LoginAdmin(id, pwd)
-        .then((res) => {
-          if (res.isSuccess === true) {
-            setAuth({
-              isAuthenticated: true,
-              user: res.result,
-              userType: 0,
-            });
-            naviate("/admin");
-            const successAdminToast = {
-              type: "Success",
-              sentence: "로그인에 성공했습니다",
-            };
-            setToastList({ list: [...toastList.list, successAdminToast] });
-          } else { 
-            const errorAdminToast = {
-              type: "Error",
-              sentence: "비밀번호를 확인해주세요",
-            };
-            setToastList({ list: [...toastList.list, errorAdminToast] });
-          }
-        })
+      LoginAdmin(id, pwd).then((res) => {
+        if (res.isSuccess === true) {
+          setAuth({
+            isAuthenticated: true,
+            user: res.result,
+            userType: 0,
+          });
+          naviate("/admin");
+          const successAdminToast = {
+            type: "Success",
+            sentence: "로그인에 성공했습니다",
+          };
+          setToastList({ list: [...toastList.list, successAdminToast] });
+        } else {
+          const errorAdminToast = {
+            type: "Error",
+            sentence: "비밀번호를 확인해주세요",
+          };
+          setToastList({ list: [...toastList.list, errorAdminToast] });
+        }
+      });
     } else {
       LoginUser(id, pwd)
         .then((res) => {
@@ -55,17 +55,16 @@ const ModalContent = () => {
             naviate("/flightinfo");
             const successUserToast = {
               type: "Success",
-              sentence: "로그인에 성공했습니다"
+              sentence: "로그인에 성공했습니다",
             };
             setToastList({ list: [...toastList.list, successUserToast] });
-          }else{
+          } else {
             const errorUserToast = {
               type: "Error",
-              sentence: "아이디와 비밀번호를 확인해주세요"
-            }
+              sentence: "아이디와 비밀번호를 확인해주세요",
+            };
             setToastList({ list: [...toastList.list, errorUserToast] });
           }
-
         })
         .catch((err) => {
           // console.log(err);
