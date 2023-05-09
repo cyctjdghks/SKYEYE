@@ -10,10 +10,10 @@ bp = Blueprint('main', __name__, url_prefix='/api')
 np.set_printoptions(suppress=True)
 
 # Load the model
-model = load_model("/usr/app/AI/keras_Model.h5", compile=False)
+model = load_model("keras_Model.h5", compile=False)
 
 
-class_names = open("/usr/app/AI/labels.txt", "r").readlines()
+class_names = open("labels.txt", "r").readlines()
 
 
 data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
