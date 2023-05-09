@@ -20,11 +20,6 @@ public class Crack extends BaseEntity{
     private String crackType;
     @Column(name = "crack_position", length = 70, nullable = false)
     private String crackPosition;
-
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
-    @JoinColumn(name = "buildingId", nullable = false)
-    private Building buildingId;
-
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "imageId", nullable = false)
     private Image imageId;

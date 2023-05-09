@@ -4,11 +4,8 @@ import com.ssafy.skyeye.data.dto.request.PwChangeUserDto;
 import com.ssafy.skyeye.data.dto.request.UserLoginDto;
 import com.ssafy.skyeye.data.dto.request.UserRegistDto;
 import com.ssafy.skyeye.data.dto.request.UserUpdateDto;
-import com.ssafy.skyeye.data.dto.response.BuildingDto;
-import com.ssafy.skyeye.data.dto.response.DroneDto;
 import com.ssafy.skyeye.data.dto.response.UserDto;
 import com.ssafy.skyeye.data.entity.Image;
-import com.ssafy.skyeye.data.exception.ForbiddenException;
 import com.ssafy.skyeye.service.ImageService;
 import com.ssafy.skyeye.service.UserService;
 import com.ssafy.skyeye.structure.jwt.JwtTokenProvider;
@@ -16,15 +13,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @RestController
@@ -123,42 +117,6 @@ public class UserController {
         userService.deleteUser(userId);
 
         return new ResponseEntity<>(null, HttpStatus.OK);
-    }
-
-    // 유저 ID로 빌딩 목록 조회
-    @GetMapping("/building/{userId}")
-    public ResponseEntity<?> getBuildingByUserId(@PathVariable String userId){
-        log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
-        log.info("입력 데이터 : {}", userId);
-
-//        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
-//        if(!jwtId.equals(userId) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
-
-
-        List<BuildingDto> list = userService.getBuildingByUserId(userId);
-
-
-        log.info("출력 데이터 : {}", list);
-
-        return new ResponseEntity<>(list,HttpStatus.OK);
-    }
-
-    // 유저 ID로 드론 조회
-    @GetMapping("/drone/{userId}")
-    public ResponseEntity<?> getDroneByUserId(@PathVariable String userId){
-        log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
-        log.info("입력 데이터 : {}", userId);
-
-//        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
-//        if(!jwtId.equals(userId) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
-
-
-        List<DroneDto> list = userService.getDroneByUserId(userId);
-
-
-        log.info("출력 데이터 : {}", list);
-
-        return new ResponseEntity<>(list,HttpStatus.OK);
     }
 
     // 유저 비밀번호 변경
