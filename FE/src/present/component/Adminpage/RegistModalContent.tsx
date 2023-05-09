@@ -6,6 +6,7 @@ import { adminState } from "@src/store/admin";
 import * as style from "@src/present/component/Adminpage/RegistModalContent.style";
 import PrimaryButton from "@common/Button/PrimaryButton";
 import { RegistUser, FindUserAll } from "@src/action/hooks/authHooks";
+import { toastListState } from "@src/store/toast";
 
 type UserInfo = {
   onClose: () => void;
@@ -26,6 +27,8 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
   const [fileName, setFileName] = useState("");
 
   const [users, setUsers] = useRecoilState(adminState);
+
+  const [toastList, setToastList] = useRecoilState(toastListState);
 
   const saveProfile = (event: React.ChangeEvent<HTMLInputElement>) => {
     setProfile(event.target.files[0]);
@@ -57,6 +60,11 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
         FindUserAll()
           .then((res) => {
             setUsers({ users: res.result });
+            const successRegistToast = {
+              type: "Success",
+              sentence: "회원 등록에 성공했습니다.",
+            };
+            setToastList({ list: [...toastList.list, successRegistToast] });
           })
           .catch((err) => {
             console.log(err);
