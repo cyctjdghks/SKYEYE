@@ -6,7 +6,6 @@ import com.ssafy.skyeye.data.dto.response.CountCrackDto;
 import com.ssafy.skyeye.data.dto.response.FolderDto;
 import com.ssafy.skyeye.data.dto.response.ImageDto;
 import com.ssafy.skyeye.service.FolderService;
-import com.ssafy.skyeye.service.ImageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -56,11 +55,11 @@ public class FolderController {
     }
 
     @GetMapping("/get/all/{userId}")
-    public ResponseEntity<?> getAllFolder(@PathVariable String userId) {
+    public ResponseEntity<?> getFolderByUserId(@PathVariable String userId) {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", userId);
 
-        List<FolderDto> list = folderService.getAllFolder(userId);
+        List<FolderDto> list = folderService.getFolderByUserId(userId);
 
         log.info("출력 데이터 : {}", list);
 
@@ -96,11 +95,11 @@ public class FolderController {
     }
 
     @GetMapping("/get/crack/{folderId}")
-    public ResponseEntity<?> getCountCrackByFolder(@PathVariable long folderId) {
+    public ResponseEntity<?> getCountCrackByFolderId(@PathVariable long folderId) {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", folderId);
 
-        CountCrackDto countCrackDto = folderService.getCountCrackByFolder(folderId);
+        CountCrackDto countCrackDto = folderService.getCountCrackByFolderId(folderId);
 
         log.info("출력 데이터 : {}", countCrackDto);
 
@@ -108,15 +107,15 @@ public class FolderController {
     }
 
     @GetMapping("/get/folder/crack/{userId}/{folderId}/{crackType}")
-    public ResponseEntity<?> getImageByFoderCrack(@PathVariable String userId,
-                                                  @PathVariable long folderId,
-                                                  @PathVariable String crackType) {
+    public ResponseEntity<?> getImageByFoderCrackType(@PathVariable String userId,
+                                                      @PathVariable long folderId,
+                                                      @PathVariable String crackType) {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", userId);
         log.info("입력 데이터 : {}", folderId);
         log.info("입력 데이터 : {}", crackType);
 
-        List<ImageDto> list = folderService.getImageByFoderCrack(userId, folderId, crackType);
+        List<ImageDto> list = folderService.getImageByFoderCrackType(userId, folderId, crackType);
 
         log.info("출력 데이터 : {}", list);
 
