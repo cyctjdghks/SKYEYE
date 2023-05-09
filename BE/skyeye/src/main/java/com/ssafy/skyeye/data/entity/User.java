@@ -28,4 +28,6 @@ public class User extends BaseEntity{
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "image")
     private Image imageId;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userId", cascade = CascadeType.ALL)
+    private List<Folder> folders;
 }
