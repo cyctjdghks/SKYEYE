@@ -20,9 +20,9 @@ public class Folder extends BaseEntity {
     @Column(name = "folder_id")
     private Long folderId;
     @Column(name = "folder_name", length = 50)
-    private Long folderName;
+    private String folderName;
     @Column(name = "folder_memo", length = 100)
-    private Long folderMemo;
+    private String folderMemo;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     @JoinColumn(name = "userId", nullable = false)
     private User userId;
