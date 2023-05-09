@@ -17,8 +17,6 @@ const FolderButton = ({
 }: FolderButtonProps) => {
   const [userName, setUserName] = useState("");
 
-  console.log(content)
-
   useEffect(() => {
     getUserInfo(content.userId).then((res) => {
       if (res.isSuccess) setUserName(res.result.userName);

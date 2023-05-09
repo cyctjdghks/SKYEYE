@@ -16,6 +16,11 @@ export type Folder = {
   updateTime: string;
 };
 
+export type CrackPhoto = {
+  crackType: String;
+  cnt: number;
+}
+
 export type Crack = {
   crackId: number;
   crackType: String;

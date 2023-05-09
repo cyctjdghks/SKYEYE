@@ -47,8 +47,10 @@ const AllPictures = () => {
     if (folder !== null) {
       getCrackList(folder).then((res) => {
         if (res.isSuccess) {
-          console.log(res);
-          setCrackList([...res.result]);
+          const keys = Object.keys(res.result).map((elem) => {
+            return {crackType:elem, cnt:res.result[elem]}
+          })
+          setCrackList([...keys]);
         }
       });
     }

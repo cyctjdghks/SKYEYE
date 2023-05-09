@@ -15,7 +15,7 @@ type ButtonLayout = {
 const ButtonLayout = ({ list, selected, handler, type }) => {
   const buttons = list.map((elem, idx) => {
     const isSelected = selected === idx ? true : false;
-
+    console.log(elem)
     switch (type) {
       case "folder":
         return (
