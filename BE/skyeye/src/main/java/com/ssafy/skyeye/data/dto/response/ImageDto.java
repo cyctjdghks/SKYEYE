@@ -1,5 +1,6 @@
 package com.ssafy.skyeye.data.dto.response;
 
+import com.ssafy.skyeye.data.entity.Crack;
 import com.ssafy.skyeye.data.entity.Image;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,6 +21,18 @@ public class ImageDto {
     private String updateTime;
 
     public static ImageDto entityToDto(Image image) {
+        return ImageDto.builder()
+                .originalFileName(image.getOriginalFileName())
+                .storedFileName(image.getStoredFileName())
+                .fileSize(image.getFileSize())
+                .createTime(image.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+                .updateTime(image.getUpdatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+                .build();
+    }
+
+    public static ImageDto entityToImageDto(Crack crack) {
+        Image image = crack.getImageId();
+
         return ImageDto.builder()
                 .originalFileName(image.getOriginalFileName())
                 .storedFileName(image.getStoredFileName())
