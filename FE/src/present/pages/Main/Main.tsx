@@ -37,7 +37,7 @@ const Main = () => {
       <style.TopBox>
         <style.Logo src={logo} onClick={logWeather}></style.Logo>
         <style.LoginButton onClick={onClickButton}>
-          <style.LogoText>로그인하기</style.LogoText>
+          <style.LogoText>로그인 하기</style.LogoText>
           <style.LogoRight src={right}></style.LogoRight>
         </style.LoginButton>
         {isOpen && (

@@ -3,6 +3,7 @@ import InputLabel from "@common/InputLabel/InputLabel";
 import { urls } from "@constant/values";
 import { useRecoilState } from "recoil";
 import { adminState } from "@src/store/admin";
+import { toastListState } from "@src/store/toast";
 
 import * as style from "./RegistModalContent.style";
 import PrimaryButton from "@common/Button/PrimaryButton";
@@ -37,6 +38,8 @@ const EditModalContent = ({ data, onClose }: UserInfo) => {
   const [profile, setProfile] = useState<any | null>("");
   const [users, setUsers] = useRecoilState(adminState);
 
+  const [toastList, setToastList] = useRecoilState(toastListState);
+
   const saveProfile = (event: React.ChangeEvent<HTMLInputElement>) => {
     setProfile(event.target.files[0]);
     setFileName(URL.createObjectURL(event.target.files[0]));
@@ -67,6 +70,11 @@ const EditModalContent = ({ data, onClose }: UserInfo) => {
         FindUserAll()
           .then((res) => {
             setUsers({ users: res.result });
+            const successDeleteToast = {
+              type: "Success",
+              sentence: "회원 수정에 성공했습니다.",
+            };
+            setToastList({ list: [...toastList.list, successDeleteToast] });
           })
           .catch((err) => {
             console.log(err);
@@ -84,6 +92,11 @@ const EditModalContent = ({ data, onClose }: UserInfo) => {
         FindUserAll()
           .then((res) => {
             setUsers({ users: res.result });
+            const successDeleteToast = {
+              type: "Success",
+              sentence: "회원 삭제에 성공했습니다.",
+            };
+            setToastList({ list: [...toastList.list, successDeleteToast] });
           })
           .catch((err) => {
             console.log(err);

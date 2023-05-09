@@ -48,10 +48,16 @@ export const LogoText = styled("h1")({
     fontSize: "17px",
   },
   "@media only screen and (max-width: 768px)": {
-    fontSize: "13px",
+    fontSize: "14px",
   },
 });
 
 export const LogoRight = styled("img")({
   width: "15px",
+  "@media only screen and (max-width: 1024px)": {
+    width: "12px"
+  },
+  "@media only screen and (max-width: 768px)": {
+    width: "9px"
+  },
 });

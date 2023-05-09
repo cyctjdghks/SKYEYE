@@ -81,11 +81,11 @@ const Admin = () => {
           )}
           <style.HiddenBox></style.HiddenBox>
           <PrimaryButton
-              content={"등록 하기"}
-              isArrow={true}
-              handler={onClickButton2}
-              disabled={false}
-            />
+            content={"등록 하기"}
+            isArrow={true}
+            handler={onClickButton2}
+            disabled={false}
+          />
           {isOpen2 && (
             <Modal
               onClose={() => {
