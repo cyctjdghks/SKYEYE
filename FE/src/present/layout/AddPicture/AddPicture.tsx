@@ -4,42 +4,59 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { toastListState } from "@src/store/toast";
 import PrimaryButton from "@src/present/common/Button/PrimaryButton";
-
+import { UploadImage } from "@src/action/hooks/Upload";
 
 const AddPicture = () => {
   const navigate = useNavigate();
-  
+
   const [toastList, setToastList] = useRecoilState(toastListState);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
   const getImages = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     setSelectedFiles([...selectedFiles, ...Array.from(files)]);
-    const successAdminToast = {
+    const saveImageToast = {
       type: "Success",
       sentence: "이미지가 정상적으로 저장되었습니다.",
     };
-    setToastList({ list: [...toastList.list, successAdminToast] });
+    setToastList({ list: [...toastList.list, saveImageToast] });
   };
 
   const sendImages = () => {
     const formData = new FormData();
     for (let i = 0; i < selectedFiles.length; i++) {
-      formData.append("files", selectedFiles[i]);
+      formData.append("file", selectedFiles[i]);
     }
-    for (const [key, value] of formData.entries()) {
-      console.log(key, value);
-    }
+    // formData 값 확인
+    // for (const [key, value] of formData.entries()) {
+    //   console.log(key, value);
+    // }
+    UploadImage(formData).then((res) => {
+      if (res.isSuccess) {
+        const successUploadToast = {
+          type: "Success",
+          sentence: "사진이 업로드 되었습니다.",
+        };
+        setToastList({ list: [...toastList.list, successUploadToast] });
+        navigate("/drone");
+      } else {
+        const failUploadToast = {
+          type: "Error",
+          sentence: "업로드에 실패했습니다.",
+        };
+        setToastList({ list: [...toastList.list, failUploadToast] });
+      }
+    });
   };
 
   const deleteImage = (index: number) => {
     const newFiles = selectedFiles.filter((file, idx) => idx !== index);
     setSelectedFiles(newFiles);
-    const successAdminToast = {
+    const deleteImageToast = {
       type: "Info",
       sentence: "사진이 삭제되었습니다.",
     };
-    setToastList({ list: [...toastList.list, successAdminToast] });
+    setToastList({ list: [...toastList.list, deleteImageToast] });
   };
 
   // Prevent Go back
@@ -71,14 +88,20 @@ const AddPicture = () => {
 
   return (
     <style.Wrapper>
-      <style.SelectedImages>
-        {selectedFiles.map((file, idx) => (
-          <style.ImageWrapper key={idx} onClick={() => deleteImage(idx)}>
-            <img src={URL.createObjectURL(file)} alt={file.name} />
-            <p>{file.name}</p>
-          </style.ImageWrapper>
-        ))}
-      </style.SelectedImages>
+      <style.Container>
+        <style.SelectedImages>
+          {selectedFiles.map((file, idx) => (
+            <style.ImageWrapper
+              key={idx}
+              onClick={() => deleteImage(idx)}
+              image={URL.createObjectURL(file)}
+            >
+              <div />
+              <p>{file.name}</p>
+            </style.ImageWrapper>
+          ))}
+        </style.SelectedImages>
+      </style.Container>
       <style.BottomBox>
         <style.SaveLabel htmlFor="file">사진 추가</style.SaveLabel>
         <style.SaveInput

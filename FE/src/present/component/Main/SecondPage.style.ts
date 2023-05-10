@@ -52,31 +52,28 @@ export const PageText = styled("h1")({
 export const ImgBox = styled("div")({
   width: "85vw",
   height: "70vw",
-  maxHeight: "1000px",
+  // minHeight: "700px",
   backgroundColor: `${theme.colors.greyscale.light1}`,
   display: "flex",
   flexDirection: "column",
-  justifyContent: "center",
+  justifyContent: "space-evenly",
   borderRadius: "8px",
   marginLeft: "7.5vw",
   marginBottom: "3vh",
   marginTop: "2vh"
 });
 
-
-
 export const InnerBox = styled("div")({
-  marginTop: "0.8%",
-  marginLeft: "2.5%",
-  width: "95%",
-  height: "30%",
+  // marginLeft: "2.5%",
+  width: "100%",
+  height: "30.5%",
   display: "flex",
-  justifyContent: "space-around",
+  justifyContent: "space-evenly",
 });
 
 export const SmallBox = styled("div")<HiddenProps>(
   {
-    width: "24%",
+    width: "23%",
     height: "100%",
     backgroundColor: `${theme.colors.greyscale.light3}`,
     display: "flex",
@@ -94,7 +91,7 @@ export const BoxImg = styled("img")<ImgProps>({
   width: "90%",
   height: "82%",
   borderRadius: "8px",
-  marginTop: "8%",
+  marginTop: "5%",
   backgroundPosition: "center",
   backgroundSize: "cover",
 },
@@ -102,11 +99,12 @@ export const BoxImg = styled("img")<ImgProps>({
   backgroundImage: `url(${props.image})`,
 })
 );
+
 export const LargeBoxImg = styled("img")<ImgProps>({
-  width: "90%",
+  width: "95%",
   height: "82%",
   borderRadius: "8px",
-  marginTop: "4%",
+  marginTop: "2.5%",
   backgroundPosition: "center",
   backgroundSize: "cover",
 },
@@ -119,7 +117,7 @@ export const ColorBox = styled("div")<ColorProps>({
   width: "90%",
   height: "82%",
   borderRadius: "8px",
-  marginTop: "8%",
+  marginTop: "5%",
 },
 (props) =>({
    backgroundColor : `${props.color}`
@@ -150,7 +148,7 @@ export const BoxText2 = styled("p")({
 });
 
 export const LargeBox = styled("div")({
-  width: "49%",
+  width: "47.6%",
   height: "100%",
   backgroundColor: `${theme.colors.greyscale.light3}`,
   display: "flex",
