@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, Blueprint
-import os
+from flask_cors import CORS
+import os 
 import datetime
 from keras.models import load_model  # TensorFlow is required for Keras to work
 from PIL import Image, ImageOps  # Install pillow instead of PIL
@@ -76,6 +77,6 @@ def uploaded_file():
 
 app = Flask(__name__)
 app.register_blueprint(bp)
-
+CORS(app)
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000,debug=True)
