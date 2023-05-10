@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import * as Style from "./PhotoLayout.style";
 import SubTitle from "@src/present/common/SubTitle/SubTitle";
 import { Picture } from "@src/types/FlightInfo";
+import PictureCompo from "@src/present/component/PictureCompo/PictureCompo";
 
 type PhotoLayoutProps = {
   photoList: Array<Picture>;
@@ -13,7 +14,7 @@ const PhotoLayout = ({ photoList }: PhotoLayoutProps) => {
 
   console.log(photoList);
   const Images = photoList.map((elem, idx) => {
-    return <div>{elem.originalFileName}</div>;
+    return <PictureCompo item={elem} key={idx} />;
   });
 
   return (
