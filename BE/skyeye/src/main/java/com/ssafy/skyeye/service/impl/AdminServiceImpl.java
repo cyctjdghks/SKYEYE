@@ -2,9 +2,11 @@ package com.ssafy.skyeye.service.impl;
 
 import com.ssafy.skyeye.data.dto.request.AdminLoginDto;
 import com.ssafy.skyeye.data.dto.response.CrackDto;
+import com.ssafy.skyeye.data.dto.response.FolderDto;
 import com.ssafy.skyeye.data.dto.response.UserDto;
 import com.ssafy.skyeye.data.exception.ForbiddenException;
 import com.ssafy.skyeye.repository.CrackRepository;
+import com.ssafy.skyeye.repository.FolderRepository;
 import com.ssafy.skyeye.repository.UserRepository;
 import com.ssafy.skyeye.service.AdminService;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +32,7 @@ public class AdminServiceImpl implements AdminService {
     private final PasswordEncoder passwordEncoder;
 
     private final UserRepository userRepository;
+    private final FolderRepository folderRepository;
     private final CrackRepository crackRepository;
 
 
@@ -46,6 +49,13 @@ public class AdminServiceImpl implements AdminService {
 
         return userRepository.findAll().stream().map(UserDto::entityToDto).collect(Collectors.toList());
 
+    }
+
+    @Override
+    public List<FolderDto> findFolderAll() {
+        return folderRepository.findAll().stream()
+                .map(FolderDto::entityToDto)
+                .collect(Collectors.toList());
     }
 
 
