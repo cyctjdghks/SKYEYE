@@ -88,7 +88,7 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
       <style.ModalTitle>회원 등록 하기</style.ModalTitle>
       <style.ContentBox>
         <style.ProfileBox>
-          <style.ProfileImage src={fileName}></style.ProfileImage>
+          <style.ProfileImage image={fileName}></style.ProfileImage>
           <style.SaveLabel htmlFor="file">
             {fileName ? "사진 교체" : "사진 업로드"}
           </style.SaveLabel>

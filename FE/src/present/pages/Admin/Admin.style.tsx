@@ -12,7 +12,8 @@ export const TopBox = styled("div")({
   marginTop: "50px",
   display: "flex",
   justifyContent: "space-between",
-  alignItems: "center"
+  alignItems: "center",
+  marginBottom: "1vw",
 });
 
 export const TopButtonBox = styled("div")({
@@ -20,7 +21,7 @@ export const TopButtonBox = styled("div")({
   width: "50%",
   display: "flex",
   alignItems: "center",
-  justifyContent: "flex-end",
+  justifyContent: "right"
 })
 
 export const PageName = styled("h1")({
@@ -30,7 +31,7 @@ export const PageName = styled("h1")({
 });
 
 export const HiddenBox = styled("div")({
-  width: "100px",
+  width: "1vw",
   visibility: "hidden",
   userSelect: "none"
 })
@@ -75,6 +76,7 @@ export const HrLine = styled("div")({
   width: "100%",
   height: "1px",
   background: `${theme.colors.greyscale.dark1}`,
+  marginBottom: "2%",
 });
 
 export const DataBox = styled("div")({

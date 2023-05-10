@@ -8,7 +8,7 @@ export const ModalBox = styled("div")({
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
-  alignItems: "center"
+  alignItems: "center",
 });
 
 export const ModalTitle = styled("h1")({
@@ -29,26 +29,25 @@ export const ProfileBox = styled("div")({
   // overflow: "hidden",
   justifyContent: "center",
   position: "relative",
-  alignItems: "center"
+  alignItems: "center",
 });
 
-export const ProfileImage = styled("img")({
-  width: "50%",
-  borderRadius: "50px",
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-});
-
+export const ProfileImage = styled.div<{ image: string }>`
+  width: 15vw;
+  height: 20vw;
+  border-radius: 8px;
+  background-position: center;
+  background-size: cover;
+  background-image: url(${props => props.image});
+`;
 
 export const SaveLabel = styled("label")({
   position: "absolute",
-  bottom: "-15%"
-})
+  bottom: "-15%",
+});
 export const SaveInput = styled("input")({
-  display: "none"
-})
+  display: "none",
+});
 
 export const DataBox = styled("div")({
   width: "50%",
@@ -100,11 +99,10 @@ export const LogoText = styled("h2")({
   fontSize: "1.1vw",
 });
 
-
 export const UnderButton = styled("div")({
   width: "100%",
   marginTop: "5vh",
   height: "80px",
   display: "flex",
-  justifyContent: "flex-end"
-})
+  justifyContent: "flex-end",
+});
