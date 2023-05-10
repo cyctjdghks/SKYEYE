@@ -39,7 +39,7 @@ def upload():
         print('filename1: ',file)
         file.save(filename)
         filenames.append(filename)
-        image = Image.open(f"images/{now}.jpg").convert("RGB")
+        image = Image.open(f"/usr/app/images/{now}.jpg").convert("RGB")
 
 
         size = (224, 224)
