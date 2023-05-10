@@ -2,6 +2,7 @@ package com.ssafy.skyeye.controller;
 
 import com.ssafy.skyeye.data.dto.request.AdminLoginDto;
 import com.ssafy.skyeye.data.dto.response.CrackDto;
+import com.ssafy.skyeye.data.dto.response.FolderDto;
 import com.ssafy.skyeye.data.dto.response.UserDto;
 import com.ssafy.skyeye.service.AdminService;
 import com.ssafy.skyeye.structure.jwt.JwtTokenProvider;
@@ -57,6 +58,23 @@ public class AdminController {
         return new ResponseEntity<>(list, HttpStatus.OK);
 
     }
+
+    @GetMapping("/folder")
+    public ResponseEntity<?> findFolderAll(){
+        log.info("{} 메서드 실행", Thread.currentThread().getStackTrace()[1].getClassName());
+
+//        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+//        if(!jwtId.equals("admin")) throw new ForbiddenException("관리자 맞습니까?");
+
+        List<FolderDto> list = adminService.findFolderAll();
+
+
+        log.info("출력 데이터 : {}", list);
+
+        return new ResponseEntity<>(list, HttpStatus.OK);
+
+    }
+
     @GetMapping("/crack")
     public ResponseEntity<?> findCrackAll(){
         log.info("{} 메서드 실행", Thread.currentThread().getStackTrace()[1].getClassName());
