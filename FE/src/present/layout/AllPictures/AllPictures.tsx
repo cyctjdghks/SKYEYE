@@ -1,54 +1,86 @@
-import React, {useState, useEffect, memo} from "react";
-import * as Style from "./AllPictures.style";
-import { Building, Crack } from "@src/types/FlightInfo";
+import React, { useState, useEffect, memo } from "react";
+import * as Style from "./Pictures.style";
 import ButtonLayout from "@src/present/layout/ButtonLayout/ButtonLayout";
 import SubTitle from "@src/present/common/SubTitle/SubTitle";
-import { getBuildingList } from "@src/action/api/Building";
 import { getCrackList } from "@src/action/api/Crack";
 import { useLocation } from "react-router-dom";
-
+import { getFolders, getPhotoList } from "@src/action/api/Pictures";
+import PhotoLayout from "../PhotoLayout/PhotoLayout";
+import { Folder } from "@src/types/FlightInfo";
 
 const AllPictures = () => {
   const location = useLocation().state;
-  console.log(location)
-  const [building, setBuilding] = useState<number | null>(null);
-  const [crack, setCrack] = useState<number | null>(null);
-
+  const [folder, setFolder] = useState<number | null>(null);
+  const [crack, setCrack] = useState<string | null>(null);
+  
   // List
-  const [buildingList, setBuildingList] = useState([]);
+  const [folderList, setFolderList] = useState<Array<Folder>>([]);
   const [crackList, setCrackList] = useState([]);
+  const [photoList, setPhotoList] = useState([]);
 
   useEffect(() => {
-    getBuildingList("jhpdrone").then((res) => {
-      if (res.isSuccess) {
-        setBuildingList([...res.result]);
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    if (building !== null) {
-      getCrackList(building).then((res) => {
+    if (location !== null) {
+      const dayOfWeek = {
+        Jan: "01",
+        Feb: "02",
+        Mar: "03",
+        Apr: "04",
+        May: "05",
+        Jun: "06",
+        Jul: "07",
+        Aug: "08",
+        Sep: "09",
+        Oct: "10",
+        Nov: "11",
+        Dec: "12",
+      };
+      getFolders(
+        "jhp1276",
+        [location[3], dayOfWeek[location[1]], location[2]].join("-")
+      ).then((res) => {
         if (res.isSuccess) {
-          console.log(res);
-          setCrackList([...res.result]);
+          setFolderList([...res.result]);
         }
       });
     }
-  }, [building]);
+  }, []);
+
+  useEffect(() => {
+    if (folder !== null) {
+      getCrackList(folder).then((res) => {
+        if (res.isSuccess) {
+          const keys = Object.keys(res.result).map((elem) => {
+            return { crackType: elem, cnt: res.result[elem] };
+          });
+
+          setCrackList([...keys]);
+        }
+      });
+    }
+  }, [folder, crack]);
+
+  useEffect(()=>{
+    if (crack !== null) {
+      getPhotoList("jhp1276", folder, 'concrete').then((res) => {
+        if (res.isSuccess) {
+          setPhotoList([...res.result])
+        }
+      })
+    }
+  }, [crack])
 
   // Handler
-  const bulidingHandler = (idx: number) => {
-    setBuilding(idx);
+  const folderHandler = (idx: number) => {
+    setFolder(folderList[idx].folderId);
   };
 
-  const crackHandler = (idx: number) => {
-    setCrack(idx);
+  const crackHandler = (type: string) => {
+    setCrack(type);
   };
 
   // Sentence
   const guidence = () => {
-    if (building === null) {
+    if (folder === null) {
       return (
         <>
           폴더를
@@ -68,18 +100,19 @@ const AllPictures = () => {
       return null;
     }
   };
+
   return (
     <Style.Layout>
       <div>
         <SubTitle content="폴더명" />
         <ButtonLayout
-          list={buildingList}
-          type={"building"}
-          selected={building}
-          handler={bulidingHandler}
+          list={folderList}
+          type={"folder"}
+          selected={folder}
+          handler={folderHandler}
         />
       </div>
-      {building !== null && (
+      {folder !== null && (
         <div>
           <SubTitle content="균열 유형" />
           <ButtonLayout
@@ -88,6 +121,13 @@ const AllPictures = () => {
             selected={crack}
             handler={crackHandler}
           />
+        </div>
+      )}
+
+      {crack !== null && (
+        <div>
+          <SubTitle content="사진" />
+          <PhotoLayout photoList={photoList}/>
         </div>
       )}
 

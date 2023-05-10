@@ -23,6 +23,7 @@ const Calendar = () => {
   const navigate = useNavigate();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const selected = selectedDate.toString().split(" ").slice(0, 4);
 
   const Y = format(selectedDate, "yyyy");
   const M = format(selectedDate, "MM");
@@ -43,7 +44,7 @@ const Calendar = () => {
   };
 
   const moveTo = () => {
-    navigate("/picture/all", { state: selectedDate });
+    navigate("/picture/all", { state: selected });
   };
 
   /* Component */
@@ -62,9 +63,7 @@ const Calendar = () => {
   let day = startDate;
   let dayRow = new Array(7);
   let formattedDate = "";
-  const selectedForComparison = JSON.stringify(
-    selectedDate.toString().split(" ").slice(0, 4)
-  );
+  const selectedForComparison = JSON.stringify(selected);
 
   //   그 달 처음부터 끝까지
   while (day <= endDate) {

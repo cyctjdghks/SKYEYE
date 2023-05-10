@@ -1,12 +1,12 @@
 import React, { memo } from "react";
 import * as Style from "./ButtonLayout.style";
-import BuildingButton from "@src/present/common/Button/BuildingButton";
-import { Building, Crack } from "@src/types/FlightInfo";
+import FolderButton from "@src/present/common/Button/FolderButton";
+import { Crack, Folder } from "@src/types/FlightInfo";
 import CrackButton from "@src/present/common/Button/CrackButton";
 import NullData from "@src/present/component/NullData/NullData";
 
 type ButtonLayout = {
-  list: Array<Building | Crack>;
+  list: Array<Folder | Crack>;
   selected: number | null;
   handler: Function;
   type: string;
@@ -14,12 +14,13 @@ type ButtonLayout = {
 
 const ButtonLayout = ({ list, selected, handler, type }) => {
   const buttons = list.map((elem, idx) => {
-    const isSelected = selected === idx ? true : false;
+    let isSelected:boolean;
 
     switch (type) {
-      case "building":
+      case "folder":
+        isSelected = (selected === list[idx].folderId) ? true : false;
         return (
-          <BuildingButton
+          <FolderButton
             content={elem}
             isSelected={isSelected}
             handler={() => handler(idx)}
@@ -28,11 +29,12 @@ const ButtonLayout = ({ list, selected, handler, type }) => {
         );
 
       default:
+        isSelected = (selected === list[idx].crackType) ? true : false;
         return (
           <CrackButton
             content={elem}
             isSelected={isSelected}
-            handler={() => handler(idx)}
+            handler={() => handler(list[idx].crackType)}
             key={idx}
           />
         );
