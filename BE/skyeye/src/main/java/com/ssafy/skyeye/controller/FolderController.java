@@ -3,6 +3,7 @@ package com.ssafy.skyeye.controller;
 import com.ssafy.skyeye.data.dto.request.FolderRegistDto;
 import com.ssafy.skyeye.data.dto.request.FolderUpdateDto;
 import com.ssafy.skyeye.data.dto.response.CountCrackDto;
+import com.ssafy.skyeye.data.dto.response.FolderByDateDto;
 import com.ssafy.skyeye.data.dto.response.FolderDto;
 import com.ssafy.skyeye.data.dto.response.ImageDto;
 import com.ssafy.skyeye.service.FolderService;
@@ -87,7 +88,7 @@ public class FolderController {
         log.info("입력 데이터 : {}", userId);
         log.info("입력 데이터 : {}", dateTime);
 
-        List<FolderDto> list = folderService.getFolderByDate(userId, dateTime);
+        List<FolderByDateDto> list = folderService.getFolderByDate(userId, dateTime);
 
         log.info("출력 데이터 : {}", list);
 

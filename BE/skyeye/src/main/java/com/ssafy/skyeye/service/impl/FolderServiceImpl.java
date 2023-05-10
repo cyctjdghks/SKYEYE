@@ -3,6 +3,7 @@ package com.ssafy.skyeye.service.impl;
 import com.ssafy.skyeye.data.dto.request.FolderRegistDto;
 import com.ssafy.skyeye.data.dto.request.FolderUpdateDto;
 import com.ssafy.skyeye.data.dto.response.CountCrackDto;
+import com.ssafy.skyeye.data.dto.response.FolderByDateDto;
 import com.ssafy.skyeye.data.dto.response.FolderDto;
 import com.ssafy.skyeye.data.dto.response.ImageDto;
 import com.ssafy.skyeye.data.entity.Folder;
@@ -95,12 +96,12 @@ public class FolderServiceImpl implements FolderService {
     }
 
     @Override
-    public List<FolderDto> getFolderByDate(String userId, String dateTime) {
+    public List<FolderByDateDto> getFolderByDate(String userId, String dateTime) {
 
         return folderRepository.findAll().stream()
                 .filter(folder -> folder.getUserId().getUserId().equals(userId))
                 .filter(folder -> folder.getFolderBuilt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).equals(dateTime))
-                .map(FolderDto::entityToDto)
+                .map(FolderByDateDto::entityToDto)
                 .collect(Collectors.toList());
     }
 
