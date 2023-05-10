@@ -7,7 +7,6 @@ import com.ssafy.skyeye.data.dto.response.FolderByDateDto;
 import com.ssafy.skyeye.data.dto.response.FolderDto;
 import com.ssafy.skyeye.data.dto.response.ImageDto;
 import com.ssafy.skyeye.data.entity.Folder;
-import com.ssafy.skyeye.data.entity.Image;
 import com.ssafy.skyeye.data.entity.User;
 import com.ssafy.skyeye.data.exception.ForbiddenException;
 import com.ssafy.skyeye.repository.CrackRepository;
@@ -20,7 +19,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -121,8 +119,8 @@ public class FolderServiceImpl implements FolderService {
 
 
 
-        countCrackDto.setCountType1(type1);
-        countCrackDto.setCountType2(type2);
+        countCrackDto.setConcrete(type1);
+        countCrackDto.setAsphalt(type2);
 
         return countCrackDto;
     }
