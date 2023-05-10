@@ -15,7 +15,7 @@ public class CrackDto {
     private String crackType;
     private String crackPosition;
     private String imageSrc;
-    private String folderName;
+    private Long folderId;
 
     public static CrackDto entityToDto(Crack crack) {
         return CrackDto.builder()
@@ -25,7 +25,7 @@ public class CrackDto {
                 // 이미지는 null이 들어올 수 있음
                 .imageSrc(crack.getImageId()==null ? null : crack.getImageId().getStoredFileName())
                 // 빌딩이름은 null이 안됨
-                .folderName(crack.getFolderId().getFolderName())
+                .folderId(crack.getFolderId().getFolderId())
                 .build();
     }
 }

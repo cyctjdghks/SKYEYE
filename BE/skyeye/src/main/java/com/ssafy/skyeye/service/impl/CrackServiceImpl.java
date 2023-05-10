@@ -12,6 +12,7 @@ import com.ssafy.skyeye.repository.FolderRepository;
 import com.ssafy.skyeye.repository.ImageRepository;
 import com.ssafy.skyeye.service.CrackService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -34,10 +35,9 @@ public class CrackServiceImpl implements CrackService {
 
         Image image = getImageById(crackRegistDto.getImageId());
         Folder folder = getFolderById(crackRegistDto.getFolderId());
-//        Building building = getBuildingById(crackRegistDto.getBuildingId());
 
 //        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
-//        if(!jwtId.equals(building.getUserId().getUserId()) && !jwtId.equals("admin")) {
+//        if(!jwtId.equals(folder.getUserId().getUserId()) && !jwtId.equals("admin")) {
 //            throw new ForbiddenException("본인 아이디가 아닙니다.");
 //        }
 
