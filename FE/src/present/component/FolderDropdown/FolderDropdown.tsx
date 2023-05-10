@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import * as Style from "./FolderDropdown.style";
 import Arrow from "@assets/dropdown/arrow.png";
 import HoverArrow from "@assets/button/arrow.png";
-import { Building, InputBuilding } from "@src/types/FlightInfo";
+
+import { Folder, InputFolder } from "@src/types/FlightInfo";
 
 type DropdownProps = {
-  options: Array<Building>;
+  options: Array<Folder>;
   select: {
-    selectContent: InputBuilding;
+    selectContent: InputFolder;
     setSelectContent: Function;
   };
 };
 
-const BuildingDropdown = ({ options, select }: DropdownProps) => {
+
+const FolderDropdown = ({ options, select }: DropdownProps) => {
   const [clicked, setClicked] = useState(false);
 
   //   Handler
@@ -20,7 +22,7 @@ const BuildingDropdown = ({ options, select }: DropdownProps) => {
     setClicked(!clicked);
   };
 
-  const selectHandler = (selected: InputBuilding) => {
+  const selectHandler = (selected: InputFolder) => {
     select.setSelectContent({ ...selected });
   };
 
@@ -29,29 +31,29 @@ const BuildingDropdown = ({ options, select }: DropdownProps) => {
     const lst: Array<JSX.Element> = [];
 
     for (const i of options) {
-      const input = { buildingId: i.buildingId, buildingName: i.buildingName };
+      const input = { folderId: i.folderId, folderName: i.folderName };
       const elem = (
-        <div key={i.buildingId} onClick={() => selectHandler(input)}>
-          <img src={HoverArrow} alt={i.buildingName} />
-          <>{i.buildingName}</>
+        <div key={i.folderId} onClick={() => selectHandler(input)}>
+          <img src={HoverArrow} alt={i.folderName} />
+          <>{i.folderName}</>
         </div>
       );
 
-      lst.push(elem)
+      lst.push(elem);
     }
 
-    return lst
+    return lst;
   };
 
   return (
     <Style.DropdownDiv onClick={clickHandler} clicked={clicked}>
       <Style.DefaultOption>
-        <>{select.selectContent.buildingName}</>
-        <img src={Arrow} alt={select.selectContent.buildingName} />
+        <>{select.selectContent.folderName}</>
+        <img src={Arrow} alt={select.selectContent.folderName} />
       </Style.DefaultOption>
       <Style.OptionContainer>{optionsDiv()}</Style.OptionContainer>
     </Style.DropdownDiv>
   );
 };
 
-export default BuildingDropdown;
+export default FolderDropdown;

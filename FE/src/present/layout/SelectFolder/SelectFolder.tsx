@@ -1,36 +1,37 @@
 import React, { memo, useEffect, useState } from "react";
-import * as Style from "./SelectBuilding.style";
+import * as Style from "./SelectFolder.style";
 import { useNavigate } from "react-router-dom";
 import { toastListState } from "@src/store/toast";
 import { useRecoilState, useRecoilValue } from "recoil";
+import { folderListState } from "@src/store/folder";
 
 import PrimeTitle from "@src/present/common/PrimeTitle/PrimeTitle";
 import PrimaryButton from "@src/present/common/Button/PrimaryButton";
 import AddButton from "@src/present/common/Button/AddButton";
-import BuildingDropdown from "@src/present/component/FolderDropdown/FolderDropdown";
+import FolderDropdown from "@src/present/component/FolderDropdown/FolderDropdown";
 import Modal from "@src/present/common/Modal/Modal";
-import AddBuildingModal from "../AddBuildingModal/AddBuildingModal";
+import AddFolderModal from "../AddFolderModal/AddFolderModal";
 import { GetFolderByUserId } from "@src/action/hooks/Folder";
-import { Building, InputBuilding } from "@src/types/FlightInfo";
+import { Folder, InputFolder } from "@src/types/FlightInfo";
 import { Error } from "@src/action/api/api";
 import { authState } from "@src/store/auth";
 
-const SelectBuilding = () => {
+const SelectFolder = () => {
   const navigate = useNavigate();
   const user = useRecoilValue(authState).user;
   const [toastList, setToastList] = useRecoilState(toastListState);
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selectContent, setSelectContent] = useState<InputBuilding>({
-    buildingId: null,
-    buildingName: "건물 이름",
+  const [selectContent, setSelectContent] = useState<InputFolder>({
+    folderId: null,
+    folderName: "폴더 이름",
   });
-  const [buildingList, setBuildingList] = useState<Array<Building>>([]);
+  const [folderList, setFolderList] = useRecoilState<Folder[]>(folderListState);
 
   useEffect(() => {
     GetFolderByUserId(user?.userId).then((res) => {
       if (res.isSuccess) {
-        setBuildingList([...res.result]);
+        setFolderList([...res.result]);
       } else {
         if (Error.response.status === 404) {
           const errToast = {
@@ -50,10 +51,10 @@ const SelectBuilding = () => {
   }, []);
 
   const routeHandler = () => {
-    if (selectContent.buildingName !== "건물 이름")
-      navigate("/drone/camera", { state: selectContent });
+    if (selectContent.folderName !== "폴더 이름")
+      navigate("/drone/addpicture", { state: selectContent });
     else {
-      alert("건물을 선택해주세요");
+      alert("폴더를 선택해주세요");
     }
   };
 
@@ -63,12 +64,12 @@ const SelectBuilding = () => {
 
   return (
     <Style.Container>
-      <PrimeTitle content="건물을 선택해주세요" />
-      <BuildingDropdown
-        options={buildingList}
+      <PrimeTitle content="폴더를 선택해주세요" />
+      <FolderDropdown
+        options={folderList}
         select={{ selectContent, setSelectContent }}
       />
-      <AddButton content={"건물 추가하기"} handler={onClickButton} />
+      <AddButton content={"폴더 추가하기"} handler={onClickButton} />
       {isOpen && (
         <Modal
           onClose={() => {
@@ -76,8 +77,10 @@ const SelectBuilding = () => {
           }}
           width="40vw"
           height="80vh"
-          title="건물 추가"
-          content={<AddBuildingModal />}
+          title="폴더 추가"
+          content={<AddFolderModal onClose={() => {
+            setIsOpen(false);
+          }}/>}
         />
       )}
       <PrimaryButton
@@ -89,4 +92,4 @@ const SelectBuilding = () => {
   );
 };
 
-export default memo(SelectBuilding);
+export default memo(SelectFolder);

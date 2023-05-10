@@ -37,7 +37,15 @@ export type AboutBuilding = {
   userId: String;
 };
 
+export type AboutFolder = {
+  folderName: string;
+  folderMemo: string;
+  folderBuilt: string;
+  userId: string;
+};
+
 export type InputBuilding = { buildingId: number | null; buildingName: string };
+export type InputFolder = { folderId: number | null; folderName: string };
 
 type CrackCapture = {
   crackType: String;
