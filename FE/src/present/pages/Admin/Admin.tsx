@@ -8,6 +8,7 @@ import RegistModalContent from "@src/present/component/Adminpage/RegistModalCont
 import UserTable from "@src/present/component/Adminpage/UserTable";
 
 import * as style from "@src/present/pages/Admin/Admin.style";
+import AdminButton from "@src/present/component/Adminpage/AdminPrimaryButton";
 import PrimaryButton from "@src/present/common/Button/PrimaryButton";
 import PrimeTitle from "@src/present/common/PrimeTitle/PrimeTitle";
 import right from "@assets/main/right.png";
@@ -52,7 +53,7 @@ const Admin = () => {
         <style.PageName>사원 정보</style.PageName>
         <style.TopButtonBox>
           {selectedIdx !== null ? (
-            <PrimaryButton
+            <AdminButton
               content={"수정 하기"}
               isArrow={true}
               handler={onClickButton}
@@ -80,7 +81,7 @@ const Admin = () => {
             />
           )}
           <style.HiddenBox></style.HiddenBox>
-          <PrimaryButton
+          <AdminButton
             content={"등록 하기"}
             isArrow={true}
             handler={onClickButton2}
