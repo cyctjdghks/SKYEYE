@@ -12,7 +12,6 @@ const PhotoLayout = ({ photoList }: PhotoLayoutProps) => {
   const contentLength = photoList.length === 0 ? true : false;
   const guidence = <SubTitle content="분류된 사진이 없습니다" />;
 
-  console.log(photoList);
   const Images = photoList.map((elem, idx) => {
     return <PictureCompo item={elem} key={idx} />;
   });

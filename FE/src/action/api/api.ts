@@ -128,8 +128,6 @@ export async function deleteAsync<D>(
       ...config,
     });
 
-    console.log(response.data);
-
     return { isSuccess: true, result: response.data };
   } catch (err) {
     return { isSuccess: false, result: err };

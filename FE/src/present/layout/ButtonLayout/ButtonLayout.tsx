@@ -13,7 +13,6 @@ type ButtonLayout = {
 };
 
 const ButtonLayout = ({ list, selected, handler, type }) => {
-  console.log(list)
   const buttons = list.map((elem, idx) => {
     let isSelected:boolean;
 

@@ -57,18 +57,14 @@ const AllPictures = () => {
           setCrackList([...keys]);
         }
       });
-    }
-  }, [folder]);
-
-  useEffect(()=>{
-    if (crack !== null) {
+    } else if (crack !== null) {
       getPhotoList("jhp1276", folder, 'concrete').then((res) => {
         if (res.isSuccess) {
           setPhotoList([...res.result])
         }
       })
     }
-  }, [crack])
+  }, [folder, crack]);
 
   // Handler
   const folderHandler = (idx: number) => {
