@@ -3,8 +3,9 @@ import { theme } from "@constant/theme";
 
 export const AllDataBox = styled("div")({
   width: "100%",
-  overflowY: "scroll",
-  height: "75.5vh",
+  overflowY: "auto",
+  height: "auto",
+  maxHeight: "72.5vh",
   // 스크롤바 디자인 시작
   "&::-webkit-scrollbar": {
     width: "0.7vw",
@@ -20,7 +21,6 @@ export const AllDataBox = styled("div")({
 export const DataBox = styled("div")({
   background: `${theme.colors.greyscale.light1}`,
   width: "98%",
-  height: "75.5vh",
   marginLeft: "1%",
   paddingTop: "1.5%",
   // borderRadius: "8px",

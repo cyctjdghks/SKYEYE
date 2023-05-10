@@ -6,13 +6,8 @@ import { adminState } from "@src/store/admin";
 import { toastListState } from "@src/store/toast";
 
 import * as style from "./RegistModalContent.style";
-import PrimaryButton from "@common/Button/PrimaryButton";
-import {
-  UpdateUser,
-  DeleteUser,
-} from "@src/action/hooks/User";
+import { UpdateUser, DeleteUser } from "@src/action/hooks/User";
 import { FindUserAll } from "@src/action/hooks/Admin";
-import DeleteButton from "@src/present/common/Button/DeleteButton";
 import AdminDeleteBtn from "@src/present/component/Adminpage/AdminDeleteButton";
 import AdminPrimaryButton from "@src/present/component/Adminpage/AdminPrimaryButton";
 

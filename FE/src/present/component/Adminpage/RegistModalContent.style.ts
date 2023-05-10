@@ -14,7 +14,9 @@ export const ModalBox = styled("div")({
 export const ModalTitle = styled("h1")({
   textAlign: "center",
   color: `${theme.colors.point.point}`,
-  fontSize: "3vw",
+  fontSize: "2.5vw",
+  marginTop: "3.5vw",
+  marginBottom: "2.5vw"
 });
 
 export const ContentBox = styled("div")({
@@ -43,7 +45,9 @@ export const ProfileImage = styled.div<{ image: string }>`
 
 export const SaveLabel = styled("label")({
   position: "absolute",
-  bottom: "-15%",
+  bottom: "-13%",
+  cursor: "pointer",
+  fontSize: "1.1vw",
 });
 export const SaveInput = styled("input")({
   display: "none",
@@ -101,8 +105,9 @@ export const LogoText = styled("h2")({
 
 export const UnderButton = styled("div")({
   width: "100%",
-  marginTop: "5vh",
-  height: "80px",
+  marginTop: "6vh",
+  height: "6vh",
   display: "flex",
   justifyContent: "flex-end",
 });
+

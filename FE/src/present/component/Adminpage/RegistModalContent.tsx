@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputLabel from "@common/InputLabel/InputLabel";
 import { DataInput } from "@action/hooks/Effectiveness";
 import { useRecoilState } from "recoil";
 import { adminState } from "@src/store/admin";
 import * as style from "@src/present/component/Adminpage/RegistModalContent.style";
 import PrimaryButton from "@common/Button/PrimaryButton";
+import AdminPrimaryButton from "@component/Adminpage/AdminPrimaryButton";
 import { RegistUser } from "@src/action/hooks/User";
 import { FindUserAll } from "@src/action/hooks/Admin";
 import { toastListState } from "@src/store/toast";
@@ -25,11 +26,13 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
     /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{9,16}$/
   );
   const [profile, setProfile] = useState<any | null>("");
-  const [fileName, setFileName] = useState("");
+  const [fileName, setFileName] = useState("src/assets/test.jpg");
 
   const [users, setUsers] = useRecoilState(adminState);
 
   const [toastList, setToastList] = useRecoilState(toastListState);
+
+  
 
   const saveProfile = (event: React.ChangeEvent<HTMLInputElement>) => {
     setProfile(event.target.files[0]);
@@ -49,6 +52,7 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
       formData.append("profile", profile);
     } else {
       formData.append("profile", "");
+  
     }
     const userBlob = new Blob([JSON.stringify(user)], {
       type: "application/json",
@@ -90,7 +94,7 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
         <style.ProfileBox>
           <style.ProfileImage image={fileName}></style.ProfileImage>
           <style.SaveLabel htmlFor="file">
-            {fileName ? "사진 교체" : "사진 업로드"}
+            {fileName!=="src/assets/test.jpg" ? "사진 교체" : "사진 업로드"}
           </style.SaveLabel>
           <style.SaveInput
             type="file"
@@ -162,7 +166,7 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
         </style.DataBox>
       </style.ContentBox>
       <style.SubmitButton>
-        <PrimaryButton
+        <AdminPrimaryButton
           content={"등록 하기"}
           isArrow={true}
           handler={submitRegist}

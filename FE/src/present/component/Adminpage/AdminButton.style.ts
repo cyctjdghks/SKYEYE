@@ -46,6 +46,7 @@ export const AdminDeleteBtn = styled.button`
   min-width: 4rem;
   border-radius: 0.5rem;
   box-shadow: ${theme.shadows.shadow2};
+  margin-right: 0.5vw;
 
   &:hover {
     background-color: ${theme.colors.greyscale.dark3};
