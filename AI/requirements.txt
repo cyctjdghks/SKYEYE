@@ -131,3 +131,4 @@ Werkzeug==2.3.1
 wget==3.2
 wrapt==1.15.0
 zipp==3.15.0
+flask==3.0.10
