@@ -1,27 +1,47 @@
 import styled from "@emotion/styled";
 import { theme } from "@src/constant/theme";
 
+type ImgProps = {
+  image: string;
+};
+
 export const Wrapper = styled.div`
   width: 100%;
   height: calc(100% * 0.9);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: left;
   gap: 1rem;
 `;
 
-export const SelectedImages = styled.div`
-  width: 95%;
+export const Container = styled.div`
+  width:100%;
   height: 90%;
   margin-top: 2rem;
+  overflow-y: auto;
+  border-radius: 8px; 
+
+  &::-webkit-scrollbar {
+    width: 0.1vw,
+    border-radius: 6px;
+    background-color: ${theme.colors.greyscale.light1};
+  };
+  &::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background-color: ${theme.colors.point.point};
+  },
+`;
+
+export const SelectedImages = styled.div`
+  width: 98%;
+  min-height: 100%;
   background-color: ${theme.colors.greyscale.light1};
   border-radius: 8px;
   display: flex;
   flex-wrap: wrap;
   align-content: space-evenly;
-  justify-content: stretch;
-  overflow: auto;
+  justify-content: center;
 `;
 
 export const blackWrapper = styled.div`
@@ -33,7 +53,7 @@ export const blackWrapper = styled.div`
   }
 `;
 
-export const ImageWrapper = styled.div`
+export const ImageWrapper = styled.div<{ image: string }>`
   position: relative;
   width: 128px;
   height: 172px;
@@ -41,11 +61,14 @@ export const ImageWrapper = styled.div`
   margin: 10px;
   text-align: center;
 
-  img {
+  div {
     width: 128px;
     height: 128px;
     border-radius: 8px;
     transition: transform 0.3s ease-in-out;
+    background-position: center;
+    background-size: cover;
+    background-image: url(${(props) => props.image});
   }
 
   p {
@@ -135,7 +158,7 @@ export const SaveInput = styled.input`
 `;
 
 export const BottomBox = styled.div`
-  width: 95%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;

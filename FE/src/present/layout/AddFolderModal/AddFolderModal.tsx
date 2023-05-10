@@ -25,7 +25,7 @@ const AddFolderModal = ({ onClose }: FolerInfo) => {
   });
 
   const user = useRecoilValue(authState).user;
-  
+
   const [toastList, setToastList] = useRecoilState(toastListState);
 
   const [folderList, setFolderList] = useRecoilState<Folder[]>(folderListState);
@@ -69,7 +69,7 @@ const AddFolderModal = ({ onClose }: FolerInfo) => {
       <PrimaryButton
         content={"추가하기"}
         handler={() => {
-          RegistFolder(aboutFolder), onClose(), updateFolder();
+          RegistFolder(aboutFolder), updateFolder(), onClose();
         }}
       />
     </Style.ModalContainer>
