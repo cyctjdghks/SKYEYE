@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CountCrackDto {
-    private int countType1;
-    private int countType2;
+    private int concrete;
+    private int asphalt;
 }
