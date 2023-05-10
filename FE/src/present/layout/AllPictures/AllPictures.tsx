@@ -6,14 +6,13 @@ import { getCrackList } from "@src/action/api/Crack";
 import { useLocation } from "react-router-dom";
 import { getFolders, getPhotoList } from "@src/action/api/Pictures";
 import PhotoLayout from "../PhotoLayout/PhotoLayout";
-import { userInfo } from "os";
 import { Folder } from "@src/types/FlightInfo";
 
 const AllPictures = () => {
   const location = useLocation().state;
   const [folder, setFolder] = useState<number | null>(null);
   const [crack, setCrack] = useState<string | null>(null);
-
+  
   // List
   const [folderList, setFolderList] = useState<Array<Folder>>([]);
   const [crackList, setCrackList] = useState([]);
@@ -57,14 +56,18 @@ const AllPictures = () => {
           setCrackList([...keys]);
         }
       });
-    } else if (crack !== null) {
+    }
+  }, [folder, crack]);
+
+  useEffect(()=>{
+    if (crack !== null) {
       getPhotoList("jhp1276", folder, 'concrete').then((res) => {
         if (res.isSuccess) {
           setPhotoList([...res.result])
         }
       })
     }
-  }, [folder, crack]);
+  }, [crack])
 
   // Handler
   const folderHandler = (idx: number) => {
