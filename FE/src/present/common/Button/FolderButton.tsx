@@ -27,7 +27,7 @@ const FolderButton = ({
     <div>
       <div>
         <span>사진 수</span>
-        <span>장</span>
+        <span>{content.countImage}장</span>
       </div>
       <div>
         <span>마지막 업로드</span>

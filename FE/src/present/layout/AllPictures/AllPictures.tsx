@@ -4,16 +4,20 @@ import ButtonLayout from "@src/present/layout/ButtonLayout/ButtonLayout";
 import SubTitle from "@src/present/common/SubTitle/SubTitle";
 import { getCrackList } from "@src/action/api/Crack";
 import { useLocation } from "react-router-dom";
-import { getFolders } from "@src/action/api/Pictures";
+import { getFolders, getPhotoList } from "@src/action/api/Pictures";
+import PhotoLayout from "../PhotoLayout/PhotoLayout";
+import { userInfo } from "os";
+import { Folder } from "@src/types/FlightInfo";
 
 const AllPictures = () => {
   const location = useLocation().state;
   const [folder, setFolder] = useState<number | null>(null);
-  const [crack, setCrack] = useState<number | null>(null);
+  const [crack, setCrack] = useState<string | null>(null);
 
   // List
-  const [folderList, setFolderList] = useState([]);
+  const [folderList, setFolderList] = useState<Array<Folder>>([]);
   const [crackList, setCrackList] = useState([]);
+  const [photoList, setPhotoList] = useState([]);
 
   useEffect(() => {
     if (location !== null) {
@@ -36,7 +40,6 @@ const AllPictures = () => {
         [location[3], dayOfWeek[location[1]], location[2]].join("-")
       ).then((res) => {
         if (res.isSuccess) {
-          console.log(res.result)
           setFolderList([...res.result]);
         }
       });
@@ -48,21 +51,32 @@ const AllPictures = () => {
       getCrackList(folder).then((res) => {
         if (res.isSuccess) {
           const keys = Object.keys(res.result).map((elem) => {
-            return {crackType:elem, cnt:res.result[elem]}
-          })
+            return { crackType: elem, cnt: res.result[elem] };
+          });
+
           setCrackList([...keys]);
         }
       });
     }
   }, [folder]);
 
+  useEffect(()=>{
+    if (crack !== null) {
+      getPhotoList("jhp1276", folder, 'concrete').then((res) => {
+        if (res.isSuccess) {
+          setPhotoList([...res.result])
+        }
+      })
+    }
+  }, [crack])
+
   // Handler
   const folderHandler = (idx: number) => {
-    setFolder(idx);
+    setFolder(folderList[idx].folderId);
   };
 
-  const crackHandler = (idx: number) => {
-    setCrack(idx);
+  const crackHandler = (type: string) => {
+    setCrack(type);
   };
 
   // Sentence
@@ -87,6 +101,7 @@ const AllPictures = () => {
       return null;
     }
   };
+
   return (
     <Style.Layout>
       <div>
@@ -107,6 +122,13 @@ const AllPictures = () => {
             selected={crack}
             handler={crackHandler}
           />
+        </div>
+      )}
+
+      {crack !== null && (
+        <div>
+          <SubTitle content="사진" />
+          <PhotoLayout photoList={photoList}/>
         </div>
       )}
 

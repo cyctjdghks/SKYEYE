@@ -14,12 +14,13 @@ export type Folder = {
   userId: string;
   createTime: string;
   updateTime: string;
+  countImage: number;
 };
 
 export type CrackPhoto = {
   crackType: String;
   cnt: number;
-}
+};
 
 export type Crack = {
   crackId: number;
@@ -47,4 +48,12 @@ type CrackCapture = {
 export type Capture = {
   profile: any;
   crack: CrackCapture;
+};
+
+export type Picture = {
+  originalFileName: String;
+  storedFileName: String;
+  fileSize: number;
+  createTime: String;
+  updateTime: String;
 };

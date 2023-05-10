@@ -13,11 +13,13 @@ type ButtonLayout = {
 };
 
 const ButtonLayout = ({ list, selected, handler, type }) => {
+  console.log(list)
   const buttons = list.map((elem, idx) => {
-    const isSelected = selected === idx ? true : false;
-    console.log(elem)
+    let isSelected:boolean;
+
     switch (type) {
       case "folder":
+        isSelected = (selected === list[idx].folderId) ? true : false;
         return (
           <FolderButton
             content={elem}
@@ -28,11 +30,12 @@ const ButtonLayout = ({ list, selected, handler, type }) => {
         );
 
       default:
+        isSelected = (selected === list[idx].crackType) ? true : false;
         return (
           <CrackButton
             content={elem}
             isSelected={isSelected}
-            handler={() => handler(idx)}
+            handler={() => handler(list[idx].crackType)}
             key={idx}
           />
         );
