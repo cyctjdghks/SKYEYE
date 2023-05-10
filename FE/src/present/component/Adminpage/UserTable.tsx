@@ -35,20 +35,22 @@ const UserTable = () => {
   };
 
   return (
-    <style.DataBox>
-      {users.users.map((user, idx) => (
-        <EmployeeData
-          key={user.userId}
-          number={user.userId}
-          name={user.userName}
-          job={user.userPosition}
-          phone={user.userPhoneNumber}
-          imgSrc={user.imageSrc}
-          onSelect={() => handleSelect(idx)}
-          selected={selectedIdx.idx === idx}
-        />
-      ))}
-    </style.DataBox>
+    <style.AllDataBox>
+      <style.DataBox>
+        {users.users.map((user, idx) => (
+          <EmployeeData
+            key={user.userId}
+            number={user.userId}
+            name={user.userName}
+            job={user.userPosition}
+            phone={user.userPhoneNumber}
+            imgSrc={user.imageSrc}
+            onSelect={() => handleSelect(idx)}
+            selected={selectedIdx.idx === idx}
+          />
+        ))}
+      </style.DataBox>
+    </style.AllDataBox>
   );
 };
 

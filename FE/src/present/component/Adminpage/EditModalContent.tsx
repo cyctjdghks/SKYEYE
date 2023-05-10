@@ -13,6 +13,8 @@ import {
 } from "@src/action/hooks/User";
 import { FindUserAll } from "@src/action/hooks/Admin";
 import DeleteButton from "@src/present/common/Button/DeleteButton";
+import AdminDeleteBtn from "@src/present/component/Adminpage/AdminDeleteButton";
+import AdminPrimaryButton from "@src/present/component/Adminpage/AdminPrimaryButton";
 
 type UserInfo = {
   data: {
@@ -118,7 +120,7 @@ const EditModalContent = ({ data, onClose }: UserInfo) => {
       <style.ModalTitle>정보 수정 하기</style.ModalTitle>
       <style.ContentBox>
         <style.ProfileBox>
-          <style.ProfileImage src={fileName}></style.ProfileImage>
+          <style.ProfileImage image={fileName}></style.ProfileImage>
           <style.SaveLabel htmlFor="file">
             {fileName ? "사진 교체" : "사진 업로드"}
           </style.SaveLabel>
@@ -188,8 +190,8 @@ const EditModalContent = ({ data, onClose }: UserInfo) => {
         </style.DataBox>
       </style.ContentBox>
       <style.UnderButton>
-        <DeleteButton content={"삭제 하기"} handler={clickDelete} />
-        <PrimaryButton
+        <AdminDeleteBtn content={"삭제 하기"} handler={clickDelete} />
+        <AdminPrimaryButton
           content={"수정 하기"}
           isArrow={true}
           handler={submitRegist}
