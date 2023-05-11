@@ -132,7 +132,7 @@ const EditModalContent = ({ data, onClose }: UserInfo) => {
           <InputLabel
             placeholder="직원번호"
             width="100%"
-            height="30px"
+            height="45px"
             value={userId}
             fontSize="1vw"
             onChange={(e) => {
@@ -146,7 +146,7 @@ const EditModalContent = ({ data, onClose }: UserInfo) => {
           <InputLabel
             placeholder="이름"
             width="100%"
-            height="30px"
+            height="45px"
             value={userName}
             fontSize="1vw"
             type="text"
@@ -159,7 +159,7 @@ const EditModalContent = ({ data, onClose }: UserInfo) => {
           <InputLabel
             placeholder="직책"
             width="100%"
-            height="30px"
+            height="45px"
             type="text"
             value={userPosition}
             fontSize="1vw"
@@ -172,7 +172,7 @@ const EditModalContent = ({ data, onClose }: UserInfo) => {
           <InputLabel
             placeholder="전화번호( - 포함 작성 )"
             width="100%"
-            height="30px"
+            height="45px"
             type="text"
             value={userPhoneNumber}
             fontSize="1vw"
