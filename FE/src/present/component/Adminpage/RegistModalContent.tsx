@@ -4,7 +4,6 @@ import { DataInput } from "@action/hooks/Effectiveness";
 import { useRecoilState } from "recoil";
 import { adminState } from "@src/store/admin";
 import * as style from "@src/present/component/Adminpage/RegistModalContent.style";
-import PrimaryButton from "@common/Button/PrimaryButton";
 import AdminPrimaryButton from "@component/Adminpage/AdminPrimaryButton";
 import { RegistUser } from "@src/action/hooks/User";
 import { FindUserAll } from "@src/action/hooks/Admin";
@@ -26,7 +25,7 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
     /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{9,16}$/
   );
   const [profile, setProfile] = useState<any | null>("");
-  const [fileName, setFileName] = useState("src/assets/test.jpg");
+  const [fileName, setFileName] = useState("src/assets/admin/profile.png");
 
   const [users, setUsers] = useRecoilState(adminState);
 
@@ -94,7 +93,7 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
         <style.ProfileBox>
           <style.ProfileImage image={fileName}></style.ProfileImage>
           <style.SaveLabel htmlFor="file">
-            {fileName!=="src/assets/test.jpg" ? "사진 교체" : "사진 업로드"}
+            {fileName!=="src/assets/admin/profile.png" ? "사진 교체" : "사진 업로드"}
           </style.SaveLabel>
           <style.SaveInput
             type="file"
@@ -109,7 +108,7 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
           <InputLabel
             placeholder="직원번호"
             width="100%"
-            height="30px"
+            height="45px"
             value={userId}
             fontSize="1vw"
             onChange={setId}
@@ -120,7 +119,7 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
           <InputLabel
             placeholder="이름"
             width="100%"
-            height="30px"
+            height="45px"
             value={userName}
             fontSize="1vw"
             type="text"
@@ -131,7 +130,7 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
           <InputLabel
             placeholder="직책"
             width="100%"
-            height="30px"
+            height="45px"
             type="text"
             value={userPosition}
             fontSize="1vw"
@@ -142,7 +141,7 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
           <InputLabel
             placeholder="전화번호( - 포함 작성 )"
             width="100%"
-            height="30px"
+            height="45px"
             type="text"
             value={userPhoneNumber}
             fontSize="1vw"
@@ -153,7 +152,7 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
           <InputLabel
             placeholder="비밀번호"
             width="100%"
-            height="30px"
+            height="45px"
             type="password"
             value={userPw}
             fontSize="1vw"
