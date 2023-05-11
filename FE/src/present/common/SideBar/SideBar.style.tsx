@@ -27,7 +27,7 @@ export const Wrapper = styled.div<OpenProps>`
   align-items: center;
   justify-content: flex-start;
   transition: ${theme.trans};
-  border-radius: ${(props) => (props.isOpen ? "0px 50px 50px 0px" : "0px")};
+  border-radius: ${(props) => (props.isOpen ? "0px 25px 25px 0px" : "0px")};
   z-index: 9999;
 `;
 
@@ -185,3 +185,7 @@ export const MenuItem = styled.div<SelectProps>`
         : theme.colors.greyscale.dark2};
   }
 `;
+
+export const weatherBox = styled.div`
+  
+`
