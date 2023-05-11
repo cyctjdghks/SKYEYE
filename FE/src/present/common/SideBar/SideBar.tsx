@@ -9,6 +9,8 @@ import { ReactComponent as MapIcon } from "@assets/sidebar/map.svg";
 import { useRecoilValue } from "recoil";
 import { authState } from "@src/store/auth";
 
+import Weather from "@src/present/component/SideBar/Weather";
+
 type SidebarProps = {
   isOpen: boolean;
   setIsOpen: Function;
@@ -77,6 +79,7 @@ const SideBar = ({ isOpen, setIsOpen }: SidebarProps) => {
       <style.hrLine />
       {/* MenuItem */}
       <style.Body>{menuItem}</style.Body>
+      <Weather/>
     </style.Wrapper>
   );
 };
