@@ -94,6 +94,7 @@ export const SubmitButton = styled("div")({
   width: "100%",
   display: "flex",
   justifyContent: "flex-end",
+  marginRight: "3.5vw"
 });
 
 export const LogoText = styled("h2")({
