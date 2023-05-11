@@ -1,11 +1,13 @@
 import * as style from "@common/SideBar/SideBar.style";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { ReactComponent as ProfileIcon } from "@assets/sidebar/profile.svg";
 import { ReactComponent as VideoIcon } from "@assets/sidebar/video.svg";
 import { ReactComponent as ImageIcon } from "@assets/sidebar/image.svg";
 import { ReactComponent as MapIcon } from "@assets/sidebar/map.svg";
+import { useRecoilValue } from "recoil";
+import { authState } from "@src/store/auth";
 
 type SidebarProps = {
   isOpen: boolean;
@@ -13,9 +15,9 @@ type SidebarProps = {
 };
 
 const SideBar = ({ isOpen, setIsOpen }: SidebarProps) => {
+  const userName = useRecoilValue(authState).user;
   const [selected, setSelected] = useState<number>(0);
   const location = useLocation();
-
   // selected 판별
   const changeOpen = () => {
     setIsOpen(!isOpen);
@@ -26,18 +28,15 @@ const SideBar = ({ isOpen, setIsOpen }: SidebarProps) => {
   };
 
   // menuitem 설정
-  const menuItemByPathname = location.pathname.includes("drone")
-    ? {
-        image: <VideoIcon />,
-        barText: "드론 영상 보기",
-      }
-    : {
-        image: <ImageIcon />,
-        barText: "저장된 사진 보기",
-      };
-
   const menu = [
-    menuItemByPathname,
+    {
+      image: <VideoIcon />,
+      barText: "사진 업로드 하기",
+    },
+    {
+      image: <ImageIcon />,
+      barText: "저장된 사진 보기",
+    },
     {
       image: <MapIcon />,
       barText: "비행 가능 구역 보기",
@@ -55,7 +54,7 @@ const SideBar = ({ isOpen, setIsOpen }: SidebarProps) => {
         onClick={() => changeSelect(idx)}
       >
         {elem.image}
-        <style.SideBarText isOpen={isOpen}>{elem.barText}</style.SideBarText>
+        <style.SideBarText isOpen={isOpen} selected={isSelected}>{elem.barText}</style.SideBarText>
       </style.MenuItem>
     );
   });
@@ -68,10 +67,14 @@ const SideBar = ({ isOpen, setIsOpen }: SidebarProps) => {
       {/* Profile */}
       <style.ProfileBox>
         <ProfileIcon />
-        <style.ProfileText1 isOpen={isOpen}>박재현</style.ProfileText1>
-        <style.ProfileText2 isOpen={isOpen}>구조기술자</style.ProfileText2>
+        <style.ProfileText1 isOpen={isOpen}>
+          {userName.userName}
+        </style.ProfileText1>
+        <style.ProfileText2 isOpen={isOpen}>
+          {userName.userPosition}
+        </style.ProfileText2>
       </style.ProfileBox>
-
+      <style.hrLine />
       {/* MenuItem */}
       <style.Body>{menuItem}</style.Body>
     </style.Wrapper>
