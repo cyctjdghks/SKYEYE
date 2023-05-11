@@ -26,7 +26,7 @@ export const ModalTitle = styled("h1")({
 });
 
 export const LoginForm = styled.form`
-  width: 55%;
+  width: 70%;
   height: 50%;
   display: flex;
   flex-direction: column;
