@@ -24,9 +24,6 @@ public class OAuth2AuthenticationFailureHandler extends SimpleUrlAuthenticationF
         }
 
         exception.printStackTrace();
-        System.out.println("dadasdasdfafasdasd");
-
-
 
         getRedirectStrategy().sendRedirect(request, response, redirectUri);
     }

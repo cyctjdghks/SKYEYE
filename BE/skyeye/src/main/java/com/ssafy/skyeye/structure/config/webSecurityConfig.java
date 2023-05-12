@@ -51,13 +51,12 @@ public class webSecurityConfig extends WebSecurityConfigurerAdapter {
         .authorizeRequests()
                 .antMatchers("/user/login", "/user/regist", "/drone/login", "/drone/regist", "/admin/login", "/user/valid/**", "/drone/valid/**").permitAll()
 ////                .antMatchers(HttpMethod.POST, "/user/login").permitAll()
-                .antMatchers("/drone/**").hasAnyRole("DRONE", "USER", "ADMIN")
-                .antMatchers("/crack/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/building/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("**exception**").permitAll() // exception이 들어간 모든 경로를 허용
-                .antMatchers("**Exception**").permitAll() // Exception이 들어간 모든 경로를 허용
+//                .antMatchers("/crack/**").hasAnyRole("USER", "SOCIAL_USER", "ADMIN")
+//                .antMatchers("/folder/**").hasAnyRole("USER", "SOCIAL_USER","ADMIN")
+//                .antMatchers("/user/**").hasAnyRole("USER", "SOCIAL_USER", "ADMIN")
+//                .antMatchers("/admin/**").hasRole("ADMIN")
+//                .antMatchers("**exception**").permitAll() // exception이 들어간 모든 경로를 허용
+//                .antMatchers("**Exception**").permitAll() // Exception이 들어간 모든 경로를 허용
                 .anyRequest().permitAll();
 
                 httpSecurity
