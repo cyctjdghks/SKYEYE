@@ -98,7 +98,15 @@ public class CrackController {
 
         UrlResource resource = new UrlResource("file:" +imageSrc);
 
-        String fileName = imageSrc.split("/")[2];
+        char[] temp = imageSrc.toCharArray();
+        int count = 0;
+        for(int i=0;i<temp.length;i++){
+            if(temp[i] == '/'){
+                count++;
+            }
+        }
+
+        String fileName = imageSrc.split("/")[count];
 
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)

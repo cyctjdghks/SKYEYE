@@ -61,6 +61,16 @@ public class JwtTokenProvider {
 
         return creater(claims);
     }
+    public String createToken(UserCustomDetails dto){
+        log.info("{} 메서드 실행", Thread.currentThread().getStackTrace()[1].getMethodName());
+
+        Claims claims = Jwts.claims().setSubject(dto.getId());
+        claims.put("id", dto.getId());
+        claims.put("role", dto.getRoles().get(0));
+        System.out.println(dto.getRoles().get(0));
+
+        return creater(claims);
+    }
 
     private String creater(Claims claims){
         Date now = new Date();
