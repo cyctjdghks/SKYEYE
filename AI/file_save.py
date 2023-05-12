@@ -35,14 +35,14 @@ bp = Blueprint('main', __name__, url_prefix='/api')
 np.set_printoptions(suppress=True)
 
 # Load the model
-model = load_model("/usr/app/keras_model.h5", compile=False)
+# model = load_model("/usr/app/keras_model.h5", compile=False)
 
 
-class_names = open("/usr/app/labels.txt", "r").readlines()
-# model = load_model("keras_model.h5", compile=False)
+# class_names = open("/usr/app/labels.txt", "r").readlines()
+model = load_model("keras_model.h5", compile=False)
 
 
-# class_names = open("labels.txt", "r").readlines()
+class_names = open("labels.txt", "r").readlines()
 
 data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
@@ -76,13 +76,17 @@ def upload():
         # if extension not in ['jpg', 'jpeg', 'png']:
         #     return "Error: Invalid file format."
         now = datetime.datetime.now().strftime('{}{}{}{}{}{}'.format('%Y','%m','%d','%H','%M','%S%f')) 
+        now_DB = datetime.datetime.now().strftime('{}-{}-{} {}:{}:{}'.format('%Y','%m','%d','%H','%M','%S.%f')) 
         filename = f"images/{now}.{extension}"
         # print('filename1: ',file)
         file.save(filename)
+        sql='INSERT INTO image(stored_file_name, created_at, updated_at) values(%s,%s,%s)'
+        val=(filename,now_DB,now_DB)
+        cursor.execute(sql,val)
         filenames.append(filename)
-        image = Image.open(f"/usr/app/images/{now}.{extension}").convert("RGB")
-        # image = Image.open(f"images/{now}.{extension}").convert("RGB")
-        storedFileName=  f"images/{now}"
+        # image = Image.open(f"/usr/app/images/{now}.{extension}").convert("RGB")
+        image = Image.open(f"images/{now}.{extension}").convert("RGB")
+        
 
         size = (224, 224)
         image = ImageOps.fit(image, size, Image.Resampling.LANCZOS)
@@ -112,8 +116,8 @@ def upload():
 
         crackType = class_name[2:].rsplit('\n')[0]
         # print(crackType)#  크랙 종류
-        sql="insert into crack (crack_type, folder_id, image_id,crack_position) values (%s, %s, %s,%s)"
-        val= (crackType,folderId,image_id,'floor')
+        sql="insert into crack (crack_type, folder_id, image_id,crack_position, created_at, updated_at) values (%s, %s, %s,%s,%s,%s)"
+        val= (crackType,folderId,image_id,'floor',now_DB,now_DB)
         cursor.execute(sql,val)
         # print("Class:", crackType , end="")
         # print("Confidence Score:", confidence_score)
