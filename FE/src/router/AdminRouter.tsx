@@ -11,7 +11,7 @@ const AdminRoute = () => {
     if(userType === 1){
       setNavLink("/flightInfo")
     }else if(userType === 2){
-      setNavLink("/drone")
+      setNavLink("/upload")
     }else{
       setNavLink("/")
     }

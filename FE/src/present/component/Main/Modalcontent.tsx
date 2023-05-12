@@ -52,7 +52,7 @@ const ModalContent = () => {
               user: res.result,
               userType: 1,
             });
-            naviate("/drone");
+            naviate("/upload");
             const successUserToast = {
               type: "Success",
               sentence: "로그인에 성공했습니다",

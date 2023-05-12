@@ -16,7 +16,7 @@ type SideContentProps = {
 
 const SideContent = ({ isOpen, titleProps, children }: SideContentProps) => {
   const pathname = useLocation().pathname;
-  const title = pathname.includes("drone")
+  const title = pathname.includes("upload")
     ? "사진 추가 하기"
     : "저장된 사진 보기";
 

@@ -137,7 +137,7 @@ export const SideBarText = styled("h1")<SelectProps>(
   })
 );
 
-export const Drone = styled("div")({
+export const Upload = styled("div")({
   width: "87.5%",
   height: "70px",
 });
