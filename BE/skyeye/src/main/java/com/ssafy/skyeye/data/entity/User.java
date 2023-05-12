@@ -25,7 +25,7 @@ public class User extends BaseEntity{
     private String userPosition;
     @Column(name = "user_phone_number", length = 20)
     private String userPhoneNumber;
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "image")
     private Image imageId;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "userId", cascade = CascadeType.ALL)
