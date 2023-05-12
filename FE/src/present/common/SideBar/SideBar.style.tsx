@@ -105,7 +105,7 @@ export const hrLine = styled.hr`
 
 export const Body = styled("div")({
   width: "100%",
-  height: "50%",
+  // height: "50%",
 });
 
 export const BodyContent = styled("div")({
