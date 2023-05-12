@@ -6,7 +6,11 @@ import { toastListState } from "@src/store/toast";
 import PrimaryButton from "@src/present/common/Button/PrimaryButton";
 import { UploadImage } from "@src/action/hooks/Upload";
 
-const AddPicture = () => {
+type UserInfo = {
+  folderId: number | null;
+};
+
+const AddPicture = ({ folderId }: UserInfo) => {
   const navigate = useNavigate();
 
   const [toastList, setToastList] = useRecoilState(toastListState);
@@ -27,10 +31,8 @@ const AddPicture = () => {
     for (let i = 0; i < selectedFiles.length; i++) {
       formData.append("file", selectedFiles[i]);
     }
-    // formData 값 확인
-    // for (const [key, value] of formData.entries()) {
-    //   console.log(key, value);
-    // }
+    formData.append("folder_id", folderId.toString());
+
     UploadImage(formData).then((res) => {
       if (res.isSuccess) {
         const successUploadToast = {
@@ -38,7 +40,7 @@ const AddPicture = () => {
           sentence: "사진이 업로드 되었습니다.",
         };
         setToastList({ list: [...toastList.list, successUploadToast] });
-        navigate("/drone");
+        navigate("/upload");
       } else {
         const failUploadToast = {
           type: "Error",
@@ -123,4 +125,4 @@ const AddPicture = () => {
   );
 };
 
-export default memo(AddPicture);
+export default AddPicture;

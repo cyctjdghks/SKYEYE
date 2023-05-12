@@ -16,7 +16,7 @@ import { Folder, InputFolder } from "@src/types/FlightInfo";
 import { Error } from "@src/action/api/api";
 import { authState } from "@src/store/auth";
 
-const SelectFolder = () => {
+const SelectFolder = ({setSelectedFolder}: any) => {
   const navigate = useNavigate();
   const user = useRecoilValue(authState).user;
   const [toastList, setToastList] = useRecoilState(toastListState);
@@ -28,7 +28,11 @@ const SelectFolder = () => {
   });
   const [folderList, setFolderList] = useRecoilState<Folder[]>(folderListState);
 
-  useEffect(() => {
+  useEffect(()=>{
+    setSelectedFolder(selectContent)
+  }, [selectContent])
+
+  const getData = () =>{
     GetFolderByUserId(user?.userId).then((res) => {
       if (res.isSuccess) {
         setFolderList([...res.result]);
@@ -48,11 +52,14 @@ const SelectFolder = () => {
         }
       }
     });
+  }
+  useEffect(() => {
+    getData()
   }, []);
 
   const routeHandler = () => {
     if (selectContent.folderName !== "폴더 이름")
-      navigate("/drone/addpicture", { state: selectContent });
+      navigate("/upload/addpicture", { state: selectContent });
     else {
       alert("폴더를 선택해주세요");
     }
@@ -79,7 +86,7 @@ const SelectFolder = () => {
           height="80vh"
           title="폴더 추가"
           content={<AddFolderModal onClose={() => {
-            setIsOpen(false);
+            setIsOpen(false); getData();
           }}/>}
         />
       )}
