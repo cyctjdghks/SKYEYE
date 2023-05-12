@@ -1,8 +1,14 @@
-import * as Style from "./Weather.style";
+import * as style from "./Weather.style";
 import { GetWeather } from "@action/hooks/GetWeather";
 import { useState } from "react";
 
-const Weather = () => {
+import { ReactComponent as VideoIcon } from "@assets/sidebar/video.svg";
+
+type WeatherProps = {
+  isOpen: boolean;
+};
+
+const Weather = ({ isOpen }: WeatherProps) => {
   const [lat, setLat] = useState<number>(36.110336);
   const [lng, setLng] = useState<number>(128.4112384);
 
@@ -35,25 +41,89 @@ const Weather = () => {
       setSunset(parseInt(res.result.sys.sunset));
       setSunrise(parseInt(res.result.sys.sunrise));
     });
-
-
   };
 
+  // 섭씨 온도로 변환
+  const celsius = (temperature) => {
+    const celsiusTemp = temperature - 273.15; // 섭씨 변환 공식: 절대 온도 - 273.15
+    return celsiusTemp.toFixed(1); // 소수점 한 자리까지 반올림
+  };
+
+  const celsiusTemp = celsius(temp);
+
+  // windDeg를 방향으로 변환
+  const getWindDirection = (degree) => {
+    const directions = [
+      "N",
+      "NE",
+      "E",
+      "SE",
+      "S",
+      "SW",
+      "W",
+      "NW",
+    ];
+    const index = Math.round(degree / 45) % 8;
+    return directions[index];
+  };
+
+  // weather 설정
+  const weather = [
+    {
+      image: <VideoIcon />,
+      weatherText: "온도",
+      weatherData: `${celsiusTemp}°C`,
+      weatherData2: "",
+    },
+    {
+      image: <VideoIcon />,
+      weatherText: "습도/기압",
+      weatherData: `${humidity}%`,
+      weatherData2: `${pressure}hPa`,
+    },
+    {
+      image: <VideoIcon />,
+      weatherText: "풍속",
+      weatherData: `${windSpeed}m/s`,
+      weatherData2: getWindDirection(windDeg),
+    },
+    {
+      image: <VideoIcon />,
+      weatherText: "일출",
+      weatherData: new Date(sunrise * 1000).toLocaleTimeString(),
+      weatherData2: "",
+    },
+    {
+      image: <VideoIcon />,
+      weatherText: "일몰",
+      weatherData: new Date(sunset * 1000).toLocaleTimeString(),
+      weatherData2: "",
+    },
+  ];
+
+  const weatherItem = weather.map((elem, idx) => {
+    return (
+      <style.weatherItem key={idx} isOpen={isOpen}>
+        {elem.image}
+        <style.weatherTextDataBox>
+          <style.weatherText isOpen={isOpen}>
+            {elem.weatherText}
+          </style.weatherText>
+          <style.weatherData isOpen={isOpen}>
+            {elem.weatherData} {elem.weatherData2}
+          </style.weatherData>
+        </style.weatherTextDataBox>
+      </style.weatherItem>
+    );
+  });
+
   return (
-    <Style.weatherbox>
-      <Style.weatherTitle onClick={logWeather}>날씨</Style.weatherTitle>
-      <Style.temp>
-        온도 {temp} {main}
-      </Style.temp>
-      <Style.humidity>
-        습도/기압 {humidity} {pressure}
-      </Style.humidity>
-      <Style.wind>
-        풍속 {windSpeed} {windDeg}
-      </Style.wind>
-      <Style.sunrise>일출 {new Date(sunrise * 1000).toLocaleTimeString()}</Style.sunrise>
-      <Style.sunset>일몰 {new Date(sunset * 1000).toLocaleTimeString()}</Style.sunset>
-    </Style.weatherbox>
+    <style.weatherbox>
+      <style.innerbox>
+        <style.weatherTitle onClick={logWeather}>날씨</style.weatherTitle>
+        {weatherItem}
+      </style.innerbox>
+    </style.weatherbox>
   );
 };
 
