@@ -9,20 +9,19 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-@EnableWebMvc
 public class CorsConfig implements WebMvcConfigurer {
 
     // TODO: SecurityConfig로 cors 구현
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedOrigins("*")
-                .allowedMethods(HttpMethod.GET.name(), HttpMethod.POST.name(), HttpMethod.PUT.name(),
-                        HttpMethod.DELETE.name(), HttpMethod.HEAD.name(), HttpMethod.OPTIONS.name(),
-                        HttpMethod.PATCH.name())
-                .allowedHeaders("*")
-                .maxAge(1800);
-
-    }
+//    @Override
+//    public void addCorsMappings(CorsRegistry registry) {
+//        registry.addMapping("/**").allowedOrigins("*")
+//                .allowedMethods(HttpMethod.GET.name(), HttpMethod.POST.name(), HttpMethod.PUT.name(),
+//                        HttpMethod.DELETE.name(), HttpMethod.HEAD.name(), HttpMethod.OPTIONS.name(),
+//                        HttpMethod.PATCH.name())
+//                .allowedHeaders("*")
+//                .maxAge(1800);
+//
+//    }
 
 
     @Override
