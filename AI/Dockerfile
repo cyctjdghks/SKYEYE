@@ -7,6 +7,7 @@ COPY . .
 RUN /usr/local/bin/python -m pip install --upgrade pip
 
 RUN pip install -r requirements.txt
+RUN pip install pymysql
 
 EXPOSE 5000
 
