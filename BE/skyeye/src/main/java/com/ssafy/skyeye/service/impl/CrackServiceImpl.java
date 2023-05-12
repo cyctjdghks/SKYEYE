@@ -73,8 +73,8 @@ public class CrackServiceImpl implements CrackService {
 //            throw new ForbiddenException("본인 아이디가 아닙니다.");
 //        }
 
-        crack.setCrackPosition(crackUpdateDto.getCrackPosition());
         crack.setCrackType(crackUpdateDto.getCrackType());
+        crack.getImageId().setOriginalFileName(crackUpdateDto.getOriginalFileName());
     }
 
     @Override
