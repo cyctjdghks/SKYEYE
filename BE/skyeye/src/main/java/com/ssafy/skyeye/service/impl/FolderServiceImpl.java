@@ -8,7 +8,6 @@ import com.ssafy.skyeye.data.dto.response.FolderDto;
 import com.ssafy.skyeye.data.dto.response.ImageDto;
 import com.ssafy.skyeye.data.entity.Folder;
 import com.ssafy.skyeye.data.entity.User;
-import com.ssafy.skyeye.data.exception.ForbiddenException;
 import com.ssafy.skyeye.repository.CrackRepository;
 import com.ssafy.skyeye.repository.FolderRepository;
 import com.ssafy.skyeye.repository.ImageRepository;
@@ -38,7 +37,7 @@ public class FolderServiceImpl implements FolderService {
     @Override
     public void registFolder(FolderRegistDto folderRegistDto) {
         User user = userRepository.findById(folderRegistDto.getUserId())
-                .orElseThrow(() -> new ForbiddenException("아이디가 없습니다."));
+                .orElseThrow(() -> new IllegalArgumentException("아이디가 없습니다."));
 
         Folder folder = Folder.builder()
                 .folderName(folderRegistDto.getFolderName())
@@ -54,10 +53,10 @@ public class FolderServiceImpl implements FolderService {
     @Transactional
     public void updateFolder(FolderUpdateDto folderUpdateDto) {
         Folder folder = folderRepository.findById(folderUpdateDto.getFolderId())
-                .orElseThrow(() -> new ForbiddenException("아이디가 없습니다."));
+                .orElseThrow(() -> new IllegalArgumentException("아이디가 없습니다."));
 
         User user = userRepository.findById(folderUpdateDto.getUserId())
-                .orElseThrow(() -> new ForbiddenException("아이디가 없습니다."));
+                .orElseThrow(() -> new IllegalArgumentException("아이디가 없습니다."));
 
         folder.setFolderName(folderUpdateDto.getFolderName());
         folder.setFolderMemo(folderUpdateDto.getFolderMemo());
@@ -69,7 +68,7 @@ public class FolderServiceImpl implements FolderService {
     @Override
     public void deleteFolder(long folderId) {
         Folder folder = folderRepository.findById(folderId)
-                .orElseThrow(() -> new ForbiddenException("아이디가 없습니다."));
+                .orElseThrow(() -> new IllegalArgumentException("아이디가 없습니다."));
 
         folderRepository.delete(folder);
     }
@@ -139,14 +138,20 @@ public class FolderServiceImpl implements FolderService {
     public FolderDto getFolder(long folderId) {
         return folderRepository.findById(folderId)
                 .map(FolderDto::entityToDto)
-                .orElseThrow(() -> new ForbiddenException("아이디가 없습니다."));
+                .orElseThrow(() -> new IllegalArgumentException("아이디가 없습니다."));
     }
 
     @Override
     public ImageDto getImage(long imageId) {
+        Long crackId = crackRepository.findAll().stream()
+                .filter(crack -> crack.getImageId().getImageId().equals(imageId))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("사진이 없습니다."))
+                .getCrackId();
 
-        return imageRepository.findById(imageId)
-                .map(ImageDto::entityToDto)
-                .orElseThrow(() -> new ForbiddenException("사진이 없습니다."));
+
+        return crackRepository.findById(crackId)
+                .map(ImageDto::entityToImageDto)
+                .orElseThrow(() -> new IllegalArgumentException("사진이 없습니다."));
     }
 }

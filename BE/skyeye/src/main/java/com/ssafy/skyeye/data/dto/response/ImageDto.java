@@ -17,18 +17,9 @@ public class ImageDto {
     private String originalFileName;
     private String storedFileName;
     private Long fileSize;
+    private String crackType;
     private String createTime;
     private String updateTime;
-
-    public static ImageDto entityToDto(Image image) {
-        return ImageDto.builder()
-                .originalFileName(image.getOriginalFileName())
-                .storedFileName(image.getStoredFileName())
-                .fileSize(image.getFileSize())
-                .createTime(image.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
-                .updateTime(image.getUpdatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
-                .build();
-    }
 
     public static ImageDto entityToImageDto(Crack crack) {
         Image image = crack.getImageId();
@@ -37,6 +28,7 @@ public class ImageDto {
                 .originalFileName(image.getOriginalFileName())
                 .storedFileName(image.getStoredFileName())
                 .fileSize(image.getFileSize())
+                .crackType(crack.getCrackType())
                 .createTime(image.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
                 .updateTime(image.getUpdatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
                 .build();
