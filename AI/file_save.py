@@ -54,8 +54,8 @@ def index():
 @bp.route('/upload', methods=['POST'])
 def upload():
         
-    folderId = request.form.get('folderId')   # 폴더 아이디 
-    
+    folderId = request.form.get('folder_id')   # 폴더 아이디 
+    folderId=int(folderId)
     # 폴더 이름 
 #    os.mkdir(folderName)
     
@@ -99,7 +99,8 @@ def upload():
         cursor.execute(sql)
         
         # image_id
-        image_id=cursor.fetchall()[0]
+        image_id=cursor.fetchall()[0][0]
+        print(image_id)
         
 
         prediction = model.predict(data)
@@ -111,8 +112,8 @@ def upload():
 
         crackType = class_name[2:].rsplit('\n')[0]
         # print(crackType)#  크랙 종류
-        sql="insert into crack (crack_type, folder_id, image_id,crack_position)) values (%s, %s, %s,floor)"
-        val= (crackType,folderId,image_id)
+        sql="insert into crack (crack_type, folder_id, image_id,crack_position) values (%s, %s, %s,%s)"
+        val= (crackType,folderId,image_id,'floor')
         cursor.execute(sql,val)
         # print("Class:", crackType , end="")
         # print("Confidence Score:", confidence_score)
