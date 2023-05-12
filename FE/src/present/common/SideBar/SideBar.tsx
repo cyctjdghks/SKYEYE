@@ -65,7 +65,6 @@ const SideBar = ({ isOpen, setIsOpen }: SidebarProps) => {
     <style.Wrapper isOpen={isOpen}>
       {/* Open Button */}
       <style.OpenButton onClick={changeOpen} isOpen={isOpen}></style.OpenButton>
-
       {/* Profile */}
       <style.ProfileBox>
         <ProfileIcon />
@@ -79,7 +78,7 @@ const SideBar = ({ isOpen, setIsOpen }: SidebarProps) => {
       <style.hrLine />
       {/* MenuItem */}
       <style.Body>{menuItem}</style.Body>
-      <Weather/>
+      <Weather isOpen={isOpen}/>
     </style.Wrapper>
   );
 };
