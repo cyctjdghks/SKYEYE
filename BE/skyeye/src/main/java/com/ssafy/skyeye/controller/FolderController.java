@@ -2,13 +2,11 @@ package com.ssafy.skyeye.controller;
 
 import com.ssafy.skyeye.data.dto.request.FolderRegistDto;
 import com.ssafy.skyeye.data.dto.request.FolderUpdateDto;
-import com.ssafy.skyeye.data.dto.response.CountCrackDto;
-import com.ssafy.skyeye.data.dto.response.FolderByDateDto;
-import com.ssafy.skyeye.data.dto.response.FolderDto;
-import com.ssafy.skyeye.data.dto.response.ImageDto;
+import com.ssafy.skyeye.data.dto.response.*;
 import com.ssafy.skyeye.service.FolderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -95,18 +93,6 @@ public class FolderController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-    @GetMapping("/get/crack/{folderId}")
-    public ResponseEntity<?> getCountCrackByFolderId(@PathVariable long folderId) {
-        log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
-        log.info("입력 데이터 : {}", folderId);
-
-        CountCrackDto countCrackDto = folderService.getCountCrackByFolderId(folderId);
-
-        log.info("출력 데이터 : {}", countCrackDto);
-
-        return new ResponseEntity<>(countCrackDto, HttpStatus.OK);
-    }
-
     @GetMapping("/get/folder/crack/{userId}/{folderId}/{crackType}")
     public ResponseEntity<?> getImageByFoderCrackType(@PathVariable String userId,
                                                       @PathVariable long folderId,
@@ -147,4 +133,29 @@ public class FolderController {
         return new ResponseEntity<>(imageDto, HttpStatus.OK);
     }
 
+    @GetMapping("/get/crack/{folderId}")
+    public ResponseEntity<?> getCrackTypeByFolderId(@PathVariable long folderId) {
+        log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
+        log.info("입력 데이터 : {}", folderId);
+
+        List<CrackTypeDto> list = folderService.getCrackTypeByFolderId(folderId);
+
+        log.info("출력 데이터 : {}", list);
+
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
+    @GetMapping("/get/crack/{folderId}/{crackType}")
+    public ResponseEntity<?> getCrackByFolderIdAndCrackType(@PathVariable long folderId,
+                                                    @PathVariable String crackType) {
+        log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
+        log.info("입력 데이터 : {}", folderId);
+        log.info("입력 데이터 : {}", crackType);
+
+        List<CrackDto> list = folderService.getCrackByFolderIdAndCrackType(folderId, crackType);
+
+        log.info("출력 데이터 : {}", list);
+
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
 }
