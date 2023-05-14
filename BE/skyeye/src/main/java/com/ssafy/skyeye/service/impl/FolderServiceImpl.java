@@ -2,10 +2,7 @@ package com.ssafy.skyeye.service.impl;
 
 import com.ssafy.skyeye.data.dto.request.FolderRegistDto;
 import com.ssafy.skyeye.data.dto.request.FolderUpdateDto;
-import com.ssafy.skyeye.data.dto.response.CountCrackDto;
-import com.ssafy.skyeye.data.dto.response.FolderByDateDto;
-import com.ssafy.skyeye.data.dto.response.FolderDto;
-import com.ssafy.skyeye.data.dto.response.ImageDto;
+import com.ssafy.skyeye.data.dto.response.*;
 import com.ssafy.skyeye.data.entity.Folder;
 import com.ssafy.skyeye.data.entity.User;
 import com.ssafy.skyeye.repository.CrackRepository;
@@ -103,28 +100,6 @@ public class FolderServiceImpl implements FolderService {
     }
 
     @Override
-    public CountCrackDto getCountCrackByFolderId(long folderId) {
-        CountCrackDto countCrackDto = new CountCrackDto();
-
-        int type1 = (int) crackRepository.findAll().stream()
-                .filter(crack -> crack.getFolderId().getFolderId().equals(folderId))
-                .filter(crack -> crack.getCrackType().equals("concrete"))
-                .count();
-
-        int type2 = (int) crackRepository.findAll().stream()
-                .filter(crack -> crack.getFolderId().getFolderId().equals(folderId))
-                .filter(crack -> crack.getCrackType().equals("asphalt"))
-                .count();
-
-
-
-        countCrackDto.setConcrete(type1);
-        countCrackDto.setAsphalt(type2);
-
-        return countCrackDto;
-    }
-
-    @Override
     public List<ImageDto> getImageByFoderCrackType(String userId, long folderId, String crackType) {
         return crackRepository.findAll().stream()
                 .filter(crack -> crack.getFolderId().getUserId().getUserId().equals(userId))
@@ -153,5 +128,19 @@ public class FolderServiceImpl implements FolderService {
         return crackRepository.findById(crackId)
                 .map(ImageDto::entityToImageDto)
                 .orElseThrow(() -> new IllegalArgumentException("사진이 없습니다."));
+    }
+
+    @Override
+    public List<CrackTypeDto> getCrackTypeByFolderId(long folderId) {
+        return crackRepository.countCrackTypesByFolderId(folderId);
+    }
+
+    @Override
+    public List<CrackDto> getCrackByFolderIdAndCrackType(long folderId, String crackType) {
+        return crackRepository.findAll().stream()
+                .filter(crack -> crack.getFolderId().getFolderId().equals(folderId))
+                .filter(crack -> crack.getCrackType().equals(crackType))
+                .map(CrackDto::entityToDto)
+                .collect(Collectors.toList());
     }
 }
