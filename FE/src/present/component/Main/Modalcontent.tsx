@@ -88,7 +88,7 @@ const ModalContent = () => {
     console.log(accessToken)
     console.log('aa');
     
-  }, [getUrlParameter])
+  }, [])
 
   const nullError = !!id && !!pwd;
   const effectiveError = idError && pwdError;
