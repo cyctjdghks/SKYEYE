@@ -30,4 +30,8 @@ public class User extends BaseEntity{
     private Image imageId;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "userId", cascade = CascadeType.ALL)
     private List<Folder> folders;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userId", cascade = CascadeType.ALL)
+    private List<Board> boards;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userId", cascade = CascadeType.ALL)
+    private List<Comment> comments;
 }
