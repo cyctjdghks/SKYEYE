@@ -21,3 +21,9 @@ export const FindCrackAll = async () => {
   const response = await getAsync("/admin/crack");
   return response;
 };
+
+// logout Admin
+export const AdminLogout =async () => {
+  const response = await getAsync("/admin/logout")
+  return response
+}

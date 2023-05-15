@@ -11,8 +11,8 @@ type SelectProps = {
 };
 
 export const Wrapper = styled.div<OpenProps>`
-  --notOpenWidth: 100px;
-  --openWidth: 400px;
+  --notOpenWidth: 80px;
+  --openWidth: 300px;
 
   background: ${theme.colors.greyscale.dark1};
   color: ${theme.colors.greyscale.light2};
@@ -39,7 +39,7 @@ export const OpenButton = styled("div")<OpenProps>(
     borderRadius: "50%",
     cursor: "pointer",
     position: "absolute",
-    top: "66.5px",
+    top: "110px",
     right: "-16px",
     transition: `${theme.trans}`,
   },
@@ -50,14 +50,14 @@ export const ProfileBox = styled.div`
   width: 100%;
   height: 100px;
   display: flex;
-  margin-left: 50px;
+  margin-left: 25px;
   align-items: flex-end;
 
   & svg {
     width: 50px;
     min-width: 50px;
     height: 50px;
-    margin-right: 30px;
+    margin-right: 15px;
     fill: ${theme.colors.greyscale.light3};
     transition: ${theme.trans};
   }
@@ -112,7 +112,7 @@ export const BodyContent = styled("div")({
   width: "87.5%",
   height: "70px",
   display: "flex",
-  marginLeft: "33px",
+  marginLeft: "25px",
   alignItems: "center",
   cursor: "pointer",
 });
@@ -153,13 +153,14 @@ export const FlightInfo = styled("div")({
 });
 
 export const MenuItem = styled.div<SelectProps>`
-  width: ${(props) => props.isOpen ? "87.5%" : "33px"};
+  width: ${(props) => props.isOpen ? "270px" : "40px"};
   height: 70px;
   display: flex;
-  margin-left: 15px;
-  padding-left: 18.5px;
+  margin-left: 5px;
+  padding-left: 15px;
   margin-bottom: 10px;
-  padding-right: ${(props) => props.isOpen ? "0" : "18.5px"};
+  transition: ${theme.trans};
+  padding-right: ${(props) => props.isOpen ? "0px" : "15px"};
   align-items: center;
   border-radius: ${(props) => props.isOpen ? "10px" : "50%"};
   cursor: pointer;
@@ -171,10 +172,10 @@ export const MenuItem = styled.div<SelectProps>`
     props.selected ? theme.colors.greyscale.dark2 : "none"};
   
   & svg {
-    width: 33px;
-    height: 33px;
-    min-width: 33px;
-    margin-right: 33px;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    margin-right: 30px;
     transition: ${theme.trans};
   }
 

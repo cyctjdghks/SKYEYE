@@ -1,30 +1,19 @@
 import React, { memo, useState } from "react";
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { sidebarState } from "@src/store/sidebar";
+
 import SideBar from "@common/SideBar/SideBar";
 import SideContent from "@layout/SideContent/SideContent";
 import SelectFolder from "@src/present/layout/SelectFolder/SelectFolder";
 import AddPicture from "@src/present/layout/AddPicture/AddPicture";
-import { InputFolder } from "@src/types/FlightInfo";
+import { selectedFolderIdState } from "@src/store/folder";
 
 const Upload = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [selectedFolder, setSelectedFolder] = useState<InputFolder>();
+  const [isOpen, setIsOpen] = useRecoilState(sidebarState);
+ 
 
-  const titleProps =
-    location.pathname === "/upload/addpicture"
-      ? {
-          isButton: true,
-          btnInfo: {
-            content: "종료하기",
-            isArrow: false,
-            handler: () => {
-              navigate("/upload");
-            },
-          },
-        }
-      : { isButton: false };
+  const titleProps = { isButton: false };
 
   return (
     <>
@@ -33,11 +22,11 @@ const Upload = () => {
         <Routes>
           <Route
             path={"/"}
-            element={<SelectFolder setSelectedFolder={setSelectedFolder} />}
+            element={<SelectFolder />}
           />
           <Route
             path={"/addpicture"}
-            element={<AddPicture folderId={selectedFolder?.folderId} />}
+            element={<AddPicture/>}
           />
         </Routes>
       </SideContent>
