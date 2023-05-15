@@ -1,21 +1,21 @@
 import * as style from "@layout/AddPicture/AddPicture.style";
 import React, { memo, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { toastListState } from "@src/store/toast";
 import PrimaryButton from "@src/present/common/Button/PrimaryButton";
 import { UploadImage } from "@src/action/hooks/Upload";
+import { selectedFolderIdState } from "@src/store/folder";
 
-type UserInfo = {
-  folderId: number | null;
-};
 
-const AddPicture = ({ folderId }: UserInfo) => {
-  const navigate = useNavigate();
-
+const AddPicture = () => {
+  const navigate = useNavigate();  
   const [toastList, setToastList] = useRecoilState(toastListState);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
-
+  const folderId = useRecoilValue(selectedFolderIdState).folderId
+  
+  console.log(folderId);
+  
   const getImages = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     setSelectedFiles([...selectedFiles, ...Array.from(files)]);

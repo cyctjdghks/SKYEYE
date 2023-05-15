@@ -1,5 +1,7 @@
 import React, { memo, useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { sidebarState } from "@src/store/sidebar";
 
 import Calendar from "@src/present/layout/Calendar/Calendar";
 import AllPictures from "@src/present/layout/AllPictures/AllPictures";
@@ -8,7 +10,7 @@ import SideBar from "@src/present/common/SideBar/SideBar";
 import SideContent from "@layout/SideContent/SideContent";
 
 const Picture = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useRecoilState(sidebarState);
 
   return (
     <>

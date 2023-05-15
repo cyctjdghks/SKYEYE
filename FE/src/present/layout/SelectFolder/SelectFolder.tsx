@@ -15,11 +15,13 @@ import { GetFolderByUserId } from "@src/action/hooks/Folder";
 import { Folder, InputFolder } from "@src/types/FlightInfo";
 import { Error } from "@src/action/api/api";
 import { authState } from "@src/store/auth";
+import { selectedFolderIdState } from "@src/store/folder";
 
-const SelectFolder = ({setSelectedFolder}: any) => {
+const SelectFolder = () => {
   const navigate = useNavigate();
   const user = useRecoilValue(authState).user;
   const [toastList, setToastList] = useRecoilState(toastListState);
+  const [selectedFolder, setSelectedFolder] = useRecoilState(selectedFolderIdState);
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selectContent, setSelectContent] = useState<InputFolder>({
@@ -29,7 +31,7 @@ const SelectFolder = ({setSelectedFolder}: any) => {
   const [folderList, setFolderList] = useRecoilState<Folder[]>(folderListState);
 
   useEffect(()=>{
-    setSelectedFolder(selectContent)
+    setSelectedFolder({folderId :selectContent?.folderId})
   }, [selectContent])
 
   const getData = () =>{

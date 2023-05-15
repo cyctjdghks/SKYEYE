@@ -6,8 +6,8 @@ type ContentBodyProps = {
 };
 
 export const ContentBody = styled.div<ContentBodyProps>`
-  --notOpenWidth: 100px;
-  --openWidth: 400px;
+  --notOpenWidth: 75px;
+  --openWidth: 300px;
   text-align: left;
   width: calc(
     100% - var(${(props) => (props.isOpen ? "--openWidth" : "--notOpenWidth")}) - 4rem
