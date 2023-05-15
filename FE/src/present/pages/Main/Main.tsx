@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as style from "@src/present/pages/Main/Main.style";
 import Modal from "@common/Modal/Modal";
 import FirstPage from "@component/Main/FirstPage";
@@ -7,14 +7,28 @@ import ThirdPage from "@src/present/component/Main/ThirdPage";
 import ModalContent from "@component/Main/Modalcontent";
 import logo from "@assets/main/logo.png";
 import right from "@assets/main/right.png";
-import { GetWeather } from "@action/hooks/GetWeather";
+
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 const Main = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const onClickButton = () => {
     setIsOpen(true);
-    
   };
+
+  useEffect(()=>{
+    const token = Cookies.get('AuthorizationToken');
+    // token 값이 존재하면 accessToken에 할당하고, 그렇지 않으면 빈 문자열 할당
+    console.log(token);
+    const accessToken = token || '';
+    console.log(accessToken)
+    if(accessToken){
+      navigate("/upload")
+    }
+  }, [])
+
   return (
     <style.MainWrapper>
       <style.TopBox>
