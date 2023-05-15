@@ -2,6 +2,7 @@ import InputLabel from "@common/InputLabel/InputLabel";
 import { DataInput } from "@src/action/hooks/Effectiveness";
 import * as style from "@src/present/component/Main/ModalContent.style";
 import PrimaryButton from "@src/present/common/Button/PrimaryButton";
+import MainPrimaryButton from "./MainPrimaryButton";
 import { LoginUser } from "@src/action/hooks/User";
 import { LoginAdmin } from "@src/action/hooks/Admin";
 import { toastListState } from "@src/store/toast";
@@ -9,6 +10,9 @@ import { useRecoilState } from "recoil";
 import { authState } from "@store/auth";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useCallback } from "react";
+import {ReactComponent as GoogleIcon} from "@assets/main/googlelogo.svg";
+import {ReactComponent as KakaoIcon} from "@assets/main/kakaologo.svg";
 
 const ModalContent = () => {
   const navigate = useNavigate();
@@ -73,6 +77,17 @@ const ModalContent = () => {
     }
   };
 
+  const toKaKaoLogin = (e) => {
+    e.preventDefault()
+    window.location.href = "https://k8d202.p.ssafy.io/be/oauth2/authorization/kakao";
+  }
+
+  const toGoogleLogin = (e) => {
+    e.preventDefault()
+    window.location.href = "https://k8d202.p.ssafy.io/be/oauth2/authorization/google";
+  }
+
+ 
   const nullError = !!id && !!pwd;
   const effectiveError = idError && pwdError;
   const submitError = nullError && effectiveError;
@@ -83,8 +98,8 @@ const ModalContent = () => {
       <style.LoginForm>
         <InputLabel
           placeholder="직원번호"
-          width="100%"
-          height="40%"
+          width="90%"
+          height="30%"
           type="text"
           value={id}
           fontSize="1vw"
@@ -96,8 +111,8 @@ const ModalContent = () => {
         ></InputLabel>
         <InputLabel
           placeholder="비밀번호"
-          width="100%"
-          height="40%"
+          width="90%"
+          height="30%"
           type="password"
           value={pwd}
           fontSize="1vw"
@@ -110,19 +125,22 @@ const ModalContent = () => {
           }
         ></InputLabel>
         <style.ButtonBox>
-          <PrimaryButton
-            content={"로그인"}
-            isArrow={true}
-            handler={clickLogin}
-            disabled={!submitError}
+          <MainPrimaryButton
+          content={"로그인"}
+          isArrow={true}
+          handler={clickLogin}
+          disabled={!submitError}
           />
         </style.ButtonBox>
-        <a href="https://k8d202.p.ssafy.io/be/oauth2/authorization/kakao">
-          카카오 로그인
-        </a>
-        <a href="https://k8d202.p.ssafy.io/be/oauth2/authorization/google">
-          구글 로그인
-        </a>
+        <style.KaoKoButtonBox onClick={(e) => toKaKaoLogin(e)}>
+          <KakaoIcon/>
+          <style.ButtonText>카카오 로그인</style.ButtonText>
+        </style.KaoKoButtonBox>
+        <style.GoogleButtonBox onClick={(e) => toGoogleLogin(e)}>
+          <GoogleIcon />
+          <style.ButtonText>구글 로그인</style.ButtonText>
+        </style.GoogleButtonBox>
+
       </style.LoginForm>
     </style.LoginModalWrap>
   );
