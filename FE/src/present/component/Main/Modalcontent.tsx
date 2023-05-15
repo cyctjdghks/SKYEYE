@@ -8,9 +8,9 @@ import { toastListState } from "@src/store/toast";
 import { useRecoilState } from "recoil";
 import { authState } from "@store/auth";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 import Cookies from "js-cookie";
-import { useEffect } from "react";
 
 const ModalContent = () => {
   const navigate = useNavigate();
@@ -75,19 +75,18 @@ const ModalContent = () => {
     }
   };
 
-  const getUrlParameter = (name: any) => {
-    // 쿼리 파라미터에서 값을 추출해주는 함수
-    let search = window.location.search;
-    let params = new URLSearchParams(search);
-    return params.get(name);
-  };
-
   useEffect(()=>{
-    const token = getUrlParameter('token');
+    const token = Cookies.get('AuthorizationToken');
+    // token 값이 존재하면 accessToken에 할당하고, 그렇지 않으면 빈 문자열 할당
+    console.log(token);
     const accessToken = token || '';
     console.log(accessToken)
-    console.log('aa');
-    
+    if(accessToken){
+      navigate("/upload")
+    }else{
+      navigate("/main")
+      window.alert("구글 실패!")
+    }
   }, [])
 
   const nullError = !!id && !!pwd;
