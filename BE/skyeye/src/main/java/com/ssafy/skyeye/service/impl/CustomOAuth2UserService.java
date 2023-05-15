@@ -68,7 +68,8 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
 
     public void registUser(String email, String src, String name, String provider){
-
+        
+        log.info("{}, {}, {}, {} ", email, src, name, provider)
 
         if(userRepository.existsById(email)) {
             User temp = userRepository.findById(email)
