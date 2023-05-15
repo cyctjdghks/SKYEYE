@@ -20,6 +20,7 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
@@ -130,10 +131,17 @@ public class JwtTokenProvider {
     }
 
     // token의 유효기간 확인하기
-    public boolean validateToken(String token){
+    public boolean validateToken(String token, HttpServletResponse response){
         log.info("{} 메서드 실행", Thread.currentThread().getStackTrace()[1].getMethodName());
 
-        return !getData(token).getExpiration().before(new Date());
+        boolean answer = !getData(token).getExpiration().before(new Date());
+
+        if(!answer){
+            Cookie cookie = new Cookie(Authorization, token);
+            cookie.setMaxAge(0);
+            response.addCookie(cookie);
+        }
+        return answer;
     }
 
     // cookie 생성기
