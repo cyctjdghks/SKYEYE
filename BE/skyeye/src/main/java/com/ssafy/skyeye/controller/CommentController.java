@@ -53,11 +53,11 @@ public class CommentController {
     }
 
     @GetMapping("/get/{boardId}")
-    public ResponseEntity<?> getCommentByBoard(@PathVariable long commentId) {
+    public ResponseEntity<?> getCommentByBoard(@PathVariable long boardId) {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
-        log.info("입력 데이터 : {}", commentId);
+        log.info("입력 데이터 : {}", boardId);
 
-        List<CommentDto> list = commentService.getCommentByBoard(commentId);
+        List<CommentDto> list = commentService.getCommentByBoard(boardId);
 
         log.info("출력 데이터 : {}", list);
 

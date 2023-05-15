@@ -36,6 +36,7 @@ public class BoardServiceImpl implements BoardService {
                 .boardTitle(boardRegistDto.getBoardTitle())
                 .userId(user)
                 .boardContent(boardRegistDto.getBoardContent())
+                .boardHits(0L)
                 .build();
 
         boardRepository.save(board);
