@@ -37,9 +37,7 @@ const Main = () => {
   useEffect(()=>{
     const token = Cookies.get('AuthorizationToken');
     // token 값이 존재하면 accessToken에 할당하고, 그렇지 않으면 빈 문자열 할당
-    console.log(token);
     const accessToken = token || '';
-    console.log(accessToken)
     if(accessToken){
       authLogin()
       navigate("/upload")

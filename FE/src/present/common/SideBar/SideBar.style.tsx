@@ -98,10 +98,10 @@ export const ProfileText2 = styled("h1")<OpenProps>(
 );
 export const hrLine = styled.hr`
   width: 90%;
-  color: ${theme.colors.greyscale.light3}; 
+  color: #787e8c42;
   margin-bottom: 25px;
   margin-top: 25px;
-`
+`;
 
 export const Body = styled("div")({
   width: "100%",
@@ -137,32 +137,17 @@ export const SideBarText = styled("h1")<SelectProps>(
   })
 );
 
-export const Upload = styled("div")({
-  width: "87.5%",
-  height: "70px",
-});
-
-export const ShowImage = styled("div")({
-  width: "87.5%",
-  height: "70px",
-});
-
-export const FlightInfo = styled("div")({
-  width: "87.5%",
-  height: "70px",
-});
-
 export const MenuItem = styled.div<SelectProps>`
-  width: ${(props) => props.isOpen ? "270px" : "40px"};
+  width: ${(props) => (props.isOpen ? "270px" : "40px")};
   height: 70px;
   display: flex;
   margin-left: 5px;
   padding-left: 15px;
   margin-bottom: 10px;
   transition: ${theme.trans};
-  padding-right: ${(props) => props.isOpen ? "0px" : "15px"};
+  padding-right: ${(props) => (props.isOpen ? "0px" : "15px")};
   align-items: center;
-  border-radius: ${(props) => props.isOpen ? "10px" : "50%"};
+  border-radius: ${(props) => (props.isOpen ? "10px" : "50%")};
   cursor: pointer;
   color: ${(props) =>
     props.selected
@@ -170,7 +155,7 @@ export const MenuItem = styled.div<SelectProps>`
       : theme.colors.greyscale.dark2};
   background: ${(props) =>
     props.selected ? theme.colors.greyscale.dark2 : "none"};
-  
+
   & svg {
     width: 40px;
     height: 40px;
@@ -187,6 +172,55 @@ export const MenuItem = styled.div<SelectProps>`
   }
 `;
 
-export const weatherBox = styled.div`
-  
-`
+export const LogoutBox = styled.div`
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  transition: ${theme.trans};
+  & svg {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    margin-right: 30px;
+    transition: ${theme.trans};
+  }
+  & path {
+    fill: ${theme.colors.greyscale.dark2};
+  }
+  & h1 {
+    color: ${theme.colors.greyscale.dark2};
+  }
+  &:hover {
+    & path {
+      fill: ${theme.colors.greyscale.light3};
+    }
+    & h1 {
+      color: ${theme.colors.greyscale.light3};
+    }
+  }
+`;
+
+export const Logout = styled.div<OpenProps>`
+  width: ${(props) => (props.isOpen ? "270px" : "40px")};
+  height: 70px;
+  display: flex;
+  margin-left: 5px;
+  padding-left: 15px;
+  margin-bottom: 10px;
+  transition: ${theme.trans};
+  padding-right: ${(props) => (props.isOpen ? "0px" : "15px")};
+  align-items: center;
+  cursor: pointer;
+  color: ${theme.colors.greyscale.dark2};
+  background: "none";
+`;
+
+export const LogoutText = styled("h1")<OpenProps>`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 100%;
+  white-space: nowrap;
+  transition: ${theme.trans};
+  display: ${(props) => (props.isOpen ? "" : "none")};
+`;
