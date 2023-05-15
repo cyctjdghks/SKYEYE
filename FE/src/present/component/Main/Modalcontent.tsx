@@ -9,8 +9,11 @@ import { useRecoilState } from "recoil";
 import { authState } from "@store/auth";
 import { useNavigate } from "react-router-dom";
 
+import Cookies from "js-cookie";
+import { useEffect } from "react";
+
 const ModalContent = () => {
-  const naviate = useNavigate();
+  const navigate = useNavigate();
   const [id, setId, idError] = DataInput(/^[a-zA-z0-9]{5,20}$/);
   const [pwd, setPwd, pwdError] = DataInput(
     /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{9,16}$/
@@ -29,7 +32,7 @@ const ModalContent = () => {
             user: res.result,
             userType: 0,
           });
-          naviate("/admin");
+          navigate("/admin");
           const successAdminToast = {
             type: "Success",
             sentence: "로그인에 성공했습니다",
@@ -52,7 +55,7 @@ const ModalContent = () => {
               user: res.result,
               userType: 1,
             });
-            naviate("/upload");
+            navigate("/upload");
             const successUserToast = {
               type: "Success",
               sentence: "로그인에 성공했습니다",
@@ -71,6 +74,21 @@ const ModalContent = () => {
         });
     }
   };
+
+  const getUrlParameter = (name: any) => {
+    // 쿼리 파라미터에서 값을 추출해주는 함수
+    let search = window.location.search;
+    let params = new URLSearchParams(search);
+    return params.get(name);
+  };
+
+  useEffect(()=>{
+    const token = getUrlParameter('token');
+    const accessToken = token || '';
+    console.log(accessToken)
+    console.log('aa');
+    
+  }, [getUrlParameter])
 
   const nullError = !!id && !!pwd;
   const effectiveError = idError && pwdError;
@@ -116,6 +134,12 @@ const ModalContent = () => {
             disabled={!submitError}
           />
         </style.ButtonBox>
+        {/* <a href="https://k8d202.p.ssafy.io/be/oauth2/authorization/kakao">
+          카카오 로그인
+        </a> */}
+        <a href="https://k8d202.p.ssafy.io/be/oauth2/authorization/google">
+          구글 로그인
+        </a>
       </style.LoginForm>
     </style.LoginModalWrap>
   );
