@@ -7,9 +7,11 @@ import ThirdPage from "@src/present/component/Main/ThirdPage";
 import ModalContent from "@component/Main/Modalcontent";
 import logo from "@assets/main/logo.png";
 import right from "@assets/main/right.png";
-
+import { useRecoilState } from "recoil";
+import { authState } from "@src/store/auth";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import { GetOAuthData } from "@src/action/hooks/User";
 
 const Main = () => {
   const navigate = useNavigate();
@@ -18,6 +20,20 @@ const Main = () => {
     setIsOpen(true);
   };
 
+  const [auth, setAuth] = useRecoilState(authState);
+
+  const authLogin = () =>{
+    GetOAuthData().then((res)=>{
+      if(res.isSuccess){
+        setAuth({
+          isAuthenticated: true,
+          user: res.result,
+          userType: 0,
+        });
+      }
+    })
+  }
+
   useEffect(()=>{
     const token = Cookies.get('AuthorizationToken');
     // token 값이 존재하면 accessToken에 할당하고, 그렇지 않으면 빈 문자열 할당
@@ -25,6 +41,7 @@ const Main = () => {
     const accessToken = token || '';
     console.log(accessToken)
     if(accessToken){
+      authLogin()
       navigate("/upload")
     }
   }, [])
