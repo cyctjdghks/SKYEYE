@@ -134,14 +134,19 @@ public class JwtTokenProvider {
     public boolean validateToken(String token, HttpServletResponse response){
         log.info("{} 메서드 실행", Thread.currentThread().getStackTrace()[1].getMethodName());
 
-        boolean answer = !getData(token).getExpiration().before(new Date());
-
-        if(!answer){
+        boolean answer = false;
+        try {
+            answer = !getData(token).getExpiration().before(new Date());
+        }
+        catch (Exception e) {
+            log.error("토큰 만료");
             Cookie cookie = new Cookie(Authorization, token);
             cookie.setMaxAge(0);
             response.addCookie(cookie);
+        }finally {
+            log.info("answer = " + answer);
+            return answer;
         }
-        return answer;
     }
 
     // cookie 생성기
