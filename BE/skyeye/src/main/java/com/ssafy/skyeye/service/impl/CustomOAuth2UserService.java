@@ -64,8 +64,8 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         return new DefaultOAuth2User(
                 Collections.singleton(new SimpleGrantedAuthority("ROLE_SOCIAL_USER")),
-                oAuth2User.getAttributes(),
-                provider.equals("google") ? "email" : "kakao_account");
+                provider.equals("google") ? oAuth2User.getAttributes() : map,
+                "email");
 
     }
 
