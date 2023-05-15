@@ -80,7 +80,7 @@ def upload():
         filename = f"images/{now}.{extension}"
         # print('filename1: ',file)
         file.save(filename)
-        sql='INSERT INTO image(stored_file_name, created_at, updated_at) values(%s,%s,%s)'
+        sql="INSERT INTO image(stored_file_name, created_at, updated_at) values(%s,%s,%s)"
         val=(filename,now_DB,now_DB)
         cursor.execute(sql,val)
         filenames.append(filename)
