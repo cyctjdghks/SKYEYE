@@ -1,15 +1,19 @@
 import * as style from "@common/SideBar/SideBar.style";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 import { ReactComponent as ProfileIcon } from "@assets/sidebar/profile.svg";
 import { ReactComponent as UploadIcon } from "@assets/sidebar/upload.svg";
 import { ReactComponent as ImageIcon } from "@assets/sidebar/image.svg";
 import { ReactComponent as MapIcon } from "@assets/sidebar/map.svg";
-import { useRecoilValue } from "recoil";
+import { ReactComponent as LogoutIcon } from "@assets/sidebar/logout.svg";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { authState } from "@src/store/auth";
+import { toastListState } from "@src/store/toast";
 
 import Weather from "@src/present/component/SideBar/Weather";
+import { UserLogout } from "@src/action/hooks/User";
 
 type SidebarProps = {
   isOpen: boolean;
@@ -27,6 +31,9 @@ const SideBar = ({ isOpen, setIsOpen }: SidebarProps) => {
       ? 1
       : 2
   );
+  const [user, setUser] = useRecoilState(authState);
+  const [toastList, setToastList] = useRecoilState(toastListState);
+
   // selected 판별
   const changeOpen = () => {
     setIsOpen(!isOpen);
@@ -76,6 +83,29 @@ const SideBar = ({ isOpen, setIsOpen }: SidebarProps) => {
     );
   });
 
+  const logoutSignal = () => {
+    UserLogout()
+      .then((res) => {
+        // console.log(res);
+        if (res.isSuccess) {
+          Cookies.remove("AuthorizationToken");
+        }
+        setUser({
+          isAuthenticated: false,
+          user: null,
+          userType: 0,
+        });
+        navigate("/");
+      })
+      .catch((err) => {
+        const errorLogoutToast = {
+          type: "Error",
+          sentence: "로그아웃에 실패했습니다.",
+        };
+        setToastList({ list: [...toastList.list, errorLogoutToast] });
+      });
+  };
+
   return (
     <style.Wrapper isOpen={isOpen}>
       {/* Open Button */}
@@ -84,15 +114,26 @@ const SideBar = ({ isOpen, setIsOpen }: SidebarProps) => {
       <style.ProfileBox>
         <ProfileIcon />
         <style.ProfileText1 isOpen={isOpen}>
-          {userName.userName}
+          {userName?.userName}
         </style.ProfileText1>
         <style.ProfileText2 isOpen={isOpen}>
-          {userName.userPosition}
+          {userName?.userPosition}
         </style.ProfileText2>
       </style.ProfileBox>
       <style.hrLine />
       <style.Body>{menuItem}</style.Body>
       <Weather isOpen={isOpen} />
+      <style.LogoutBox>
+        <style.Logout
+          isOpen={isOpen}
+          onClick={() => {
+            logoutSignal();
+          }}
+        >
+          <LogoutIcon />
+          <style.LogoutText isOpen={isOpen}>로그아웃</style.LogoutText>
+        </style.Logout>
+      </style.LogoutBox>
     </style.Wrapper>
   );
 };
