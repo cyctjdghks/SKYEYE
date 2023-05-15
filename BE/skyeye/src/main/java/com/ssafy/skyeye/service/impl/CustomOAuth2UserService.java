@@ -15,6 +15,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 @Service
@@ -33,6 +34,8 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         String provider = userRequest.getClientRegistration().getRegistrationId();
         System.out.println(provider);
 
+        Map<String, Object> map = new HashMap<>();
+
         if(provider.equals("google")) {
 
             String src = String.valueOf(oAuth2User.getAttributes().get("picture"));
@@ -42,7 +45,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             registUser(email, src, name, provider);
 
         }else if(provider.equals("kakao")){
-            Map<String, Object> map = (Map<String, Object>)oAuth2User.getAttributes().get("kakao_account");
+            map = (Map<String, Object>)oAuth2User.getAttributes().get("kakao_account");
 
             if(!(Boolean)map.get("has_email")) {
                 throw new ForbiddenException("이메일 동의를 해주세요");
@@ -56,13 +59,13 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             String name = String.valueOf(map.get("nickname"));
 
             registUser(email, src, name, provider);
-
+            map = (Map<String, Object>)oAuth2User.getAttributes().get("kakao_account");
         }
 
         return new DefaultOAuth2User(
                 Collections.singleton(new SimpleGrantedAuthority("ROLE_SOCIAL_USER")),
                 oAuth2User.getAttributes(),
-                provider.equals("google") ? "email" : "id" );
+                provider.equals("google") ? "email" : String.valueOf(map.get("email")));
 
     }
 
