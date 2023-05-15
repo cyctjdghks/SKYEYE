@@ -153,7 +153,7 @@ public class UserController {
     }
 
     @GetMapping("/logout")
-    public ResponseEntity<?> logoutAdmin(HttpServletResponse response){
+    public ResponseEntity<?> logoutUser(HttpServletResponse response){
         Cookie cookie = new Cookie(Authorization, "");
         cookie.setMaxAge(0);
         response.addCookie(cookie);
