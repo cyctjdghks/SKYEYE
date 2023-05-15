@@ -54,20 +54,20 @@ def index():
 @bp.route('/upload', methods=['POST'])
 def upload():
         
-    folderId = request.form.get('folder_id')   # 폴더 아이디 
+    folderId = request.form.get("folder_id")   # 폴더 아이디 
     folderId=int(folderId)
     # 폴더 이름 
 #    os.mkdir(folderName)
     
     # 업로드된 파일 가져오기
-    files = request.files.getlist('files')   
+    files = request.files.getlist("files")   
     print(request.files)
 
     # 파일 저장 경로 설정
     
     filenames = []
     print('filename: ',filenames)
-    for file in request.files.getlist('file'):
+    for file in request.files.getlist("file"):
         # 파일 이름 받아서 ' . ' 점 기준으로 뒤가 확장자
         # jpg, jpeg, png 세 개 아니면 에러 반환
         # 확장자 보존 now 뒤에 확장자 까지 붙여서
@@ -75,8 +75,8 @@ def upload():
         
         # if extension not in ['jpg', 'jpeg', 'png']:
         #     return "Error: Invalid file format."
-        now = datetime.datetime.now().strftime('{}{}{}{}{}{}'.format('%Y','%m','%d','%H','%M','%S%f')) 
-        now_DB = datetime.datetime.now().strftime('{}-{}-{} {}:{}:{}'.format('%Y','%m','%d','%H','%M','%S.%f')) 
+        now = datetime.datetime.now().strftime("{}{}{}{}{}{}".format("%Y","%m","%d","%H","%M","%S%f")) 
+        now_DB = datetime.datetime.now().strftime("{}-{}-{} {}:{}:{}".format("%Y","%m","%d","%H","%M","%S.%f")) 
         filename = f"images/{now}.{extension}"
         # print('filename1: ',file)
         file.save(filename)
@@ -117,19 +117,19 @@ def upload():
         crackType = class_name[2:].rsplit('\n')[0]
         # print(crackType)#  크랙 종류
         sql="insert into crack (crack_type, folder_id, image_id,crack_position, created_at, updated_at) values (%s, %s, %s,%s,%s,%s)"
-        val= (crackType,folderId,image_id,'floor',now_DB,now_DB)
+        val= (crackType,folderId,image_id,"floor",now_DB,now_DB)
         cursor.execute(sql,val)
         # print("Class:", crackType , end="")
         # print("Confidence Score:", confidence_score)
     # print(filenames)
     conn.commit()
     # 파일 업로드 성공 메시지 반환
-    return redirect(url_for('main.uploaded_file', filenames=filenames))
+    return redirect(url_for("main.uploaded_file", filenames=filenames))
 
 
 @bp.route('/uploads/cf')
 def uploaded_file():
-    return 'Uploaded file Upload Success'
+    return "Uploaded file Upload Success"
 
 
 
