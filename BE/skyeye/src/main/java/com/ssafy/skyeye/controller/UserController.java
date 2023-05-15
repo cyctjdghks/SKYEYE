@@ -1,9 +1,6 @@
 package com.ssafy.skyeye.controller;
 
-import com.ssafy.skyeye.data.dto.request.PwChangeUserDto;
-import com.ssafy.skyeye.data.dto.request.UserLoginDto;
-import com.ssafy.skyeye.data.dto.request.UserRegistDto;
-import com.ssafy.skyeye.data.dto.request.UserUpdateDto;
+import com.ssafy.skyeye.data.dto.request.*;
 import com.ssafy.skyeye.data.dto.response.UserDto;
 import com.ssafy.skyeye.data.entity.Image;
 import com.ssafy.skyeye.service.ImageService;
@@ -14,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -152,6 +151,8 @@ public class UserController {
         return new ResponseEntity<>(exist, HttpStatus.OK);
     }
 
+
+    // 로그아웃 -> 쿠키만 없애줌
     @GetMapping("/logout")
     public ResponseEntity<?> logoutUser(HttpServletResponse response){
         Cookie cookie = new Cookie(Authorization, "");
@@ -160,4 +161,16 @@ public class UserController {
 
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
+
+
+    @GetMapping("/get")
+    public ResponseEntity<?> loginOAuth2User(){
+        log.info("{} 메서드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
+        String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserDto user = userService.getUser(userId);
+
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+
 }
