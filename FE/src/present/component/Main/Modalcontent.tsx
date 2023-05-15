@@ -83,9 +83,6 @@ const ModalContent = () => {
     console.log(accessToken)
     if(accessToken){
       navigate("/upload")
-    }else{
-      navigate("/main")
-      window.alert("구글 실패!")
     }
   }, [])
 
