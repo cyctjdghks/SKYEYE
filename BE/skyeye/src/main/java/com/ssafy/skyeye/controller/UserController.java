@@ -11,6 +11,7 @@ import com.ssafy.skyeye.service.UserService;
 import com.ssafy.skyeye.structure.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,9 @@ public class UserController {
     private final UserService userService;
     private final ImageService imageService;
     private final JwtTokenProvider jwtTokenProvider;
+
+    @Value("${jwt.auth}")
+    private String Authorization;
 
     // 유저 등록
     @PostMapping("/regist")
@@ -146,5 +150,14 @@ public class UserController {
         log.info("출력 데이터 : {}", exist);
 
         return new ResponseEntity<>(exist, HttpStatus.OK);
+    }
+
+    @GetMapping("/logout")
+    public ResponseEntity<?> logoutAdmin(HttpServletResponse response){
+        Cookie cookie = new Cookie(Authorization, "");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 }

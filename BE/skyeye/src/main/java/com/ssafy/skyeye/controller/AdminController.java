@@ -8,6 +8,7 @@ import com.ssafy.skyeye.service.AdminService;
 import com.ssafy.skyeye.structure.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,9 @@ public class AdminController {
     private final AdminService adminService;
 
     private final JwtTokenProvider jwtTokenProvider;
+
+    @Value("${jwt.auth}")
+    private String Authorization;
 
     ////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -89,6 +93,15 @@ public class AdminController {
 
         return new ResponseEntity<>(list, HttpStatus.OK);
 
+    }
+
+    @GetMapping("/logout")
+    public ResponseEntity<?> logoutAdmin(HttpServletResponse response){
+        Cookie cookie = new Cookie(Authorization, "");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
 }
