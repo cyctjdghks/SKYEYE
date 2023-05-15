@@ -10,8 +10,6 @@ import { authState } from "@store/auth";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-import Cookies from "js-cookie";
-
 const ModalContent = () => {
   const navigate = useNavigate();
   const [id, setId, idError] = DataInput(/^[a-zA-z0-9]{5,20}$/);
@@ -74,17 +72,6 @@ const ModalContent = () => {
         });
     }
   };
-
-  useEffect(()=>{
-    const token = Cookies.get('AuthorizationToken');
-    // token 값이 존재하면 accessToken에 할당하고, 그렇지 않으면 빈 문자열 할당
-    console.log(token);
-    const accessToken = token || '';
-    console.log(accessToken)
-    if(accessToken){
-      navigate("/upload")
-    }
-  }, [])
 
   const nullError = !!id && !!pwd;
   const effectiveError = idError && pwdError;
