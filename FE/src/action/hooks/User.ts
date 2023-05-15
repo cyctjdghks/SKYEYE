@@ -41,7 +41,14 @@ export const GetUser = async (userId: string) => {
 
 // logout User
 
-export const Logout =async () => {
-  const response = await getAsync("/user/logout")
-  return response
-}
+export const Logout = async () => {
+  const response = await getAsync("/user/logout");
+  return response;
+};
+
+// get Data from OAuth
+
+export const GetOAuthData = async () => {
+  const response = await getAsync("/user/get");
+  return response;
+};
