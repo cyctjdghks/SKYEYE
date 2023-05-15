@@ -117,9 +117,9 @@ const ModalContent = () => {
             disabled={!submitError}
           />
         </style.ButtonBox>
-        {/* <a href="https://k8d202.p.ssafy.io/be/oauth2/authorization/kakao">
+        <a href="https://k8d202.p.ssafy.io/be/oauth2/authorization/kakao">
           카카오 로그인
-        </a> */}
+        </a>
         <a href="https://k8d202.p.ssafy.io/be/oauth2/authorization/google">
           구글 로그인
         </a>
