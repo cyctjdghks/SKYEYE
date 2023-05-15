@@ -41,7 +41,7 @@ export const GetUser = async (userId: string) => {
 
 // logout User
 
-export const Logout = async () => {
+export const UserLogout = async () => {
   const response = await getAsync("/user/logout");
   return response;
 };

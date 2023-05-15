@@ -8,8 +8,9 @@ type OpenProps = {
 export const weatherbox = styled("div")({
   width: "90%",
   textAlign: "center",
-  // position: "absolute",
-  // top: "40%",
+  height: "47.3%",
+  overflow: "hidden",
+
   backgroundColor: "#787E8C33",
 });
 
