@@ -7,7 +7,7 @@ type ImgProps = {
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: calc(100% * 0.9);
+  height: calc(100% * 0.95);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -135,7 +135,6 @@ export const ImageWrapper = styled.div<{ image: string }>`
 `;
 
 export const SaveLabel = styled.label`
-  padding: 5px 10px 5px 10px;
   cursor: pointer;
   background-color: ${theme.colors.point.point};
   color: ${theme.colors.greyscale.light3};
@@ -144,9 +143,11 @@ export const SaveLabel = styled.label`
   font-family: "SCDream5";
   font-size: 1.22rem;
   width: fit-content;
+  min-width: 8.5rem;
+  text-align: center;
   border-radius: 0.5rem;
   box-shadow: ${theme.shadows.shadow2};
-
+  margin-right: 15px;
   &:hover {
     background-color: ${theme.colors.point.pointLight};
     cursor: pointer;
@@ -158,8 +159,8 @@ export const SaveInput = styled.input`
 `;
 
 export const BottomBox = styled.div`
-  width: 100%;
+  width: 98%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 `;

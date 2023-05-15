@@ -15,27 +15,10 @@ const Main = () => {
     setIsOpen(true);
     
   };
-  const [lat, setLat] = useState<number>(36.110336);
-  const [lng, setLng] = useState<number>(128.4112384);
-
-  const getPosition = () => {
-    window.navigator.geolocation.getCurrentPosition((position) => {
-      setLat(position.coords.latitude);
-      setLng(position.coords.longitude);
-    });
-  };
-
-  const logWeather = () =>{
-    getPosition();
-    GetWeather(lat, lng).then((res) => {
-      console.log(res.result);
-      
-    });
-  }
   return (
     <style.MainWrapper>
       <style.TopBox>
-        <style.Logo src={logo} onClick={logWeather}></style.Logo>
+        <style.Logo src={logo} ></style.Logo>
         <style.LoginButton onClick={onClickButton}>
           <style.LogoText>로그인 하기</style.LogoText>
           <style.LogoRight src={right}></style.LogoRight>
