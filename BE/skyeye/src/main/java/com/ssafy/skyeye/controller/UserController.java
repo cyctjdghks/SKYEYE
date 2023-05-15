@@ -167,6 +167,7 @@ public class UserController {
     public ResponseEntity<?> loginOAuth2User(){
         log.info("{} 메서드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+        log.info(userId);
         UserDto user = userService.getUser(userId);
 
         return new ResponseEntity<>(user, HttpStatus.OK);
