@@ -43,7 +43,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         System.out.println(authentication.getPrincipal());
 
         List<String> list = new ArrayList<>();
-        list.add("ROLE_SOCIAL_USER");
+        list.add("SOCIAL_USER");
 
         UserCustomDetails user = new UserCustomDetails(authentication.getName(), list);
 
