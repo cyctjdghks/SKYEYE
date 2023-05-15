@@ -70,10 +70,13 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<BoardDetailDto> getBoard(Long boardId) {
-        return boardRepository.findAll().stream()
-                .filter(board -> board.getBoardId().equals(boardId))
-                .map(BoardDetailDto::entityToDto)
-                .collect(Collectors.toList());
+    @Transactional
+    public BoardDetailDto getBoard(Long boardId) {
+        Board board = boardRepository.findById(boardId)
+                .orElseThrow(() -> new IllegalArgumentException("아이디가 없습니다."));
+
+        board.setBoardHits(board.getBoardHits() + 1);
+
+        return BoardDetailDto.entityToDto(board);
     }
 }

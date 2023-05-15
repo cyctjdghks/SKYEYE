@@ -12,5 +12,5 @@ public interface BoardService {
     void updateBoard(BoardUpdateDto boardUpdateDto);
     void deleteBoard(Long boardId);
     List<BoardDto> getAllBoard();
-    List<BoardDetailDto> getBoard(Long boardId);
+    BoardDetailDto getBoard(Long boardId);
 }
