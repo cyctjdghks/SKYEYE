@@ -45,9 +45,6 @@ const Main = () => {
     console.log(accessToken)
     if(accessToken){
       navigate("/upload")
-    }else{
-      navigate("/")
-      window.alert("구글 실패!")
     }
   }, [])
 
