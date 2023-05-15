@@ -11,7 +11,7 @@ const fontStyles = `
 export const inputBox = styled.div<{ width: string; height: string }>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
-  margin: auto;
+  // margin: auto;
   user-select: "none";
 `;
 
@@ -30,7 +30,7 @@ export const input = styled.input<{
   font-family:"SCDream4";
   font-size: ${(props) => props.fontSize};
   width: 80%;
-  height: ${(props) => props.height};
+  height: 60%;
   border-radius: 8px;
   padding-left: 15px;
   border: ${theme.colors.greyscale.dark3} 2px solid;

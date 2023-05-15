@@ -57,8 +57,8 @@ const Main = () => {
             onClose={() => {
               setIsOpen(false);
             }}
-            width="40vw"
-            height="55vh"
+            width="30vw"
+            height="70vh"
             title="로그인"
             content={<ModalContent />}
           />
