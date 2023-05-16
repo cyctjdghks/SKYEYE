@@ -7,7 +7,7 @@ export const Guidence = styled.div`
   color: ${theme.colors.greyscale.light1};
   text-align: right;
   line-height: 6.3rem;
-  
+
   position: absolute;
 
   bottom: 3rem;
