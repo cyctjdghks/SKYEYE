@@ -126,7 +126,7 @@ const AllPictures = () => {
       )}
 
       {crack !== null && (
-        <div>
+        <div style={{minWidth: "50%"}}>
           <SubTitle content="사진" />
           <PhotoLayout photoList={photoList} />
         </div>

@@ -30,11 +30,13 @@ export const InfoContainer = styled.div`
 
 export const ImgContainer = styled.div<{ img: string }>`
   background-color: ${theme.colors.greyscale.light1};
-  height: 40vh;
-  width: calc(100% / 3 - 1rem);
+  height: 20vh;
+  width: calc(100% / 3);
   border-radius: 0.5rem;
   background-image: url(${props => urls.API+'/'+props.img});
   border: solid 1px ${theme.colors.greyscale.light1};
+  background-position: center;
+  background-size: cover;
 
   cursor: pointer;
 `;

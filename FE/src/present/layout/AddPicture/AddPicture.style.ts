@@ -23,14 +23,14 @@ export const Container = styled.div`
   border-radius: 8px; 
 
   &::-webkit-scrollbar {
-    width: 0.1vw,
+    width: 0.5vw;
     border-radius: 6px;
     background-color: ${theme.colors.greyscale.light1};
   };
   &::-webkit-scrollbar-thumb {
     border-radius: 6px;
     background-color: ${theme.colors.point.point};
-  },
+  };
 `;
 
 export const SelectedImages = styled.div`
@@ -162,5 +162,5 @@ export const BottomBox = styled.div`
   width: 98%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
 `;
