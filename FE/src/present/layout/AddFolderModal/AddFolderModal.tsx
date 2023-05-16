@@ -1,5 +1,5 @@
 import { memo, useState } from "react";
-import * as Style from "./AddFolderModal.style";
+import * as style from "./AddFolderModal.style";
 import Input from "@src/present/Input/Input";
 import PrimeTitle from "@src/present/common/PrimeTitle/PrimeTitle";
 import PrimaryButton from "@src/present/common/Button/PrimaryButton";
@@ -17,27 +17,15 @@ type FolerInfo = {
 };
 
 const AddFolderModal = ({ onClose }: FolerInfo) => {
-  const [aboutFolder, setAboutFolder] = useState<AboutFolder>({
-    folderName: "폴더 이름",
-    folderMemo: "폴더 정보",
-    folderBuilt: "건축 일자(YYYY-MM-DD)",
-    userId: "담당자ID",
-  });
-
   const user = useRecoilValue(authState).user;
+  const [folderName, setFolderName] = useState<string>("");
+  const [folderMemo, setFolderMemo] = useState<string>("");
+  const [folderBuilt, setFolderBuilt] = useState<string>("");
+  const [userId, setUserId] = useState<string>(user.userId);
 
   const [toastList, setToastList] = useRecoilState(toastListState);
 
   const [folderList, setFolderList] = useRecoilState<Folder[]>(folderListState);
-
-  const changeFolder = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    type: string
-  ) => {
-    setAboutFolder(() => {
-      return { ...aboutFolder, [type]: e.target.value };
-    });
-  };
 
   const updateFolder = () => {
     GetFolderByUserId(user?.userId).then((res) => {
@@ -52,27 +40,54 @@ const AddFolderModal = ({ onClose }: FolerInfo) => {
     });
   };
 
-  const inputs = Object.keys(aboutFolder).map((elem, idx) => {
-    return (
-      <Input
-        key={idx}
-        placeholder={aboutFolder[elem]}
-        handler={(e) => changeFolder(e, elem)}
-      />
-    );
-  });
+  var today = new Date();
+  var year = today.getFullYear();
+  var month = today.getMonth()+1;
+  var day = today.getDate();
+  
+  var format = year+"-"+(("00"+month.toString()).slice(-2))+"-"+(("00"+day.toString()).slice(-2));
+  console.log(format);
+  
 
   return (
-    <Style.ModalContainer>
+    <style.ModalContainer>
       <PrimeTitle content="폴더 추가" />
-      {inputs}
+      {/* {inputs} */}
+      <style.InputContainer
+        placeholder="폴더 이름"
+        onChange={(e) => setFolderName(e.target.value)}
+        value={folderName}
+      />
+      <style.InputContainer
+        placeholder="폴더 정보"
+        onChange={(e) => setFolderMemo(e.target.value)}
+        value={folderMemo}
+      />
+      <style.InputContainer
+        placeholder="폴더 날짜"
+        onChange={(e) => setFolderBuilt(e.target.value)}
+        value={folderBuilt}
+      />
+      <style.InputContainer
+        placeholder="담당자 ID"
+        onChange={(e) => setUserId(e.target.value)}
+        value={userId}
+        readOnly
+      />
       <PrimaryButton
         content={"추가하기"}
         handler={() => {
-          RegistFolder(aboutFolder), updateFolder(), onClose();
+          RegistFolder({
+            folderName,
+            folderMemo,
+            folderBuilt,
+            userId,
+          }),
+            updateFolder(),
+            onClose();
         }}
       />
-    </Style.ModalContainer>
+    </style.ModalContainer>
   );
 };
 
