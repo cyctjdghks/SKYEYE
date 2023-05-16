@@ -8,7 +8,7 @@ export const MainPrimaryBtn = styled.button`
   border: none;
   font-family: "SCDream5";
   font-size: 1vw;
-  width: 88%;
+  width: 88.5%;
   margin: auto;
   // width: fit-content;
   // min-width: 4rem;
