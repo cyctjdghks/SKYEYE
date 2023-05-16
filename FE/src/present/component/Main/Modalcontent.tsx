@@ -98,7 +98,7 @@ const ModalContent = () => {
       <style.LoginForm>
         <InputLabel
           placeholder="직원번호"
-          width="89%"
+          width="81.5%"
           height="50%"
           type="text"
           value={id}
@@ -111,7 +111,7 @@ const ModalContent = () => {
         ></InputLabel>
         <InputLabel
           placeholder="비밀번호"
-          width="89%"
+          width="81.5%"
           height="50%"
           type="password"
           value={pwd}

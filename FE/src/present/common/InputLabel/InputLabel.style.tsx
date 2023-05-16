@@ -42,12 +42,6 @@ export const input = styled.input<{
       color: black;
     }
   }
-  @media only screen and (max-width: 1024px) {
-    height: 35px;
-  }
-  @media only screen and (max-width: 768px) {
-    height: 25px;
-  }
 `;
 
 export const p = styled.p<{ errorFontSize: string }>`
