@@ -7,12 +7,14 @@ import { useLocation } from "react-router-dom";
 import { getFolders, getPhotoList } from "@src/action/api/Pictures";
 import PhotoLayout from "../PhotoLayout/PhotoLayout";
 import { Folder } from "@src/types/FlightInfo";
+import { useRecoilValue } from "recoil";
+import { authState } from "@src/store/auth";
 
 const AllPictures = () => {
   const location = useLocation().state;
   const [folder, setFolder] = useState<number | null>(null);
   const [crack, setCrack] = useState<string | null>(null);
-  
+  const userId = useRecoilValue(authState).user.userId;
   // List
   const [folderList, setFolderList] = useState<Array<Folder>>([]);
   const [crackList, setCrackList] = useState([]);
@@ -35,7 +37,7 @@ const AllPictures = () => {
         Dec: "12",
       };
       getFolders(
-        "jhp1276",
+        userId,
         [location[3], dayOfWeek[location[1]], location[2]].join("-")
       ).then((res) => {
         if (res.isSuccess) {
@@ -59,15 +61,15 @@ const AllPictures = () => {
     }
   }, [folder, crack]);
 
-  useEffect(()=>{
+  useEffect(() => {
     if (crack !== null) {
-      getPhotoList("jhp1276", folder, 'concrete').then((res) => {
+      getPhotoList(userId, folder, "concrete").then((res) => {
         if (res.isSuccess) {
-          setPhotoList([...res.result])
+          setPhotoList([...res.result]);
         }
-      })
+      });
     }
-  }, [crack])
+  }, [crack]);
 
   // Handler
   const folderHandler = (idx: number) => {
@@ -127,7 +129,7 @@ const AllPictures = () => {
       {crack !== null && (
         <div>
           <SubTitle content="사진" />
-          <PhotoLayout photoList={photoList}/>
+          <PhotoLayout photoList={photoList} />
         </div>
       )}
 
