@@ -43,7 +43,7 @@ export const ButtonBox = styled.div`
 `;
 
 export const KaoKoButtonBox = styled.button`
-  width: 75%;
+  width: 68%;
   background: #f9e000;
   border: 1px solid #f9e000;
   border-radius: 8px;
@@ -66,7 +66,7 @@ export const KaoKoButtonBox = styled.button`
   }
 `;
 export const GoogleButtonBox = styled.button`
-  width: 75%;
+  width: 68%;
   background: ${theme.colors.greyscale.light2};
   border: 1px solid ${theme.colors.greyscale.light1};
   border-radius: 8px;
