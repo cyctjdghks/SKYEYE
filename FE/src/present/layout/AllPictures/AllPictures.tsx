@@ -51,11 +51,10 @@ const AllPictures = () => {
     if (folder !== null) {
       getCrackList(folder).then((res) => {
         if (res.isSuccess) {
-          const keys = Object.keys(res.result).map((elem) => {
-            return { crackType: elem, cnt: res.result[elem] };
+          const keys = Object.keys(res.result).map((elem) => {            
+            return { crackType: res.result[elem].crackType, cnt: res.result[elem].countCrack };
           });
-
-          setCrackList([...keys]);
+          setCrackList(keys);
         }
       });
     }
@@ -63,7 +62,7 @@ const AllPictures = () => {
 
   useEffect(() => {
     if (crack !== null) {
-      getPhotoList(userId, folder, "concrete").then((res) => {
+      getPhotoList(userId, folder, crack).then((res) => {        
         if (res.isSuccess) {
           setPhotoList([...res.result]);
         }

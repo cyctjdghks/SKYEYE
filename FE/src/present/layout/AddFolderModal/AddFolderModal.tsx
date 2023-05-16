@@ -18,9 +18,17 @@ type FolerInfo = {
 
 const AddFolderModal = ({ onClose }: FolerInfo) => {
   const user = useRecoilValue(authState).user;
+
+  var today = new Date();
+  var year = today.getFullYear();
+  var month = today.getMonth()+1;
+  var day = today.getDate();
+  
+  var format = year+"-"+(("00"+month.toString()).slice(-2))+"-"+(("00"+day.toString()).slice(-2));
+
   const [folderName, setFolderName] = useState<string>("");
   const [folderMemo, setFolderMemo] = useState<string>("");
-  const [folderBuilt, setFolderBuilt] = useState<string>("");
+  const [folderBuilt, setFolderBuilt] = useState<string>(format);
   const [userId, setUserId] = useState<string>(user.userId);
 
   const [toastList, setToastList] = useRecoilState(toastListState);
@@ -40,19 +48,10 @@ const AddFolderModal = ({ onClose }: FolerInfo) => {
     });
   };
 
-  var today = new Date();
-  var year = today.getFullYear();
-  var month = today.getMonth()+1;
-  var day = today.getDate();
-  
-  var format = year+"-"+(("00"+month.toString()).slice(-2))+"-"+(("00"+day.toString()).slice(-2));
-  console.log(format);
-  
 
   return (
     <style.ModalContainer>
       <PrimeTitle content="폴더 추가" />
-      {/* {inputs} */}
       <style.InputContainer
         placeholder="폴더 이름"
         onChange={(e) => setFolderName(e.target.value)}
@@ -67,6 +66,7 @@ const AddFolderModal = ({ onClose }: FolerInfo) => {
         placeholder="폴더 날짜"
         onChange={(e) => setFolderBuilt(e.target.value)}
         value={folderBuilt}
+        readOnly
       />
       <style.InputContainer
         placeholder="담당자 ID"
