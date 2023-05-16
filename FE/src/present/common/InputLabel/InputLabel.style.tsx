@@ -13,10 +13,11 @@ export const inputBox = styled.div<{ width: string; height: string }>`
   height: ${(props) => props.height};
   // margin: auto;
   user-select: "none";
+  margin-bottom: 20px;
 `;
 
 export const label = styled.label`
-  /* width: 300px; */
+  /* width: 300px; */'
 `;
 
 export const input = styled.input<{
@@ -30,7 +31,7 @@ export const input = styled.input<{
   font-family:"SCDream4";
   font-size: ${(props) => props.fontSize};
   width: 80%;
-  height: 60%;
+  height: 78%;
   border-radius: 8px;
   padding-left: 15px;
   border: ${theme.colors.greyscale.dark3} 2px solid;
@@ -40,6 +41,9 @@ export const input = styled.input<{
     &::placeholder {
       color: black;
     }
+  }
+  @media only screen and (max-width: 1024px) {
+    height: 35px;
   }
   @media only screen and (max-width: 768px) {
     height: 25px;
@@ -52,8 +56,14 @@ export const p = styled.p<{ errorFontSize: string }>`
   color: ${theme.colors.point.warning};
   font-size: ${(props) => props.errorFontSize};
   margin-top: 7px;
-  text-align: left;
-  margin-left: 10%;
+  text-align: center;
+  white-space: nowrap;
+  @media (max-width: 1024px) {
+    font-size: 11px;
+  }
+  @media (max-width: 800px) {
+    font-size: 11px;
+  },     
 `;
 export const pp = styled.p<{ errorFontSize: string }>`
   ${fontStyles}
@@ -61,6 +71,6 @@ export const pp = styled.p<{ errorFontSize: string }>`
   color: ${theme.colors.greyscale.light3};
   font-size: ${(props) => props.errorFontSize};
   margin-top: 7px;
-  margin-left: 8px;
+  text-align: center;
   visibility: hidden;
 `;
