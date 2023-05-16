@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import InputLabel from "@common/InputLabel/InputLabel";
+import InputLabel from "@component/AdminInputLabel/AdminInputLabel";
 import { DataInput } from "@action/hooks/Effectiveness";
 import { useRecoilState } from "recoil";
 import { adminState } from "@src/store/admin";
