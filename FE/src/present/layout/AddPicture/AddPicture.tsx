@@ -13,9 +13,7 @@ const AddPicture = () => {
   const [toastList, setToastList] = useRecoilState(toastListState);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const folderId = useRecoilValue(selectedFolderIdState).folderId
-  
-  console.log(folderId);
-  
+ 
   const getImages = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     setSelectedFiles([...selectedFiles, ...Array.from(files)]);

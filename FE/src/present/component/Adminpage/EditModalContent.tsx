@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import InputLabel from "@common/InputLabel/InputLabel";
+import InputLabel from "@component/AdminInputLabel/AdminInputLabel";
 import { urls } from "@constant/values";
 import { useRecoilState } from "recoil";
 import { adminState } from "@src/store/admin";
@@ -30,7 +30,9 @@ const EditModalContent = ({ data, onClose }: UserInfo) => {
     data.userPhoneNumber || ""
   );
   const [fileName, setFileName] = useState<any | null>(
-    `${urls.API}/${data.imageSrc}`
+    data.imageSrc.includes("http")
+      ? data.imageSrc
+      : `${urls.API}/${data.imageSrc}`
   );
   const [profile, setProfile] = useState<any | null>("");
   const [users, setUsers] = useRecoilState(adminState);
