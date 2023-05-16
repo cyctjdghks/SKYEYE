@@ -8,7 +8,7 @@ export const LoginModalWrap = styled("div")({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  justifyContent: "center",
+  justifyContent: "space-evenly"
 });
 
 export const ModalTitle = styled("h1")({
@@ -26,8 +26,8 @@ export const ModalTitle = styled("h1")({
 });
 
 export const LoginForm = styled.form`
-  width: 70%;
-  height: 50%;
+  width: 100%;
+  /* height: 50%; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,9 +39,8 @@ export const ButtonBox = styled.div`
   display: flex;
   /* margin-right: 5% */
   justify-content: flex-end;
-  
+  margin-top: 2%;
 `;
-
 
 export const KaoKoButtonBox = styled.button`
   width: 75%;
@@ -53,18 +52,19 @@ export const KaoKoButtonBox = styled.button`
   align-items: center;
   justify-content: space-around;
   margin-top: 1vh;
+  box-shadow: ${theme.shadows.shadow2};
+
   &:hover {
     background: ${theme.colors.point.pointLight};
     border: 1px solid ${theme.colors.point.pointLight};
-  };
+  }
 
   & svg {
-    width : 37px;
+    width: 37px;
     height: 37px;
     min-width: 37px;
-  };
-
-`
+  }
+`;
 export const GoogleButtonBox = styled.button`
   width: 75%;
   background: ${theme.colors.greyscale.light2};
@@ -75,18 +75,18 @@ export const GoogleButtonBox = styled.button`
   align-items: center;
   justify-content: space-around;
   margin-top: 1vh;
+  box-shadow: ${theme.shadows.shadow2};
+
   &:hover {
     background: ${theme.colors.point.pointLight};
     border: 1px solid ${theme.colors.point.pointLight};
-  };
+  }
   & svg {
-    width : 33px;
+    width: 33px;
     height: 33px;
     min-width: 33px;
-  };
-
-
-`
+  }
+`;
 
 export const ButtonText = styled("h1")({
   color: `${theme.colors.greyscale.dark1}`,
@@ -95,9 +95,10 @@ export const ButtonText = styled("h1")({
   fontSize: "1vw",
 });
 
-
-
-
+export const signup = styled("p")({
+  cursor: "pointer",
+  // marginTop: "3%"
+});
 
 // export const LoginButton = styled("button")({
 //   padding: "10px 20px",
@@ -112,5 +113,3 @@ export const ButtonText = styled("h1")({
 //   },
 
 // });
-
-

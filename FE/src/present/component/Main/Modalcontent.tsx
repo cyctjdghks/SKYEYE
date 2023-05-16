@@ -98,26 +98,26 @@ const ModalContent = () => {
       <style.LoginForm>
         <InputLabel
           placeholder="직원번호"
-          width="90%"
-          height="30%"
+          width="89%"
+          height="50%"
           type="text"
           value={id}
           fontSize="1vw"
           onChange={setId}
-          errorFontSize="13px"
+          errorFontSize="12px"
           errorMessage={
             idError ? "" : "영어와 숫자로만 입력해주세요(5 ~ 20 글자)"
           }
         ></InputLabel>
         <InputLabel
           placeholder="비밀번호"
-          width="90%"
-          height="30%"
+          width="89%"
+          height="50%"
           type="password"
           value={pwd}
           fontSize="1vw"
           onChange={setPwd}
-          errorFontSize="13px"
+          errorFontSize="12px"
           errorMessage={
             pwdError
               ? ""
@@ -140,8 +140,10 @@ const ModalContent = () => {
           <GoogleIcon />
           <style.ButtonText>구글 로그인</style.ButtonText>
         </style.GoogleButtonBox>
-
       </style.LoginForm>
+      <style.signup>
+        회원가입
+      </style.signup>
     </style.LoginModalWrap>
   );
 };
