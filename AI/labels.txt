@@ -1,2 +1,3 @@
-0 concrete
-1 asphalt
+0 Concrete
+1 Asphalt
+2 None
