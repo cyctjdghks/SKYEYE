@@ -74,7 +74,6 @@ public class CrackServiceImpl implements CrackService {
 //        }
 
         crack.setCrackType(crackUpdateDto.getCrackType());
-        crack.getImageId().setOriginalFileName(crackUpdateDto.getOriginalFileName());
     }
 
     @Override
