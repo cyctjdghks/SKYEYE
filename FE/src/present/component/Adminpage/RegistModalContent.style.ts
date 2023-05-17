@@ -4,19 +4,20 @@ import { theme } from "@constant/theme";
 export const ModalBox = styled("div")({
   width: "90%",
   margin: "auto",
-  height: "90%",
   display: "flex",
   flexDirection: "column",
-  justifyContent: "center",
   alignItems: "center",
+  justifyContent: "space-evenly",
 });
 
 export const ModalTitle = styled("h1")({
   textAlign: "center",
   color: `${theme.colors.point.point}`,
-  fontSize: "2.5vw",
-  marginTop: "3.5vw",
-  marginBottom: "2.5vw"
+  fontSize: "45px",
+  "@media only screen and (max-width: 1024px)": {
+    fontSize: "40px",
+  },
+  
 });
 
 export const ContentBox = styled("div")({
@@ -28,7 +29,6 @@ export const ProfileBox = styled("div")({
   display: "flex",
   flexDirection: "column",
   width: "50%",
-  // overflow: "hidden",
   justifyContent: "center",
   position: "relative",
   alignItems: "center",
@@ -40,7 +40,12 @@ export const ProfileImage = styled.div<{ image: string }>`
   border-radius: 8px;
   background-position: center;
   background-size: cover;
-  background-image: url(${props => props.image});
+  background-image: url(${(props) => props.image});
+  @media (max-width: 800px) {
+    width: 40vw;
+    height: 40vw;
+  }, 
+  
 `;
 
 export const SaveLabel = styled("label")({
@@ -48,6 +53,9 @@ export const SaveLabel = styled("label")({
   bottom: "-13%",
   cursor: "pointer",
   fontSize: "1.1vw",
+  "@media only screen and (max-width: 800px)": {
+    fontSize: "15px",
+  },
 });
 export const SaveInput = styled("input")({
   display: "none",
@@ -58,8 +66,8 @@ export const DataBox = styled("div")({
   height: "35vh",
   display: "flex",
   flexDirection: "column",
-  alignItems: "flex-start",
-  justifyContent: "flex-end",
+  marginTop: "5vh",
+  justifyContent: "space-evenly",
 });
 
 export const ProfileTitle = styled("h3")({
@@ -70,6 +78,7 @@ export const ButtonBox = styled("div")({
   display: "flex",
   float: "right",
   width: "50%",
+  
 });
 
 export const DeleteButton = styled("button")({
@@ -90,11 +99,11 @@ export const DeleteButton = styled("button")({
 });
 
 export const SubmitButton = styled("div")({
-  marginTop: "5vh",
+  marginTop: "6vh",
   width: "100%",
   display: "flex",
   justifyContent: "flex-end",
-  marginRight: "3.5vw"
+  marginRight: "3.5vw",
 });
 
 export const LogoText = styled("h2")({
@@ -111,4 +120,3 @@ export const UnderButton = styled("div")({
   display: "flex",
   justifyContent: "flex-end",
 });
-

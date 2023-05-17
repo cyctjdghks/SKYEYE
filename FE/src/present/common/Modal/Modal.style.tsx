@@ -22,9 +22,6 @@ export const ModalWrap = styled.div<{ width: string; height: string }>`
   transform: translate(-50%, -50%);
   overflow: hidden;
 
-  @media (max-width: 1024px) {
-    width: 40%;
-  }
   @media (max-width: 800px) {
     width: 100%;
   }

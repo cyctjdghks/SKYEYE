@@ -108,59 +108,59 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
           <InputLabel
             placeholder="직원번호"
             width="100%"
-            height="45px"
+            height="25%"
             value={userId}
             fontSize="1vw"
             onChange={setId}
             type="text"
             errorMessage={idError ? "" : "영어 숫자로만 입력해주세요 (5~20)"}
-            errorFontSize="0.5vw"
+            errorFontSize="12px"
           />
           <InputLabel
             placeholder="이름"
             width="100%"
-            height="45px"
+            height="25%"
             value={userName}
             fontSize="1vw"
             type="text"
             onChange={setName}
             errorMessage={nameError ? "" : "한글로만 입력해주세요"}
-            errorFontSize="0.5vw"
+            errorFontSize="12px"
           />
           <InputLabel
             placeholder="직책"
             width="100%"
-            height="45px"
+            height="25%"
             type="text"
             value={userPosition}
             fontSize="1vw"
             onChange={setPosition}
             errorMessage={positionError ? "" : "한글로만 입력해주세요"}
-            errorFontSize="0.5vw"
+            errorFontSize="12px"
           />
           <InputLabel
             placeholder="전화번호( - 포함 작성 )"
             width="100%"
-            height="45px"
+            height="25%"
             type="text"
             value={userPhoneNumber}
             fontSize="1vw"
             onChange={setPhone}
             errorMessage={phoneError ? "" : "전화번호 양식을 맞춰주세요"}
-            errorFontSize="0.5vw"
+            errorFontSize="12px"
           />
           <InputLabel
             placeholder="비밀번호"
             width="100%"
-            height="45px"
+            height="25%"
             type="password"
             value={userPw}
             fontSize="1vw"
             onChange={setPassword}
             errorMessage={
-              pwdError ? "" : "숫자, 영어, 특수문자를 하나 이상 포함(9~16)"
+              pwdError ? "" : "숫자, 영어, 특수문자를 포함해 주세요(9~16)"
             }
-            errorFontSize="0.5vw"
+            errorFontSize="12px"
           />
         </style.DataBox>
       </style.ContentBox>

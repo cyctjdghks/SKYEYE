@@ -12,7 +12,11 @@ import AdminButton from "@src/present/component/Adminpage/AdminPrimaryButton";
 import PrimaryButton from "@src/present/common/Button/PrimaryButton";
 import PrimeTitle from "@src/present/common/PrimeTitle/PrimeTitle";
 import right from "@assets/main/right.png";
-import { useRecoilValue } from "recoil";
+import { ReactComponent as LogoutIcon } from "@assets/sidebar/logout.svg";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { useNavigate } from "react-router-dom";
+import { UserLogout } from "@src/action/hooks/User";
+import { toastListState } from "@src/store/toast";
 
 type UserInfo = {
   userId: string;
@@ -23,6 +27,7 @@ type UserInfo = {
 };
 
 const Admin = () => {
+  const navigate = useNavigate();
   const selectedIdx = useRecoilValue(selectedIdxState).idx;
   const users = useRecoilValue(adminState).users;
   const [chooseUser, setChooseUser] = useState<UserInfo>({
@@ -35,6 +40,7 @@ const Admin = () => {
   //모달
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpen2, setIsOpen2] = useState<boolean>(false);
+  const [toastList, setToastList] = useRecoilState(toastListState);
 
   useEffect(() => {
     setChooseUser(users[selectedIdx]);
@@ -47,10 +53,36 @@ const Admin = () => {
     setIsOpen2(true);
   };
 
+  const logoutSignal = () => {
+    UserLogout()
+      .then((res) => {
+        navigate("/");
+        const successAdminToast = {
+          type: "Success",
+          sentence: "로그아웃에 성공했습니다",
+        };
+        setToastList({ list: [...toastList.list, successAdminToast] });
+      })
+      .catch((err) => {
+        const errorLogoutToast = {
+          type: "Error",
+          sentence: "로그아웃에 실패했습니다.",
+        };
+        setToastList({ list: [...toastList.list, errorLogoutToast] });
+      });
+  };
+
   return (
     <style.PageBox>
       <style.TopBox>
-        <style.PageName>사원 정보</style.PageName>
+        <style.PageNameBox>
+
+        <style.PageName>회원 정보</style.PageName>
+        <style.LogoutBox>
+          <style.logoutText onClick={logoutSignal}>로그아웃</style.logoutText>
+          <LogoutIcon />
+        </style.LogoutBox>
+        </style.PageNameBox>
         <style.TopButtonBox>
           {selectedIdx !== null ? (
             <AdminButton
@@ -107,7 +139,7 @@ const Admin = () => {
         </style.TopButtonBox>
       </style.TopBox>
       <style.DataTitle>
-        <style.Number>직원 번호</style.Number>
+        <style.Number>직원 아이디</style.Number>
         <style.Name>이름</style.Name>
         <style.Job>직책</style.Job>
         <style.Phone>연락처</style.Phone>

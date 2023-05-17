@@ -28,4 +28,5 @@ export const DataBox = styled("div")({
   flexDirection: "column",
   marginBottom: "1%",
   borderRadius: "5px",
+  
 });
