@@ -13,6 +13,7 @@ export const inputBox = styled.div<{ width: string; height: string }>`
   height: ${(props) => props.height};
   // margin: auto;
   user-select: "none";
+  margin-bottom: 10px;
 `;
 
 export const label = styled.label`
@@ -41,9 +42,9 @@ export const input = styled.input<{
       color: black;
     }
   }
-  @media only screen and (max-width: 768px) {
+  /* @media only screen and (max-width: 768px) {
     height: 25px;
-  }
+  } */
 `;
 
 export const p = styled.p<{ errorFontSize: string }>`
@@ -54,6 +55,13 @@ export const p = styled.p<{ errorFontSize: string }>`
   margin-top: 7px;
   text-align: left;
   margin-left: 10%;
+  font-size: 10px;
+  @media (max-width: 1024px) {
+    font-size: 8px;
+  }
+  @media (max-width: 800px) {
+    font-size: 7px;
+  }, 
 `;
 export const pp = styled.p<{ errorFontSize: string }>`
   ${fontStyles}
@@ -63,4 +71,11 @@ export const pp = styled.p<{ errorFontSize: string }>`
   margin-top: 7px;
   margin-left: 8px;
   visibility: hidden;
+  font-size: 10px;
+  @media (max-width: 1024px) {
+    font-size: 8px;
+  }
+  @media (max-width: 800px) {
+    font-size: 7px;
+  }, 
 `;

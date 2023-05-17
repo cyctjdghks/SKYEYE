@@ -134,7 +134,7 @@ const EditModalContent = ({ data, onClose }: UserInfo) => {
           <InputLabel
             placeholder="직원번호"
             width="100%"
-            height="45px"
+            height="25%"
             value={userId}
             fontSize="1vw"
             onChange={(e) => {
@@ -142,13 +142,13 @@ const EditModalContent = ({ data, onClose }: UserInfo) => {
             }}
             type="text"
             errorMessage=""
-            errorFontSize="0.5vw"
+            errorFontSize="12px"
             readonly={true}
           />
           <InputLabel
             placeholder="이름"
             width="100%"
-            height="45px"
+            height="25%"
             value={userName}
             fontSize="1vw"
             type="text"
@@ -156,12 +156,12 @@ const EditModalContent = ({ data, onClose }: UserInfo) => {
               setName(e.target.value);
             }}
             errorMessage=""
-            errorFontSize="0.5vw"
+            errorFontSize="12px"
           />
           <InputLabel
             placeholder="직책"
             width="100%"
-            height="45px"
+            height="25%"
             type="text"
             value={userPosition}
             fontSize="1vw"
@@ -169,12 +169,12 @@ const EditModalContent = ({ data, onClose }: UserInfo) => {
               setPosition(e.target.value);
             }}
             errorMessage=""
-            errorFontSize="0.5vw"
+            errorFontSize="12px"
           />
           <InputLabel
             placeholder="전화번호( - 포함 작성 )"
             width="100%"
-            height="45px"
+            height="25%"
             type="text"
             value={userPhoneNumber}
             fontSize="1vw"
@@ -182,7 +182,7 @@ const EditModalContent = ({ data, onClose }: UserInfo) => {
               setPhone(e.target.value);
             }}
             errorMessage=""
-            errorFontSize="0.5vw"
+            errorFontSize="12px"
           />
         </style.DataBox>
       </style.ContentBox>

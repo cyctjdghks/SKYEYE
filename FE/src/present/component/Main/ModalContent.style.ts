@@ -8,7 +8,7 @@ export const LoginModalWrap = styled("div")({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  justifyContent: "space-evenly"
+  justifyContent: "space-evenly",
 });
 
 export const ModalTitle = styled("h1")({
@@ -44,8 +44,8 @@ export const ButtonBox = styled.div`
 
 export const KaoKoButtonBox = styled.button`
   width: 68%;
-  background: #f9e000;
-  border: 1px solid #f9e000;
+  background: #ffe812;
+  border: 1px solid #ffe812;
   border-radius: 8px;
   cursor: pointer;
   display: flex;
@@ -57,14 +57,20 @@ export const KaoKoButtonBox = styled.button`
   &:hover {
     background: ${theme.colors.point.pointLight};
     border: 1px solid ${theme.colors.point.pointLight};
-  }
 
+    & svg {
+      & > path:nth-of-type(2) {
+        fill: ${theme.colors.point.pointLight};
+      }
+    }
+  }
   & svg {
     width: 37px;
     height: 37px;
     min-width: 37px;
   }
 `;
+
 export const GoogleButtonBox = styled.button`
   width: 68%;
   background: ${theme.colors.greyscale.light2};
