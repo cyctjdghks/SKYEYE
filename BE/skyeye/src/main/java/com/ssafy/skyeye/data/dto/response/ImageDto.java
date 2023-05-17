@@ -30,7 +30,7 @@ public class ImageDto {
                 .originalFileName(image.getOriginalFileName())
                 .storedFileName(image.getStoredFileName())
                 .fileSize(image.getFileSize())
-                .crackId(builder().crackId)
+                .crackId(crack.getCrackId())
                 .crackType(crack.getCrackType())
                 .createTime(image.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
                 .updateTime(image.getUpdatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
