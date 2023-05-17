@@ -119,7 +119,7 @@ def upload():
             val= (crackType,folderId,image_id,"floor",now_DB,now_DB)
             cursor.execute(sql,val)
         else:
-            crackType = None
+            crackType = "None"
             # print(crackType)#  크랙 종류
             sql="insert into crack (crack_type, folder_id, image_id,crack_position, created_at, updated_at) values (%s, %s, %s,%s,%s,%s)"
             val= (crackType,folderId,image_id,"floor",now_DB,now_DB)
