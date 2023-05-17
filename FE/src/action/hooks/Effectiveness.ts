@@ -29,3 +29,24 @@ export const DataInput = (regExp: RegExp): DataInputReturn => {
   return [inputData, handler, dataError];
 };
 
+export const CheckPassword = (password:string):  DataInputReturn => {
+  const [inputData, setInputData] = useState<string>("");
+  const [dataError, setError] = useState<boolean>(true);
+
+  const handler = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const data = event.target.value;
+      setInputData(data);
+      if (data === "") {
+        setError(true);
+      } else if (data !== password) {
+        setError(false);
+      } else {
+        setError(true);
+      }
+    },
+    [password]
+  );
+
+  return [inputData, handler, dataError];
+};

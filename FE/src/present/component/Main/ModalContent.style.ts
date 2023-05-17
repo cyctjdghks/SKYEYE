@@ -101,21 +101,13 @@ export const ButtonText = styled("h1")({
   fontSize: "1vw",
 });
 
-export const signup = styled("p")({
-  cursor: "pointer",
-  // marginTop: "3%"
-});
+export const ChageModal = styled.p`
+  cursor: pointer;
+  margin: 0;
+  &:hover{
+    text-decoration: underline;
+    color: ${theme.colors.point.point};
+  }
+`
 
-// export const LoginButton = styled("button")({
-//   padding: "10px 20px",
-//   border: "none",
-//   backgroundColor: `${theme.colors.point.point}`,
-//   borderRadius: "10px",
-//   color: `${theme.colors.greyscale.light3}`,
-//   fontWeight: "200",
-//   cursor: "pointer",
-//   "&:hover": {
-//     backgroundColor: `${theme.colors.point.pointLight}`,
-//   },
 
-// });

@@ -16,7 +16,8 @@ export const ModalTitle = styled("h1")({
   fontSize: "45px",
   "@media only screen and (max-width: 1024px)": {
     fontSize: "40px",
-  }  
+  },
+  
 });
 
 export const ContentBox = styled("div")({
@@ -118,3 +119,13 @@ export const UnderButton = styled("div")({
   display: "flex",
   justifyContent: "flex-end",
 });
+
+
+export const ChageModal = styled.p`
+  cursor: pointer;
+  margin: 0;
+  &:hover{
+    text-decoration: underline;
+    color: ${theme.colors.point.point};
+  }
+`

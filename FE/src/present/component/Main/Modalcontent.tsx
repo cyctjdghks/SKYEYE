@@ -1,7 +1,6 @@
 import InputLabel from "@common/InputLabel/InputLabel";
 import { DataInput } from "@src/action/hooks/Effectiveness";
 import * as style from "@src/present/component/Main/ModalContent.style";
-import PrimaryButton from "@src/present/common/Button/PrimaryButton";
 import MainPrimaryButton from "./MainPrimaryButton";
 import { LoginUser } from "@src/action/hooks/User";
 import { LoginAdmin } from "@src/action/hooks/Admin";
@@ -9,12 +8,15 @@ import { toastListState } from "@src/store/toast";
 import { useRecoilState } from "recoil";
 import { authState } from "@store/auth";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import { useCallback } from "react";
-import {ReactComponent as GoogleIcon} from "@assets/main/googlelogo.svg";
-import {ReactComponent as KakaoIcon} from "@assets/main/kakaologo.svg";
 
-const ModalContent = () => {
+import { ReactComponent as GoogleIcon } from "@assets/main/googlelogo.svg";
+import { ReactComponent as KakaoIcon } from "@assets/main/kakaologo.svg";
+
+type modalContentProps = {
+  handler: any;
+};
+
+const ModalContent = ({ handler }: modalContentProps) => {
   const navigate = useNavigate();
   const [id, setId, idError] = DataInput(/^[a-zA-z0-9]{5,20}$/);
   const [pwd, setPwd, pwdError] = DataInput(
@@ -78,16 +80,17 @@ const ModalContent = () => {
   };
 
   const toKaKaoLogin = (e) => {
-    e.preventDefault()
-    window.location.href = "https://k8d202.p.ssafy.io/be/oauth2/authorization/kakao";
-  }
+    e.preventDefault();
+    window.location.href =
+      "https://k8d202.p.ssafy.io/be/oauth2/authorization/kakao";
+  };
 
   const toGoogleLogin = (e) => {
-    e.preventDefault()
-    window.location.href = "https://k8d202.p.ssafy.io/be/oauth2/authorization/google";
-  }
+    e.preventDefault();
+    window.location.href =
+      "https://k8d202.p.ssafy.io/be/oauth2/authorization/google";
+  };
 
- 
   const nullError = !!id && !!pwd;
   const effectiveError = idError && pwdError;
   const submitError = nullError && effectiveError;
@@ -126,14 +129,14 @@ const ModalContent = () => {
         ></InputLabel>
         <style.ButtonBox>
           <MainPrimaryButton
-          content={"로그인"}
-          isArrow={true}
-          handler={clickLogin}
-          disabled={!submitError}
+            content={"로그인"}
+            isArrow={true}
+            handler={clickLogin}
+            disabled={!submitError}
           />
         </style.ButtonBox>
         <style.KaoKoButtonBox onClick={(e) => toKaKaoLogin(e)}>
-          <KakaoIcon/>
+          <KakaoIcon />
           <style.ButtonText>카카오 로그인</style.ButtonText>
         </style.KaoKoButtonBox>
         <style.GoogleButtonBox onClick={(e) => toGoogleLogin(e)}>
@@ -141,9 +144,7 @@ const ModalContent = () => {
           <style.ButtonText>구글 로그인</style.ButtonText>
         </style.GoogleButtonBox>
       </style.LoginForm>
-      <style.signup>
-        회원가입
-      </style.signup>
+      <style.ChageModal onClick={handler}>회원가입</style.ChageModal>
     </style.LoginModalWrap>
   );
 };
