@@ -19,19 +19,17 @@ export const GetCrack = async (crackId: string) => {
 export const UpdateCrack = async (
   crackId: string,
   crackType: string,
-  crackPostion: string
 ) => {
   const response = await putAsync("/crack/update", {
     crackId,
-    crackType,
-    crackPostion,
+    crackType
   });
   return response;
 };
 
 // delete Crack
 export const DeleteCrack = async (crackId: string) => {
-  const response = await deleteAsync(`/crack/update/${crackId}`);
+  const response = await deleteAsync(`/crack/delete/${crackId}`);
   return response;
 };
 

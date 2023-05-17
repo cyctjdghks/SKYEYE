@@ -14,13 +14,14 @@ export const Guidence = styled.div`
   right: 4rem;
 
   z-index: -1;
+  
 `;
 
 export const Layout = styled.div`
   display: flex;
   height: calc(100% - 1rem);
   gap: 1.5rem;
-
+  
   & > div {
     display: block;
   }

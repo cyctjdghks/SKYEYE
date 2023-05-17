@@ -1,15 +1,22 @@
-import { theme } from "@src/constant/theme";
-import React, { memo, useEffect, useRef } from "react";
+import React, { memo } from "react";
 import * as Style from "./Input.style";
 
 type InputProps = {
-  placeholder: string;
-  handler: any;
+  placeholder?: string;
+  handler?: any;
+  value?: any;
+  readonly? : boolean
 };
 
-const Input = ({ placeholder, handler }: InputProps) => {
+const Input = ({ placeholder, handler, value, readonly }: InputProps) => {
   return (
-    <Style.Container type="text" placeholder={placeholder} onChange={handler} />
+    <Style.Container
+      type="text"
+      placeholder={placeholder}
+      onChange={handler}
+      value={value}
+      readOnly={readonly}
+    />
   );
 };
 
