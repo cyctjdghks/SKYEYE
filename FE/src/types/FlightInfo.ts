@@ -24,17 +24,17 @@ export type CrackPhoto = {
 
 export type Crack = {
   crackId: number;
-  crackType: String;
-  crackPosition: String;
+  crackType: string;
+  crackPosition: string;
   buildingId: number;
-  imageSrc: String;
+  imageSrc: string;
 };
 
 export type AboutBuilding = {
-  buildingName: String;
-  buildingAddress: String;
-  buildingEstablishment: String;
-  userId: String;
+  buildingName: string;
+  buildingAddress: string;
+  buildingEstablishment: string;
+  userId: string;
 };
 
 export type AboutFolder = {
@@ -48,8 +48,8 @@ export type InputBuilding = { buildingId: number | null; buildingName: string };
 export type InputFolder = { folderId: number | null; folderName: string };
 
 type CrackCapture = {
-  crackType: String;
-  crackPosition: String;
+  crackType: string;
+  crackPosition: string;
   buildingId: number;
 };
 
@@ -59,9 +59,11 @@ export type Capture = {
 };
 
 export type Picture = {
-  originalFileName: String;
-  storedFileName: String;
+  originalFileName: string;
+  storedFileName: string;
   fileSize: number;
-  createTime: String;
-  updateTime: String;
+  createTime: string;
+  crackType: string;
+  updateTime: string;
+  crackId: string;
 };

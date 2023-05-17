@@ -6,9 +6,13 @@ import { getCrackList } from "@src/action/api/Crack";
 import { useLocation } from "react-router-dom";
 import { getFolders, getPhotoList } from "@src/action/api/Pictures";
 import PhotoLayout from "../PhotoLayout/PhotoLayout";
-import { Folder } from "@src/types/FlightInfo";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { authState } from "@src/store/auth";
+import {
+  photoListState,
+  crackListState,
+  userFolderListState,
+} from "@src/store/crack";
 
 const AllPictures = () => {
   const location = useLocation().state;
@@ -16,9 +20,9 @@ const AllPictures = () => {
   const [crack, setCrack] = useState<string | null>(null);
   const userId = useRecoilValue(authState).user.userId;
   // List
-  const [folderList, setFolderList] = useState<Array<Folder>>([]);
-  const [crackList, setCrackList] = useState([]);
-  const [photoList, setPhotoList] = useState([]);
+  const [folderList, setFolderList] = useRecoilState(userFolderListState);
+  const [crackList, setCrackList] = useRecoilState(crackListState);
+  const [photoList, setPhotoList] = useRecoilState(photoListState);
 
   useEffect(() => {
     if (location !== null) {
@@ -51,18 +55,21 @@ const AllPictures = () => {
     if (folder !== null) {
       getCrackList(folder).then((res) => {
         if (res.isSuccess) {
-          const keys = Object.keys(res.result).map((elem) => {            
-            return { crackType: res.result[elem].crackType, cnt: res.result[elem].countCrack };
+          const keys = Object.keys(res.result).map((elem) => {
+            return {
+              crackType: res.result[elem].crackType,
+              cnt: res.result[elem].countCrack,
+            };
           });
           setCrackList(keys);
         }
       });
     }
-  }, [folder, crack]);
+  }, [folder, crack, photoList]);
 
   useEffect(() => {
     if (crack !== null) {
-      getPhotoList(userId, folder, crack).then((res) => {        
+      getPhotoList(userId, folder, crack).then((res) => {
         if (res.isSuccess) {
           setPhotoList([...res.result]);
         }
@@ -126,9 +133,9 @@ const AllPictures = () => {
       )}
 
       {crack !== null && (
-        <div style={{minWidth: "50%"}}>
+        <div style={{ minWidth: "50%" }}>
           <SubTitle content="사진" />
-          <PhotoLayout photoList={photoList} />
+          <PhotoLayout folder={folder} crack={crack} />
         </div>
       )}
 
