@@ -10,5 +10,4 @@ import lombok.NoArgsConstructor;
 public class CrackUpdateDto {
     private Long crackId;
     private String crackType;
-    private String originalFileName;
 }
