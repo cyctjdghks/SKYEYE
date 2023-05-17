@@ -122,14 +122,12 @@ const Weather = ({ isOpen }: WeatherProps) => {
     return (
       <style.weatherItem key={idx} isOpen={isOpen}>
         {elem.image}
-        <style.weatherTextDataBox>
           <style.weatherText isOpen={isOpen}>
             {elem.weatherText}
           </style.weatherText>
           <style.weatherData isOpen={isOpen}>
             {elem.weatherData} {elem.weatherData2}
           </style.weatherData>
-        </style.weatherTextDataBox>
       </style.weatherItem>
     );
   });
