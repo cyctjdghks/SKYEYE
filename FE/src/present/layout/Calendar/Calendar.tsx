@@ -115,7 +115,7 @@ const Calendar = () => {
           <Style.SelectMonth>
             <img src={Next} alt={"Prev"} className="Prev" onClick={prevMonth} />
             <div>
-              {format(currentMonth, "MMMM")} {Y}
+              {format(currentMonth, "MMMM")} {format(currentMonth, "yyyy")}
             </div>
             <img src={Next} alt={"Next"} className="Next" onClick={nextMonth} />
           </Style.SelectMonth>

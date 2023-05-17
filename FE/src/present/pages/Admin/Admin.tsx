@@ -9,9 +9,7 @@ import UserTable from "@src/present/component/Adminpage/UserTable";
 
 import * as style from "@src/present/pages/Admin/Admin.style";
 import AdminButton from "@src/present/component/Adminpage/AdminPrimaryButton";
-import PrimaryButton from "@src/present/common/Button/PrimaryButton";
-import PrimeTitle from "@src/present/common/PrimeTitle/PrimeTitle";
-import right from "@assets/main/right.png";
+import { AdminLogout } from "@src/action/hooks/Admin";
 import { ReactComponent as LogoutIcon } from "@assets/sidebar/logout.svg";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useNavigate } from "react-router-dom";
@@ -54,7 +52,7 @@ const Admin = () => {
   };
 
   const logoutSignal = () => {
-    UserLogout()
+    AdminLogout()
       .then((res) => {
         navigate("/");
         const successAdminToast = {
