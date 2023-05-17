@@ -14,6 +14,8 @@ import java.time.format.DateTimeFormatter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ImageDto {
+
+    private Long crackId;
     private String originalFileName;
     private String storedFileName;
     private Long fileSize;
@@ -28,6 +30,7 @@ public class ImageDto {
                 .originalFileName(image.getOriginalFileName())
                 .storedFileName(image.getStoredFileName())
                 .fileSize(image.getFileSize())
+                .crackId(builder().crackId)
                 .crackType(crack.getCrackType())
                 .createTime(image.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
                 .updateTime(image.getUpdatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
