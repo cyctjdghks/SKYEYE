@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { theme } from "@constant/theme";
+import { wrap } from "module";
 
 interface DataProps {
   selected: boolean;
@@ -32,22 +33,23 @@ export const DataBox = styled("div")<DataProps>(
   })
 );
 
-export const No = styled("div")({
-  width: "8%",
-});
 
 export const Number = styled("div")({
   width: "26%",
+  overflow: "hidden",
 });
 
 export const Name = styled("div")({
   width: "22%",
+  overflow: "hidden",
 });
 
 export const Job = styled("div")({
   width: "22%",
+  overflow: "hidden",
 });
 
 export const Phone = styled("div")({
   width: "22%",
+  overflow: "hidden",
 });
