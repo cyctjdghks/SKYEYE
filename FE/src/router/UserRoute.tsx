@@ -4,12 +4,12 @@ import { authState } from "@src/store/auth";
 import { Outlet, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const AdminRoute = () => {
+const UserRoute = () => {
   const userType = useRecoilValue(authState).userType
   const [toastList, setToastList] = useRecoilState(toastListState);
 
   useEffect(()=>{
-    if(userType){
+    if(!userType){
       const accessAdminToast = {
         type: "Error",
         sentence: "권한이 없습니다.",
@@ -18,7 +18,7 @@ const AdminRoute = () => {
     }
   }, [])
  
-  return userType? <Navigate to="/upload" /> : <Outlet />;
+  return !userType? <Navigate to="/admin" /> : <Outlet />;
 };
 
-export default AdminRoute;
+export default UserRoute;

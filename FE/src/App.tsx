@@ -1,7 +1,5 @@
-import React, { useState } from "react";
 import classes from "@src/App.module.css";
-import SideBar from "@common/SideBar/SideBar";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import { authState } from "@store/auth";
 import { Route, Routes } from "react-router-dom";
 import Main from "@src/present/pages/Main/Main";
@@ -11,8 +9,9 @@ import Picture from "@src/present/pages/Picture/Picture";
 import FlightInfo from "@src/present/pages/Flightinfo/FlightInfo";
 import { urls } from "@constant/values";
 import ToastContainer from "./present/layout/ToastContainer/ToastContainer";
-import AdminRoute from "./router/AdminRouter";
-import PrivateRoute from "./router/PrivateRouter";
+import AdminRoute from "./router/AdminRoute";
+import UserRoute from "./router/UserRoute";
+import PrivateRoute from "./router/PrivateRoute";
 import NotFound from "./present/pages/NotFound/NotFound";
 
 function App() {
@@ -23,9 +22,11 @@ function App() {
       <Routes>
         <Route path={urls.path.main} element={<Main />}></Route>
         <Route element={<PrivateRoute />}>
-          <Route path={urls.path.flightinfo} element={<FlightInfo />}></Route>
-          <Route path={urls.path.picture} element={<Picture />}></Route>
-          <Route path={urls.path.upload} element={<Upload />}></Route>
+          <Route element={<UserRoute />}>
+            <Route path={urls.path.flightinfo} element={<FlightInfo />}></Route>
+            <Route path={urls.path.picture} element={<Picture />}></Route>
+            <Route path={urls.path.upload} element={<Upload />}></Route>
+          </Route>
           <Route element={<AdminRoute />}>
             <Route path={urls.path.admin} element={<Admin />}></Route>
           </Route>

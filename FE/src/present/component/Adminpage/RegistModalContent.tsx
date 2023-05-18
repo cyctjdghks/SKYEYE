@@ -8,6 +8,7 @@ import AdminPrimaryButton from "@component/Adminpage/AdminPrimaryButton";
 import { RegistUser } from "@src/action/hooks/User";
 import { FindUserAll } from "@src/action/hooks/Admin";
 import { toastListState } from "@src/store/toast";
+import basicImg from "@assets/admin/profile.png"
 
 type UserInfo = {
   onClose: () => void;
@@ -25,14 +26,10 @@ const AdimModalContent = ({ onClose }: UserInfo) => {
     /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{9,16}$/
   );
   const [profile, setProfile] = useState<any | null>("");
-  const [fileName, setFileName] = useState("src/assets/admin/profile.png");
-
+  const [fileName, setFileName] = useState(basicImg);
   const [users, setUsers] = useRecoilState(adminState);
-
   const [toastList, setToastList] = useRecoilState(toastListState);
-
-  
-
+ 
   const saveProfile = (event: React.ChangeEvent<HTMLInputElement>) => {
     setProfile(event.target.files[0]);
     setFileName(URL.createObjectURL(event.target.files[0]));
