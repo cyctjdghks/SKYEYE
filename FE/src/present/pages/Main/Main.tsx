@@ -31,7 +31,7 @@ const Main = () => {
         setAuth({
           isAuthenticated: true,
           user: res.result,
-          userType: 0,
+          userType: 1,
         });
       }
     });
