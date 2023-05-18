@@ -30,7 +30,7 @@ const EditModalContent = ({ data, onClose }: UserInfo) => {
     data.userPhoneNumber || ""
   );
   const [fileName, setFileName] = useState<any | null>(
-    data.imageSrc.includes("http")
+    data.imageSrc?.includes("http")
       ? data.imageSrc
       : `${urls.API}/${data.imageSrc}`
   );
