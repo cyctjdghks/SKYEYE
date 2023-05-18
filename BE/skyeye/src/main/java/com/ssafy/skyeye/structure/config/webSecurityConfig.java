@@ -50,8 +50,8 @@ public class webSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
         .authorizeRequests()
                 .antMatchers("/user/login", "/user/regist", "/admin/login", "/user/valid/**").permitAll()
-                .antMatchers("/crack/**").hasAnyRole("USER", "SOCIAL_USER", "ADMIN")
-                .antMatchers("/folder/**").hasAnyRole("USER", "SOCIAL_USER","ADMIN")
+                .antMatchers("/crack/**").hasAnyRole("USER", "SOCIAL_USER")
+                .antMatchers("/folder/**").hasAnyRole("USER", "SOCIAL_USER")
                 .antMatchers("/user/**").hasAnyRole("USER", "SOCIAL_USER", "ADMIN")
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("**exception**").permitAll() // exception이 들어간 모든 경로를 허용
