@@ -30,15 +30,15 @@ const ThirdPage = () => {
           <style.lineBox>
             <style.sHrLineBox>
               <style.circle></style.circle>
-              <style.sHrLine></style.sHrLine>
+              <style.lineText>주소 : 경상북도 구미시 3공단3로 302 정담원 4층 D202 </style.lineText>
             </style.sHrLineBox>
             <style.sHrLineBox>
               <style.circle></style.circle>
-              <style.sHrLine></style.sHrLine>
+              <style.lineText>이메일 : skyeyed202@gmail.com</style.lineText>
             </style.sHrLineBox>
             <style.sHrLineBox>
               <style.circle></style.circle>
-              <style.sHrLine></style.sHrLine>
+              <style.lineText>번호 :  02-3429-5100</style.lineText>
             </style.sHrLineBox>
           </style.lineBox>
         </style.innerBox1>

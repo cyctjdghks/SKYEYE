@@ -53,6 +53,8 @@ export const lineBox = styled("div")({
 
 export const sHrLineBox = styled("div")({
   display: "flex",
+  marginBottom: "0.7vh"
+  
 });
 
 export const circle = styled("div")({
@@ -73,11 +75,17 @@ export const circle = styled("div")({
   },
 });
 
-export const sHrLine = styled("hr")({
-  width: "42vw",
+export const lineText = styled("div")({
   color: `${theme.colors.greyscale.light3}`,
-  marginTop: "2.5vw",
-});
+  width: "42vw",
+  borderBottom: `1.5px solid  ${theme.colors.greyscale.light3}`,
+  marginTop: "0.25vw",
+  fontSize: "1.5vw",
+  height: "2.5vw",
+  minHeight: "15px"
+
+})
+
 
 export const bottomBox2 = styled("div")({
   width: "85vw",
