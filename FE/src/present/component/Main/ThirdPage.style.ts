@@ -13,7 +13,7 @@ export const ThirdPage = styled("div")({
 
 export const bottomBox1 = styled("div")({
   width: "85vw",
-  height: "35vw",
+  height: "30vw",
   maxHeight: "600px",
   backgroundColor: `${theme.colors.point.point}`,
   // display: "flex",
@@ -105,6 +105,7 @@ export const textBox = styled("div")({
   display: "flex",
   justifyContent: "space-between",
   width: "90%",
+  marginTop: "30px",
   marginLeft: "4.2vw",
 });
 

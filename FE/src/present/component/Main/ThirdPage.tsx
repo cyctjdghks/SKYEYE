@@ -42,14 +42,12 @@ const ThirdPage = () => {
             </style.sHrLineBox>
           </style.lineBox>
         </style.innerBox1>
-      </style.bottomBox1>
-      <style.bottomBox2>
         <style.textBox>
           <style.text>Copyright by SKYEYE</style.text>
           <style.text2 onClick={scrollToTop}>Top</style.text2>
-          <style.text>2023.04.10 ~ 2023.05.10</style.text>
+          <style.text>2023.04.10 ~ 2023.05.19</style.text>
         </style.textBox>
-      </style.bottomBox2>
+      </style.bottomBox1>
     </style.ThirdPage>
   );
 };
