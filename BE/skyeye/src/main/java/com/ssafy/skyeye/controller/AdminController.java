@@ -4,6 +4,7 @@ import com.ssafy.skyeye.data.dto.request.AdminLoginDto;
 import com.ssafy.skyeye.data.dto.response.CrackDto;
 import com.ssafy.skyeye.data.dto.response.FolderDto;
 import com.ssafy.skyeye.data.dto.response.UserDto;
+import com.ssafy.skyeye.data.exception.ForbiddenException;
 import com.ssafy.skyeye.service.AdminService;
 import com.ssafy.skyeye.structure.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
@@ -50,8 +52,8 @@ public class AdminController {
     public ResponseEntity<?> findUserAll(){
         log.info("{} 메서드 실행", Thread.currentThread().getStackTrace()[1].getClassName());
 
-//        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
-//        if(!jwtId.equals("admin")) throw new ForbiddenException("관리자 맞습니까?");
+        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+        if(!jwtId.equals("admin")) throw new ForbiddenException("관리자 맞습니까?");
 
 
         List<UserDto> list = adminService.findUserAll();
@@ -67,8 +69,8 @@ public class AdminController {
     public ResponseEntity<?> findFolderAll(){
         log.info("{} 메서드 실행", Thread.currentThread().getStackTrace()[1].getClassName());
 
-//        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
-//        if(!jwtId.equals("admin")) throw new ForbiddenException("관리자 맞습니까?");
+        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+        if(!jwtId.equals("admin")) throw new ForbiddenException("관리자 맞습니까?");
 
         List<FolderDto> list = adminService.findFolderAll();
 
@@ -83,8 +85,8 @@ public class AdminController {
     public ResponseEntity<?> findCrackAll(){
         log.info("{} 메서드 실행", Thread.currentThread().getStackTrace()[1].getClassName());
 
-//        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
-//        if(!jwtId.equals("admin")) throw new ForbiddenException("관리자 맞습니까?");
+        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+        if(!jwtId.equals("admin")) throw new ForbiddenException("관리자 맞습니까?");
 
         List<CrackDto> list = adminService.findCrackAll();
 

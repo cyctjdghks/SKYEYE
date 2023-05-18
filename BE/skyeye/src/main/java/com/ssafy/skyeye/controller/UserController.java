@@ -3,6 +3,7 @@ package com.ssafy.skyeye.controller;
 import com.ssafy.skyeye.data.dto.request.*;
 import com.ssafy.skyeye.data.dto.response.UserDto;
 import com.ssafy.skyeye.data.entity.Image;
+import com.ssafy.skyeye.data.exception.ForbiddenException;
 import com.ssafy.skyeye.service.ImageService;
 import com.ssafy.skyeye.service.UserService;
 import com.ssafy.skyeye.structure.jwt.JwtTokenProvider;
@@ -76,8 +77,8 @@ public class UserController {
         log.info("{} 메소드 호출",Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", userId);
 
-//        String jwtId = String.valueOf(SecurityContextHolder.getContext().getAuthentication().getName());
-//        if(!jwtId.equals(userId) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
+        String jwtId = String.valueOf(SecurityContextHolder.getContext().getAuthentication().getName());
+        if(!jwtId.equals(userId) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
 
         UserDto user = userService.getUser(userId);
 
@@ -93,8 +94,8 @@ public class UserController {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", input);
 
-//        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
-//        if(!jwtId.equals(input.getUserId()) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
+        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+        if(!jwtId.equals(input.getUserId()) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
 
 
         if(profile != null && !profile.isEmpty() ){
@@ -114,8 +115,8 @@ public class UserController {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", userId);
 
-//        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
-//        if(!jwtId.equals(userId) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
+        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+        if(!jwtId.equals(userId) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
 
         userService.deleteUser(userId);
 
@@ -128,8 +129,8 @@ public class UserController {
         log.info("{} 메소드 호출", Thread.currentThread().getStackTrace()[1].getMethodName());
         log.info("입력 데이터 : {}", input);
 
-//        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
-//        if(!jwtId.equals(input.getUserId()) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
+        String jwtId = SecurityContextHolder.getContext().getAuthentication().getName();
+        if(!jwtId.equals(input.getUserId()) && !jwtId.equals("admin")) throw new ForbiddenException("본인 아이디가 아닙니다.");
 
         userService.changePw(input);
 
