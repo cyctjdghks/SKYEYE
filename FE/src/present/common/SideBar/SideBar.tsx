@@ -8,6 +8,8 @@ import { ReactComponent as UploadIcon } from "@assets/sidebar/upload.svg";
 import { ReactComponent as ImageIcon } from "@assets/sidebar/image.svg";
 import { ReactComponent as MapIcon } from "@assets/sidebar/map.svg";
 import { ReactComponent as LogoutIcon } from "@assets/sidebar/logout.svg";
+import { ReactComponent as LeftArrow } from "@assets/sidebar/leftArrow.svg";
+import { ReactComponent as RightArrow } from "@assets/sidebar/rightArrow.svg";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { authState } from "@src/store/auth";
 import { toastListState } from "@src/store/toast";
@@ -109,7 +111,9 @@ const SideBar = ({ isOpen, setIsOpen }: SidebarProps) => {
   return (
     <style.Wrapper isOpen={isOpen}>
       {/* Open Button */}
-      <style.OpenButton onClick={changeOpen} isOpen={isOpen}></style.OpenButton>
+      <style.OpenButton onClick={changeOpen} isOpen={isOpen}>
+        {isOpen ? <LeftArrow /> : <RightArrow />}{" "}
+      </style.OpenButton>
       {/* Profile */}
       <style.ProfileBox>
         <ProfileIcon />

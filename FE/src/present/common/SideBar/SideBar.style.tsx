@@ -31,29 +31,36 @@ export const Wrapper = styled.div<OpenProps>`
   z-index: 9999;
 `;
 
-export const OpenButton = styled("div")<OpenProps>(
-  {
-    background: `${theme.colors.point.point}`,
-    width: "32px",
-    height: "32px",
-    borderRadius: "50%",
-    cursor: "pointer",
-    position: "absolute",
-    top: "110px",
-    right: "-16px",
-    transition: `${theme.trans}`,
-  },
-  (props) => ({})
-);
+export const OpenButton = styled.div<OpenProps>`
+  background: ${theme.colors.point.point};
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  top: 75px;
+  right: -16px;
+  transition: ${theme.trans};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & svg {
+    width: 25px;
+    max-width: 25px;
+  }
+  & path{
+    fill: ${theme.colors.greyscale.light3}
+  }
+`;
 
 export const ProfileBox = styled.div`
   width: 100%;
-  height: 100px;
+  height: 80px;
   display: flex;
   margin-left: 25px;
   align-items: flex-end;
   overflow: hidden;
-  
+
   & svg {
     width: 50px;
     min-width: 50px;
@@ -100,8 +107,8 @@ export const ProfileText2 = styled("h1")<OpenProps>(
 export const hrLine = styled.hr`
   width: 90%;
   color: #787e8c42;
-  margin-bottom: 25px;
-  margin-top: 25px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 `;
 
 export const Body = styled("div")({

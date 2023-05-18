@@ -133,9 +133,8 @@ const Weather = ({ isOpen }: WeatherProps) => {
   });
 
   return (
-    <style.weatherbox>
+    <style.weatherbox isOpen={isOpen}>
       <style.innerbox>
-        <style.weatherTitle onClick={logWeather}>날씨</style.weatherTitle>
         {weatherItem}
       </style.innerbox>
     </style.weatherbox>

@@ -5,11 +5,11 @@ type OpenProps = {
   isOpen: boolean;
 };
 
-export const weatherbox = styled.div`
+export const weatherbox = styled.div<OpenProps>`
   width: 85%;
   text-align: center;
   overflow: hidden;
-  background-color: #787e8c33;
+  background-color:${(props)=> props.isOpen? "#787e8c33": "none"};
   border-radius: 15px;
 `;
 
