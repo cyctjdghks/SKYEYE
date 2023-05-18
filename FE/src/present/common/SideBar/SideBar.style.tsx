@@ -29,6 +29,7 @@ export const Wrapper = styled.div<OpenProps>`
   transition: ${theme.trans};
   border-radius: ${(props) => (props.isOpen ? "0px 25px 25px 0px" : "0px")};
   z-index: 9999;
+  overflow: hidden;
 `;
 
 export const OpenButton = styled("div")<OpenProps>(
