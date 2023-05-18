@@ -59,8 +59,6 @@ export const ProfileBox = styled.div`
   display: flex;
   margin-left: 25px;
   align-items: flex-end;
-  overflow: hidden;
-
   & svg {
     width: 50px;
     min-width: 50px;
