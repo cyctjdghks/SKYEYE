@@ -48,8 +48,8 @@ export const OpenButton = styled.div<OpenProps>`
     width: 25px;
     max-width: 25px;
   }
-  & path{
-    fill: ${theme.colors.greyscale.light3}
+  & path {
+    fill: ${theme.colors.greyscale.light3};
   }
 `;
 
@@ -71,22 +71,20 @@ export const ProfileBox = styled.div`
   }
 `;
 
-export const ProfileText1 = styled("h1")<OpenProps>(
-  {
-    fontStyle: "normal",
-    fontWeight: "500",
-    fontSize: "26px",
-    lineHeight: "100%",
-    whiteSpace: "nowrap",
-    marginRight: "5px",
-    marginBottom: "10px",
-    color: `${theme.colors.greyscale.light3}`,
-    transition: `${theme.trans}`,
-  },
-  (props) => ({
-    opacity: `${props.isOpen ? "1" : "0"}`,
-  })
-);
+export const ProfileText1 = styled.h1<OpenProps>`
+  font-style: normal
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 100%;
+  white-space: nowrap;
+  margin-right: 5px;
+  margin-bottom: 10px;
+  max-width: 100px;
+  overflow: hidden;
+  color: ${theme.colors.greyscale.light3};
+  transition: ${theme.trans};
+  opacity: ${(props) => (props.isOpen ? "1" : "0")};
+`;
 
 export const ProfileText2 = styled("h1")<OpenProps>(
   {
