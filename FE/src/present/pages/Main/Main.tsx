@@ -43,6 +43,10 @@ const Main = () => {
   };
 
   useEffect(() => {
+    setModalState(false);
+  }, [isOpen])
+
+  useEffect(() => {
     const token = Cookies.get("AuthorizationToken");
     // token 값이 존재하면 accessToken에 할당하고, 그렇지 않으면 빈 문자열 할당
     const accessToken = token || "";

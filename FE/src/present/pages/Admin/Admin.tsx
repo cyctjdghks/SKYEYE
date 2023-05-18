@@ -15,6 +15,8 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { useNavigate } from "react-router-dom";
 import { UserLogout } from "@src/action/hooks/User";
 import { toastListState } from "@src/store/toast";
+import { authState } from "@src/store/auth";
+import Cookies from "js-cookie";
 
 type UserInfo = {
   userId: string;
@@ -28,6 +30,7 @@ const Admin = () => {
   const navigate = useNavigate();
   const selectedIdx = useRecoilValue(selectedIdxState).idx;
   const users = useRecoilValue(adminState).users;
+  const [user, setUser] = useRecoilState(authState)
   const [chooseUser, setChooseUser] = useState<UserInfo>({
     userId: "",
     userName: "",
@@ -54,6 +57,14 @@ const Admin = () => {
   const logoutSignal = () => {
     AdminLogout()
       .then((res) => {
+        if (res.isSuccess) {
+          Cookies.remove("AuthorizationToken");
+        }
+        setUser({
+          isAuthenticated: false,
+          user: null,
+          userType: 0,
+        });
         navigate("/");
         const successAdminToast = {
           type: "Success",

@@ -39,7 +39,7 @@ const Weather = ({ isOpen }: WeatherProps) => {
         temp: res.result.main.temp,
         main: res.result.weather[0].main,
         humidity: res.result.main.humidity,
-        pressure: res.result.main.humidity,
+        pressure: res.result.main.pressure,
         windSpeed: res.result.wind.speed,
         windDeg: res.result.wind.deg,
         sunrise: parseInt(res.result.sys.sunrise),

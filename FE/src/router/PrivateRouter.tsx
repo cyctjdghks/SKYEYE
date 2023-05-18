@@ -2,14 +2,15 @@ import { useRecoilValue, useRecoilState } from "recoil";
 import { toastListState } from "@src/store/toast";
 import { authState } from "@src/store/auth";
 import { Outlet, Navigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
-const AdminRoute = () => {
-  const userType = useRecoilValue(authState).userType
+const PrivateRoute = () => {
+  const isLogin = useRecoilValue(authState).isAuthenticated
+  
   const [toastList, setToastList] = useRecoilState(toastListState);
 
   useEffect(()=>{
-    if(userType){
+    if(!isLogin){
       const accessAdminToast = {
         type: "Error",
         sentence: "권한이 없습니다.",
@@ -18,7 +19,7 @@ const AdminRoute = () => {
     }
   }, [])
  
-  return userType? <Navigate to="/upload" /> : <Outlet />;
+  return !isLogin? <Navigate to="/" /> : <Outlet />;
 };
 
-export default AdminRoute;
+export default PrivateRoute;
