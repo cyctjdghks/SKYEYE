@@ -74,15 +74,16 @@ export const ProfileBox = styled.div`
 export const ProfileText1 = styled.h1<OpenProps>`
   font-style: normal
   font-weight: 500;
-  font-size: 26px;
+  font-size: 24px;
   line-height: 100%;
   white-space: nowrap;
   margin-right: 5px;
   margin-bottom: 10px;
   max-width: 100px;
-  overflow: hidden;
   color: ${theme.colors.greyscale.light3};
   transition: ${theme.trans};
+  text-overflow: ellipsis; 
+  overflow:hidden;
   opacity: ${(props) => (props.isOpen ? "1" : "0")};
 `;
 
