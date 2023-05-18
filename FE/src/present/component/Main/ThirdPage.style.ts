@@ -9,53 +9,60 @@ export const ThirdPage = styled("div")({
   flexDirection: "column",
   justifyContent: "flex-start",
   position: "relative",
+  alignItems: "center",
 });
 
-export const bottomBox1 = styled("div")({
-  width: "85vw",
-  height: "30vw",
-  maxHeight: "600px",
-  backgroundColor: `${theme.colors.point.point}`,
-  // display: "flex",
-  // flexDirection: "column",
-  // justifyContent: "center",
-  borderRadius: "8px",
-  marginLeft: "7.5vw",
-  marginBottom: "3vh",
-  marginTop: "1vh",
-});
+export const bottomBox1 = styled.div`
+  width: 85%;
+  height: fit-content;
+  background-color: ${theme.colors.point.point};
+  border-radius: 8px;
+  margin-bottom: 3vh;
+  margin-top: 1vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
-export const innerBox1 = styled("div")({
-  width: "90%",
-  marginLeft: "2.2vw",
-  // display: "flex",
-  // justifyContent: "space-between",
-  // alignItems: "center",
-});
+export const innerBox1 = styled.div`
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
-export const title = styled("p")({
-  fontStyle: "normal",
-  fontSize: "5vw",
-  lineHeight: "10%",
-  color: `${theme.colors.greyscale.light3}`,
-});
+export const title = styled.p`
+  width: 100%;
+  font-style: normal;
+  font-size: 5vw;
+  line-height: 10%;
+  color: ${theme.colors.greyscale.light3};
+
+`;
 
 export const HrLine = styled("hr")({
-  width: "80vw",
+  width: "100%",
   color: `${theme.colors.greyscale.dark1}`,
   marginBottom: "1vw",
 });
 
-export const lineBox = styled("div")({
-  width: "42vw",
-  marginLeft: "38vw",
-});
+export const lineBox = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  align-items: end;
+  @media (max-width: 1024px) {
+    align-items: center;
+  }
+`;
 
-export const sHrLineBox = styled("div")({
-  display: "flex",
-  marginBottom: "0.7vh"
-  
-});
+export const sHrLineBox = styled.div`
+  display: flex;
+  margin-bottom: 0.7vh;
+  height: fit-content;
+`;
 
 export const circle = styled("div")({
   width: "10px",
@@ -75,28 +82,28 @@ export const circle = styled("div")({
   },
 });
 
-export const lineText = styled("div")({
-  color: `${theme.colors.greyscale.light3}`,
-  width: "42vw",
-  borderBottom: `1.5px solid  ${theme.colors.greyscale.light3}`,
-  marginTop: "0.25vw",
-  fontSize: "1.5vw",
-  height: "2.5vw",
-  minHeight: "15px"
-
-})
-
+export const lineText = styled.div`
+  color: ${theme.colors.greyscale.light3};
+  min-width: 42vw;
+  border-bottom: 1.5px solid ${theme.colors.greyscale.light3};
+  margin-top: 0.25vw;
+  font-size: 1.5vw;
+  height: fit-content;
+  min-height: 20px;
+  @media (max-width: 1024px) {
+    min-width: 70vw;
+  }
+`;
 
 export const bottomBox2 = styled("div")({
   width: "85vw",
-  height: "20vw",
+  // height: "20vw",
   maxHeight: "300px",
   backgroundColor: `${theme.colors.point.point}`,
   display: "flex",
   flexDirection: "column",
   justifyContent: "flex-end",
   borderRadius: "8px",
-  marginLeft: "7.5vw",
   marginBottom: "3vh",
   marginTop: "1vh",
 });
@@ -105,8 +112,6 @@ export const textBox = styled("div")({
   display: "flex",
   justifyContent: "space-between",
   width: "90%",
-  marginTop: "30px",
-  marginLeft: "4.2vw",
 });
 
 export const text = styled("p")({

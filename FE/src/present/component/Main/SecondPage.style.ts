@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { theme } from "@constant/theme";
-import main01 from "@assets/main/main01.png"
-import main03 from "@assets/main/main03.jpg"
+import main01 from "@assets/main/main01.png";
+import main03 from "@assets/main/main03.jpg";
 
 type HiddenProps = {
   hidden: boolean;
@@ -13,7 +13,7 @@ type ColorProps = {
 
 type ImgProps = {
   image: string;
-}
+};
 
 export const SecondPage = styled("div")({
   width: "100vw",
@@ -60,7 +60,7 @@ export const ImgBox = styled("div")({
   borderRadius: "8px",
   marginLeft: "7.5vw",
   marginBottom: "3vh",
-  marginTop: "2vh"
+  marginTop: "2vh",
 });
 
 export const InnerBox = styled("div")({
@@ -87,41 +87,44 @@ export const SmallBox = styled("div")<HiddenProps>(
   })
 );
 
-export const BoxImg = styled("img")<ImgProps>({
-  width: "90%",
-  height: "82%",
-  borderRadius: "8px",
-  marginTop: "5%",
-  backgroundPosition: "center",
-  backgroundSize: "cover",
-},
-(props) => ({
-  backgroundImage: `url(${props.image})`,
-})
+export const BoxImg = styled("img")<ImgProps>(
+  {
+    width: "90%",
+    height: "82%",
+    borderRadius: "8px",
+    marginTop: "5%",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+  },
+  (props) => ({
+    backgroundImage: `url(${props.image})`,
+  })
 );
 
-export const LargeBoxImg = styled("img")<ImgProps>({
-  width: "95%",
-  height: "82%",
-  borderRadius: "8px",
-  marginTop: "2.5%",
-  backgroundPosition: "center",
-  backgroundSize: "cover",
-},
-(props) => ({
-  backgroundImage: `url(${props.image})`,
-})
+export const LargeBoxImg = styled("img")<ImgProps>(
+  {
+    width: "95%",
+    height: "82%",
+    borderRadius: "8px",
+    marginTop: "2.5%",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+  },
+  (props) => ({
+    backgroundImage: `url(${props.image})`,
+  })
 );
 
-export const ColorBox = styled("div")<ColorProps>({
-  width: "90%",
-  height: "82%",
-  borderRadius: "8px",
-  marginTop: "5%",
-},
-(props) =>({
-   backgroundColor : `${props.color}`
-})
+export const ColorBox = styled("div")<ColorProps>(
+  {
+    width: "90%",
+    height: "82%",
+    borderRadius: "8px",
+    marginTop: "5%",
+  },
+  (props) => ({
+    backgroundColor: `${props.color}`,
+  })
 );
 
 export const TextBox = styled("div")({
@@ -131,13 +134,16 @@ export const TextBox = styled("div")({
   alignItems: "center",
 });
 
-export const BoxText1 = styled("p")({
-  fontStyle: "normal",
-  fontWeight: "300",
-  fontSize: "1vw",
-  lineHeight: "120%",
-  color: `${theme.colors.greyscale.dark1}`,
-});
+export const BoxText1 = styled.p`
+  font-style: normal;
+  font-weight: 300;
+  font-size: 1vw;
+  line-height: 120%;
+  color: ${theme.colors.greyscale.dark1};
+  @media(max-width: 500px){
+    display: none;
+  }
+`;
 
 export const BoxText2 = styled("p")({
   fontStyle: "normal",

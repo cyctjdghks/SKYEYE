@@ -61,7 +61,7 @@ export const p = styled.p<{ errorFontSize: string }>`
   }
   @media (max-width: 800px) {
     font-size: 7px;
-  }, 
+  };
 `;
 export const pp = styled.p<{ errorFontSize: string }>`
   ${fontStyles}
@@ -77,5 +77,5 @@ export const pp = styled.p<{ errorFontSize: string }>`
   }
   @media (max-width: 800px) {
     font-size: 7px;
-  }, 
+  }; 
 `;

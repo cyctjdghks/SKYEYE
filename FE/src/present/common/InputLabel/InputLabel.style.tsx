@@ -17,7 +17,7 @@ export const inputBox = styled.div<{ width: string; height: string }>`
 `;
 
 export const label = styled.label`
-  /* width: 300px; */'
+  /* width: 300px; */
 `;
 
 export const input = styled.input<{
@@ -54,10 +54,10 @@ export const p = styled.p<{ errorFontSize: string }>`
   white-space: nowrap;
   @media (max-width: 1024px) {
     font-size: 11px;
-  }
+  };
   @media (max-width: 800px) {
     font-size: 11px;
-  },     
+  };
 `;
 export const pp = styled.p<{ errorFontSize: string }>`
   ${fontStyles}
