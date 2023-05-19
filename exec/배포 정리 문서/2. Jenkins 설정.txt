@@ -1,0 +1,155 @@
+Jenkins 설치
+1. jenkins 설치
+docker pull jenkins/jenkins:lts
+docker pull jenkins/jenkins:jdk11
+2. jenkins 컨테이너 실행(out of docker 방식 - 이게 아니면 dockerhub에 올려서 이미지를 받아와서 해야함)
+sudo docker run -d -p 8080:8080 -v /var/run/docker.sock:/var/run/docker.sock -v /jenkins:/var/jenkins_home --name jenkins -u root jenkins/jenkins:lts
+
+
+3. 젠킨스 설정 - 비밀번호 확인
+sudo docker logs jenkins
+
+4. 젠킨스 설정 - plugin 설치
+Amazon EC2, Authentication Tokens API, gitlab, Config File Provider, docker, docker commons, docker pipeline, dockerAPI, Deploy to container, Infrastructure plugin for Publish Over X, Javadoc, JavaScript GUI Lib: ACE Editor bundle, NodeJS, Publish Over SSH
+
+5. jenkins 컨테이너에 docker 설치(Debian으로 설치/sudo 명령어 안됨)
+apt-get update
+apt-get install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+mkdir -m 0755 -p /etc/apt/keyrings
+ curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+apt-get update
+chmod a+r /etc/apt/keyrings/docker.gpg
+apt-get update
+apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+6. 백엔드 젠킨스 설정 - Repositories 경로 설정
+- 구성 > 소스 코드 관리 > Git
+URL 설정 + Credentials 설정 + Branches to build 설정
+- 빌드 유발 설정
+Build when a change is pushed to GitLab. GitLab webhook URL: http://k8d202.p.ssafy.io:8080/project/back-end
++ Push Events, Accepted Merge Request Events
+- Build Steps 설정(Gradle)
+1)Invoke Gradle script - Invoke Gradle
+clean build
++ 고급 설정 - Build File
+./BE/d102/build.gradle
+2) Execute shell
+```
+docker build -t d202-server ./BE/skyeye/
+docker rm -f d202-server || true
+docker run -d -p 8082:8082 -v /var/images:/usr/app/images --name d202-server d202-server
+```
+
+7. Springboot 프로젝트에 Dockerfile 생성
+```
+FROM adoptopenjdk/openjdk11
+WORKDIR /usr/app
+COPY build/libs/skyeye-0.0.1-SNAPSHOT.jar d202.jar
+EXPOSE 8082
+CMD ["java", "-jar", "d202.jar"]
+```
+
+8. 젠킨스 글로벌 환경 변수 지정
+jenkins 관리 > 시스템 설정 > Global properties > Environment variables
+DB_USERNAME : root
+DB_USERPW : skyeye12
+
+9. 프론트엔드 젠킨스 설정 - Repositories 경로 설정
+- 구성 > 소스 코드 관리 > Git
+URL 설정 + Credentials 설정 + Branches to build 설정
+- 빌드 유발
+Build when a change is pushed to GitLab. GitLab webhook URL: http://k8d202.p.ssafy.io:8080/project/front-end
++ Push Events, Accepted Merge Request Events
+- Build Steps
+1) Execute NodeJS script
+2) Execute shell
+```
+cd FE
+docker build -t d202-client .
+docker rm -f d202-client || true
+docker run -d -p 8081:80 --name d202-client d202-client
+```
+
+10. React 프로젝트에 Dockerfile 생성
+```
+FROM node:lts-alpine as build-stage
+WORKDIR /app
+COPY . .
+RUN npm install
+RUN npm run build
+
+FROM nginx:stable-alpine as production-stage
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+11. React 프로젝트에 nginx.conf 파일 생성
+```
+server {
+  listen       80;
+  server_name  localhost;
+  location / {
+    root   /usr/share/nginx/html;
+    index  index.html;
+    try_files $uri $uri/ /index.html;
+  }
+}
+```
+
+12. AI 젠킨스 설정 - Repositories 경로 설정
+- 구성 > 소스 코드 관리 > Git
+URL 설정 + Credentials 설정 + Branches to build 설정
+- 빌드 유발
+Build when a change is pushed to GitLab. GitLab webhook URL: http://k8d202.p.ssafy.io:8080/project/ai-server
++ Push Events
+- Build Steps
+1) Execute shell
+```
+docker build -t d202-ai ./AI
+docker rm -f d202-ai || true
+docker run -d -p 8083:5000 -v /var/images:/usr/app/images --name d202-ai d202-ai
+```
+
+13. Flask 프로젝트에 Docker file 생성
+```
+FROM python:3.9.16
+
+WORKDIR /usr/app
+
+COPY . .
+
+RUN /usr/local/bin/python -m pip install --upgrade pip
+
+RUN pip install -r requirements.txt
+RUN pip install pymysql
+
+EXPOSE 5000
+
+CMD [ "python", "file_save.py" ]
+```
+
+14. webhook 설정
+- Gitlab에서 API token 발급
+프로젝트 > 설정 > 액세스 토큰 > 개인 액세스 토큰 (or 프로필 > 환경설정 > 액세스 토큰 > 개인 액세스 토큰)
+Token name 설정 + 만료일 설정 + role : Maintainer
+- Jenkins에서 jenkins 플러그인 설치
+gitlab plugin
+- Jenkins에서 gitlab에서 받은 Token 넣기
+Dashboard > Jenkins 관리 > System Configuration > Manage Credentials
+Credentials 설정
+GitLab API token + Api token 작성 + Id, Description 설정
+- 빌드 유발 고급 설정 secret token의 Generate 버튼 클릭
+- Gitlab에서 webhook 생성
+프로젝트 > 설정 > Webhooks > Webhook
+URL 입력 + secret token의 Generate 버튼 클릭 후 나온 token 작성 + Push events에 해당 branch 작성 => 저장
+- webhook 테스트
+

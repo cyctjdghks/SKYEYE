@@ -1,0 +1,30 @@
+Docker MariaDB 설치
+1. MariaDB 이미지 다운로드
+docker pull mariadb
+
+2. MariaDB 컨테이너 추가 및 구동
+docker run --name mariadb -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=skyeye12 mariadb
+
+3. MariaDB 접속
+docker exec -it mariadb /bin/bash
+mysql -u root -p
+
+4. Characterset 변경
+status
+"characterset 확인"
+```
+[client]
+default-character-set = utf8mb4
+ 
+[mysql]
+default-character-set = utf8mb4
+
+[mysqld]
+collation-server = utf8_unicode_ci
+init-connect='SET NAMES utf8'
+character-set-server = utf8
+```
+docker restart mariadb
+
+5. 필요한 db 생성
+create database d202;

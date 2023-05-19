@@ -1,0 +1,141 @@
+// Nginx & SSL 설정
+
+// 1. container로 올리기
+// docker로 Nginx 설치
+docker pull nginx
+
+// Nginx와 mount할 디렉토리 생성(경로 : /home/ubuntu/nginx_home)
+mkdir nginx_home
+
+// Let's Encrypt 설치
+apt-get install letsencrypt
+
+// 인증서 적용 및 .pem 키 발급
+letsencrypt certonly --standalone -d k8d202.p.ssafy.io
+
+//Nginx 도커 container 실행
+docker run -d --name nginx --network host -v /home/ubuntu/nginx_home:/var/nginx_home -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib/letsencrypt nginx
+
+// nginx container 들어가기
+sudo docker exec -it --user root nginx /bin/bash
+
+// 디렉토리 생성
+cd ./etc/nginx
+mkdir cd sites-enables
+cd sites-enables
+
+// vim 다운로드
+apt-get update
+apt-get install vim
+
+// config.conf 파일 생성
+vi config.conf
+
+```
+
+server {
+        listen 443 ssl;
+        server_name k8d202.p.ssafy.io;
+
+        ssl_certificate /etc/letsencrypt/live/k8d202.p.ssafy.io/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/k8d202.p.ssafy.io/privkey.pem;
+
+        location / {
+                proxy_pass http://k8d202.p.ssafy.io:8081;
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+        }
+
+        location /be {
+                proxy_pass http://k8d202.p.ssafy.io:8082/be;
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+        }
+
+        
+}
+
+server {
+        listen 80;
+        server_name k8d202.p.ssafy.io;
+        return 301 https://$server_name$request_uri;
+
+}
+```
+
+// nginx.conf 파일 수정
+vi nginx.conf
+```
+	...
+	include /etc/nginx/sites-enables/*.conf;
+}
+```
+
+// 이미지 업로드 관련 413 에러 해결
+// config.conf 파일 수정
+...
+server {
+        ...
+        client_max_body_size 5M;
+        ...
+
+}
+...
+
+// nginx 컨테이너 안에서 reload
+nginx -s reload
+
+// 2. 자체인증
+// docker 로 nginx 설치
+sudo apt update
+sudo apt install nginx
+
+// 인증서 다운
+sudo snap install certbot --classic
+sudo certbot --nginx
+
+// /etc/nginx/ 경로에 파일등 생성됨.
+
+// sites-available 에 default 파일 잇음. ( 해당 파일로 바꿔도 됨)
+
+// conf.d 파일에 설정 파일 생성 후 코드 작성
+vim nginx.conf
+
+```
+server {
+
+    location / {
+        proxy_pass http://localhost:8081;
+    }
+
+    location /be {
+        proxy_pass http://localhost:8082/be;
+    }
+
+    location /api {
+        proxy_pass http://localhost:8083/api;
+    }
+
+    listen [::]:443 ssl ipv6only=on; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
+
+    client_max_body_size 0;
+
+    ssl_certificate /etc/letsencrypt/live/k8d202.p.ssafy.io/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/k8d202.p.ssafy.io/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+
+server {
+    if ($host = k8d202.p.ssafy.io) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    server_name k8d202.p.ssafy.io;
+    return 404; # managed by Certbot
+}
+```
+
+// nginx reload
+nginx -s reload
