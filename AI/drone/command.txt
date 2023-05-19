@@ -1,0 +1,6 @@
+command
+takeoff
+up 20
+delay 5
+down 20
+land
