@@ -6,10 +6,14 @@ const colors = {
     light1: "#D9DDE8",
     light2: "#F8F9FD",
     light3: "#FFFFFF",
+  },
+  point: {
     point: "#0758B1",
     pointLight: "#75ACE8",
     pointLight2: "#96c2f2",
-  },
+    warning: "#DF3F3F",
+    warningLight: "#F06A6A"
+  }
 };
 
 const scroll = `  &::-webkit-scrollbar {
@@ -21,7 +25,7 @@ const scroll = `  &::-webkit-scrollbar {
 }
 
 &::-webkit-scrollbar-thumb {
-  background-color: ${colors.greyscale.point};
+  background-color: ${colors.point.point};
   width: 6px;
   border-radius: 1rem;
 }`
