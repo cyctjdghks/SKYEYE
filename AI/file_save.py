@@ -112,7 +112,7 @@ def upload():
         class_name = class_names[index]
         confidence_score = prediction[0][index]
         
-        if 100>=confidence_score*100>=80:
+        if 100>=confidence_score*100>=90:
             crackType = class_name[2:].rsplit('\n')[0]
             # print(crackType)#  크랙 종류
             sql="insert into crack (crack_type, folder_id, image_id,crack_position, created_at, updated_at) values (%s, %s, %s,%s,%s,%s)"
