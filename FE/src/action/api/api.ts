@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
-import { urls }  from "@constant/values";
+import { urls } from "@constant/values";
 
 export interface ApiResult {
   isSuccess: boolean;
@@ -8,15 +8,14 @@ export interface ApiResult {
 
 const API = axios.create({ baseURL: urls.API });
 
+export let Error:AxiosError ;
+
 //오류가 발생할 경우
 API.interceptors.response.use(
   (res: AxiosResponse) => res,
   async (err: AxiosError) => {
-    if (err.response.status === 401) {
-      localStorage.clear();
-      return Promise.reject(err);
-    }
-  },
+    Error = err;
+  }
 );
 
 /**
@@ -27,7 +26,7 @@ API.interceptors.response.use(
 */
 export async function getAsync(
   url: string,
-  config?: AxiosRequestConfig,
+  config?: AxiosRequestConfig
 ): Promise<ApiResult> {
   try {
     const response = await API.get(url, {
@@ -51,13 +50,13 @@ export async function getAsync(
 export async function postAsync<D>(
   url: string,
   data?: D,
-  config?: AxiosRequestConfig,
+  config?: AxiosRequestConfig
 ): Promise<ApiResult> {
   try {
     const response = await API.post(url, data, {
       responseType: "json",
       ...config,
-    })
+    });
     return { isSuccess: true, result: response.data };
   } catch (err) {
     return { isSuccess: false, result: err };
@@ -74,7 +73,7 @@ export async function postAsync<D>(
 export async function patchAsync<D>(
   url: string,
   data: D,
-  config?: AxiosRequestConfig,
+  config?: AxiosRequestConfig
 ): Promise<ApiResult> {
   try {
     const response = await API.patch(url, data, {
@@ -98,7 +97,7 @@ export async function patchAsync<D>(
 export async function putAsync<D>(
   url: string,
   data: D,
-  config?: AxiosRequestConfig,
+  config?: AxiosRequestConfig
 ): Promise<ApiResult> {
   try {
     const response = await API.put(url, data, {
@@ -121,15 +120,13 @@ export async function putAsync<D>(
   */
 export async function deleteAsync<D>(
   url: string,
-  config?: AxiosRequestConfig,
+  config?: AxiosRequestConfig
 ): Promise<ApiResult> {
   try {
     const response = await API.delete(url, {
       responseType: "json",
       ...config,
     });
-
-    console.log(response.data);
 
     return { isSuccess: true, result: response.data };
   } catch (err) {

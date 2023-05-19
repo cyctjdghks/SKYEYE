@@ -7,21 +7,23 @@ type inputProps = {
   errorMessage: string;
   value: string;
   fontSize: string;
-  errorFontSize: string;
   type: string;
+  readonly?: boolean;
+  errorFontSize: string,
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const InputLabel = ({
   placeholder,
+  errorFontSize,
   width,
   height,
   errorMessage,
   value,
   fontSize,
   type,
-  errorFontSize,
   onChange,
+  readonly,
 }: inputProps) => {
   return (
     <style.inputBox width={width} height={height}>
@@ -34,6 +36,7 @@ const InputLabel = ({
           fontSize={fontSize}
           onChange={onChange}
           type={type}
+          readOnly={readonly}
         />
         {errorMessage ? (
           <style.p errorFontSize={errorFontSize}>{errorMessage}</style.p>

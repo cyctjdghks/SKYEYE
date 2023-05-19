@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { theme } from "@src/constant/theme";
 
 export const PrimaryBtn = styled.button`
-  background-color: ${theme.colors.greyscale.point};
+  background-color: ${theme.colors.point.point};
   color: ${theme.colors.greyscale.light3};
   padding: 0.8rem 1rem;
   border: none;
@@ -20,7 +20,7 @@ export const PrimaryBtn = styled.button`
   }
 
   &:hover {
-    background-color: ${theme.colors.greyscale.pointLight};
+    background-color: ${theme.colors.point.pointLight};
     cursor: pointer;
   }
 
@@ -45,7 +45,7 @@ export const AddBtn = styled.button`
   font-size: 1.22rem;
   width: fit-content;
   min-width: 23rem;
-  background-color: ${theme.colors.greyscale.pointLight};
+  background-color: ${theme.colors.point.pointLight};
   color: ${theme.colors.greyscale.light3};
   padding: 0.8rem 1.2rem;
   border: none;
@@ -53,7 +53,7 @@ export const AddBtn = styled.button`
   box-shadow: ${theme.shadows.shadow2};
 
   &:hover {
-    background-color: ${theme.colors.greyscale.pointLight2};
+    background-color: ${theme.colors.point.pointLight2};
     cursor: pointer;
   }
 
@@ -80,7 +80,7 @@ export const DefaultBtn = styled.button`
   }
 `;
 
-export const BuildingBtn = styled.button`
+export const FolderBtn = styled.button`
   padding: 0.8rem 1.2rem;
   font-family: "SCDream5";
   font-size: 1.25rem;
@@ -103,12 +103,12 @@ export const BuildingBtn = styled.button`
   }
 
   &.Main {
-    background-color: ${theme.colors.greyscale.point};
+    background-color: ${theme.colors.point.point};
     color: ${theme.colors.greyscale.light3};
-    border: solid 1.5px ${theme.colors.greyscale.point};
+    border: solid 1.5px ${theme.colors.point.point};
     padding: 1.2rem;
 
-    & > div:nth-child(1) {
+    & > div:nth-of-type(1) {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -118,7 +118,7 @@ export const BuildingBtn = styled.button`
       }
     }
 
-    & > div:nth-child(2) {
+    & > div:nth-of-type(2) {
       padding-top: 0.3rem;
       font-size: 1rem;
       width: 100%;
@@ -130,11 +130,11 @@ export const BuildingBtn = styled.button`
         align-items: center;
         width: inherit;
 
-        & > span:nth-child(1) {
-          color: ${theme.colors.greyscale.pointLight2};
+        & > span:nth-of-type(1) {
+          color: ${theme.colors.point.pointLight2};
         }
 
-        & > span:nth-child(2) {
+        & > span:nth-of-type(2) {
           color: ${theme.colors.greyscale.light1};
         }
       }
@@ -165,12 +165,12 @@ export const CrackBtn = styled.button`
   }
 
   &.Sub {
-    background-color: ${theme.colors.greyscale.pointLight};
+    background-color: ${theme.colors.point.pointLight};
     color: ${theme.colors.greyscale.light3};
-    border: solid 1.5px ${theme.colors.greyscale.pointLight};
+    border: solid 1.5px ${theme.colors.point.pointLight};
     padding: 1.2rem;
 
-    & > div:nth-child(1) {
+    & > div:nth-of-type(1) {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -180,7 +180,7 @@ export const CrackBtn = styled.button`
       }
     }
 
-    & > div:nth-child(2) {
+    & > div:nth-of-type(2) {
       margin-top: 0.5rem;
       display: flex;
       justify-content: space-between;
@@ -189,13 +189,32 @@ export const CrackBtn = styled.button`
       font-size: 1rem;
       width: 100%;
 
-      & > span:nth-child(1) {
-        color: ${theme.colors.greyscale.point};
+      & > span:nth-of-type(1) {
+        color: ${theme.colors.point.point};
       }
 
-      & > span:nth-child(2) {
+      & > span:nth-of-type(2) {
         color: ${theme.colors.greyscale.light3};
       }
     }
+  }
+`;
+
+
+export const DeleteBtn = styled.button`
+  background-color: ${theme.colors.greyscale.dark2};
+  color: ${theme.colors.greyscale.light3};
+  padding: 0.8rem 1rem;
+  border: none;
+  font-family: "SCDream5";
+  font-size: 1.22rem;
+  width: fit-content;
+  min-width: 10rem;
+  border-radius: 0.5rem;
+  box-shadow: ${theme.shadows.shadow2};
+
+  &:hover {
+    background-color: ${theme.colors.greyscale.dark3};
+    cursor: pointer;
   }
 `;
