@@ -34,12 +34,9 @@
 
 ## 기획 배경 및 목표
 ### 사람이 직접 접근하기 힘든 구역의 건물 균열을 드론을 통해 탐지
+> 고층 빌딩 혹은 교각의 경우 사람이 직접 균열을 탐지하기 힘든 부분이 존재함
+* 이를 드론과 AI를 이용하여 자동으로 균열을 탐지하여 저장을 하는 서비스와 동시에 업로드 한 사진을 자동으로 분류하고 관리하는 서비스 제공
 
-
-### 카드를 이용한 출입 시스템의 불편함
-> 카드가 없으면 출입이 불가능한 시스템 구조상 카드를 항상 소지하여야하고, 카드를 꺼내어 태깅을 해야함
-또한 건물 출입 후 별도로 출근 프로세스를 진행하는 부분에 있어 불필요한 중복업무가 발생
-* 이를 AI 영상분석을 통한 실시간 객체검출을 통해 출입과 동시에 출근, 퇴근시각으로 기록하여 편리한 입출입 서비스 제공
 
 <br>
 
@@ -97,11 +94,9 @@
 
 ## 서비스 소개
 
-* AI 영상 분석을 통한 실시간 객체 검출을 통해 실시간 출퇴근 기록 서비스 제공
-* SSD MobileNet를 이용하여 약 200,000번 학습된 데이터를 openCV로 IP Camera와 연동하여 학습된 모델 적용 및 객체 검출
-* 인식된 Class Name으로 DB에 접근하여 출입과 동시에 DB에 출석 요청을 발송
-* DB에 기록된 출결 현황 및 시간을 웹페이지에서 실시간으로 조회
-
+* 드론 원격 조종을 통하여 AI 객체 검출을 통하여 사진을 자동으로 저장
+* Flask 서버에 이미지를 업로드하여 자동으로 분류 후 DB에 저장
+* 웹 서버에서 분류 된 이미지를 조회 및 다운로드 진행
 <br>
 
 ## 시나리오
@@ -110,77 +105,66 @@
 
 #### 회원가입
 <div>
-	<img src="./docs/img/demonstration/signup.png" />
+	<img src="./docs/img/RegistUserPage.png" />
 <div/>
-
-#### 로그인 선택
-<div>
-	<img src="./docs/img/demonstration/logintype.png" />
-<div/>
-
-
-### 1. Organization
 
 #### 로그인
 <div>
-	<img src="./docs/img/demonstration/organizationlogin.png" />
-	<img src="./docs/img/demonstration/organizationtype.png" />
+	<img src="./docs/img/LoginPage.png" />
 <div/>
 
-#### 회원/근무자 조회
+
+### 1. 사진 업로드
+
+#### 로그인 후 화면
 <div>
-	<img src="./docs/img/demonstration/organizationsearch1.png" />
-	<img src="./docs/img/demonstration/organizationsearch2_edit.png" />
-<div/>
+	<img src="./docs/img/LoginSuccessPage.png" />
+</div>
 
-#### 회원/근무자 등록
+#### 폴더 
 <div>
-	<img src="./docs/img/demonstration/organizationregist1.png" />
-	<img src="./docs/img/demonstration/organizationregist2.png" />
-<div/>
+	<img src="./docs/img/UploadCrackPage1.png" />
+	<img src="./docs/img/AddFolderPage.png" />
+	<img src="./docs/img/UploadCrackPage2.png" />
+	<img src="./docs/img/UploadCrackPage3.png" />
+</div>
 
-#### 회원/근무자 출퇴근
+#### 비행금지구역 확인
 <div>
-	<img src="./docs/img/demonstration/attendance.png" />
+	<img src="./docs/img/No-flyZonePage.png" />
 <div/>
 
-#### 군집도 확인
+### 2. 사진 조회 / 다운로드
+
+
 <div>
-	<img src="./docs/img/demonstration/cluster.png" />
+	<img src="./docs/img/ViewCrackPage1.png" />
+	<img src="./docs/img/ViewCrackPage2.png" />
+	<img src="./docs/img/ViewCrackPage3.png" />
+	<img src="./docs/img/ViewCrackPage4.png" />
 <div/>
 
-### 2. User
+
+
+### 3. 관리자
 
 #### 로그인
+
 <div>
-	<img src="./docs/img/demonstration/userlogin.png" />
+	<img src="./docs/img/LoginPage.png" />
 <div/>
 
 #### 정보조회
 <div>
-	<img src="./docs/img/demonstration/userprofile_edit.png" />
+	<img src="./docs/img/AdminPage.png" />
 <div/>
 
-#### 달력확인
-<div>
-	<img src="./docs/img/demonstration/usercalendar.png" />
-<div/>
+### 4. 드론 화면
 
-### 3. Worker
-
-#### 로그인
+#### 드론
 <div>
-	<img src="./docs/img/demonstration/workerlogin.png" />
-<div/>
-
-#### 정보조회
-<div>
-	<img src="./docs/img/demonstration/workerprofile.png" />
-<div/>
-
-#### 달력확인
-<div>
-	<img src="./docs/img/demonstration/workercalendar.png" />
+	<img src="./docs/img/DroneScreen.png" />
+	<img src="./docs/img/ResultDroneScreen.png" />
 <div/>
 
 
